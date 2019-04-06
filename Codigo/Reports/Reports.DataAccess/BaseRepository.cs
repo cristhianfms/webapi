@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Reports.DataAccess.Interface;
 using Microsoft.EntityFrameworkCore;
 
-namespace Homeworks.DataAccess
+namespace Reports.DataAccess
 {
     public abstract class BaseRepository<T> : IRepository<T> where T : class
     {
