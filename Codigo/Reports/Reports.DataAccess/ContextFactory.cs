@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Reports.DataAccess
 {
-    public class ContextFactory{
+    public static class ContextFactory{
         public static ReportsContext GetMemoryContext(string nameBd) {
             var builder = new DbContextOptionsBuilder<ReportsContext>();
             return new ReportsContext(GetMemoryConfig(builder, nameBd));

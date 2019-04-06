@@ -14,6 +14,7 @@ namespace Reports.DataAccess
         }
         public override IEnumerable<User> GetAll(){
             return new List<User>();
+            
         }
 
         public override User Get(Guid id){

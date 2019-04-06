@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Reports.DataAccess.Interface\Reports.DataAccess.Interface.csproj" />
     <ProjectReference Include="..\Reports.DataAccess\Reports.DataAccess.csproj" />
+    <ProjectReference Include="..\Reports.Domain\Reports.Domain.csproj" />
   </ItemGroup>
 
 </Project>
