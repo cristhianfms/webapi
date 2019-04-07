@@ -14,7 +14,7 @@ namespace Reports.DataAccess.Test
         public void AddManagerUserOK()
         {   
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
-            UserRepository userRepo = new UserRepository(context);
+            IRepository<User> userRepo = new UserRepository(context);
 
             var name = "Santiago";
             var lastName = "Larralde";
@@ -41,7 +41,7 @@ namespace Reports.DataAccess.Test
         public void AddAdminUserOK()
         {   
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
-            UserRepository userRepo = new UserRepository(context);
+            IRepository<User> userRepo = new UserRepository(context);
 
             var name = "Santiago";
             var lastName = "Larralde";
