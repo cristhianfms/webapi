@@ -2,7 +2,7 @@ using System;
 using Reports.Domain;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace Reports.DataAccess
 {
@@ -13,8 +13,7 @@ namespace Reports.DataAccess
             Context = context;
         }
         public override IEnumerable<User> GetAll(){
-            return new List<User>();
-            
+            return Context.Set<User>().ToList();
         }
 
         public override User Get(Guid id){
