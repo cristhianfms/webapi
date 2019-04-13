@@ -12,8 +12,10 @@ namespace Reports.DataAccess
 
         public ReportsContext(DbContextOptions options) : base(options)
         {
-                        
+
+                                   
         }
 
     }
 }
+

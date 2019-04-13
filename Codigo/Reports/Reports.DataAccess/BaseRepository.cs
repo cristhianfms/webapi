@@ -11,7 +11,13 @@ namespace Reports.DataAccess
 
         public void Add(T entity) 
         {
-            Context.Set<T>().Add(entity);
+            try
+            {
+                Context.Set<T>().Add(entity);
+            }
+            catch (Exception e){
+                throw new UserRepositoryException(e.Message, e);
+            }
         }
 
         public void Remove(T entity) 
