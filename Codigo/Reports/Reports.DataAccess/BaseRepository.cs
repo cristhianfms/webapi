@@ -16,7 +16,7 @@ namespace Reports.DataAccess
                 Context.Set<T>().Add(entity);
             }
             catch (Exception e){
-                throw new UserRepositoryException(e.Message, e);
+                throw new RepositoryException(e.Message, e);
             }
         }
 

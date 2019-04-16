@@ -38,7 +38,7 @@ namespace Reports.DataAccess.Test
 
 
         [TestMethod]
-        [ExpectedException(typeof(UserRepositoryException))]
+        [ExpectedException(typeof(RepositoryException))]
         public void AddUserSameGuid()
         {   
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
