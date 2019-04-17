@@ -6,7 +6,7 @@ namespace Reports.DataAccess
     {
         public RepositoryException(string message): base(message){}
         public RepositoryException(string message, Exception inner) :base(message, inner){}
-         public RepositoryException(string message) :base(message){}
+        
     }
 
 }
