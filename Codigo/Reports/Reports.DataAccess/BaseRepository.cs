@@ -21,7 +21,7 @@ namespace Reports.DataAccess
         }
 
         public void Remove(T entity) 
-        {
+        {    
             Context.Set<T>().Remove(entity);
         }
 
@@ -36,7 +36,12 @@ namespace Reports.DataAccess
 
         public void Save() 
         {
+            try{
             Context.SaveChanges();
+            }
+            catch(Exception e){
+                throw new RepositoryException(e.Message, e);
+            }
         }
     }
 }
