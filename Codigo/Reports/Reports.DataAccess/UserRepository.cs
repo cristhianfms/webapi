@@ -17,7 +17,11 @@ namespace Reports.DataAccess
         }
 
         public override User Get(Guid id){
-            return new User();
+            User user = Context.Set<User>().ToList().FirstOrDefault(u => u.Id == id);
+            if (user==null) {
+                throw new RepositoryException("Id not found");
+            }
+            return user;
         }
     }
 }
