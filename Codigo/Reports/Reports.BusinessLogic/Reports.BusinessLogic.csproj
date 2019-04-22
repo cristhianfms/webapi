@@ -1,5 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <ItemGroup>
+    <ProjectReference Include="..\Reports.BusinessLogic.Interface\Reports.BusinessLogic.Interface.csproj" />
+    <ProjectReference Include="..\Reports.DataAccess.Interface\Reports.DataAccess.Interface.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
