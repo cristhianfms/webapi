@@ -16,7 +16,7 @@ namespace Reports.BusinessLogic
         }        
 
         public void Create (User usr){
-            UserValidation.IsValidUser(usr);
+            CheckIfUserIsOK(usr);
             userRepo.Add(usr);
             userRepo.Save();
         }
@@ -40,5 +40,15 @@ namespace Reports.BusinessLogic
         {
             throw new NotImplementedException();
         }
+
+        private void CheckIfUserIsOK(User usr)
+        {
+            if (usr == null || !usr.IsValid())
+            {
+                throw new BusinessLogicException("User instance is not correct");
+            }
+        }
+
+
     }
 }

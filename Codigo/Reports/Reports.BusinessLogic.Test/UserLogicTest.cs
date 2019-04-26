@@ -47,9 +47,119 @@ namespace Reports.BusinessLogic.Test
             userLogic.Create(user);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(BusinessLogicException))]
+        public void CreateEmptyName()
+        {
+            User user = new User
+            {
+                Id = Guid.NewGuid(),
+                Name = "",
+                LastName = "Larralde",
+                UserName = "Santi",
+                Password = "123456",
+                Rol = User.UserType.M
+            };
+
+            var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
+            mock.Setup(m => m.Add(It.IsAny<User>()));
+            mock.Setup(m => m.Save());
+            var userLogic = new UserLogic(mock.Object);
+            userLogic.Create(user);
+        }
+
+
+
+        [TestMethod]
+        [ExpectedException(typeof(BusinessLogicException))]
+        public void CreateEmptyLastName()
+        {
+            User user = new User
+            {
+                Id = Guid.NewGuid(),
+                Name = "Santiago",
+                LastName = "",
+                UserName = "Santi",
+                Password = "123456",
+                Rol = User.UserType.M
+            };
+
+            var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
+            mock.Setup(m => m.Add(It.IsAny<User>()));
+            mock.Setup(m => m.Save());
+            var userLogic = new UserLogic(mock.Object);
+            userLogic.Create(user);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(BusinessLogicException))]
+        public void CreateEmptyUserName()
+        {
+            User user = new User
+            {
+                Id = Guid.NewGuid(),
+                Name = "Santiago",
+                LastName = "Larralde",
+                UserName = "",
+                Password = "123456",
+                Rol = User.UserType.M
+            };
+
+            var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
+            mock.Setup(m => m.Add(It.IsAny<User>()));
+            mock.Setup(m => m.Save());
+            var userLogic = new UserLogic(mock.Object);
+            userLogic.Create(user);
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(BusinessLogicException))]
+        public void CreateEmptyPassword()
+        {
+            User user = new User
+            {
+                Id = Guid.NewGuid(),
+                Name = "Santiago",
+                LastName = "Larralde",
+                UserName = "",
+                Password = "123456",
+                Rol = User.UserType.M
+            };
+
+            var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
+            mock.Setup(m => m.Add(It.IsAny<User>()));
+                    mock.Setup(m => m.Save());
+                    var userLogic = new UserLogic(mock.Object);
+            userLogic.Create(user);
+        }
+
+
+
+        [TestMethod]
+        [ExpectedException(typeof(BusinessLogicException))]
+        public void CreateEmptyRol()
+        {
+            User user = new User
+            {
+                Id = Guid.NewGuid(),
+                Name = "Santiago",
+                LastName = "Larralde",
+                UserName = "",
+                Password = "123456",
+            };
+
+            var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
+            mock.Setup(m => m.Add(It.IsAny<User>()));
+            mock.Setup(m => m.Save());
+            var userLogic = new UserLogic(mock.Object);
+            userLogic.Create(user);
+        }
 
 
 
 
-    }
+
+
+}
 }
