@@ -16,6 +16,7 @@ namespace Reports.BusinessLogic
         }        
 
         public void Create (User usr){
+            UserValidation.IsValidUser(usr);
             userRepo.Add(usr);
             userRepo.Save();
         }

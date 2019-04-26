@@ -13,7 +13,7 @@ namespace Reports.BusinessLogic.Test
         [TestMethod]
         public void CreateUserOK()
         {
-
+            
             User user = new User
             {
                 Id = Guid.NewGuid(),
@@ -33,5 +33,23 @@ namespace Reports.BusinessLogic.Test
 
             mock.VerifyAll();
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(BusinessLogicException))]
+        public void CreateNullUser()
+        {
+            User user = null;
+
+            var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
+            mock.Setup(m => m.Add(It.IsAny<User>()));
+            mock.Setup(m => m.Save());
+            var userLogic = new UserLogic(mock.Object);
+            userLogic.Create(user);
+        }
+
+
+
+
+
     }
 }
