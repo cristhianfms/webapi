@@ -23,12 +23,20 @@ namespace Reports.BusinessLogic
 
         public User Get(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return this.userRepo.Get(id);
+            }
+            catch (RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message, e);
+            }
+           
         }
 
         public IEnumerable<User> GetAll()
         {
-            throw new NotImplementedException();
+            return this.userRepo.GetAll();
         }
 
         public void Remove(User usr)

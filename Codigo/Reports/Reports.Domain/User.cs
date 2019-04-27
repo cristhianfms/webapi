@@ -20,7 +20,8 @@ namespace Reports.Domain
                 LastNameValidation() &&
                 UserNameValidation() &&
                 PasswordValidation() &&
-                RolValidation();
+                RolValidation() &&
+                IdValidation();
         }
 
         private bool RolValidation()
@@ -46,6 +47,11 @@ namespace Reports.Domain
         private bool NameValidation()
         {
             return !String.IsNullOrEmpty(Rol.ToString());
+        }
+
+        private bool IdValidation()
+        {
+            return Id != Guid.Empty;
         }
     }
 }
