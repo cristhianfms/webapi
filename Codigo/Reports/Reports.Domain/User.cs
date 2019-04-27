@@ -16,34 +16,34 @@ namespace Reports.Domain
 
         public bool IsValid()
         {
-            return NameValidation() &&
-                LastNameValidation() &&
-                UserNameValidation() &&
-                PasswordValidation() &&
-                IdValidation();
+            return ValidateName() &&
+                ValidateLastName() &&
+                ValidateUserName() &&
+                ValidatePassword() &&
+                ValidateID();
         }
 
-        private bool NameValidation()
+        private bool ValidateName()
         {
             return !String.IsNullOrEmpty(Name);
         }
 
-        private bool PasswordValidation()
+        private bool ValidatePassword()
         {
             return !String.IsNullOrEmpty(LastName);
         }
 
-        private bool UserNameValidation()
+        private bool ValidateUserName()
         {
             return !String.IsNullOrEmpty(UserName);
         }
 
-        private bool LastNameValidation()
+        private bool ValidateLastName()
         {
             return !String.IsNullOrEmpty(Password);
         }
 
-        private bool IdValidation()
+        private bool ValidateID()
         {
             return Id != Guid.Empty;
         }

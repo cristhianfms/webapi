@@ -176,15 +176,17 @@ namespace Reports.BusinessLogic.Test
                 Password = "123456",
             };
 
-            var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
-            mock.Setup(m => m.Add(It.IsAny<User>()));
-            mock.Setup(m => m.Save());
-            var userLogic = new UserLogic(mock.Object);
-
+            var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
+            IRepository<User> userRepo = new UserRepository(context);
+            UserLogic userLogic = new UserLogic(userRepo);
             userLogic.Create(user1);
             userLogic.Create(user2);
         }
 
+
+
+
+        
         [TestMethod]
         [ExpectedException(typeof(BusinessLogicException))]
         public void CreateExistingUserName()
@@ -209,11 +211,9 @@ namespace Reports.BusinessLogic.Test
                 Password = "123456",
             };
 
-            var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
-            mock.Setup(m => m.Add(It.IsAny<User>()));
-            mock.Setup(m => m.Save());
-            var userLogic = new UserLogic(mock.Object);
-
+            var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
+            IRepository<User> userRepo = new UserRepository(context);
+            UserLogic userLogic = new UserLogic(userRepo);
             userLogic.Create(user1);
             userLogic.Create(user2);
         }

@@ -9,16 +9,29 @@ namespace Reports.BusinessLogic
     public class UserLogic : IUserLogic
     {
         private IRepository<User> userRepo;
-        
+
         public UserLogic(IRepository<User> userRepo)
         {
-            this.userRepo = userRepo;
-        }        
+            try {
+                this.userRepo = userRepo;
+            }
+            catch (RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message, e);
+            }
+        }
 
-        public void Create (User usr){
-            CheckIfUserIsOK(usr);
-            userRepo.Add(usr);
-            userRepo.Save();
+        public void Create(User usr) {
+            try
+            {
+                CheckIfUserIsOK(usr);
+                userRepo.Add(usr);
+                userRepo.Save();
+            }
+            catch (RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message, e);
+            }
         }
 
         public User Get(Guid id)
@@ -31,12 +44,19 @@ namespace Reports.BusinessLogic
             {
                 throw new BusinessLogicException(e.Message, e);
             }
-           
+
         }
 
         public IEnumerable<User> GetAll()
         {
-            return this.userRepo.GetAll();
+            try
+            {
+                return this.userRepo.GetAll();
+            }
+            catch (RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message, e);
+            }
         }
 
         public void Remove(User usr)
