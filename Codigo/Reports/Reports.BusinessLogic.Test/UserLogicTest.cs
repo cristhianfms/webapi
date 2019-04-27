@@ -23,7 +23,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
 
             var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
@@ -60,7 +59,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
 
             var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
@@ -83,7 +81,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
 
             var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
@@ -104,7 +101,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "",
                 Password = "123456",
-                Rol = User.UserType.M
             };
 
             var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
@@ -126,7 +122,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "",
-                Rol = User.UserType.M
             };
 
             var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
@@ -136,27 +131,6 @@ namespace Reports.BusinessLogic.Test
             userLogic.Create(user);
         }
 
-
-
-        [TestMethod]
-        [ExpectedException(typeof(BusinessLogicException))]
-        public void CreateEmptyRol()
-        {
-            User user = new User
-            {
-                Id = Guid.NewGuid(),
-                Name = "Santiago",
-                LastName = "Larralde",
-                UserName = "Santi",
-                Password = "123456",
-            };
-
-            var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
-            mock.Setup(m => m.Add(It.IsAny<User>()));
-            mock.Setup(m => m.Save());
-            var userLogic = new UserLogic(mock.Object);
-            userLogic.Create(user);
-        }
 
 
         [TestMethod]
@@ -321,7 +295,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
 
             var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
@@ -345,7 +318,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
 
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
@@ -365,7 +337,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
 
             var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
@@ -389,7 +360,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "",
-                Rol = User.UserType.M
             };
 
             var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
@@ -411,7 +381,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
 
             var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
@@ -433,7 +402,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "",
                 Password = "123456",
-                Rol = User.UserType.M
             };
 
             var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
@@ -454,7 +422,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "",
                 Password = "123456",
-                Rol = User.UserType.M
             };
 
             var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
@@ -496,7 +463,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
 
             var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
@@ -520,7 +486,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
 
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
@@ -541,7 +506,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
 
             var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
@@ -565,7 +529,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "",
-                Rol = User.UserType.M
             };
 
             var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
@@ -587,7 +550,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
 
             var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
@@ -609,7 +571,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "",
                 Password = "123456",
-                Rol = User.UserType.M
             };
 
             var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
@@ -631,7 +592,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi1",
                 Password = "123456",
-                Rol = User.UserType.M
             };
 
             var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
@@ -641,28 +601,6 @@ namespace Reports.BusinessLogic.Test
 
             userLogic.Update(user);
         }
-
-        [TestMethod]
-        [ExpectedException(typeof(BusinessLogicException))]
-        public void UpdateEmptyRol()
-        {
-            User user = new User
-            {
-                Id = Guid.NewGuid(),
-                Name = "Santiago",
-                LastName = "Larralde",
-                UserName = "Santi1",
-                Password = "123456",
-            };
-
-            var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
-            mock.Setup(m => m.Update(It.IsAny<User>()));
-            mock.Setup(m => m.Save());
-            var userLogic = new UserLogic(mock.Object);
-
-            userLogic.Update(user);
-        }
-
 
 
     }

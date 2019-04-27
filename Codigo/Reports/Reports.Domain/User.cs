@@ -12,7 +12,7 @@ namespace Reports.Domain
         public string LastName { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public UserType Rol { get; set; }
+        public bool Admin { get; set; } = false;
 
         public bool IsValid()
         {
@@ -20,7 +20,6 @@ namespace Reports.Domain
                 LastNameValidation() &&
                 UserNameValidation() &&
                 PasswordValidation() &&
-                RolValidation() &&
                 IdValidation();
         }
 
@@ -42,11 +41,6 @@ namespace Reports.Domain
         private bool LastNameValidation()
         {
             return !String.IsNullOrEmpty(Password);
-        }
-
-        private bool RolValidation()
-        {
-            return !String.IsNullOrEmpty(Rol.ToString());
         }
 
         private bool IdValidation()

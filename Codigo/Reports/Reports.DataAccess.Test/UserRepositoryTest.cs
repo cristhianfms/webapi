@@ -21,20 +21,19 @@ namespace Reports.DataAccess.Test
             var lastName = "Larralde";
             var userName = "Santi1";
             var password = "12345678";
-            var rol = User.UserType.M;
 
-            userRepo.Add(new User{
+            userRepo.Add(new User {
                 Id = Guid.NewGuid(),
                 Name = name,
                 LastName = lastName,
                 UserName = userName,
                 Password = password,
-               Rol = rol,
+                Admin = false
             }); 
             userRepo.Save();
 
             var users =  userRepo.GetAll().ToList();
-            Assert.AreEqual(users[0].Rol, User.UserType.M);
+            Assert.AreEqual(users[0].Admin, false);
         }
 
 
@@ -51,13 +50,11 @@ namespace Reports.DataAccess.Test
             var lastName = "Larralde";
             var userName = "Santi1";
             var password = "12345678";
-            var rol = User.UserType.M;
 
             var name2 = "Cristhian";
             var lastName2 = "Maciel";
             var userName2 = "Cris1";
             var password2 = "87654321";
-            var rol2 = User.UserType.M;
 
             userRepo.Add(new User{
                 Id = sameid,
@@ -65,7 +62,6 @@ namespace Reports.DataAccess.Test
                 LastName = lastName,
                 UserName = userName,
                 Password = password,
-                Rol = rol,
             }); 
 
             userRepo.Add(new User{
@@ -74,7 +70,6 @@ namespace Reports.DataAccess.Test
                 LastName = lastName2,
                 UserName = userName2,
                 Password = password2,
-                Rol = rol2,
             }); 
         }
 
@@ -89,7 +84,6 @@ namespace Reports.DataAccess.Test
             var lastName = "Larralde";
             var userName = "Santi1";
             var password = "12345678";
-            var rol = User.UserType.M;
             var id = Guid.NewGuid();
 
             userRepo.Add(new User{
@@ -98,7 +92,6 @@ namespace Reports.DataAccess.Test
                 LastName = lastName,
                 UserName = userName,
                 Password = password,
-               Rol = rol,
             }); 
             userRepo.Save();
 
@@ -110,7 +103,6 @@ namespace Reports.DataAccess.Test
                 LastName = lastName,
                 UserName = userName,
                 Password = password,
-                Rol = rol,
             });
             userRepo.Save();
 
@@ -131,7 +123,6 @@ namespace Reports.DataAccess.Test
             var lastName = "Larralde";
             var userName = "Santi1";
             var password = "12345678";
-            var rol = User.UserType.M;
             var id = Guid.NewGuid();
 
             userRepo.Remove(new User{
@@ -140,7 +131,6 @@ namespace Reports.DataAccess.Test
                 LastName = lastName,
                 UserName = userName,
                 Password = password,
-                Rol = rol,
             });
             userRepo.Save();
         }
@@ -158,7 +148,6 @@ namespace Reports.DataAccess.Test
             var lastName = "Larralde";
             var userName = "Santi1";
             var password = "12345678";
-            var rol = User.UserType.M;
             var id = Guid.NewGuid();
 
             userRepo.Add(new User{
@@ -167,7 +156,6 @@ namespace Reports.DataAccess.Test
                 LastName = lastName,
                 UserName = userName,
                 Password = password,
-               Rol = rol,
             }); 
             userRepo.Save();
 
@@ -176,7 +164,6 @@ namespace Reports.DataAccess.Test
             var lastName2 = "Maciel";
             var userName2 = "Cris";
             var password2 = "87654321";
-            var rol2 = User.UserType.M;
             var id2 = Guid.NewGuid();
             
             context = ContextFactory.GetMemoryContext(contextName);
@@ -187,7 +174,6 @@ namespace Reports.DataAccess.Test
                 LastName = lastName2,
                 UserName = userName2,
                 Password = password2,
-                Rol = rol2,
             });
             userRepo.Save();
         }
@@ -203,7 +189,6 @@ namespace Reports.DataAccess.Test
             var lastName = "Larralde";
             var userName = "Santi1";
             var password = "12345678";
-            var rol = User.UserType.M;
             var id = Guid.NewGuid();
 
             User user = new User{
@@ -212,7 +197,6 @@ namespace Reports.DataAccess.Test
                 LastName = lastName,
                 UserName = userName,
                 Password = password,
-               Rol = rol,
             };
 
             userRepo.Add(user); 
@@ -225,7 +209,6 @@ namespace Reports.DataAccess.Test
                 LastName = lastName,
                 UserName = userName,
                 Password = newPass,
-               Rol = rol,
             };
             
             context = ContextFactory.GetMemoryContext(contextName);
@@ -247,7 +230,6 @@ namespace Reports.DataAccess.Test
             var lastName = "Larralde";
             var userName = "Santi1";
             var password = "12345678";
-            var rol = User.UserType.M;
             var id = Guid.NewGuid();
 
             User user = new User{
@@ -256,7 +238,6 @@ namespace Reports.DataAccess.Test
                 LastName = lastName,
                 UserName = userName,
                 Password = password,
-               Rol = rol,
             };
 
             userRepo.Add(user); 
@@ -288,7 +269,6 @@ namespace Reports.DataAccess.Test
             var lastName = "Larralde";
             var userName = "Santi1";
             var password = "12345678";
-            var rol = User.UserType.M;
             var id = Guid.NewGuid();
 
             User user = new User{
@@ -297,7 +277,6 @@ namespace Reports.DataAccess.Test
                 LastName = lastName,
                 UserName = userName,
                 Password = password,
-               Rol = rol,
             };
 
             userRepo.Add(user); 
@@ -323,7 +302,6 @@ namespace Reports.DataAccess.Test
             var lastName = "Larralde";
             var userName = "Santi1";
             var password = "12345678";
-            var rol = User.UserType.M;
             var id = Guid.NewGuid();
 
             User user = new User{
@@ -332,7 +310,6 @@ namespace Reports.DataAccess.Test
                 LastName = lastName,
                 UserName = userName,
                 Password = password,
-               Rol = rol,
             };
 
             userRepo.Update(user);
@@ -349,14 +326,12 @@ namespace Reports.DataAccess.Test
             var lastName = "Larralde";
             var userName = "Santi1";
             var password = "12345678";
-            var rol = User.UserType.M;
             var id = Guid.NewGuid();
 
             var name2 = "Cristhian";
             var lastName2 = "Maciel";
             var userName2 = "Cris1";
             var password2 = "87654321";
-            var rol2 = User.UserType.M;
             var id2 = Guid.NewGuid();
 
             userRepo.Add(new User{
@@ -365,7 +340,6 @@ namespace Reports.DataAccess.Test
                 LastName = lastName,
                 UserName = userName,
                 Password = password,
-                Rol = rol,
             }); 
             
             userRepo.Add(new User{
@@ -374,7 +348,6 @@ namespace Reports.DataAccess.Test
                 LastName = lastName2,
                 UserName = userName2,
                 Password = password2,
-                Rol = rol2,
             });         
             userRepo.Save();
 
@@ -392,14 +365,12 @@ namespace Reports.DataAccess.Test
             var lastName = "Larralde";
             var userName = "Santi1";
             var password = "12345678";
-            var rol = User.UserType.M;
             var id = Guid.NewGuid();
 
             var name2 = "Cristhian";
             var lastName2 = "Maciel";
             var userName2 = "Cris1";
             var password2 = "87654321";
-            var rol2 = User.UserType.M;
             var id2 = Guid.NewGuid();
 
             userRepo.Add(new User{
@@ -408,7 +379,6 @@ namespace Reports.DataAccess.Test
                 LastName = lastName,
                 UserName = userName,
                 Password = password,
-                Rol = rol,
             }); 
 
             userRepo.Add(new User{
@@ -417,7 +387,6 @@ namespace Reports.DataAccess.Test
                 LastName = lastName2,
                 UserName = userName2,
                 Password = password2,
-                Rol = rol2,
             });         
             userRepo.Save();
 
