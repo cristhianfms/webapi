@@ -1,6 +1,7 @@
 using Reports.Domain;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Reports.DataAccess
 {
     public class ReportsContext : DbContext
@@ -11,12 +12,17 @@ namespace Reports.DataAccess
         public DbSet<Indicator> Indicators { get; set; }
 
 
+
         public ReportsContext(DbContextOptions options) : base(options)
         {
-
-                                   
         }
 
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<User>().HasAlternateKey(u => u.UserName);
+        }
     }
 }
 

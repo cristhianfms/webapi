@@ -1,0 +1,100 @@
+﻿using System;
+using System.Collections.Generic;
+using Reports.BusinessLogic.Interface;
+using Reports.Domain;
+using Reports.DataAccess.Interface;
+
+namespace Reports.BusinessLogic
+{
+    public class UserLogic : IUserLogic
+    {
+        private IRepository<User> userRepo;
+
+        public UserLogic(IRepository<User> userRepo)
+        {
+            try {
+                this.userRepo = userRepo;
+            }
+            catch (RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message, e);
+            }
+        }
+
+        public void Create(User usr) {
+            try
+            {
+                CheckIfUserIsOK(usr);
+                userRepo.Add(usr);
+                userRepo.Save();
+            }
+            catch (RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message, e);
+            }
+        }
+
+        public User Get(Guid id)
+        {
+            try
+            {
+                return this.userRepo.Get(id);
+            }
+            catch (RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message, e);
+            }
+
+        }
+
+        public IEnumerable<User> GetAll()
+        {
+            try
+            {
+                return this.userRepo.GetAll();
+            }
+            catch (RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message, e);
+            }
+        }
+
+        public void Remove(User usr)
+        {
+            try
+            {
+                CheckIfUserIsOK(usr);
+                this.userRepo.Remove(usr);
+                this.userRepo.Save();
+            }
+            catch(RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message, e);
+            }
+        }
+
+        public void Update(User usr)
+        {
+            try
+            {
+                CheckIfUserIsOK(usr);
+                this.userRepo.Update(usr);
+                this.userRepo.Save();
+            }
+            catch (RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message, e);
+            }
+        }
+
+        private void CheckIfUserIsOK(User usr)
+        {
+            if (usr == null || !usr.IsValid())
+            {
+                throw new BusinessLogicException("User instance is not correct");
+            }
+        }
+
+
+    }
+}
