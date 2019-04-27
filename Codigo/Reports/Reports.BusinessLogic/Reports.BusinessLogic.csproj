@@ -1,14 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-<<<<<<< HEAD
-    <ProjectReference Include="..\Reports.BusinessLogic.Interface\Reports.BusinessLogic.Interface.csproj" />
-    <ProjectReference Include="..\Reports.DataAccess.Interface\Reports.DataAccess.Interface.csproj" />
-=======
+
     <ProjectReference Include="..\Reports.Domain\Reports.Domain.csproj" />
     <ProjectReference Include="..\Reports.DataAccess.Interface\Reports.DataAccess.Interface.csproj" />
     <ProjectReference Include="..\Reports.BusinessLogic.Interface\Reports.BusinessLogic.Interface.csproj" />
->>>>>>> se agrega la logica de area con sus test correspondientes, aun falta la logica de indicadores
+
   </ItemGroup>
 
   <PropertyGroup>

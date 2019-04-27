@@ -14,18 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
 
-    <ProjectReference Include="..\Reports.BusinessLogic\Reports.BusinessLogic.csproj" />
-    <ProjectReference Include="..\Reports.Domain\Reports.Domain.csproj" />
-    <ProjectReference Include="..\Reports.DataAccess\Reports.DataAccess.csproj" />
-    
-=======
     <ProjectReference Include="..\Reports.DataAccess\Reports.DataAccess.csproj" />
     <ProjectReference Include="..\Reports.DataAccess.Interface\Reports.DataAccess.Interface.csproj" />
     <ProjectReference Include="..\Reports.BusinessLogic\Reports.BusinessLogic.csproj" />
     <ProjectReference Include="..\Reports.Domain\Reports.Domain.csproj" />
->>>>>>> se agrega la logica de area con sus test correspondientes, aun falta la logica de indicadores
+
   </ItemGroup>
 
 </Project>
