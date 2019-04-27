@@ -97,6 +97,8 @@ namespace Reports.DataAccess.Test
             areaRepo = new AreaRepository(context);
             areaRepo.Remove(area);
             areaRepo.Save();
+            var areas =  areaRepo.GetAll().ToList();
+            Assert.AreEqual(areas.Count,0);
         }
 
         [TestMethod]
