@@ -41,12 +41,30 @@ namespace Reports.BusinessLogic
 
         public void Remove(User usr)
         {
-            throw new NotImplementedException();
+            try
+            {
+                CheckIfUserIsOK(usr);
+                this.userRepo.Remove(usr);
+                this.userRepo.Save();
+            }
+            catch(RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message, e);
+            }
         }
 
-        public void Update(Guid id, User usr)
+        public void Update(User usr)
         {
-            throw new NotImplementedException();
+            try
+            {
+                CheckIfUserIsOK(usr);
+                this.userRepo.Update(usr);
+                this.userRepo.Save();
+            }
+            catch (RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message, e);
+            }
         }
 
         private void CheckIfUserIsOK(User usr)

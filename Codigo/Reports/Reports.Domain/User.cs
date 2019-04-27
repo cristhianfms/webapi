@@ -24,7 +24,7 @@ namespace Reports.Domain
                 IdValidation();
         }
 
-        private bool RolValidation()
+        private bool NameValidation()
         {
             return !String.IsNullOrEmpty(Name);
         }
@@ -44,7 +44,7 @@ namespace Reports.Domain
             return !String.IsNullOrEmpty(Password);
         }
 
-        private bool NameValidation()
+        private bool RolValidation()
         {
             return !String.IsNullOrEmpty(Rol.ToString());
         }
