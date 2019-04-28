@@ -7,6 +7,7 @@ namespace Reports.Domain
     public abstract class Component
     {
         public Guid Id { get; set; }
+
         public abstract bool Evaluete();
     }
 }

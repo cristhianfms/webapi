@@ -24,7 +24,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
             managers.Add(user);
             List<Indicator> indicators = new List<Indicator>();
@@ -53,7 +52,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
             managers.Add(user);
             List<Indicator> indicators = new List<Indicator>();
@@ -160,7 +158,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
             managers.Add(user);
             List<Indicator> indicators = new List<Indicator>();
@@ -192,7 +189,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
             managers.Add(user);
             List<Indicator> indicators = new List<Indicator>();
@@ -222,7 +218,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
             managers.Add(user);
             Area area = new Area();
@@ -254,7 +249,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
             managers.Add(user);
             Area area = new Area();
@@ -284,7 +278,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
             managers.Add(user);
             List<Indicator> indicators = new List<Indicator>();
@@ -315,7 +308,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
             managers.Add(user);
             List<Indicator> indicators = new List<Indicator>();
@@ -347,7 +339,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
             managers.Add(user);
             List<Indicator> indicators = new List<Indicator>();
@@ -379,7 +370,6 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
-                Rol = User.UserType.M
             };
             managers.Add(user);
             List<Indicator> indicators = new List<Indicator>();

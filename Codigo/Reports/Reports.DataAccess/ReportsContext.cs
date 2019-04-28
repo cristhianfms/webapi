@@ -11,7 +11,13 @@ namespace Reports.DataAccess
         public DbSet<Area> Area { get; set; }
         public DbSet<Indicator> Indicators { get; set; }
 
-
+        public DbSet<Condition> Conditions { get; set; }
+        public DbSet<LogicAnd> LogicAnds { get; set; }
+        public DbSet<LogicOr> LogicOrs { get; set; }
+        
+        public DbSet<SQLValue> SQLValues { get; set; }
+        public DbSet<StringValue> StringValues { get; set; }
+        public DbSet<IntValue> IntValues { get; set; }
 
         public ReportsContext(DbContextOptions options) : base(options)
         {
@@ -22,6 +28,8 @@ namespace Reports.DataAccess
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<User>().HasAlternateKey(u => u.UserName);
+            modelBuilder.Entity<Component>().ToTable("Components");
+            modelBuilder.Entity<ValueExpression>().ToTable("ValueExpressions");
         }
     }
 }

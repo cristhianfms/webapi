@@ -62,6 +62,7 @@ namespace Reports.BusinessLogic
                 throw new Exception(e.Message);
             }
         }
+
         IEnumerable<Area> GetAll(){
             try {
                 return repository.GetAll();
@@ -70,5 +71,13 @@ namespace Reports.BusinessLogic
                 throw new Exception(e.Message);
             }
         }
+
+        public void AddIndicator(Guid areaID, Indicator indicator)
+        {
+            Area area = Get(areaID);
+            area.Indicators.Add(indicator);
+            UpdateArea(area);
+        }
+
     }
 }
