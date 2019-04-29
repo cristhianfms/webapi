@@ -21,6 +21,11 @@ namespace Reports.DataAccess.Test
             string connectionString = "a connection string";
             List<User> managers = new List<User>();
             User aManager = new User();
+            aManager.Name = "Santiago";
+            aManager.LastName = "Larralde";
+            aManager.UserName = "Santi1";
+            aManager.Password = "12345678";
+            aManager.Admin = false;
             managers.Add(aManager);
             List<Indicator> indicators = new List<Indicator>();
             Indicator indicator = new Indicator();
@@ -48,7 +53,15 @@ namespace Reports.DataAccess.Test
             string name = "Administration";
             string connectionString = "a connection string";
             List<User> managers = new List<User>();
-            User aManager = new User();
+            User aManager = new User
+            {
+                Id = Guid.NewGuid(),
+                Name = "Santiago",
+                LastName = "Larralde",
+                UserName = "Santi",
+                Password = "123456",
+                Admin = false
+            };
             managers.Add(aManager);
             List<Indicator> indicators = new List<Indicator>();
             Indicator indicator = new Indicator();
@@ -79,7 +92,15 @@ namespace Reports.DataAccess.Test
             string name = "Administration";
             string connectionString = "a connection string";
             List<User> managers = new List<User>();
-            User aManager = new User();
+            User aManager = new User
+            {
+                Id = Guid.NewGuid(),
+                Name = "Santiago",
+                LastName = "Larralde",
+                UserName = "Santi",
+                Password = "123456",
+                Admin = false
+            };
             managers.Add(aManager);
             List<Indicator> indicators = new List<Indicator>();
             Indicator indicator = new Indicator();
@@ -146,7 +167,15 @@ namespace Reports.DataAccess.Test
             string name = "Administration";
             string connectionString = "a connection string";
             List<User> managers = new List<User>();
-            User aManager = new User();
+            User aManager = new User
+            {
+                Id = Guid.NewGuid(),
+                Name = "Santiago",
+                LastName = "Larralde",
+                UserName = "Santi",
+                Password = "123456",
+                Admin = false
+            };
             managers.Add(aManager);
             List<Indicator> indicators = new List<Indicator>();
             Indicator indicator = new Indicator();
@@ -205,7 +234,15 @@ namespace Reports.DataAccess.Test
             string name = "Administration";
             string connectionString = "a connection string";
             List<User> managers = new List<User>();
-            User aManager = new User();
+            User aManager = new User
+            {
+                Id = Guid.NewGuid(),
+                Name = "Santiago",
+                LastName = "Larralde",
+                UserName = "Santi",
+                Password = "123456",
+                Admin = false
+            };
             managers.Add(aManager);
             List<Indicator> indicators = new List<Indicator>();
             Indicator indicator = new Indicator();
@@ -252,7 +289,15 @@ namespace Reports.DataAccess.Test
             string name = "Administration";
             string connectionString = "a connection string";
             List<User> managers = new List<User>();
-            User aManager = new User();
+            User aManager = new User
+            {
+                Id = Guid.NewGuid(),
+                Name = "Santiago",
+                LastName = "Larralde",
+                UserName = "Santi",
+                Password = "123456",
+                Admin = false
+            };
             managers.Add(aManager);
             List<Indicator> indicators = new List<Indicator>();
             Indicator indicator = new Indicator();

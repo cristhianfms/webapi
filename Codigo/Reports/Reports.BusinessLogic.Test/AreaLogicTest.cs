@@ -24,6 +24,7 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
+                Admin = false
             };
             managers.Add(user);
             List<Indicator> indicators = new List<Indicator>();
