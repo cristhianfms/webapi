@@ -73,7 +73,7 @@ namespace Reports.BusinessLogic.Test
             mock.VerifyAll();
         } 
         [TestMethod]  
-        [ExpectedException(typeof(Exception))]            
+        [ExpectedException(typeof(BusinessLogicException))]      
         public void CreateAreaNotOkNullName()
         {
             List<User> managers = new List<User>();
@@ -92,7 +92,7 @@ namespace Reports.BusinessLogic.Test
             var areas =  areaRepo.GetAll().ToList();
         }
         [TestMethod]  
-        [ExpectedException(typeof(Exception))]            
+        [ExpectedException(typeof(BusinessLogicException))]           
         public void CreateAreaNotOkEmptyName()
         {
             List<User> managers = new List<User>();
@@ -111,7 +111,7 @@ namespace Reports.BusinessLogic.Test
             var areas =  areaRepo.GetAll().ToList();
         }
         [TestMethod]  
-        [ExpectedException(typeof(Exception))]            
+        [ExpectedException(typeof(BusinessLogicException))]         
         public void CreateAreaNotOkEmptyConnectionString()
         {
             List<User> managers = new List<User>();
@@ -130,7 +130,7 @@ namespace Reports.BusinessLogic.Test
             var areas =  areaRepo.GetAll().ToList();
         }
         [TestMethod]  
-        [ExpectedException(typeof(Exception))]            
+        [ExpectedException(typeof(BusinessLogicException))]          
         public void CreateAreaNotOkAreaSizeEqualZero()
         {
             List<User> managers = new List<User>();
@@ -178,8 +178,7 @@ namespace Reports.BusinessLogic.Test
             Assert.IsTrue(areas.Count == 0);
         }
         [TestMethod] 
-        [ExpectedException(typeof(Exception))]  
-
+        [ExpectedException(typeof(BusinessLogicException))]
         public void RemoveAreaNotOk()
         {
             List<User> managers = new List<User>();
@@ -329,7 +328,7 @@ namespace Reports.BusinessLogic.Test
             Assert.AreEqual(areas[0].ConnectionString, "connectionStringModified");
         }
         [TestMethod]
-        [ExpectedException(typeof(Exception))]  
+        [ExpectedException(typeof(BusinessLogicException))]
         public void UpdateAreaEmptyConnectionString()
         {
             List<User> managers = new List<User>();
@@ -359,8 +358,7 @@ namespace Reports.BusinessLogic.Test
             var areas =  areaRepo.GetAll().ToList();
         }
         [TestMethod] 
-        [ExpectedException(typeof(Exception))]  
-
+        [ExpectedException(typeof(BusinessLogicException))]
         public void UpdateAreaNotOk()
         {
             List<User> managers = new List<User>();

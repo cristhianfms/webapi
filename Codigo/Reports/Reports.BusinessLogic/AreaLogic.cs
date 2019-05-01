@@ -19,11 +19,12 @@ namespace Reports.BusinessLogic
                     repository.Save();
                 }
                 else { 
-                   throw new Exception("Invalid area");
+                   throw new BusinessLogicException("Invalid area");
                 }
             }
-            catch (Exception e){
-                throw new Exception(e.Message);
+            catch (RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message, e);
             }
         }
         public void RemoveArea(Area area) {
@@ -33,11 +34,12 @@ namespace Reports.BusinessLogic
                     repository.Save();
                 }
                 else { 
-                   throw new Exception("Invalid area");
+                   throw new BusinessLogicException("Invalid Area");
                 }
             }
-            catch(Exception e) {
-                throw new Exception(e.Message);
+            catch (RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message, e);
             }
         }   
         public void UpdateArea(Area area) {
@@ -47,19 +49,21 @@ namespace Reports.BusinessLogic
                     repository.Save();
                 }
                 else { 
-                   throw new Exception("Invalid area");
+                   throw new BusinessLogicException("Invalid Area");
                 }
             }
-            catch(Exception e) {
-                throw new Exception(e.Message);
+            catch (RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message, e);
             }
         }
          Area Get(Guid id){
-             try {
+            try {
                 return repository.Get(id);
-             }
-             catch(Exception e) {
-                throw new Exception(e.Message);
+            }
+            catch (RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message, e);
             }
         }
 
@@ -67,8 +71,9 @@ namespace Reports.BusinessLogic
             try {
                 return repository.GetAll();
             }
-            catch(Exception e) {
-                throw new Exception(e.Message);
+            catch (RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message, e);
             }
         }
 
