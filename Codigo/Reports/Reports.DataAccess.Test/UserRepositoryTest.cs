@@ -134,9 +134,7 @@ namespace Reports.DataAccess.Test
             });
             userRepo.Save();
         }
-
-
-
+        
         [TestMethod]
         [ExpectedException(typeof(RepositoryException))]
         public void RemoveNotExistingUser2(){
