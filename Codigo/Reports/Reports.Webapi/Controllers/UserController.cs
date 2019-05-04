@@ -24,7 +24,6 @@ namespace Reports.Webapi.Controllers
             try
             {
                 User user = UserModel.ToEntity(model);
-                user.Id = new Guid();
                 userLogic.Create(UserModel.ToEntity(model));
                 return Ok();
             }
@@ -33,6 +32,9 @@ namespace Reports.Webapi.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+
+
 
 
 

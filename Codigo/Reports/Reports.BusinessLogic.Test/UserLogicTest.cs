@@ -96,7 +96,6 @@ namespace Reports.BusinessLogic.Test
         {
             User user = new User
             {
-                Id = Guid.NewGuid(),
                 Name = "Santiago",
                 LastName = "Larralde",
                 UserName = "",
@@ -117,7 +116,6 @@ namespace Reports.BusinessLogic.Test
         {
             User user = new User
             {
-                Id = Guid.NewGuid(),
                 Name = "Santiago",
                 LastName = "Larralde",
                 UserName = "Santi",
@@ -130,62 +128,6 @@ namespace Reports.BusinessLogic.Test
                     var userLogic = new UserLogic(mock.Object);
             userLogic.Create(user);
         }
-
-
-
-        [TestMethod]
-        [ExpectedException(typeof(BusinessLogicException))]
-        public void CreateEmptyID()
-        {
-            User user = new User
-            {
-                Name = "Santiago",
-                LastName = "Larralde",
-                UserName = "SantiL",
-                Password = "123456",
-            };
-
-            var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
-            mock.Setup(m => m.Add(It.IsAny<User>()));
-            mock.Setup(m => m.Save());
-            var userLogic = new UserLogic(mock.Object);
-            userLogic.Create(user);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(BusinessLogicException))]
-        public void CreateExistingGuid()
-        {
-            Guid id = Guid.NewGuid();
-
-            User user1 = new User
-            {
-                Id = id,
-                Name = "Santiago1",
-                LastName = "Larralde1",
-                UserName = "Santi1",
-                Password = "123456",
-            };
-
-            User user2 = new User
-            {
-                Id = id,
-                Name = "Santiago2",
-                LastName = "Larralde2",
-                UserName = "Santi2",
-                Password = "123456",
-            };
-
-            var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
-            IRepository<User> userRepo = new UserRepository(context);
-            UserLogic userLogic = new UserLogic(userRepo);
-            userLogic.Create(user1);
-            userLogic.Create(user2);
-        }
-
-
-
-
         
         [TestMethod]
         [ExpectedException(typeof(BusinessLogicException))]
@@ -195,7 +137,6 @@ namespace Reports.BusinessLogic.Test
 
             User user1 = new User
             {
-                Id = Guid.NewGuid(),
                 Name = "Santiago1",
                 LastName = "Larralde1",
                 UserName = sameUserName,
@@ -204,7 +145,6 @@ namespace Reports.BusinessLogic.Test
 
             User user2 = new User
             {
-                Id = Guid.NewGuid(),
                 Name = "Santiago2",
                 LastName = "Larralde2",
                 UserName = sameUserName,
@@ -226,10 +166,8 @@ namespace Reports.BusinessLogic.Test
             IRepository<User> userRepo = new UserRepository(context);
             UserLogic userLogic = new UserLogic(userRepo);
 
-            Guid id = Guid.NewGuid();
             User user = new User
             {
-                Id = id,
                 Name = "Santiago",
                 LastName = "Larralde",
                 UserName = "Santi",
@@ -237,7 +175,11 @@ namespace Reports.BusinessLogic.Test
             };
 
             userLogic.Create(user);
-            User fetchedUser = userLogic.Get(id);
+
+            List<User> users = userRepo.GetAll().ToList();
+            Guid userId = users.First(u => u.UserName == user.UserName).Id;
+
+            User fetchedUser = userLogic.Get(userId);
 
             Assert.AreEqual(fetchedUser.Name, user.Name);
         }
@@ -273,7 +215,6 @@ namespace Reports.BusinessLogic.Test
 
             User user = new User
             {
-                Id = Guid.NewGuid(),
                 Name = "Santiago",
                 LastName = "Larralde",
                 UserName = "Santi",
@@ -313,7 +254,6 @@ namespace Reports.BusinessLogic.Test
         {
             User user = new User
             {
-                Id = Guid.NewGuid(),
                 Name = "Santiago",
                 LastName = "Larralde",
                 UserName = "Santi",
@@ -332,7 +272,6 @@ namespace Reports.BusinessLogic.Test
         {
             User user = new User
             {
-                Id = Guid.NewGuid(),
                 Name = "",
                 LastName = "Larralde",
                 UserName = "Santi",
@@ -355,7 +294,6 @@ namespace Reports.BusinessLogic.Test
         {
             User user = new User
             {
-                Id = Guid.NewGuid(),
                 Name = "Santiago",
                 LastName = "Larralde",
                 UserName = "Santi",
@@ -376,7 +314,6 @@ namespace Reports.BusinessLogic.Test
         {
             User user = new User
             {
-                Id = Guid.NewGuid(),
                 Name = "Santiago",
                 LastName = "",
                 UserName = "Santi",
@@ -397,7 +334,6 @@ namespace Reports.BusinessLogic.Test
         {
             User user = new User
             {
-                Id = Guid.NewGuid(),
                 Name = "Santiago",
                 LastName = "Larralde",
                 UserName = "",
@@ -438,7 +374,6 @@ namespace Reports.BusinessLogic.Test
         {
             User user = new User
             {
-                Id = Guid.NewGuid(),
                 Name = "Santiago",
                 LastName = "Larralde",
                 UserName = "",
@@ -481,7 +416,6 @@ namespace Reports.BusinessLogic.Test
         {
             User user = new User
             {
-                Id = Guid.NewGuid(),
                 Name = "Santiago",
                 LastName = "Larralde",
                 UserName = "Santi",
@@ -501,7 +435,6 @@ namespace Reports.BusinessLogic.Test
         {
             User user = new User
             {
-                Id = Guid.NewGuid(),
                 Name = "",
                 LastName = "Larralde",
                 UserName = "Santi",
@@ -524,7 +457,6 @@ namespace Reports.BusinessLogic.Test
         {
             User user = new User
             {
-                Id = Guid.NewGuid(),
                 Name = "Santiago",
                 LastName = "Larralde",
                 UserName = "Santi",
@@ -545,7 +477,6 @@ namespace Reports.BusinessLogic.Test
         {
             User user = new User
             {
-                Id = Guid.NewGuid(),
                 Name = "Santiago",
                 LastName = "",
                 UserName = "Santi",
@@ -566,7 +497,6 @@ namespace Reports.BusinessLogic.Test
         {
             User user = new User
             {
-                Id = Guid.NewGuid(),
                 Name = "Santiago",
                 LastName = "Larralde",
                 UserName = "",

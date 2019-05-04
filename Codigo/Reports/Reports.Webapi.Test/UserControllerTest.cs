@@ -36,6 +36,20 @@ namespace Reports.Webapi.Test
         }
 
 
+        [TestMethod]
+        public void CreateNotVaidUser()
+        {
+            var mock = new Mock<IUserLogic>(MockBehavior.Strict);
+            mock.Setup(m => m.Create(null)).Throws(new BusinessLogicInterfaceException());
+
+            var controller = new UsersController(mock.Object);
+            var result = controller.Post(null);
+            mock.VerifyAll();
+            Assert.IsInstanceOfType(result, typeof(BadRequestObjectResult));
+        }
+
+
+
 
 
 
