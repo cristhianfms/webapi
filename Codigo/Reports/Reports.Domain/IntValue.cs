@@ -6,9 +6,10 @@ namespace Reports.Domain
 {
     public class IntValue : ValueExpression
     {
+         public string Avalue { get; set; }
         public override string Value()
         {
-            throw new NotImplementedException();
+           return Avalue;
         }
     }
 }

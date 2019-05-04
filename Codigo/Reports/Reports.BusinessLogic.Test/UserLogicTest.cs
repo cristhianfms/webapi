@@ -10,7 +10,7 @@ using System.Linq;
 namespace Reports.BusinessLogic.Test
 {
     [TestClass]
-    public class UnitTest1
+    public class UserLogicTest
     {
         [TestMethod]
         public void CreateUserOK()
