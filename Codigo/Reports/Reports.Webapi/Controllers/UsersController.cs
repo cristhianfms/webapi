@@ -35,11 +35,11 @@ namespace Reports.Webapi.Controllers
             }
         }
 
+
         [HttpGet]
         public IActionResult Get()
         {
             IEnumerable<User> users = userLogic.GetAll();
-            IEnumerable<UserModel> models = UserModel.ToModel(users);
             return Ok(UserModel.ToModel(users));
         }
 

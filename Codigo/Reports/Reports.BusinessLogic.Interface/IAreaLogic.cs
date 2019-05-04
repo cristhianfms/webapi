@@ -5,16 +5,12 @@ using Reports.BusinessLogic;
 
 namespace Reports.BusinessLogic.Interface
 {
-    public class IAreaLogic
+    public interface IAreaLogic
     {
-        void CreateArea(Area area){}
-        void RemoveArea(Area area){}
-        void UpdateArea(Guid id, Area area){}
-        Area Get(Guid id){
-            return null;
-        }
-        List<Area> GetAll(){
-            return null;
-        }
+        void CreateArea(Area area);
+        void RemoveArea(Area area);
+        void UpdateArea(Area area);
+        Area Get(Guid id);
+        IEnumerable<Area> GetAll();
     }
 }

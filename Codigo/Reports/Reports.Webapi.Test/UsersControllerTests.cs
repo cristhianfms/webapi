@@ -12,7 +12,7 @@ using System.Linq;
 namespace Reports.Webapi.Test
 {
     [TestClass]
-    public class UserControllerTest
+    public class UsersControllerTest
     {
         [TestMethod]
         public void CreateUserOk()
