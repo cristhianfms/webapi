@@ -5,7 +5,9 @@ using Reports.Domain;
 using Reports.BusinessLogic.Interface;
 using Moq;
 using Microsoft.AspNetCore.Mvc;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Reports.Webapi.Test
 {
@@ -48,6 +50,35 @@ namespace Reports.Webapi.Test
             Assert.IsInstanceOfType(result, typeof(BadRequestObjectResult));
         }
 
+
+        [TestMethod]
+        public void GetAllUsers()
+        {
+            UserModel user1 = new UserModel
+            {
+                Name = "Cristhian",
+                LastName = "Maciel",
+                UserName = "Cris",
+                Password = "123456",
+                Admin = true
+            };
+
+            List<User> users = new List<User>();
+            users.Add(UserModel.ToEntity(user1));
+            
+            var mock = new Mock<IUserLogic>(MockBehavior.Strict);
+            mock.Setup(m => m.GetAll()).Returns(users);
+
+            var controler = new UsersController(mock.Object);
+            var result = controler.Get();
+
+            var createdResult = result as OkObjectResult;
+            var models = createdResult.Value as IEnumerable<UserModel>;
+
+            mock.VerifyAll();
+
+            Assert.AreEqual(users[0].UserName, models.ToList<UserModel>()[0].UserName);
+        }
 
 
 

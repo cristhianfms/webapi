@@ -9,7 +9,8 @@ namespace Reports.Webapi.Models
     {
         public static IEnumerable<M> ToModel(IEnumerable<E> entities)
         {
-            return entities.Select(x => ToModel(x));
+            IEnumerable<M> models = entities.Select(x => ToModel(x));
+            return models;
         }
 
         public static M ToModel(E entity)
@@ -20,7 +21,8 @@ namespace Reports.Webapi.Models
 
         public static IEnumerable<E> ToEntity(IEnumerable<M> models)
         {
-            return models.Select(x => ToEntity(x));
+            IEnumerable<E> entities = models.Select(x => ToEntity(x));
+            return entities;
         }
 
         public static E ToEntity(M model)

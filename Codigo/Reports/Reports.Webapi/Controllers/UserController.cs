@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Reports.Webapi.Models;
 using Reports.Domain;
 using Reports.BusinessLogic.Interface;
+using System.Collections.Generic;
 
 
 namespace Reports.Webapi.Controllers
@@ -16,6 +17,7 @@ namespace Reports.Webapi.Controllers
         {
             this.userLogic = userLogic;
         }
+
 
 
         [HttpPost]
@@ -32,6 +34,17 @@ namespace Reports.Webapi.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            IEnumerable<User> users = userLogic.GetAll();
+            IEnumerable<UserModel> models = UserModel.ToModel(users);
+            return Ok(UserModel.ToModel(users));
+        }
+
+
+
 
 
 
