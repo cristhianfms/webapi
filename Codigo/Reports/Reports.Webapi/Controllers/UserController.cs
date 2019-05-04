@@ -17,10 +17,21 @@ namespace Reports.Webapi.Controllers
             this.userLogic = userLogic;
         }
 
-        [HttpGet]
-        public IActionResult Get()
+
+        [HttpPost]
+        public IActionResult Post([FromBody]UserModel model)
         {
-            return Ok();
+            try
+            {
+                User user = UserModel.ToEntity(model);
+                user.Id = new Guid();
+                userLogic.Create(UserModel.ToEntity(model));
+                return Ok();
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
 

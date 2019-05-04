@@ -12,6 +12,7 @@ namespace Reports.Webapi.Models
         public string LastName { get; set; }
         public string UserName { get; set; }
         public bool Admin { get; set; } = false;
+        public string Password { get; set; }
 
         public UserModel() { }
 
@@ -28,7 +29,9 @@ namespace Reports.Webapi.Models
                 Name = this.Name,
                 LastName = this.LastName,
                 UserName = this.UserName,
+                Password = this.Password,
                 Admin = this.Admin
+                
             };
         }
 
@@ -39,6 +42,7 @@ namespace Reports.Webapi.Models
             LastName = entity.LastName;
             UserName = entity.UserName;
             Admin = entity.Admin;
+            Password = entity.Password;
             return this;
         }
 
