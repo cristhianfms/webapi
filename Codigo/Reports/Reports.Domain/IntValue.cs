@@ -6,10 +6,10 @@ namespace Reports.Domain
 {
     public class IntValue : ValueExpression
     {
-         public string Avalue { get; set; }
+         public int Avalue { get; set; }
         public override string Value()
         {
-           return Avalue;
+           return Avalue.ToString();
         }
     }
 }
