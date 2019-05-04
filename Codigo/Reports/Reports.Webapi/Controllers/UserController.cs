@@ -44,11 +44,52 @@ namespace Reports.Webapi.Controllers
         }
 
 
+        [HttpGet("{id}")]
+        public IActionResult Get(Guid id)
+        {
+            try
+            {
+                var user = userLogic.Get(id);
+                return Ok(UserModel.ToModel(user));
+
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return NotFound(e.Message);
+            }
+        }
 
 
+        [HttpPut("{id}")]
+        public IActionResult Put(Guid id, [FromBody]UserModel model)
+        {
+            try
+            {
+                model.Id = id;
+                userLogic.Update(UserModel.ToEntity(model));
+                return Ok();
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
 
-
+        [HttpDelete("{id}")]
+        public IActionResult Delete(Guid id, [FromBody]UserModel model)
+        {
+            try
+            {
+                model.Id = id;
+                userLogic.Remove(UserModel.ToEntity(model));
+                return Ok();
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
 
 

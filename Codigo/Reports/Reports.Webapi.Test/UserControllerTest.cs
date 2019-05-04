@@ -80,12 +80,96 @@ namespace Reports.Webapi.Test
             Assert.AreEqual(users[0].UserName, models.ToList<UserModel>()[0].UserName);
         }
 
+        [TestMethod]
+        public void GetUserOK()
+        {
+            var user = new User()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Cristhian",
+                LastName = "Maciel",
+                UserName = "Cris",
+                Password = "123456",
+                Admin = true
+            };
+
+            var mock = new Mock<IUserLogic>(MockBehavior.Strict);
+            mock.Setup(m => m.Get(user.Id)).Returns(user);
+
+            var controler = new UsersController(mock.Object);
+            var result = controler.Get(user.Id);
+
+            var createdResult = result as OkObjectResult;
+            var model = createdResult.Value as UserModel;
+
+            mock.VerifyAll();
+
+            Assert.AreEqual(user.UserName,model.UserName);
+        }
+
+
+        [TestMethod]
+        public void GetNotExistingUser()
+        {
+            var mock = new Mock<IUserLogic>(MockBehavior.Strict);
+            mock.Setup(m => m.Get(It.IsAny<Guid>())).Throws(new BusinessLogicInterfaceException());
+
+            var controller = new UsersController(mock.Object);
+
+            var result = controller.Get(Guid.NewGuid());
+
+            mock.VerifyAll();
+            Assert.IsInstanceOfType(result, typeof(NotFoundObjectResult));
+        }
+
+
+        [TestMethod]
+        public void UpdateUser()
+        {
+            var model = new UserModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Cristhian",
+                LastName = "Maciel",
+                UserName = "Cris",
+                Password = "123456",
+                Admin = true
+            };
+
+            var mock = new Mock<IUserLogic>(MockBehavior.Strict);
+            mock.Setup(m => m.Update(It.IsAny<User>()));
+
+            var controler = new UsersController(mock.Object);
+            var result = controler.Put(model.Id, model);
+            var createdResult = result as OkObjectResult;
+
+            mock.VerifyAll();
+        }
 
 
 
+        [TestMethod]
+        public void DeleteUser()
+        {
+            var model = new UserModel()
+            {
+                Id = Guid.NewGuid(),
+                Name = "Cristhian",
+                LastName = "Maciel",
+                UserName = "Cris",
+                Password = "123456",
+                Admin = true
+            };
 
+            var mock = new Mock<IUserLogic>(MockBehavior.Strict);
+            mock.Setup(m => m.Remove(It.IsAny<User>()));
 
+            var controler = new UsersController(mock.Object);
+            var result = controler.Delete(model.Id, model);
+            var createdResult = result as OkObjectResult;
 
+            mock.VerifyAll();
+        }
 
 
     }
