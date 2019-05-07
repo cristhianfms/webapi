@@ -26,16 +26,67 @@ namespace Reports.Webapi.Controllers
         }
 
 
+        [HttpPost]
+        public IActionResult Post([FromBody]AreaModel model)
+        {
+            try
+            {
+                Area area = AreaModel.ToEntity(model);
+                areaLogic.CreateArea(AreaModel.ToEntity(model));
+                return Ok();
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
 
+        [HttpGet("{id}")]
+        public IActionResult Get(Guid id)
+        {
+            try
+            {
+                var area = areaLogic.Get(id);
+                return Ok(AreaModel.ToModel(area));
+
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return NotFound(e.Message);
+            }
+        }
 
 
+        [HttpPut("{id}")]
+        public IActionResult Put(Guid id, [FromBody]AreaModel model)
+        {
+            try
+            {
+                model.Id = id;
+                areaLogic.UpdateArea(AreaModel.ToEntity(model));
+                return Ok();
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
 
-
-
-
-
-
+        [HttpDelete("{id}")]
+        public IActionResult Delete(Guid id, [FromBody]AreaModel model)
+        {
+            try
+            {
+                model.Id = id;
+                areaLogic.RemoveArea(AreaModel.ToEntity(model));
+                return Ok();
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
