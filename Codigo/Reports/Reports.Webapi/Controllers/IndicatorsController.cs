@@ -4,34 +4,35 @@ using Reports.Webapi.Models;
 using Reports.Domain;
 using Reports.BusinessLogic.Interface;
 using System.Collections.Generic;
+using System.Linq;
+
 
 namespace Reports.Webapi.Controllers
 {
     [Route("api/[controller]")]
-    public class AreasController : ControllerBase
+    public class IndicatorsController : ControllerBase
     {
+        private IIndicatorLogic indicatorLogic;
 
-        private IAreaLogic areaLogic;
-
-        public AreasController(IAreaLogic areaLogic) : base()
+        public IndicatorsController(IIndicatorLogic indicatorLogic) : base()
         {
-            this.areaLogic = areaLogic;
+            this.indicatorLogic = indicatorLogic;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<Area> areas = areaLogic.GetAll();
-            return Ok(AreaModel.ToModel(areas));
+            IEnumerable<Indicator> indicatros = indicatorLogic.GetAll();
+            return Ok(IndicatorModel.ToModel(indicatros));
         }
 
-
         [HttpPost]
-        public IActionResult Post([FromBody]AreaModel model)
+        public IActionResult Post([FromBody]IndicatorModel model)
         {
             try
             {
-                areaLogic.CreateArea(AreaModel.ToEntity(model));
+                Indicator indicator = IndicatorModel.ToEntity(model);
+                indicatorLogic.Create(indicator);
                 return Ok();
             }
             catch (BusinessLogicInterfaceException e)
@@ -41,13 +42,14 @@ namespace Reports.Webapi.Controllers
         }
 
 
+
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
             try
             {
-                var area = areaLogic.Get(id);
-                return Ok(AreaModel.ToModel(area));
+                var indicator = indicatorLogic.Get(id);
+                return Ok(IndicatorModel.ToModel(indicator));
 
             }
             catch (BusinessLogicInterfaceException e)
@@ -58,12 +60,12 @@ namespace Reports.Webapi.Controllers
 
 
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, [FromBody]AreaModel model)
+        public IActionResult Put(Guid id, [FromBody]IndicatorModel model)
         {
             try
             {
                 model.Id = id;
-                areaLogic.UpdateArea(AreaModel.ToEntity(model));
+                indicatorLogic.Update(IndicatorModel.ToEntity(model));
                 return Ok();
             }
             catch (BusinessLogicInterfaceException e)
@@ -74,12 +76,12 @@ namespace Reports.Webapi.Controllers
 
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id, [FromBody]AreaModel model)
+        public IActionResult Delete(Guid id, [FromBody]IndicatorModel model)
         {
             try
             {
                 model.Id = id;
-                areaLogic.RemoveArea(AreaModel.ToEntity(model));
+                indicatorLogic.Remove(IndicatorModel.ToEntity(model));
                 return Ok();
             }
             catch (BusinessLogicInterfaceException e)
@@ -87,5 +89,9 @@ namespace Reports.Webapi.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+
+
+
     }
 }

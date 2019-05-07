@@ -25,7 +25,6 @@ namespace Reports.Webapi.Controllers
         {
             try
             {
-                User user = UserModel.ToEntity(model);
                 userLogic.Create(UserModel.ToEntity(model));
                 return Ok();
             }

@@ -63,12 +63,12 @@ namespace Reports.Webapi.Models
             this.Operation = entity.Operation;
             this.ValueIzq = entity.ValueIzq.Value;
             this.ValueDer = entity.ValueDer.Value;
-            this.TypeIzq = GetValueExpressionType(entity);
-            this.TypeDer = GetValueExpressionType(entity);
+            this.TypeIzq = GetValueExpressionType(entity.ValueIzq);
+            this.TypeDer = GetValueExpressionType(entity.ValueDer);
             return this;
         }
 
-        private string GetValueExpressionType(Condition entity)
+        private string GetValueExpressionType(ValueExpression entity)
         {
             string type = "";
             if (entity.GetType().Name == "SQLValue")

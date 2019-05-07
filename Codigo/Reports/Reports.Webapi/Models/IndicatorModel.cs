@@ -88,14 +88,14 @@ namespace Reports.Webapi.Models
             Dictionary<char, ConditionModel> conditions = new Dictionary<char, ConditionModel>();
             String expresion = "";
             char c = 'a';
-            CreateDictionary(entity.Component, conditions, expresion, ref c);
+            CreateDictionary(entity.Component, conditions, ref expresion, ref c);
             this.Conditions = conditions;
             this.Expression = expresion;
             return this;
         }
 
         private void CreateDictionary(Component component, Dictionary<char, ConditionModel> dictionary,
-            String expresion, ref char c)
+            ref String expresion, ref char c)
         {
             if (component.GetType().Name == "Condition")
             {
@@ -108,14 +108,14 @@ namespace Reports.Webapi.Models
             else if (component.GetType().Name == "LogicOr")
             {
                 expresion += '+';
-                CreateDictionary(((LogicOr)component).CompDer, dictionary, expresion,ref c);
-                CreateDictionary(((LogicOr)component).CompIzq, dictionary, expresion, ref c);
+                CreateDictionary(((LogicOr)component).CompDer, dictionary, ref expresion,ref c);
+                CreateDictionary(((LogicOr)component).CompIzq, dictionary, ref expresion, ref c);
             }
             else if (component.GetType().Name == "LogicAnd")
             {
                 expresion += '*';
-                CreateDictionary(((LogicAnd)component).CompDer, dictionary, expresion, ref c);
-                CreateDictionary(((LogicAnd)component).CompIzq, dictionary, expresion, ref c);
+                CreateDictionary(((LogicAnd)component).CompDer, dictionary, ref expresion, ref c);
+                CreateDictionary(((LogicAnd)component).CompIzq, dictionary, ref expresion, ref c);
             }
         }
 

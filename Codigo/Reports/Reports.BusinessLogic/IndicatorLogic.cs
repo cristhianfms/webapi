@@ -57,7 +57,8 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-         Indicator Get(Guid id){
+
+        public Indicator Get(Guid id){
             try {
                 return repository.Get(id);
             }
@@ -67,7 +68,7 @@ namespace Reports.BusinessLogic
             }
         }
 
-        IEnumerable<Indicator> GetAll(){
+        public IEnumerable<Indicator> GetAll(){
             try {
                 return repository.GetAll();
             }
