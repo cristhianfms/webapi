@@ -7,6 +7,7 @@ namespace Reports.Domain
     public abstract class ValueExpression
     {
         public Guid Id { get; set; }
-        public abstract string Value();
+        public string Value { get; set; }
+        public abstract string Evaluate();
     }
 }

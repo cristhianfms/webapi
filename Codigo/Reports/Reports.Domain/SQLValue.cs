@@ -6,9 +6,7 @@ namespace Reports.Domain
 {
     public class SQLValue : ValueExpression
     {
-        public string Avalue { get; set; }
-
-        public override string Value()
+        public override string Evaluate()
         {
             throw new NotImplementedException();
         }

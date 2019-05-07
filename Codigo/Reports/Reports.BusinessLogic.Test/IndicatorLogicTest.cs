@@ -18,13 +18,13 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Avalue = "hola"};
-            ValueExpression der = new StringValue{Avalue = "hola"};
+            ValueExpression izq = new StringValue{Value = "hola"};
+            ValueExpression der = new StringValue{ Value = "hola"};
             Component component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = Comparator.equal
+                Operation = "="
             };
             Indicator indicator = new Indicator{
                 Color = color,
@@ -45,13 +45,13 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Avalue = "hola"};
-            ValueExpression der = new StringValue{Avalue = "chau"};
+            ValueExpression izq = new StringValue{Value = "hola"};
+            ValueExpression der = new StringValue{Value = "chau"};
             Component component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = Comparator.equal
+                Operation = "="
             };
             Indicator indicator = new Indicator{
                 Color = color,
@@ -71,21 +71,21 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Avalue = "hola"};
-            ValueExpression der = new StringValue{Avalue = "hola"};
+            ValueExpression izq = new StringValue{ Value = "hola"};
+            ValueExpression der = new StringValue{ Value = "hola"};
             Component componentIzq = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = Comparator.equal
+                Operation = "="
             };
-            ValueExpression izq1 = new StringValue{Avalue = "hola"};
-            ValueExpression der1 = new StringValue{Avalue = "hola"};
+            ValueExpression izq1 = new StringValue{Value = "hola"};
+            ValueExpression der1 = new StringValue{Value = "hola"};
             Component componentDer = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = Comparator.equal
+                Operation = "="
             };
             Component component = new LogicAnd
             {
@@ -110,13 +110,13 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new IntValue{Avalue = 1};
-            ValueExpression der = new IntValue{Avalue = 1};
+            ValueExpression izq = new IntValue{Value = "1"};
+            ValueExpression der = new IntValue{Value = "1"};
             Component component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = Comparator.less
+                Operation = "<"
             };
             Indicator indicator = new Indicator{
                 Color = color,
@@ -136,13 +136,13 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new IntValue{Avalue = 1};
-            ValueExpression der = new IntValue{Avalue = 2};
+            ValueExpression izq = new IntValue{Value = "1"};
+            ValueExpression der = new IntValue{Value = "2"};
             Component component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = Comparator.less
+                Operation = "<"
             };
             Indicator indicator = new Indicator{
                 Color = color,
@@ -162,13 +162,13 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Avalue = "3"};
-            ValueExpression der = new IntValue{Avalue = 2};
+            ValueExpression izq = new StringValue{Value = "3"};
+            ValueExpression der = new IntValue{Value = "2"};
             Component component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = Comparator.greater
+                Operation = ">"
             };
             Indicator indicator = new Indicator{
                 Color = color,
@@ -188,13 +188,13 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new IntValue{Avalue = 3};
-            ValueExpression der = new StringValue{Avalue = "4"};
+            ValueExpression izq = new IntValue{Value = "3"};
+            ValueExpression der = new StringValue{Value = "4"};
             Component component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = Comparator.greater
+                Operation = ">"
             };
             Indicator indicator = new Indicator{
                 Color = color,
@@ -214,13 +214,13 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Avalue = "hol"};
-            ValueExpression der = new StringValue{Avalue = "hola"};
+            ValueExpression izq = new StringValue{Value = "hol"};
+            ValueExpression der = new StringValue{Value = "hola"};
             Component component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = Comparator.lessEqual
+                Operation = "<="
             };
             Indicator indicator = new Indicator{
                 Color = color,
@@ -240,13 +240,13 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Avalue = "holaa"};
-            ValueExpression der = new StringValue{Avalue = "hola"};
+            ValueExpression izq = new StringValue{Value = "holaa"};
+            ValueExpression der = new StringValue{Value = "hola"};
             Component component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = Comparator.lessEqual
+                Operation = "<="
             };
             Indicator indicator = new Indicator{
                 Color = color,
@@ -266,13 +266,13 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new IntValue{Avalue = 1};
-            ValueExpression der = new IntValue{Avalue = 3};
+            ValueExpression izq = new IntValue{Value = "1"};
+            ValueExpression der = new IntValue{Value = "3"};
             Component component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = Comparator.greatEqual
+                Operation = ">="
             };
             Indicator indicator = new Indicator{
                 Color = color,
@@ -292,13 +292,13 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new IntValue{Avalue = 3};
-            ValueExpression der = new IntValue{Avalue = 2};
+            ValueExpression izq = new IntValue{Value = "3"};
+            ValueExpression der = new IntValue{Value = "2"};
             Component component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = Comparator.greatEqual
+                Operation = ">="
             };
             Indicator indicator = new Indicator{
                 Color = color,
@@ -318,21 +318,21 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Avalue = "hola"};
-            ValueExpression der = new StringValue{Avalue = "hola"};
+            ValueExpression izq = new StringValue{Value = "hola"};
+            ValueExpression der = new StringValue{Value = "hola"};
             Component componentIzq = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = Comparator.equal
+                Operation = "="
             };
-            ValueExpression izq1 = new StringValue{Avalue = "hola"};
-            ValueExpression der1 = new StringValue{Avalue = "chau"};
+            ValueExpression izq1 = new StringValue{Value = "hola"};
+            ValueExpression der1 = new StringValue{Value = "chau"};
             Component componentDer = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = Comparator.equal
+                Operation = "="
             };
             Component component = new LogicOr
             {
@@ -357,13 +357,13 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Avalue = "hola"};
-            ValueExpression der = new StringValue{Avalue = "hola"};
+            ValueExpression izq = new StringValue{Value = "hola"};
+            ValueExpression der = new StringValue{Value = "hola"};
             Component component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = Comparator.equal
+                Operation = "="
             };
             Indicator indicator = new Indicator{
                 Color = color,
@@ -384,13 +384,13 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Avalue = "hola"};
-            ValueExpression der = new StringValue{Avalue = "hola"};
+            ValueExpression izq = new StringValue{Value = "hola"};
+            ValueExpression der = new StringValue{Value = "hola"};
             Component component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = Comparator.equal
+                Operation = "="
             };
             Indicator indicator = new Indicator{
                 Color = color,
@@ -407,13 +407,13 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Avalue = "hola"};
-            ValueExpression der = new StringValue{Avalue = "hola"};
+            ValueExpression izq = new StringValue{Value = "hola"};
+            ValueExpression der = new StringValue{Value = "hola"};
             Component component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = Comparator.equal
+                Operation = "="
             };
             Indicator indicator = new Indicator{
                 Color = color,
@@ -434,13 +434,13 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Avalue = "hola"};
-            ValueExpression der = new StringValue{Avalue = "chau"};
+            ValueExpression izq = new StringValue{Value = "hola"};
+            ValueExpression der = new StringValue{Value = "chau"};
             Component component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = Comparator.equal
+                Operation = "="
             };
             Indicator indicator = new Indicator{
                 Color = color,
@@ -452,13 +452,13 @@ namespace Reports.BusinessLogic.Test
             IndicatorLogic indicatroLogic = new IndicatorLogic(indicatorRepo);
             indicatroLogic.Create(indicator);
 
-            ValueExpression izq1 = new StringValue{Avalue = "hola"};
-            ValueExpression der1 = new StringValue{Avalue = "hola"};
+            ValueExpression izq1 = new StringValue{ Value = "hola"};
+            ValueExpression der1 = new StringValue{ Value = "hola"};
             Component component2 = new Condition
             {
                 ValueIzq = izq1,
                 ValueDer = der1,
-                Operation = Comparator.equal
+                Operation = "="
             };
             indicator.Component = component2;
             indicatroLogic.Update(indicator);
@@ -472,13 +472,13 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Avalue = "hola"};
-            ValueExpression der = new StringValue{Avalue = "hola"};
+            ValueExpression izq = new StringValue{ Value = "hola"};
+            ValueExpression der = new StringValue{ Value = "hola"};
             Component component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = Comparator.equal
+                Operation = "="
             };
             Indicator indicator = new Indicator{
                 Color = color,
@@ -495,13 +495,13 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Avalue = "hola"};
-            ValueExpression der = new StringValue{Avalue = "hola"};
+            ValueExpression izq = new StringValue{Value = "hola"};
+            ValueExpression der = new StringValue{ Value = "hola"};
             Component component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = Comparator.equal
+                Operation = "="
             };
             Indicator indicator = new Indicator{
                 Color = color,

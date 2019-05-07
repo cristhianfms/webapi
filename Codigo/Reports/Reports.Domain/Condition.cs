@@ -4,39 +4,33 @@ using System.Text;
 
 namespace Reports.Domain
 {
-    public enum Comparator
-    {
-        equal, less, greater, lessEqual, greatEqual
-    };
-
-
     public class Condition : Component
     {
         public ValueExpression ValueIzq { get; set; }
         public ValueExpression ValueDer { get; set; }
-        public Comparator Operation {get;set;}
+        public String Operation {get;set;}
 
         public override bool Evaluete()
         {
-            if(Operation == Comparator.equal)
+            if(Operation == "=")
             {
-                return ValueIzq.Value() == ValueDer.Value();
+                return ValueIzq.Evaluate() == ValueDer.Evaluate();
             }
-            else if (Operation == Comparator.less)
+            else if (Operation == "<")
             {
-                return ValueIzq.Value().CompareTo(ValueDer.Value()) < 0;
+                return ValueIzq.Evaluate().CompareTo(ValueDer.Evaluate()) < 0;
             }
-            else if (Operation == Comparator.greater)
+            else if (Operation == ">")
             {
-                return ValueIzq.Value().CompareTo(ValueDer.Value()) > 0;
+                return ValueIzq.Evaluate().CompareTo(ValueDer.Evaluate()) > 0;
             }
-            else if (Operation == Comparator.lessEqual)
+            else if (Operation == "<=")
             {
-                return ValueIzq.Value().CompareTo(ValueDer.Value()) <= 0;
+                return ValueIzq.Evaluate().CompareTo(ValueDer.Evaluate()) <= 0;
             }
-            else if (Operation == Comparator.greatEqual)
+            else if (Operation == ">=")
             {
-                return ValueIzq.Value().CompareTo(ValueDer.Value()) >= 0;
+                return ValueIzq.Evaluate().CompareTo(ValueDer.Evaluate()) >= 0;
             }
             return true;
         }
