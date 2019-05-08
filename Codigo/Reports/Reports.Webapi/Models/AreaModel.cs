@@ -29,9 +29,9 @@ namespace Reports.Webapi.Models
                 Id = this.Id,
                 Name = this.Name,
                 ConnectionString = this.ConnectionString,
-                Managers = this.Managers.ConvertAll(m => m.ToEntity()),
                 Indicators = this.Indicators.ConvertAll(m => m.ToEntity()),
             };
+            
         }
 
 
@@ -40,7 +40,6 @@ namespace Reports.Webapi.Models
             this.Id = entity.Id;
             this.Name = entity.Name;
             this.ConnectionString = entity.ConnectionString;
-            this.Managers = entity.Managers.ConvertAll(e => new UserModel(e));
             this.Indicators = entity.Indicators.ConvertAll(e => new IndicatorModel(e));
             return this;
         }

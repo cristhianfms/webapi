@@ -31,6 +31,8 @@ namespace Reports.DataAccess
             modelBuilder.Entity<Component>().ToTable("Components");
             modelBuilder.Entity<LogicExpression>().ToTable("LogicExpressions");
             modelBuilder.Entity<ValueExpression>().ToTable("ValueExpressions");
+
+            modelBuilder.Entity<AreaManager>().HasKey(x => new { x.AreaId, x.ManagerId });
         }
     }
 }

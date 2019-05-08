@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Reports.Domain
 {
@@ -10,6 +11,8 @@ namespace Reports.Domain
         public string UserName { get; set; }
         public string Password { get; set; }
         public bool Admin { get; set; } = false;
+
+        public IEnumerable<AreaManager> AreaManagers { get; set; }
 
         public bool IsValid()
         {

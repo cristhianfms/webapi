@@ -34,7 +34,6 @@ namespace Reports.DataAccess.Test
                 Id = Guid.NewGuid(),
                 Name = name,
                 ConnectionString = connectionString,
-                Managers = managers,
                 Indicators = indicators
             }); 
             areaRepo.Save();
