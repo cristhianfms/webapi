@@ -38,7 +38,15 @@ namespace Reports.Logger
 
         public IEnumerable<User> RankingTopTen(){
             return null;
-            //not implemented
+             try
+            {
+    //conexion a la base, hacer un 
+    //select top(10) from la_tabla where group by user_id, ordey by user_id desc
+            }
+            catch (RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message, e);
+            }
         }
     }
 }
