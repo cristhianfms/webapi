@@ -57,7 +57,7 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-         Area Get(Guid id){
+        public Area Get(Guid id){
             try {
                 return repository.Get(id);
             }
@@ -67,7 +67,7 @@ namespace Reports.BusinessLogic
             }
         }
 
-        IEnumerable<Area> GetAll(){
+        public IEnumerable<Area> GetAll(){
             try {
                 return repository.GetAll();
             }

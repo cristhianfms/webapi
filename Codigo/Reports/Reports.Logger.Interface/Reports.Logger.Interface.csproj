@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+<ItemGroup>
+
+    <ProjectReference Include="..\Reports.Logger.Domain\Reports.Logger.Domain.csproj" />
+    <ProjectReference Include="..\Reports.Domain\Reports.Domain.csproj" />
+
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+
+</Project>
