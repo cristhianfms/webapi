@@ -5,10 +5,21 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+
+using Reports.BusinessLogic;
+using Reports.BusinessLogic.Interface;
+using Reports.DataAccess;
+using Reports.DataAccess.Interface;
+using Reports.Domain;
+
+
+
+
 
 namespace Reports.Webapi
 {
@@ -21,10 +32,25 @@ namespace Reports.Webapi
 
         public IConfiguration Configuration { get; }
 
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddDbContext<DbContext, ReportsContext>(
+                 o => o.UseSqlServer(Configuration.GetConnectionString("ReportsDB"))
+            );
+
+            services.AddScoped<IAreaLogic, AreaLogic>();
+            services.AddScoped<IRepository<Area>, AreaRepository>();
+
+            services.AddScoped<IUserLogic, UserLogic>();
+            services.AddScoped<IRepository<User>, UserRepository>();
+
+            services.AddScoped<IIndicatorLogic, IndicatorLogic>();
+            services.AddScoped<IRepository<Indicator>, IndicatorRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

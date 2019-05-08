@@ -29,6 +29,7 @@ namespace Reports.DataAccess
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<User>().HasAlternateKey(u => u.UserName);
             modelBuilder.Entity<Component>().ToTable("Components");
+            modelBuilder.Entity<LogicExpression>().ToTable("LogicExpressions");
             modelBuilder.Entity<ValueExpression>().ToTable("ValueExpressions");
         }
     }
