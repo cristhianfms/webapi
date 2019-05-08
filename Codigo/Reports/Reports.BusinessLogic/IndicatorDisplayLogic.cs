@@ -89,7 +89,7 @@ namespace Reports.BusinessLogic
             try
             {
                 IEnumerable<IndicatorDisplay> all = this.indDisplayRepo.GetAll();
-                IEnumerable<IndicatorDisplay> allByMangerId = new IEnumerable<IndicatorDisplay>();
+               var allByMangerId = new List<IndicatorDisplay>();
                 foreach(IndicatorDisplay ind in all){
                     if(ind.Id == managerId){
                         allByMangerId.Add(ind);
@@ -102,10 +102,11 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-        public Guid TopTenHiddenIndicator()
+        public IEnumerable<Guid> TopTenHiddenIndicator()
         {
             try
             {
+                return null;
     //conexion a la base, hacer un 
     //select top(10) from la_tabla where visible = false group by indicator_id, visible ordey by user_id desc
             }
