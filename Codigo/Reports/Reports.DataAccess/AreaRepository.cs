@@ -13,11 +13,15 @@ namespace Reports.DataAccess
             Context = context;
         }
         public override IEnumerable<Area> GetAll(){
-            return Context.Set<Area>().ToList();
+            return Context.Set<Area>()
+                .Include(a => a.AreaManagers)
+                .ToList();
         }
 
         public override Area Get(Guid id){
-            Area area = Context.Set<Area>().ToList().FirstOrDefault(a => a.Id == id);
+            Area area = Context.Set<Area>()
+                .ToList().FirstOrDefault(a => a.Id == id);
+
             if(area == null){
                 throw new RepositoryException("Id not found");
             }

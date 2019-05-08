@@ -9,7 +9,7 @@ namespace Reports.Domain
         public Guid AreaId { get; set; }
         public Area Area { get; set; }
 
-        public User ManagerId { get; set; }
+        public Guid ManagerId { get; set; }
         public User Manager { get; set; }
     }
 }

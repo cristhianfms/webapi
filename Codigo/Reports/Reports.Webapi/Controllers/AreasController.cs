@@ -87,5 +87,50 @@ namespace Reports.Webapi.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+
+        [HttpGet("{id}/Managers")]
+        public IActionResult GetManagers(Guid id)
+        {
+            try
+            {
+                IEnumerable<User> managers = areaLogic.GetManagers(id);
+                return Ok(UserModel.ToModel(managers));
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return NotFound(e.Message);
+            }
+        }
+
+
+        [HttpPost("{id}/Managers")]
+        public IActionResult AddManager(Guid id, [FromBody]AreaManagerModel manager)
+        {
+            try
+            {
+                areaLogic.AddManager(id, manager.ManagerId);
+                return Ok();
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpDelete("{id}/Managers")]
+        public IActionResult DeleteManager(Guid id, [FromBody]AreaManagerModel manager)
+        {
+            try
+            {
+                areaLogic.RemoveManager(id, manager.AreaId);
+                return Ok();
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
     }
 }

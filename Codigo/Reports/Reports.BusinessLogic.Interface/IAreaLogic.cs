@@ -12,5 +12,9 @@ namespace Reports.BusinessLogic.Interface
         void UpdateArea(Area area);
         Area Get(Guid id);
         IEnumerable<Area> GetAll();
+
+        IEnumerable<User> GetManagers(Guid areaId);
+        void AddManager(Guid areaId, Guid managerId);
+        void RemoveManager(Guid areaId, Guid managerId);
     }
 }

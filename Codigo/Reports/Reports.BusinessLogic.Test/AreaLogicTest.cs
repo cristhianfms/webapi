@@ -33,7 +33,6 @@ namespace Reports.BusinessLogic.Test
             area.Id = id;
             area.Name = "name";
             area.ConnectionString = "connectionString";
-            area.Managers = managers;
             area.Indicators = indicators;
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Area> areaRepo = new AreaRepository(context);
@@ -61,7 +60,6 @@ namespace Reports.BusinessLogic.Test
             area.Id = id;
             area.Name = "name";
             area.ConnectionString = "connectionString";
-            area.Managers = managers;
             area.Indicators = indicators;
             var mock = new Mock<IRepository<Area>>(MockBehavior.Strict);
             mock.Setup(m => m.Add(It.IsAny<Area>()));
@@ -83,7 +81,6 @@ namespace Reports.BusinessLogic.Test
             area.Id = id;
             area.Name = null;
             area.ConnectionString = "connectionString";
-            area.Managers = managers;
             area.Indicators = indicators;
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Area> areaRepo = new AreaRepository(context);
@@ -102,7 +99,6 @@ namespace Reports.BusinessLogic.Test
             area.Id = id;
             area.Name = "";
             area.ConnectionString = "connectionString";
-            area.Managers = managers;
             area.Indicators = indicators;
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Area> areaRepo = new AreaRepository(context);
@@ -121,7 +117,6 @@ namespace Reports.BusinessLogic.Test
             area.Id = id;
             area.Name = "name";
             area.ConnectionString = "";
-            area.Managers = managers;
             area.Indicators = indicators;
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Area> areaRepo = new AreaRepository(context);
@@ -140,7 +135,6 @@ namespace Reports.BusinessLogic.Test
             area.Id = id;
             area.Name = "name";
             area.ConnectionString = "Connetion";
-            area.Managers = managers;
             area.Indicators = indicators;
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Area> areaRepo = new AreaRepository(context);
@@ -167,7 +161,6 @@ namespace Reports.BusinessLogic.Test
             area.Id = id;
             area.Name = "name";
             area.ConnectionString = "connectionString";
-            area.Managers = managers;
             area.Indicators = indicators;
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Area> areaRepo = new AreaRepository(context);
@@ -197,7 +190,6 @@ namespace Reports.BusinessLogic.Test
             area.Id = id;
             area.Name = "name";
             area.ConnectionString = "connectionString";
-            area.Managers = managers;
             area.Indicators = indicators;
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Area> areaRepo = new AreaRepository(context);
@@ -225,7 +217,6 @@ namespace Reports.BusinessLogic.Test
             area.Id = id;
             area.Name = "name";
             area.ConnectionString = "connectionString";
-            area.Managers = managers;
             area.Indicators = indicators;
             var mock = new Mock<IRepository<Area>>(MockBehavior.Strict);
             mock.Setup(m => m.Remove(It.IsAny<Area>()));
@@ -256,7 +247,6 @@ namespace Reports.BusinessLogic.Test
             area.Id = id;
             area.Name = "name";
             area.ConnectionString = "connectionString";
-            area.Managers = managers;
             area.Indicators = indicators;
             var mock = new Mock<IRepository<Area>>(MockBehavior.Strict);
             mock.Setup(m => m.Update(It.IsAny<Area>()));
@@ -286,7 +276,6 @@ namespace Reports.BusinessLogic.Test
             area.Id = id;
             area.Name = "name";
             area.ConnectionString = "connectionString";
-            area.Managers = managers;
             area.Indicators = indicators;
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Area> areaRepo = new AreaRepository(context);
@@ -316,7 +305,6 @@ namespace Reports.BusinessLogic.Test
             area.Id = id;
             area.Name = "name";
             area.ConnectionString = "connectionString";
-            area.Managers = managers;
             area.Indicators = indicators;
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Area> areaRepo = new AreaRepository(context);
@@ -347,7 +335,6 @@ namespace Reports.BusinessLogic.Test
             area.Id = id;
             area.Name = "name";
             area.ConnectionString = "connectionString";
-            area.Managers = managers;
             area.Indicators = indicators;
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Area> areaRepo = new AreaRepository(context);
@@ -377,7 +364,6 @@ namespace Reports.BusinessLogic.Test
             area.Id = id;
             area.Name = "name";
             area.ConnectionString = "connectionString";
-            area.Managers = managers;
             area.Indicators = indicators;
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Area> areaRepo = new AreaRepository(context);

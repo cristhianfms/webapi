@@ -44,6 +44,7 @@ namespace Reports.Webapi
 
             services.AddScoped<IAreaLogic, AreaLogic>();
             services.AddScoped<IRepository<Area>, AreaRepository>();
+            services.AddScoped<IRepository<AreaManager>, AreaManagerRepository>();
 
             services.AddScoped<IUserLogic, UserLogic>();
             services.AddScoped<IRepository<User>, UserRepository>();

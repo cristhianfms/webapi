@@ -69,14 +69,12 @@ namespace Reports.DataAccess.Test
                 Id = new Guid("00000000000000000000000000000001"),
                 Name = name,
                 ConnectionString = connectionString,
-                Managers = managers,
                 Indicators = indicators
             }); 
             areaRepo.Add(new Area{
                 Id = new Guid("00000000000000000000000000000001"),
                 Name = name,
                 ConnectionString = connectionString,
-                Managers = managers,
                 Indicators = indicators
             }); 
             areaRepo.Save();
@@ -108,7 +106,6 @@ namespace Reports.DataAccess.Test
             area.Id = Guid.NewGuid();
             area.Name = name;
             area.ConnectionString = connectionString;
-            area.Managers = managers;
             area.Indicators = indicators;
             areaRepo.Add(area); 
             areaRepo.Save();
@@ -140,7 +137,6 @@ namespace Reports.DataAccess.Test
             area.Id = Guid.NewGuid();
             area.Name = name;
             area.ConnectionString = connectionString;
-            area.Managers = managers;
             area.Indicators = indicators;
             areaRepo.Add(area); 
             areaRepo.Save();
@@ -151,7 +147,6 @@ namespace Reports.DataAccess.Test
             area1.Id = Guid.NewGuid();
             area1.Name = name;
             area1.ConnectionString = connectionString;
-            area1.Managers = managers;
             area1.Indicators = indicators;
             areaRepo.Remove(area1);
             areaRepo.Save();
@@ -183,7 +178,6 @@ namespace Reports.DataAccess.Test
             area.Id = Guid.NewGuid();
             area.Name = name;
             area.ConnectionString = connectionString;
-            area.Managers = managers;
             area.Indicators = indicators;
             areaRepo.Add(area); 
             areaRepo.Save();
@@ -217,7 +211,6 @@ namespace Reports.DataAccess.Test
             area.Id = Guid.NewGuid();
             area.Name = name;
             area.ConnectionString = connectionString;
-            area.Managers = managers;
             area.Indicators = indicators;
             areaRepo.Add(area); 
             areaRepo.Update(area);
@@ -252,14 +245,12 @@ namespace Reports.DataAccess.Test
             area.Id = id;
             area.Name = name;
             area.ConnectionString = connectionString;
-            area.Managers = managers;
             area.Indicators = indicators;
             areaRepo.Add(area); 
             Area area1 = new Area();
             area1.Id = id1;
             area1.Name = "name";
             area1.ConnectionString = connectionString;
-            area1.Managers = managers;
             area1.Indicators = indicators;
             areaRepo.Add(area1); 
             areaRepo.Save();
@@ -306,7 +297,6 @@ namespace Reports.DataAccess.Test
             area.Id = id;
             area.Name = name;
             area.ConnectionString = connectionString;
-            area.Managers = managers;
             area.Indicators = indicators;
             areaRepo.Add(area);  
             areaRepo.Save();

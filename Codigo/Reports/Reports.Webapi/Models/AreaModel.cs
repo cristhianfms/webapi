@@ -12,7 +12,6 @@ namespace Reports.Webapi.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string ConnectionString { get; set; }
-        public List<UserModel> Managers { get; set; }
         public List<IndicatorModel> Indicators { get; set; }
 
         public AreaModel() { }

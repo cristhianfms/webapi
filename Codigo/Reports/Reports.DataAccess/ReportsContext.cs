@@ -33,6 +33,11 @@ namespace Reports.DataAccess
             modelBuilder.Entity<ValueExpression>().ToTable("ValueExpressions");
 
             modelBuilder.Entity<AreaManager>().HasKey(x => new { x.AreaId, x.ManagerId });
+
+            modelBuilder.Entity<AreaManager>().HasOne<Area>(am => am.Area)
+                .WithMany(a => a.AreaManagers);
+            modelBuilder.Entity<AreaManager>().HasOne<User>(am => am.Manager)
+                .WithMany(m => m.AreaManagers);
         }
     }
 }
