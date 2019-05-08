@@ -12,12 +12,16 @@ namespace Reports.Webapi.Controllers
     public class UsersController : ControllerBase
     {
         private IUserLogic userLogic;
+        private IIndicatorDisplayLogic indicatorDisplayLogic;
 
         public UsersController(IUserLogic userLogic) : base()
         {
             this.userLogic = userLogic;
         }
-
+        public UsersController(IIndicatorDisplayLogic indicatorDisplayLogic) : base()
+        {
+            this.indicatorDisplayLogic = indicatorDisplayLogic;
+        }
 
 
         [HttpPost]
@@ -89,9 +93,34 @@ namespace Reports.Webapi.Controllers
                 return BadRequest(e.Message);
             }
         }
+        [Route("{id}/display_indicator")]
+        [HttpGet]
+         public IActionResult GetAllIndicatorByUserId(Guid id){
+              try
+            {
+                indicatorDisplayLogic.GetAllByManagerId(id);
+                return Ok();
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
+         }
 
-
-
-
+        [Route("{id}/display_indicator")]
+        [HttpPut]
+          public IActionResult ModifyIndicatorDisplay(Guid id, [FromBody]IndicatorDisplayModel model)
+        {
+            try
+            {
+                model.UserId = id;
+                indicatorDisplayLogic.Update(IndicatorDisplayModel.ToEntity(model).Id);
+                return Ok();
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
