@@ -132,5 +132,51 @@ namespace Reports.Webapi.Controllers
             }
         }
 
+
+
+        [HttpGet("{id}/Indicators")]
+        public IActionResult GetIndicators(Guid id)
+        {
+            try
+            {
+                IEnumerable<Indicator> indicators = areaLogic.GetIndicators(id);
+                return Ok(IndicatorModel.ToModel(indicators));
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return NotFound(e.Message);
+            }
+        }
+
+
+        [HttpPost("{id}/Indicators")]
+        public IActionResult AddIndicator(Guid id, [FromBody]IndicatorModel indicator)
+        {
+            try
+            {
+                areaLogic.AddIndicator(id, indicator.Id);
+                return Ok();
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpDelete("{id}/Indicators")]
+        public IActionResult DeleteIndicator(Guid id, [FromBody]IndicatorModel indicator)
+        {
+            try
+            {
+                areaLogic.RemoveManager(id, indicator.Id);
+                return Ok();
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
     }
 }

@@ -16,5 +16,9 @@ namespace Reports.BusinessLogic.Interface
         IEnumerable<User> GetManagers(Guid areaId);
         void AddManager(Guid areaId, Guid managerId);
         void RemoveManager(Guid areaId, Guid managerId);
+
+        IEnumerable<Indicator> GetIndicators(Guid areaId);
+        void AddIndicator(Guid areaId, Guid indicatorId);
+        void RemoveIndicator(Guid areaId, Guid indicatorId);
     }
 }

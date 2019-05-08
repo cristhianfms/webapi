@@ -12,13 +12,15 @@ namespace Reports.BusinessLogic
         private IRepository<Area> areaRepo;
         private IRepository<AreaManager> areaManagerRepo;
         private IRepository<User> userRepo;
+        private IRepository<Indicator> indicatorRepo;
 
         public AreaLogic(IRepository<Area> areaRepo , IRepository<AreaManager> areaManagerRepo
-            , IRepository<User> userRepo) {
+            , IRepository<User> userRepo, IRepository<Indicator> indicatorRepo) {
 
             this.areaRepo = areaRepo;
             this.areaManagerRepo = areaManagerRepo;
             this.userRepo = userRepo;
+            this.indicatorRepo = indicatorRepo;
         }
         
         public void CreateArea(Area area) {
@@ -90,15 +92,6 @@ namespace Reports.BusinessLogic
             }
         }
 
-        public void AddIndicator(Guid areaID, Indicator indicator)
-        {
-            Area area = Get(areaID);
-            area.Indicators.Add(indicator);
-            UpdateArea(area);
-        }
-
-
-
 
         public IEnumerable<User> GetManagers(Guid areaId)
         { 
@@ -145,6 +138,51 @@ namespace Reports.BusinessLogic
         {
             if (user.Admin)
                 throw new BusinessLogicException("User must have manager role");
+        }
+
+
+
+        public IEnumerable<Indicator> GetIndicators(Guid areaId)
+        {
+            try
+            {
+                Area area = areaRepo.Get(areaId);
+                return area.Indicators;
+            }catch(RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message);
+            }
+        }
+
+
+        public void AddIndicator(Guid areaId, Guid indicatorId)
+        {
+            try
+            {
+                Area area = areaRepo.Get(areaId);
+                Indicator indicator = indicatorRepo.Get(indicatorId);
+                area.Indicators.Add(indicator);
+                areaRepo.Save();
+            }
+            catch (RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message);
+            }
+        }
+
+        public void RemoveIndicator(Guid areaId, Guid indicatorId)
+        {
+            try
+            {
+                Area area = areaRepo.Get(areaId);
+                Indicator indicator = indicatorRepo.Get(indicatorId);
+                area.Indicators.Remove(indicator);
+                areaRepo.Save();
+            }
+            catch (RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message);
+            }
         }
 
 
