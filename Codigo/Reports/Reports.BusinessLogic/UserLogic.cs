@@ -24,6 +24,8 @@ namespace Reports.BusinessLogic
         public void Create(User usr) {
             try
             {
+                CheckEmtpyUser(usr);
+                usr.Id = Guid.NewGuid();
                 CheckIfUserIsOK(usr);
                 userRepo.Add(usr);
                 userRepo.Save();
@@ -89,9 +91,18 @@ namespace Reports.BusinessLogic
 
         private void CheckIfUserIsOK(User usr)
         {
-            if (usr == null || !usr.IsValid())
+            if (!usr.IsValid())
             {
                 throw new BusinessLogicException("User instance is not correct");
+            }
+        }
+
+
+        private void CheckEmtpyUser(User usr)
+        {
+            if (usr == null)
+            {
+                throw new BusinessLogicException("Null user instance");
             }
         }
 
