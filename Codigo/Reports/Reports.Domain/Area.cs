@@ -13,6 +13,11 @@ namespace Reports.Domain
 
         public IEnumerable<AreaManager> AreaManagers { get; set; }
 
+        public Area()
+        {
+            Indicators = new List<Indicator>();
+        }
+
         public bool IsValidArea(){
             return (this.Name != null && this.Name != "") &&
             (this.ConnectionString != null && this.ConnectionString != "") &&

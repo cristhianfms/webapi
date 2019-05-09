@@ -40,7 +40,7 @@ namespace Reports.Webapi.Controllers
             {
                 Indicator indicator = IndicatorModel.ToEntity(model);
                 var indicatorCreated = indicatorLogic.Create(indicator);
-                return CreatedAtRoute("Get", new { id = indicatorCreated.Id }, IndicatorModel.ToModel(indicator));
+                return CreatedAtRoute("GetIndicator", new { id = indicatorCreated.Id }, IndicatorModel.ToModel(indicator));
             }
             catch (BusinessLogicInterfaceException e)
             {
@@ -50,7 +50,7 @@ namespace Reports.Webapi.Controllers
 
 
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetIndicator")]
         public IActionResult Get(Guid id)
         {
             try
@@ -72,7 +72,7 @@ namespace Reports.Webapi.Controllers
             {
                 model.Id = id;
                 Indicator indicatorUpdated = indicatorLogic.Update(IndicatorModel.ToEntity(model));
-                return CreatedAtRoute("Get", new { id = indicatorUpdated.Id }, IndicatorModel.ToModel(indicatorUpdated));
+                return CreatedAtRoute("GetIndicator", new { id = indicatorUpdated.Id }, IndicatorModel.ToModel(indicatorUpdated));
             }
             catch (BusinessLogicInterfaceException e)
             {

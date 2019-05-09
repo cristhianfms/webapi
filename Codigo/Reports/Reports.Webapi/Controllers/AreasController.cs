@@ -39,7 +39,7 @@ namespace Reports.Webapi.Controllers
             try
             {
                 var area = areaLogic.CreateArea(AreaModel.ToEntity(model));
-                return CreatedAtRoute("Get", new { id = area.Id }, AreaModel.ToModel(area));
+                return CreatedAtRoute("GetArea", new { id = area.Id }, AreaModel.ToModel(area));
             }
             catch (BusinessLogicInterfaceException e)
             {
@@ -48,7 +48,7 @@ namespace Reports.Webapi.Controllers
         }
 
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetArea")]
         public IActionResult Get(Guid id)
         {
             try
@@ -71,7 +71,7 @@ namespace Reports.Webapi.Controllers
             {
                 model.Id = id;
                 var area = areaLogic.UpdateArea(AreaModel.ToEntity(model));
-                return CreatedAtRoute("Get", new { id = area.Id }, AreaModel.ToModel(area));
+                return CreatedAtRoute("GetArea", new { id = area.Id }, AreaModel.ToModel(area));
             }
             catch (BusinessLogicInterfaceException e)
             {

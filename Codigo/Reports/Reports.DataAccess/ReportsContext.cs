@@ -27,10 +27,15 @@ namespace Reports.DataAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<User>().HasAlternateKey(u => u.UserName);
+            modelBuilder.Entity<User>().Property(u => u.LastName).IsRequired();
+            modelBuilder.Entity<User>().Property(u => u.Password).IsRequired();
+            modelBuilder.Entity<User>().Property(u => u.Name).IsRequired();
+
             modelBuilder.Entity<Area>().HasAlternateKey(a => a.Name);
+
             modelBuilder.Entity<Component>().ToTable("Components");
-            modelBuilder.Entity<LogicExpression>().ToTable("LogicExpressions");
             modelBuilder.Entity<ValueExpression>().ToTable("ValueExpressions");
 
             modelBuilder.Entity<AreaManager>().HasKey(x => new { x.AreaId, x.ManagerId });
