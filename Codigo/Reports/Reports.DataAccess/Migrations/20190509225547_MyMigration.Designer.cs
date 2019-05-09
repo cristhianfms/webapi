@@ -10,7 +10,7 @@ using Reports.DataAccess;
 namespace Reports.DataAccess.Migrations
 {
     [DbContext(typeof(ReportsContext))]
-    [Migration("20190509202646_MyMigration")]
+    [Migration("20190509225547_MyMigration")]
     partial class MyMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,6 +56,8 @@ namespace Reports.DataAccess.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<Guid?>("AreaId");
 
                     b.Property<string>("Discriminator")
                         .IsRequired();

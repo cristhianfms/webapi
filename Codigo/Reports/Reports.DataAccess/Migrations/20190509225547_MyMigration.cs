@@ -87,6 +87,7 @@ namespace Reports.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    AreaId = table.Column<Guid>(nullable: true),
                     Discriminator = table.Column<string>(nullable: false),
                     ValueIzqId = table.Column<Guid>(nullable: true),
                     ValueDerId = table.Column<Guid>(nullable: true),

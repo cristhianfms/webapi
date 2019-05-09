@@ -55,6 +55,8 @@ namespace Reports.DataAccess.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<Guid?>("AreaId");
+
                     b.Property<string>("Discriminator")
                         .IsRequired();
 

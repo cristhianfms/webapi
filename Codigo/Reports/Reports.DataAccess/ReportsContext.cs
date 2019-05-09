@@ -47,6 +47,9 @@ namespace Reports.DataAccess
             modelBuilder.Entity<ValueExpression>().Property(v => v.Value).IsRequired();
 
             modelBuilder.Entity<Component>().ToTable("Components");
+               
+               
+
             modelBuilder.Entity<ValueExpression>().ToTable("ValueExpressions");
 
             modelBuilder.Entity<AreaManager>().HasKey(x => new { x.AreaId, x.ManagerId });

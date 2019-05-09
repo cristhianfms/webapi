@@ -165,7 +165,7 @@ namespace Reports.BusinessLogic
             {
                 Area area = areaRepo.Get(areaId);
                 Indicator indicator = indicatorRepo.Get(indicatorId);
-                indicator.Component.Area = area;
+                indicator.Component.AreaId = area.Id;
                 area.Indicators.Add(indicator);
                 areaRepo.Save();
             }
