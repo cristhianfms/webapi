@@ -15,51 +15,52 @@ namespace Reports.BusinessLogic
         }
 
         public Indicator Create(Indicator indicator) {
-            try{
-                if (indicator.IsValidIndicator(indicator)) {
-                    repository.Add(indicator);
-                    repository.Save();
-                    return indicator;
-                }
-                else { 
-                   throw new BusinessLogicException("null Indicator");
-                }
+            try
+            {
+                CheckEmtpyIndicator(indicator);
+                indicator.Id = Guid.NewGuid();
+                CheckValidIndicator(indicator);
+                repository.Add(indicator);
+                repository.Save();
+                return indicator;
             }
             catch (RepositoryInterfaceException e)
             {
                 throw new BusinessLogicException(e.Message, e);
             }
         }
+
+
         public void Remove(Indicator indicator) {
-            try {
-                 if (indicator.IsValidIndicator(indicator)) {
-                    repository.Remove(indicator);
-                    repository.Save();
-                }
-                else { 
-                   throw new BusinessLogicException("null Indicator");
-                }
+            try
+            {
+                CheckEmtpyIndicator(indicator);
+                CheckValidIndicator(indicator);
+                repository.Remove(indicator);
+                repository.Save();
             }
             catch (RepositoryInterfaceException e)
             {
                 throw new BusinessLogicException(e.Message, e);
             }
         }   
-        public void Update(Indicator indicator) {
-            try {
-                 if (indicator.IsValidIndicator(indicator)) {
-                    repository.Update(indicator);
-                    repository.Save();
-                }
-                else { 
-                   throw new BusinessLogicException("null Indicator");
-                }
+
+        public Indicator Update(Indicator indicator) {
+            try
+            {
+                CheckEmtpyIndicator(indicator);
+                CheckValidIndicator(indicator);
+                repository.Update(indicator);
+                repository.Save();
+                return indicator;
             }
             catch (RepositoryInterfaceException e)
             {
                 throw new BusinessLogicException(e.Message, e);
             }
         }
+
+
 
         public Indicator Get(Guid id){
             try {
@@ -80,6 +81,24 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
+
+        private void CheckValidIndicator(Indicator indicator)
+        {
+            if (!indicator.IsValid())
+            {
+                throw new BusinessLogicException("Invalid Indicator");
+            }
+        }
+
+        private void CheckEmtpyIndicator(Indicator indicator)
+        {
+            if (indicator == null)
+            {
+                throw new BusinessLogicException("Null indicator instance");
+            }
+        }
+
+
 
 
     }

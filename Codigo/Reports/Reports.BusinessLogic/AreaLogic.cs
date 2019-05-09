@@ -24,32 +24,28 @@ namespace Reports.BusinessLogic
         }
         
         public Area CreateArea(Area area) {
-            try{
-                if (area.IsValidArea(area)) {
+            try
+            {
+                CheckEmtpyArea(area);
+                area.Id = new Guid();
+                CheckIfAreaOK(area);
+                areaRepo.Add(area);
+                areaRepo.Save();
+                return area;
 
-                    areaRepo.Add(area);
-                    areaRepo.Save();
-                    return area;
-                }
-                else { 
-                   throw new BusinessLogicException("Invalid area");
-                }
-            }
-            catch (RepositoryInterfaceException e)
+            }catch (RepositoryInterfaceException e)
             {
                 throw new BusinessLogicException(e.Message, e);
             }
         }
 
+
         public void RemoveArea(Area area) {
             try {
-                 if (area.IsValidArea(area)) {
-                    areaRepo.Remove(area);
-                    areaRepo.Save();
-                }
-                else { 
-                   throw new BusinessLogicException("Invalid Area");
-                }
+                CheckEmtpyArea(area);
+                CheckIfAreaOK(area);
+                areaRepo.Remove(area);
+                areaRepo.Save();
             }
             catch (RepositoryInterfaceException e)
             {
@@ -58,18 +54,18 @@ namespace Reports.BusinessLogic
         }   
 
 
-        public void UpdateArea(Area area) {
-            try {
-                 if (area.IsValidArea(area)) {
-                    areaRepo.Update(area);
-                    areaRepo.Save();
-                }
-                else { 
-                   throw new BusinessLogicException("Invalid Area");
-                }
+        public Area UpdateArea(Area area) {
+            try
+            {
+                CheckEmtpyArea(area);
+                CheckIfAreaOK(area);
+                areaRepo.Update(area);
+                areaRepo.Save();
+                return area;
             }
             catch (RepositoryInterfaceException e)
             {
+
                 throw new BusinessLogicException(e.Message, e);
             }
         }
@@ -96,9 +92,16 @@ namespace Reports.BusinessLogic
 
 
         public IEnumerable<User> GetManagers(Guid areaId)
-        { 
-            return areaManagerRepo.GetAll().Where(am => am.AreaId == areaId)
+        {
+            try
+            {
+                return areaManagerRepo.GetAll().Where(am => am.AreaId == areaId)
                 .Select(c => c.Manager);
+            }
+            catch (RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message, e);
+            }
         }
 
 
@@ -107,7 +110,6 @@ namespace Reports.BusinessLogic
             try { 
                 User manager = userRepo.Get(managerId);
                 Area area = areaRepo.Get(areaId);
-                CheckUserManager(manager);
                 AreaManager areaManager = new AreaManager()
                 {
                     AreaId = areaId,
@@ -127,21 +129,21 @@ namespace Reports.BusinessLogic
 
         public void RemoveManager(Guid areaId, Guid managerId)
         {
-            AreaManager areaManager = new AreaManager()
+            try
             {
-                AreaId = areaId,
-                ManagerId = managerId
-            };
-            areaManagerRepo.Remove(areaManager);
-            areaManagerRepo.Save();
+                AreaManager areaManager = new AreaManager()
+                {
+                    AreaId = areaId,
+                    ManagerId = managerId
+                };
+                areaManagerRepo.Remove(areaManager);
+                areaManagerRepo.Save();
+            }
+            catch (RepositoryInterfaceException e)
+            {
+                throw new BusinessLogicException(e.Message, e);
+            }
         }
-
-        private void CheckUserManager(User user)
-        {
-            if (user.Admin)
-                throw new BusinessLogicException("User must have manager role");
-        }
-
 
 
         public IEnumerable<Indicator> GetIndicators(Guid areaId)
@@ -172,6 +174,7 @@ namespace Reports.BusinessLogic
             }
         }
 
+
         public void RemoveIndicator(Guid areaId, Guid indicatorId)
         {
             try
@@ -188,5 +191,20 @@ namespace Reports.BusinessLogic
         }
 
 
+        private void CheckIfAreaOK(Area area)
+        {
+            if (!area.IsValidArea())
+            {
+                throw new BusinessLogicException("Invalid Area");
+            }
+        }
+
+        private void CheckEmtpyArea( Area area)
+        {
+            if (area == null)
+            {
+                throw new BusinessLogicException("Null area instance");
+            }
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace Reports.DataAccess
         }
 
         public static ReportsContext GetSqlContext()
-        { 
+        {
             var builder = new DbContextOptionsBuilder<ReportsContext>();
             return new ReportsContext(GetSqlConfig(builder));
         }

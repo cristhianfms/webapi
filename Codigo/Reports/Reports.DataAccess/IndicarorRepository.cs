@@ -12,16 +12,35 @@ namespace Reports.DataAccess
         {
             Context = context;
         }
+
         public override IEnumerable<Indicator> GetAll(){
-            return Context.Set<Indicator>().ToList();
+            try
+            {
+                return Context.Set<Indicator>().ToList();
+            }
+            catch (Exception e)
+            {
+
+                throw new RepositoryException(e.Message);
+            }
         }
 
+
         public override Indicator Get(Guid id){
-            Indicator indicator = Context.Set<Indicator>().ToList().FirstOrDefault(u => u.Id == id);
-            if (indicator==null) {
-                throw new RepositoryException("Id not found");
+            try
+            {
+                Indicator indicator = Context.Set<Indicator>().ToList().FirstOrDefault(u => u.Id == id);
+                if (indicator == null)
+                {
+                    throw new RepositoryException("Id not found");
+                }
+                return indicator;
             }
-            return indicator;
+            catch (Exception e)
+            {
+                throw new RepositoryException(e.Message);
+            }
+
         }
     }
 }

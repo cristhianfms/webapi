@@ -34,5 +34,10 @@ namespace Reports.Domain
             }
             return true;
         }
+        
+        public override bool IsValid()
+        {
+            return ValueIzq != null && ValueDer != null;
+        }
     }
 }

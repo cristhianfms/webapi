@@ -14,15 +14,32 @@ namespace Reports.DataAccess
         }
 
         public override IEnumerable<User> GetAll(){
-            return Context.Set<User>().ToList();
+            try
+            {
+                return Context.Set<User>().ToList();
+            }
+            catch (Exception e)
+            {
+
+                throw new RepositoryException(e.Message);
+            }
         }
 
         public override User Get(Guid id){
-            User user = Context.Set<User>().ToList().FirstOrDefault(u => u.Id == id);
-            if (user==null) {
-                throw new RepositoryException("Id not found");
+            try
+            {
+                User user = Context.Set<User>().ToList().FirstOrDefault(u => u.Id == id);
+                if (user == null)
+                {
+                    throw new RepositoryException("Id not found");
+                }
+                return user;
             }
-            return user;
+            catch (Exception e)
+            {
+
+                throw new RepositoryException(e.Message);
+            }
         }
     }
 }

@@ -8,5 +8,10 @@ namespace Reports.Domain
     {
         public Component CompIzq { get; set; }
         public Component CompDer { get; set; }
+
+        public override bool IsValid()
+        {
+            return CompIzq != null && CompDer != null;
+        }
     }
 }

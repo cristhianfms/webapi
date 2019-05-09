@@ -9,5 +9,6 @@ namespace Reports.Domain
         public Guid Id { get; set; }
 
         public abstract bool Evaluete();
+        public abstract bool IsValid();
     }
 }

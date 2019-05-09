@@ -13,11 +13,10 @@ namespace Reports.Domain
 
         public IEnumerable<AreaManager> AreaManagers { get; set; }
 
-        public bool IsValidArea(Area area){
-            return (area.Name != null && area.Name != "") &&
-            (area.ConnectionString != null && area.ConnectionString != "") &&
-            area.Id != null;
+        public bool IsValidArea(){
+            return (this.Name != null && this.Name != "") &&
+            (this.ConnectionString != null && this.ConnectionString != "") &&
+            this.Id != null;
         }
-    
     }
 }

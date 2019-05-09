@@ -11,5 +11,11 @@ namespace Reports.Domain
         public bool IsValidIndicator(Indicator indicator){
             return indicator != null;
         }
+
+        public bool IsValid()
+        {
+            return Id != null && Color != null && Color != "" && Component != null 
+                && Component.IsValid();
+        }
     }
 }

@@ -12,20 +12,40 @@ namespace Reports.DataAccess
         {
             Context = context;
         }
+
         public override IEnumerable<Area> GetAll(){
-            return Context.Set<Area>()
-                .Include(a => a.AreaManagers)
-                .ToList();
-        }
-
-        public override Area Get(Guid id){
-            Area area = Context.Set<Area>()
-                .ToList().FirstOrDefault(a => a.Id == id);
-
-            if(area == null){
-                throw new RepositoryException("Id not found");
+            try
+            {
+                return Context.Set<Area>()
+                    .Include(a => a.AreaManagers)
+                    .ToList();
             }
-            return area;
+            catch (Exception e)
+            {
+
+                throw new RepositoryException(e.Message);
+            }
+
+        }
+        
+        public override Area Get(Guid id){
+            try
+            {
+                Area area = Context.Set<Area>()
+                    .ToList().FirstOrDefault(a => a.Id == id);
+
+                if (area == null)
+                {
+                    throw new RepositoryException("Id not found");
+                }
+                return area;
+            }
+            catch (Exception e)
+            {
+
+                throw new RepositoryException(e.Message); 
+            }
+
         }
     }
 }
