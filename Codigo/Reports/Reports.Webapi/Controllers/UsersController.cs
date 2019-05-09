@@ -19,14 +19,13 @@ namespace Reports.Webapi.Controllers
         }
 
 
-
         [HttpPost]
         public IActionResult Post([FromBody]UserModel model)
         {
             try
             {
-                userLogic.Create(UserModel.ToEntity(model));
-                return Ok();
+                var user = userLogic.Create(UserModel.ToEntity(model));
+                return CreatedAtRoute("Get", new { id = user.Id }, UserModel.ToModel(user));
             }
             catch (BusinessLogicInterfaceException e)
             {
@@ -38,8 +37,15 @@ namespace Reports.Webapi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<User> users = userLogic.GetAll();
-            return Ok(UserModel.ToModel(users));
+            try
+            {
+                IEnumerable<User> users = userLogic.GetAll();
+                return Ok(UserModel.ToModel(users));
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
 
@@ -65,8 +71,8 @@ namespace Reports.Webapi.Controllers
             try
             {
                 model.Id = id;
-                userLogic.Update(UserModel.ToEntity(model));
-                return Ok();
+                var user = userLogic.Update(UserModel.ToEntity(model));
+                return CreatedAtRoute("Get", new { id = user.Id }, UserModel.ToModel(user));
             }
             catch (BusinessLogicInterfaceException e)
             {
@@ -82,7 +88,7 @@ namespace Reports.Webapi.Controllers
             {
                 model.Id = id;
                 userLogic.Remove(UserModel.ToEntity(model));
-                return Ok();
+                return NoContent();
             }
             catch (BusinessLogicInterfaceException e)
             {

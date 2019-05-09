@@ -21,8 +21,15 @@ namespace Reports.Webapi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<Area> areas = areaLogic.GetAll();
-            return Ok(AreaModel.ToModel(areas));
+            try
+            {
+                IEnumerable<Area> areas = areaLogic.GetAll();
+                return Ok(AreaModel.ToModel(areas));
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
 
@@ -31,8 +38,8 @@ namespace Reports.Webapi.Controllers
         {
             try
             {
-                areaLogic.CreateArea(AreaModel.ToEntity(model));
-                return Ok();
+                var area = areaLogic.CreateArea(AreaModel.ToEntity(model));
+                return CreatedAtRoute("Get", new { id = area.Id }, AreaModel.ToModel(area));
             }
             catch (BusinessLogicInterfaceException e)
             {
@@ -63,8 +70,8 @@ namespace Reports.Webapi.Controllers
             try
             {
                 model.Id = id;
-                areaLogic.UpdateArea(AreaModel.ToEntity(model));
-                return Ok();
+                var area = areaLogic.UpdateArea(AreaModel.ToEntity(model));
+                return CreatedAtRoute("Get", new { id = area.Id }, AreaModel.ToModel(area));
             }
             catch (BusinessLogicInterfaceException e)
             {
@@ -80,7 +87,7 @@ namespace Reports.Webapi.Controllers
             {
                 model.Id = id;
                 areaLogic.RemoveArea(AreaModel.ToEntity(model));
-                return Ok();
+                return NoContent();
             }
             catch (BusinessLogicInterfaceException e)
             {
@@ -110,7 +117,7 @@ namespace Reports.Webapi.Controllers
             try
             {
                 areaLogic.AddManager(id, manager.ManagerId);
-                return Ok();
+                return NoContent();
             }
             catch (BusinessLogicInterfaceException e)
             {
@@ -124,7 +131,7 @@ namespace Reports.Webapi.Controllers
             try
             {
                 areaLogic.RemoveManager(id, manager.AreaId);
-                return Ok();
+                return NoContent();
             }
             catch (BusinessLogicInterfaceException e)
             {
@@ -155,7 +162,7 @@ namespace Reports.Webapi.Controllers
             try
             {
                 areaLogic.AddIndicator(id, indicator.Id);
-                return Ok();
+                return NoContent();
             }
             catch (BusinessLogicInterfaceException e)
             {
@@ -169,7 +176,7 @@ namespace Reports.Webapi.Controllers
             try
             {
                 areaLogic.RemoveManager(id, indicator.Id);
-                return Ok();
+                return NoContent();
             }
             catch (BusinessLogicInterfaceException e)
             {

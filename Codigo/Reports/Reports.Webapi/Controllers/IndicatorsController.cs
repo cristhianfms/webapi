@@ -22,8 +22,15 @@ namespace Reports.Webapi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<Indicator> indicatros = indicatorLogic.GetAll();
-            return Ok(IndicatorModel.ToModel(indicatros));
+            try
+            {
+                IEnumerable<Indicator> indicatros = indicatorLogic.GetAll();
+                return Ok(IndicatorModel.ToModel(indicatros));
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpPost]
@@ -32,8 +39,8 @@ namespace Reports.Webapi.Controllers
             try
             {
                 Indicator indicator = IndicatorModel.ToEntity(model);
-                indicatorLogic.Create(indicator);
-                return Ok();
+                var indicatorCreated = indicatorLogic.Create(indicator);
+                return CreatedAtRoute("Get", new { id = indicatorCreated.Id }, IndicatorModel.ToModel(indicator));
             }
             catch (BusinessLogicInterfaceException e)
             {
@@ -50,8 +57,7 @@ namespace Reports.Webapi.Controllers
             {
                 var indicator = indicatorLogic.Get(id);
                 return Ok(IndicatorModel.ToModel(indicator));
-
-            }
+                            }
             catch (BusinessLogicInterfaceException e)
             {
                 return NotFound(e.Message);
@@ -65,8 +71,8 @@ namespace Reports.Webapi.Controllers
             try
             {
                 model.Id = id;
-                indicatorLogic.Update(IndicatorModel.ToEntity(model));
-                return Ok();
+                Indicator indicatorUpdated = indicatorLogic.Update(IndicatorModel.ToEntity(model));
+                return CreatedAtRoute("Get", new { id = indicatorUpdated.Id }, IndicatorModel.ToModel(indicatorUpdated));
             }
             catch (BusinessLogicInterfaceException e)
             {
@@ -82,16 +88,12 @@ namespace Reports.Webapi.Controllers
             {
                 model.Id = id;
                 indicatorLogic.Remove(IndicatorModel.ToEntity(model));
-                return Ok();
+                return NoContent();
             }
             catch (BusinessLogicInterfaceException e)
             {
                 return BadRequest(e.Message);
             }
         }
-
-
-
-
     }
 }
