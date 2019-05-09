@@ -34,5 +34,15 @@ namespace Reports.Webapi.Models
                 
             };
         }
+        protected override UserModel SetModel(User entity)
+        {
+            Id = entity.Id;
+            Name = entity.Name;
+            LastName = entity.LastName;
+            UserName = entity.UserName;
+            Admin = entity.Admin;
+            Password = entity.Password;
+            return this;
+        }
     }
 }

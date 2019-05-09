@@ -3,6 +3,7 @@ using Reports.BusinessLogic.Interface;
 using Reports.Domain;
 using Reports.DataAccess.Interface;
 using System;
+using System.Linq;
 
 public class SessionLogic : ISessionLogic
 {
@@ -29,38 +30,42 @@ public class SessionLogic : ISessionLogic
         return TokenRepository.ContainsKey(token);
     }
 
-    public Guid? CreateToken(Guid userId, string password)
+    public Guid? CreateToken(string userName, string password)
     {
         // SI EL USUARIO EXISTE Y LA PASS Y EL USERNAME SON EL MISMO
         // RETORNAR GUID
         var users = repository.GetAll();
-        var user = users.FirstOrDefault(x => x.User.Id == userId && x.User.Password == password);
-        if (user == null)
+        var user = users.FirstOrDefault(x => x.User.UserName == userName && x.User.Password == password);
+        if (user == null) 
         {
             return null;
         }
         var token = Guid.NewGuid();
-        TokenRepository.Add(token.ToString(), userId);
+        TokenRepository.Add(token.ToString(), user.Id);
         return token;
     }
 
-    public bool HasLevel(string token, bool role)
+    public bool HasLevel(string token, string role)
     {  
         var user = GetUser(token);
         if (user == null) {
             return false;
         }
-        return user.User.Admin;
+        if (role == "Admin") {
+            return user.User.Admin;
+        }
+        return true;
     }
 
-    public Session GetUser(string token)
+    public Session GetUser(string token) 
     {
         Guid? userId = null;
-        if (TokenRepository.TryGetValue(token, out userId))
+        if (TokenRepository.TryGetValue(token, out userId)) 
         {
             return repository.Get(userId.GetValueOrDefault());
         }
         return null;
     }
+
 
 }

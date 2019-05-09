@@ -2,8 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Filters\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -18,7 +22,6 @@
     <ProjectReference Include="..\Reports.DataAccess.Interface\Reports.DataAccess.Interface.csproj" />
     <ProjectReference Include="..\Reports.Domain\Reports.Domain.csproj" />
     <ProjectReference Include="..\Reports.BusinessLogic\Reports.BusinessLogic.csproj" />
-    <ProjectReference Include="..\Reports.Filter\Reports.Filter.csproj" />
     <ProjectReference Include="..\Reports.BusinessLogic.Interface\Reports.BusinessLogic.Interface.csproj" />
   </ItemGroup>
 

@@ -4,24 +4,23 @@ using Reports.Webapi.Models;
 using Reports.Domain;
 using Reports.BusinessLogic.Interface;
 using System.Collections.Generic;
-using Reports.Filter;
+using Homeworks.Webapi.Filters;
 
-namespace Reports.Webapi.Controllers{
-
-
+namespace Reports.Webapi.Controllers
+{
     [Route("api/[controller]")]
     public class TokenController : ControllerBase
     {
-        private ISessionLogic sessionLogic;
+        private ISessionLogic sessions;
 
-        public TokenController(ISessionLogic sessionLogic) : base()
+        public TokenController(ISessionLogic sessions) : base()
         {
-            this.sessionLogic = sessionLogic;
+            this.sessions = sessions;
         }
 
         [HttpPost]
-        public IActionResult Login([FromBody]SessionModel model) {
-            var token = sessionLogic.CreateToken(model.User.Id, model.User.Password);
+        public IActionResult Login([FromBody]LoginModel model) {
+            var token = sessions.CreateToken(model.UserName, model.Password);
             if (token == null) 
             {
                 return BadRequest("Invalid user/password");
@@ -29,10 +28,10 @@ namespace Reports.Webapi.Controllers{
             return Ok(token);
         }
 
-        [ProtectFilter(true)]
+        [ProtectFilter("Admin")]
         [HttpGet("Check")]
         public IActionResult CheckLogin() {
-            return Ok(new UserModel(sessionLogic.GetUser(Request.Headers["Authorization"])));
+            return Ok(new UserModel(sessions.GetUser(Request.Headers["Authorization"]).User));
         }
 
     }
