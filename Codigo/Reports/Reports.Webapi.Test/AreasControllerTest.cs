@@ -18,17 +18,6 @@ namespace Reports.Webapi.Test
         [TestMethod]
         public void CreateAreaOk()
         {
-            List<User> managers = new List<User>();
-            User user = new User
-            {
-                Id = Guid.NewGuid(),
-                Name = "Santiago",
-                LastName = "Larralde",
-                UserName = "Santi",
-                Password = "123456",
-                Admin = false
-            };
-            managers.Add(user);
             IEnumerable<Indicator> indicators = new List<Indicator>();
             AreaModel area = new AreaModel()
             {
@@ -36,11 +25,10 @@ namespace Reports.Webapi.Test
                 ConnectionString = "ConnectionString",
                 Id = Guid.NewGuid(),
                 Indicators = IndicatorModel.ToModel(indicators).ToList(),
-                Managers = UserModel.ToModel(managers).ToList(),
             };
 
             var mock = new Mock<IAreaLogic>(MockBehavior.Strict);
-            mock.Setup(m => m.CreateArea(It.IsAny<Area>()));
+            mock.Setup(m => m.CreateArea(It.IsAny<Area>())).Returns(area.ToEntity);
 
             var controller = new AreasController(mock.Object);
             var result = controller.Post(area);
@@ -86,7 +74,6 @@ namespace Reports.Webapi.Test
                 ConnectionString = "ConnectionString",
                 Id = Guid.NewGuid(),
                 Indicators = IndicatorModel.ToModel(indicators).ToList(),
-                Managers = UserModel.ToModel(managers).ToList(),
             };
 
 
@@ -128,7 +115,6 @@ namespace Reports.Webapi.Test
                 ConnectionString = "ConnectionString",
                 Id = Guid.NewGuid(),
                 Indicators = IndicatorModel.ToModel(indicators).ToList(),
-                Managers = UserModel.ToModel(managers).ToList(),
             };
 
 
@@ -166,17 +152,6 @@ namespace Reports.Webapi.Test
         public void UpdateArea()
         {
 
-            List<User> managers = new List<User>();
-            User user = new User
-            {
-                Id = Guid.NewGuid(),
-                Name = "Santiago",
-                LastName = "Larralde",
-                UserName = "Santi",
-                Password = "123456",
-                Admin = false
-            };
-            managers.Add(user);
             IEnumerable<Indicator> indicators = new List<Indicator>();
             AreaModel area = new AreaModel()
             {
@@ -184,12 +159,11 @@ namespace Reports.Webapi.Test
                 ConnectionString = "ConnectionString",
                 Id = Guid.NewGuid(),
                 Indicators = IndicatorModel.ToModel(indicators).ToList(),
-                Managers = UserModel.ToModel(managers).ToList(),
             };
 
 
             var mock = new Mock<IAreaLogic>(MockBehavior.Strict);
-            mock.Setup(m => m.UpdateArea(It.IsAny<Area>()));
+            mock.Setup(m => m.UpdateArea(It.IsAny<Area>())).Returns(area.ToEntity());
 
             var controller = new AreasController(mock.Object);
             var result = controller.Put(area.Id, area);
@@ -220,7 +194,6 @@ namespace Reports.Webapi.Test
                 ConnectionString = "ConnectionString",
                 Id = Guid.NewGuid(),
                 Indicators = IndicatorModel.ToModel(indicators).ToList(),
-                Managers = UserModel.ToModel(managers).ToList(),
             };
 
 

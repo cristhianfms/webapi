@@ -34,7 +34,7 @@ namespace Reports.Webapi.Test
 
 
             var mock = new Mock<IIndicatorLogic>(MockBehavior.Strict);
-            mock.Setup(m => m.Create(It.IsAny<Indicator>()));
+            mock.Setup(m => m.Create(It.IsAny<Indicator>())).Returns(indicator);
 
             var controller = new IndicatorsController(mock.Object);
             var result = controller.Post(IndicatorModel.ToModel(indicator));
@@ -156,7 +156,7 @@ namespace Reports.Webapi.Test
 
 
             var mock = new Mock<IIndicatorLogic>(MockBehavior.Strict);
-            mock.Setup(m => m.Update(It.IsAny<Indicator>()));
+            mock.Setup(m => m.Update(It.IsAny<Indicator>())).Returns(indicator);
 
             var controller = new IndicatorsController(mock.Object);
             var result = controller.Put(indicator.Id, IndicatorModel.ToModel(indicator));

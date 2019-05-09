@@ -225,33 +225,26 @@ namespace Reports.DataAccess.Test
 
             string name = "Administration";
             string connectionString = "a connection string";
-            List<User> managers = new List<User>();
-            User aManager = new User
-            {
-                Id = Guid.NewGuid(),
-                Name = "Santiago",
-                LastName = "Larralde",
-                UserName = "Santi",
-                Password = "123456",
-                Admin = false
-            };
-            managers.Add(aManager);
+
             List<Indicator> indicators = new List<Indicator>();
             Indicator indicator = new Indicator();
             indicators.Add(indicator);
             Guid id = Guid.NewGuid();
             Guid id1 = Guid.NewGuid();
+
             Area area = new Area();
             area.Id = id;
             area.Name = name;
             area.ConnectionString = connectionString;
             area.Indicators = indicators;
-            areaRepo.Add(area); 
+            areaRepo.Add(area);
+
             Area area1 = new Area();
             area1.Id = id1;
             area1.Name = "name";
             area1.ConnectionString = connectionString;
             area1.Indicators = indicators;
+
             areaRepo.Add(area1); 
             areaRepo.Save();
         

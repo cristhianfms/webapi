@@ -27,7 +27,7 @@ namespace Reports.Webapi.Test
             };
 
             var mock = new Mock<IUserLogic>(MockBehavior.Strict);
-            mock.Setup(m => m.Create(It.IsAny<User>()));
+            mock.Setup(m => m.Create(It.IsAny<User>())).Returns(user.ToEntity());
 
             var controller = new UsersController(mock.Object);
 
@@ -137,7 +137,7 @@ namespace Reports.Webapi.Test
             };
 
             var mock = new Mock<IUserLogic>(MockBehavior.Strict);
-            mock.Setup(m => m.Update(It.IsAny<User>()));
+            mock.Setup(m => m.Update(It.IsAny<User>())).Returns(model.ToEntity());
 
             var controler = new UsersController(mock.Object);
             var result = controler.Put(model.Id, model);

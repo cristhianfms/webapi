@@ -155,6 +155,9 @@ namespace Reports.BusinessLogic.Test
             IRepository<User> userRepo = new UserRepository(context);
             UserLogic userLogic = new UserLogic(userRepo);
             userLogic.Create(user1);
+
+            context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
+            userRepo = new UserRepository(context);
             userLogic.Create(user2);
         }
 
