@@ -6,9 +6,9 @@ namespace Reports.BusinessLogic.Interface
 {
     public interface IUserLogic
     {
-        void Create (User usr);
+        User Create (User usr);
         void Remove(User usr);
-        void Update(User usr);
+        User Update(User usr);
         User Get(Guid id);
         IEnumerable<User> GetAll();
     }

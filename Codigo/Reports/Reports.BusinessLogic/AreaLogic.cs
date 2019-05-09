@@ -23,11 +23,13 @@ namespace Reports.BusinessLogic
             this.indicatorRepo = indicatorRepo;
         }
         
-        public void CreateArea(Area area) {
+        public Area CreateArea(Area area) {
             try{
                 if (area.IsValidArea(area)) {
+
                     areaRepo.Add(area);
                     areaRepo.Save();
+                    return area;
                 }
                 else { 
                    throw new BusinessLogicException("Invalid area");

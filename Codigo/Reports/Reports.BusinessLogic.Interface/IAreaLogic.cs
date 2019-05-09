@@ -7,9 +7,9 @@ namespace Reports.BusinessLogic.Interface
 {
     public interface IAreaLogic
     {
-        void CreateArea(Area area);
+        Area CreateArea(Area area);
         void RemoveArea(Area area);
-        void UpdateArea(Area area);
+        Area UpdateArea(Area area);
         Area Get(Guid id);
         IEnumerable<Area> GetAll();
 

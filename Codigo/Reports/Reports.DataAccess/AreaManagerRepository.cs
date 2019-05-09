@@ -19,10 +19,18 @@ namespace Reports.DataAccess
         }
 
         public override IEnumerable<AreaManager> GetAll(){
-            return Context.Set<AreaManager>()
-                .Include(am=>am.Area)
-                .Include(am=>am.Manager)
-                .ToList();
+            try
+            {
+                return Context.Set<AreaManager>()
+                    .Include(am => am.Area)
+                    .Include(am => am.Manager)
+                    .ToList();
+            }
+            catch (Exception e)
+            {
+                throw new RepositoryException(e.Message);
+            }
+
         }
     }
 }

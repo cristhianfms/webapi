@@ -9,14 +9,17 @@ namespace Reports.BusinessLogic
     public class IndicatorLogic : IIndicatorLogic
     {
         private IRepository<Indicator> repository;
+
         public IndicatorLogic(IRepository<Indicator> indicatorRepository) {
             repository = indicatorRepository;
         }
-        public void Create(Indicator indicator) {
+
+        public Indicator Create(Indicator indicator) {
             try{
                 if (indicator.IsValidIndicator(indicator)) {
                     repository.Add(indicator);
                     repository.Save();
+                    return indicator;
                 }
                 else { 
                    throw new BusinessLogicException("null Indicator");

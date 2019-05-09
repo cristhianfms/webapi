@@ -12,16 +12,11 @@ namespace Reports.BusinessLogic
 
         public UserLogic(IRepository<User> userRepo)
         {
-            try {
-                this.userRepo = userRepo;
-            }
-            catch (RepositoryInterfaceException e)
-            {
-                throw new BusinessLogicException(e.Message, e);
-            }
+            this.userRepo = userRepo;
         }
 
-        public void Create(User usr) {
+
+        public User Create(User usr) {
             try
             {
                 CheckEmtpyUser(usr);
@@ -29,12 +24,14 @@ namespace Reports.BusinessLogic
                 CheckIfUserIsOK(usr);
                 userRepo.Add(usr);
                 userRepo.Save();
+                return usr;
             }
             catch (RepositoryInterfaceException e)
             {
                 throw new BusinessLogicException(e.Message, e);
             }
         }
+
 
         public User Get(Guid id)
         {
@@ -65,6 +62,7 @@ namespace Reports.BusinessLogic
         {
             try
             {
+                CheckEmtpyUser(usr);
                 CheckIfUserIsOK(usr);
                 this.userRepo.Remove(usr);
                 this.userRepo.Save();
@@ -75,13 +73,15 @@ namespace Reports.BusinessLogic
             }
         }
 
-        public void Update(User usr)
+        public User Update(User usr)
         {
             try
             {
+                CheckEmtpyUser(usr);
                 CheckIfUserIsOK(usr);
                 this.userRepo.Update(usr);
                 this.userRepo.Save();
+                return usr;
             }
             catch (RepositoryInterfaceException e)
             {
@@ -105,7 +105,5 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException("Null user instance");
             }
         }
-
-
     }
 }

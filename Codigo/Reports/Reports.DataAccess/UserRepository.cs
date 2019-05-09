@@ -12,6 +12,7 @@ namespace Reports.DataAccess
         {
             Context = context;
         }
+
         public override IEnumerable<User> GetAll(){
             return Context.Set<User>().ToList();
         }

@@ -22,18 +22,29 @@ namespace Reports.DataAccess
 
         public void Remove(T entity) 
 
-        {    
-            Context.Set<T>().Remove(entity);
+        {
+            try
+            {
+                Context.Set<T>().Remove(entity);
+            }
+            catch (Exception e)
+            {
+                throw new RepositoryException(e.Message, e);
+            }
         }
 
         public void Update(T entity) 
         {
-            Context.Entry(entity).State = EntityState.Modified;
+            try
+            {
+                Context.Entry(entity).State = EntityState.Modified;
+            }
+            catch (Exception e)
+            {
+
+                throw new RepositoryException(e.Message, e);
+            }
         }
-
-        public abstract IEnumerable<T> GetAll();
-
-        public abstract T Get(Guid id);
 
         public void Save() 
         {
@@ -46,5 +57,10 @@ namespace Reports.DataAccess
                 throw new RepositoryException(e.Message, e);
             }
         }
+
+        public abstract IEnumerable<T> GetAll();
+
+        public abstract T Get(Guid id);
+
     }
 }
