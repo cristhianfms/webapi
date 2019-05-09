@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Reports.Webapi.Models
 {
-    public class IndicatorDisplayModel : Model<IndicatorDisplayModel, IndicatorDisplayModel>
+    public class IndicatorDisplayModel : Model<IndicatorDisplay, IndicatorDisplayModel>
     {
          public Guid Id { get; set; }
         public Guid UserId { get; set; }
@@ -17,14 +17,14 @@ namespace Reports.Webapi.Models
 
         public IndicatorDisplayModel() { }
 
-        public IndicatorDisplayModel(IndicatorDisplayModel entity)
+        public IndicatorDisplayModel(IndicatorDisplay entity)
         {
             SetModel(entity);
         }
 
-        public override IndicatorDisplayModel ToEntity()
+        public override IndicatorDisplay ToEntity()
         {
-            return new IndicatorDisplayModel()
+            return new IndicatorDisplay()
             {
                 Id = this.Id,
                 UserId = this.UserId,
@@ -34,7 +34,7 @@ namespace Reports.Webapi.Models
             };
         }
 
-        protected override IndicatorDisplayModel SetModel(IndicatorDisplayModel entity)
+        protected override IndicatorDisplayModel SetModel(IndicatorDisplay entity)
         {
             this.Id = entity.Id;
             this.UserId = entity.UserId;

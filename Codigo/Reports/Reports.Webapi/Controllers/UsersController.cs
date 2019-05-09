@@ -114,7 +114,7 @@ namespace Reports.Webapi.Controllers
             try
             {
                 model.UserId = id;
-                indicatorDisplayLogic.Update(IndicatorDisplayModel.ToEntity(model).Id);
+                indicatorDisplayLogic.Update(IndicatorDisplayModel.ToEntity(model));
                 return Ok();
             }
             catch (BusinessLogicInterfaceException e)
