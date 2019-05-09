@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Reports.Domain;
@@ -34,7 +34,6 @@ namespace Reports.Webapi.Models
                 
             };
         }
-
         protected override UserModel SetModel(User entity)
         {
             Id = entity.Id;
@@ -45,6 +44,5 @@ namespace Reports.Webapi.Models
             Password = entity.Password;
             return this;
         }
-
     }
 }
