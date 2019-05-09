@@ -52,6 +52,9 @@ namespace Reports.Webapi
             services.AddScoped<IIndicatorLogic, IndicatorLogic>();
             services.AddScoped<IRepository<Indicator>, IndicatorRepository>();
 
+            services.AddScoped<IIndicatorDisplayLogic, IndicatorDisplayLogic>();
+            services.AddScoped<IRepository<IndicatorDisplay>, IndicatorDisplayRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

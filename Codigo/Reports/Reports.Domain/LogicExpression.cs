@@ -6,8 +6,8 @@ namespace Reports.Domain
 {
     public abstract class LogicExpression : Component
     {
-        public Component CompIzq { get; set; }
-        public Component CompDer { get; set; }
+        public virtual Component CompIzq { get; set; }
+        public virtual Component CompDer { get; set; }
 
         public override bool IsValid()
         {

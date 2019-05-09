@@ -13,7 +13,7 @@ namespace Reports.DataAccess.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: false),
-                    ConnectionString = table.Column<string>(nullable: true)
+                    ConnectionString = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,7 +43,7 @@ namespace Reports.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Value = table.Column<string>(nullable: true),
+                    Value = table.Column<string>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
                     AreaId = table.Column<Guid>(nullable: true)
                 },
@@ -142,7 +142,7 @@ namespace Reports.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Color = table.Column<string>(nullable: true),
+                    Color = table.Column<string>(nullable: false),
                     ComponentId = table.Column<Guid>(nullable: true),
                     AreaId = table.Column<Guid>(nullable: true)
                 },
@@ -161,6 +161,35 @@ namespace Reports.DataAccess.Migrations
                         principalTable: "Components",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "IndicatorDisplay",
+                columns: table => new
+                {
+                    UserId = table.Column<Guid>(nullable: false),
+                    AreaId = table.Column<Guid>(nullable: false),
+                    IndicatorId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
+                    User = table.Column<Guid>(nullable: false),
+                    Orden = table.Column<int>(nullable: false),
+                    Visible = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IndicatorDisplay", x => new { x.AreaId, x.UserId, x.IndicatorId });
+                    table.ForeignKey(
+                        name: "FK_IndicatorDisplay_Area_AreaId",
+                        column: x => x.AreaId,
+                        principalTable: "Area",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_IndicatorDisplay_Indicators_IndicatorId",
+                        column: x => x.IndicatorId,
+                        principalTable: "Indicators",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -199,6 +228,11 @@ namespace Reports.DataAccess.Migrations
                 column: "LogicOr_CompIzqId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_IndicatorDisplay_IndicatorId",
+                table: "IndicatorDisplay",
+                column: "IndicatorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Indicators_AreaId",
                 table: "Indicators",
                 column: "AreaId");
@@ -220,10 +254,13 @@ namespace Reports.DataAccess.Migrations
                 name: "AreaManager");
 
             migrationBuilder.DropTable(
-                name: "Indicators");
+                name: "IndicatorDisplay");
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Indicators");
 
             migrationBuilder.DropTable(
                 name: "Components");

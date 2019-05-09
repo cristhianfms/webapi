@@ -3,23 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reports.DataAccess", "reports.Dataaccess\Reports.DataAccess.csproj", "{7541C58F-6808-4D8A-A80F-72FB16AB2C31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reports.DataAccess", "reports.Dataaccess\Reports.DataAccess.csproj", "{7541C58F-6808-4D8A-A80F-72FB16AB2C31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reports.DataAccess.Interface", "reports.Dataaccess.interface\Reports.DataAccess.Interface.csproj", "{12B3E346-3D27-44B4-8DB0-B96620169072}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reports.DataAccess.Interface", "reports.Dataaccess.interface\Reports.DataAccess.Interface.csproj", "{12B3E346-3D27-44B4-8DB0-B96620169072}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reports.Domain", "reports.domain\Reports.Domain.csproj", "{07DABB2C-D883-43C3-B48C-37BC80B0725B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reports.Domain", "reports.domain\Reports.Domain.csproj", "{07DABB2C-D883-43C3-B48C-37BC80B0725B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reports.BusinessLogic", "reports.businesslogic\Reports.BusinessLogic.csproj", "{80980879-ACD0-4B14-8A62-4E711C34C929}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reports.BusinessLogic", "reports.businesslogic\Reports.BusinessLogic.csproj", "{80980879-ACD0-4B14-8A62-4E711C34C929}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reports.BusinessLogic.Interface", "reports.businesslogic.interface\Reports.BusinessLogic.Interface.csproj", "{DF27860D-0BFD-4168-AEB3-9899FB638AE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reports.BusinessLogic.Interface", "reports.businesslogic.interface\Reports.BusinessLogic.Interface.csproj", "{DF27860D-0BFD-4168-AEB3-9899FB638AE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reports.BusinessLogic.Test", "Reports.BusinessLogic.Test\Reports.BusinessLogic.Test.csproj", "{96C89A51-2FFB-4DB1-B2E1-C1DC8CCDB537}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reports.BusinessLogic.Test", "Reports.BusinessLogic.Test\Reports.BusinessLogic.Test.csproj", "{96C89A51-2FFB-4DB1-B2E1-C1DC8CCDB537}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reports.DataAccess.Test", "Reports.DataAccess.Test\Reports.DataAccess.Test.csproj", "{4C5034E5-9F03-4FDF-9DCA-37ACC9E858C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reports.DataAccess.Test", "Reports.DataAccess.Test\Reports.DataAccess.Test.csproj", "{4C5034E5-9F03-4FDF-9DCA-37ACC9E858C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reports.Webapi", "Reports.Webapi\Reports.Webapi.csproj", "{26036BDF-5E6C-4D4D-843D-4E5AC74BE8F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reports.Webapi", "Reports.Webapi\Reports.Webapi.csproj", "{26036BDF-5E6C-4D4D-843D-4E5AC74BE8F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reports.Webapi.Test", "Reports.Webapi.Test\Reports.Webapi.Test.csproj", "{BB66D80A-5460-45EF-9F2A-214EDC000F50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reports.Webapi.Test", "Reports.Webapi.Test\Reports.Webapi.Test.csproj", "{BB66D80A-5460-45EF-9F2A-214EDC000F50}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reports.DBConnections", "Reports.DBConnections\Reports.DBConnections.csproj", "{ABED1B64-6C13-40F2-BEC2-7C03122554B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,9 +31,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7541C58F-6808-4D8A-A80F-72FB16AB2C31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -142,5 +141,23 @@ Global
 		{BB66D80A-5460-45EF-9F2A-214EDC000F50}.Release|x64.Build.0 = Release|Any CPU
 		{BB66D80A-5460-45EF-9F2A-214EDC000F50}.Release|x86.ActiveCfg = Release|Any CPU
 		{BB66D80A-5460-45EF-9F2A-214EDC000F50}.Release|x86.Build.0 = Release|Any CPU
+		{ABED1B64-6C13-40F2-BEC2-7C03122554B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABED1B64-6C13-40F2-BEC2-7C03122554B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABED1B64-6C13-40F2-BEC2-7C03122554B7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{ABED1B64-6C13-40F2-BEC2-7C03122554B7}.Debug|x64.Build.0 = Debug|Any CPU
+		{ABED1B64-6C13-40F2-BEC2-7C03122554B7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{ABED1B64-6C13-40F2-BEC2-7C03122554B7}.Debug|x86.Build.0 = Debug|Any CPU
+		{ABED1B64-6C13-40F2-BEC2-7C03122554B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABED1B64-6C13-40F2-BEC2-7C03122554B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABED1B64-6C13-40F2-BEC2-7C03122554B7}.Release|x64.ActiveCfg = Release|Any CPU
+		{ABED1B64-6C13-40F2-BEC2-7C03122554B7}.Release|x64.Build.0 = Release|Any CPU
+		{ABED1B64-6C13-40F2-BEC2-7C03122554B7}.Release|x86.ActiveCfg = Release|Any CPU
+		{ABED1B64-6C13-40F2-BEC2-7C03122554B7}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9B962497-2989-4B5F-99EB-DC068CDE7907}
 	EndGlobalSection
 EndGlobal

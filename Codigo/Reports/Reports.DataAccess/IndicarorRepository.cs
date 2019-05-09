@@ -30,6 +30,7 @@ namespace Reports.DataAccess
             try
             {
                 Indicator indicator = Context.Set<Indicator>().ToList().FirstOrDefault(u => u.Id == id);
+
                 if (indicator == null)
                 {
                     throw new RepositoryException("Id not found");

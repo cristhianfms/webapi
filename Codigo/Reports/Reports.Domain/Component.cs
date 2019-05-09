@@ -8,7 +8,10 @@ namespace Reports.Domain
     {
         public Guid Id { get; set; }
 
-        public abstract bool Evaluete();
+        public Guid AreaId { get; set;}
+        public virtual Area Area{get;set;}
+
+        public  abstract bool Evaluete();
         public abstract bool IsValid();
     }
 }

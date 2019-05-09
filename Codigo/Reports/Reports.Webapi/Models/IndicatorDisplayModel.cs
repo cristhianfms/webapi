@@ -9,11 +9,12 @@ namespace Reports.Webapi.Models
 {
     public class IndicatorDisplayModel : Model<IndicatorDisplay, IndicatorDisplayModel>
     {
-         public Guid Id { get; set; }
+        public Guid Id { get; set; }
         public Guid UserId { get; set; }
         public Guid AreaId { get; set; }
         public int Orden { get; set; }
         public bool Visible { get; set; }
+        public bool IsTurnON { get; set; }
 
         public IndicatorDisplayModel() { }
 
@@ -41,6 +42,7 @@ namespace Reports.Webapi.Models
             this.AreaId = entity.AreaId;
             this.Orden = entity.Orden;
             this.Visible = entity.Visible;
+            this.IsTurnON = false;
             return this;
         }
     }

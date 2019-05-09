@@ -6,8 +6,8 @@ namespace Reports.Domain
 {
     public class Condition : Component
     {
-        public ValueExpression ValueIzq { get; set; }
-        public ValueExpression ValueDer { get; set; }
+        public virtual ValueExpression ValueIzq { get; set; }
+        public virtual ValueExpression ValueDer { get; set; }
         public String Operation {get;set;}
 
         public override bool Evaluete()

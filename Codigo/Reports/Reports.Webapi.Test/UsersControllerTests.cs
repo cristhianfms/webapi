@@ -29,7 +29,10 @@ namespace Reports.Webapi.Test
             var mock = new Mock<IUserLogic>(MockBehavior.Strict);
             mock.Setup(m => m.Create(It.IsAny<User>())).Returns(user.ToEntity());
 
-            var controller = new UsersController(mock.Object);
+            var mockIDL = new Mock<IIndicatorDisplayLogic>(MockBehavior.Strict);
+            var mockIL = new Mock<IIndicatorLogic>(MockBehavior.Strict);
+
+            var controller = new UsersController(mock.Object,mockIDL.Object,mockIL.Object);
 
             var result = controller.Post(user);
             var createdResult = result as CreatedAtRouteResult;
@@ -44,7 +47,11 @@ namespace Reports.Webapi.Test
             var mock = new Mock<IUserLogic>(MockBehavior.Strict);
             mock.Setup(m => m.Create(null)).Throws(new BusinessLogicInterfaceException());
 
-            var controller = new UsersController(mock.Object);
+            var mockIDL = new Mock<IIndicatorDisplayLogic>(MockBehavior.Strict);
+            var mockIL = new Mock<IIndicatorLogic>(MockBehavior.Strict);
+
+            var controller = new UsersController(mock.Object, mockIDL.Object, mockIL.Object);
+
             var result = controller.Post(null);
             mock.VerifyAll();
             Assert.IsInstanceOfType(result, typeof(BadRequestObjectResult));
@@ -68,9 +75,11 @@ namespace Reports.Webapi.Test
             
             var mock = new Mock<IUserLogic>(MockBehavior.Strict);
             mock.Setup(m => m.GetAll()).Returns(users);
+            var mockIDL = new Mock<IIndicatorDisplayLogic>(MockBehavior.Strict);
+            var mockIL = new Mock<IIndicatorLogic>(MockBehavior.Strict);
 
-            var controler = new UsersController(mock.Object);
-            var result = controler.Get();
+            var controller = new UsersController(mock.Object, mockIDL.Object, mockIL.Object);
+            var result = controller.Get();
 
             var createdResult = result as OkObjectResult;
             var models = createdResult.Value as IEnumerable<UserModel>;
@@ -96,8 +105,11 @@ namespace Reports.Webapi.Test
             var mock = new Mock<IUserLogic>(MockBehavior.Strict);
             mock.Setup(m => m.Get(user.Id)).Returns(user);
 
-            var controler = new UsersController(mock.Object);
-            var result = controler.Get(user.Id);
+            var mockIDL = new Mock<IIndicatorDisplayLogic>(MockBehavior.Strict);
+            var mockIL = new Mock<IIndicatorLogic>(MockBehavior.Strict);
+
+            var controller = new UsersController(mock.Object, mockIDL.Object, mockIL.Object);
+            var result = controller.Get(user.Id);
 
             var createdResult = result as OkObjectResult;
             var model = createdResult.Value as UserModel;
@@ -113,9 +125,10 @@ namespace Reports.Webapi.Test
         {
             var mock = new Mock<IUserLogic>(MockBehavior.Strict);
             mock.Setup(m => m.Get(It.IsAny<Guid>())).Throws(new BusinessLogicInterfaceException());
+            var mockIDL = new Mock<IIndicatorDisplayLogic>(MockBehavior.Strict);
+            var mockIL = new Mock<IIndicatorLogic>(MockBehavior.Strict);
 
-            var controller = new UsersController(mock.Object);
-
+            var controller = new UsersController(mock.Object, mockIDL.Object, mockIL.Object);
             var result = controller.Get(Guid.NewGuid());
 
             mock.VerifyAll();
@@ -138,9 +151,11 @@ namespace Reports.Webapi.Test
 
             var mock = new Mock<IUserLogic>(MockBehavior.Strict);
             mock.Setup(m => m.Update(It.IsAny<User>())).Returns(model.ToEntity());
+            var mockIDL = new Mock<IIndicatorDisplayLogic>(MockBehavior.Strict);
+            var mockIL = new Mock<IIndicatorLogic>(MockBehavior.Strict);
 
-            var controler = new UsersController(mock.Object);
-            var result = controler.Put(model.Id, model);
+            var controller = new UsersController(mock.Object, mockIDL.Object, mockIL.Object);
+            var result = controller.Put(model.Id, model);
             var createdResult = result as OkObjectResult;
 
             mock.VerifyAll();
@@ -163,9 +178,11 @@ namespace Reports.Webapi.Test
 
             var mock = new Mock<IUserLogic>(MockBehavior.Strict);
             mock.Setup(m => m.Remove(It.IsAny<User>()));
+            var mockIDL = new Mock<IIndicatorDisplayLogic>(MockBehavior.Strict);
+            var mockIL = new Mock<IIndicatorLogic>(MockBehavior.Strict);
 
-            var controler = new UsersController(mock.Object);
-            var result = controler.Delete(model.Id, model);
+            var controller = new UsersController(mock.Object, mockIDL.Object, mockIL.Object);
+            var result = controller.Delete(model.Id, model);
             var createdResult = result as OkObjectResult;
 
             mock.VerifyAll();

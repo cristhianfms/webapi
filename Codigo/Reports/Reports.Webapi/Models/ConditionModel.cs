@@ -44,7 +44,7 @@ namespace Reports.Webapi.Models
             {
                 valueExp = new SQLValue()
                 {
-                    Value = value
+                    Value = value,
                 };
             }
             else if(type == "str")

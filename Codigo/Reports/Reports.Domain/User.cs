@@ -12,7 +12,7 @@ namespace Reports.Domain
         public string Password { get; set; }
         public bool Admin { get; set; } = false;
 
-        public IEnumerable<AreaManager> AreaManagers { get; set; }
+        public virtual IEnumerable<AreaManager> AreaManagers { get; set; }
 
         public bool IsValid()
         {

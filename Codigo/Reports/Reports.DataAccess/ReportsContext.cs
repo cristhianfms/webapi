@@ -34,18 +34,34 @@ namespace Reports.DataAccess
             modelBuilder.Entity<User>().Property(u => u.Name).IsRequired();
 
             modelBuilder.Entity<Area>().HasAlternateKey(a => a.Name);
+            modelBuilder.Entity<Area>().Property(a => a.Name).IsRequired();
+            modelBuilder.Entity<Area>().Property(a => a.ConnectionString).IsRequired();
+
+            modelBuilder.Entity<Indicator>().Property(i => i.Color).IsRequired();
+
+            modelBuilder.Entity<IndicatorDisplay>().Property(i => i.UserId).IsRequired();
+            modelBuilder.Entity<IndicatorDisplay>().Property(i => i.AreaId).IsRequired();
+            modelBuilder.Entity<IndicatorDisplay>().Property(i => i.Orden).IsRequired();
+            modelBuilder.Entity<IndicatorDisplay>().Property(i => i.Visible).IsRequired();
+
+            modelBuilder.Entity<ValueExpression>().Property(v => v.Value).IsRequired();
 
             modelBuilder.Entity<Component>().ToTable("Components");
             modelBuilder.Entity<ValueExpression>().ToTable("ValueExpressions");
 
             modelBuilder.Entity<AreaManager>().HasKey(x => new { x.AreaId, x.ManagerId });
-
+            modelBuilder.Entity<IndicatorDisplay>().HasKey(x => new { x.AreaId, x.UserId,x.IndicatorId });
+            
             modelBuilder.Entity<AreaManager>().HasOne<Area>(am => am.Area)
                 .WithMany(a => a.AreaManagers);
             modelBuilder.Entity<AreaManager>().HasOne<User>(am => am.Manager)
                 .WithMany(m => m.AreaManagers);
 
-            modelBuilder.Entity<SQLValue>().Ignore(s => s.DBConn);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies();
         }
     }
 }

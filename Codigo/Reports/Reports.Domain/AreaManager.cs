@@ -7,9 +7,9 @@ namespace Reports.Domain
     public class AreaManager
     {
         public Guid AreaId { get; set; }
-        public Area Area { get; set; }
+        public virtual Area Area { get; set; }
 
         public Guid ManagerId { get; set; }
-        public User Manager { get; set; }
+        public virtual User Manager { get; set; }
     }
 }

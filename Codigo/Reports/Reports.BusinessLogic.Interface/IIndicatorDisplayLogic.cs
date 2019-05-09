@@ -9,7 +9,7 @@ namespace Reports.BusinessLogic.Interface
         void Create (IndicatorDisplay indDisplay);
         void Remove(IndicatorDisplay indDisplay);
         void Update(IndicatorDisplay indDisplay);
-        User Get(Guid id);
+        IndicatorDisplay Get(Guid id);
         IEnumerable<IndicatorDisplay> GetAll();
         IEnumerable<IndicatorDisplay> GetAllByManagerId(Guid managerId);
     }

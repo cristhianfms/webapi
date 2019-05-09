@@ -24,7 +24,8 @@ namespace Reports.DataAccess.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ConnectionString");
+                    b.Property<string>("ConnectionString")
+                        .IsRequired();
 
                     b.Property<string>("Name")
                         .IsRequired();
@@ -71,7 +72,8 @@ namespace Reports.DataAccess.Migrations
 
                     b.Property<Guid?>("AreaId");
 
-                    b.Property<string>("Color");
+                    b.Property<string>("Color")
+                        .IsRequired();
 
                     b.Property<Guid?>("ComponentId");
 
@@ -82,6 +84,29 @@ namespace Reports.DataAccess.Migrations
                     b.HasIndex("ComponentId");
 
                     b.ToTable("Indicators");
+                });
+
+            modelBuilder.Entity("Reports.Domain.IndicatorDisplay", b =>
+                {
+                    b.Property<Guid>("AreaId");
+
+                    b.Property<Guid>("UserId");
+
+                    b.Property<Guid>("IndicatorId");
+
+                    b.Property<Guid>("Id");
+
+                    b.Property<int>("Orden");
+
+                    b.Property<Guid>("User");
+
+                    b.Property<bool>("Visible");
+
+                    b.HasKey("AreaId", "UserId", "IndicatorId");
+
+                    b.HasIndex("IndicatorId");
+
+                    b.ToTable("IndicatorDisplay");
                 });
 
             modelBuilder.Entity("Reports.Domain.User", b =>
@@ -118,7 +143,8 @@ namespace Reports.DataAccess.Migrations
                     b.Property<string>("Discriminator")
                         .IsRequired();
 
-                    b.Property<string>("Value");
+                    b.Property<string>("Value")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -223,6 +249,19 @@ namespace Reports.DataAccess.Migrations
                     b.HasOne("Reports.Domain.Component", "Component")
                         .WithMany()
                         .HasForeignKey("ComponentId");
+                });
+
+            modelBuilder.Entity("Reports.Domain.IndicatorDisplay", b =>
+                {
+                    b.HasOne("Reports.Domain.Area", "Area")
+                        .WithMany()
+                        .HasForeignKey("AreaId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Reports.Domain.Indicator", "Indicator")
+                        .WithMany()
+                        .HasForeignKey("IndicatorId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Reports.Domain.Condition", b =>

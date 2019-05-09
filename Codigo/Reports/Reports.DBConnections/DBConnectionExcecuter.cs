@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
-using Reports.DataAccess.Interface;
 using System.Data.SqlClient;
 
-namespace Reports.DataAccess
+namespace Reports.DBConnections
 {
-    public class DBConnection : IDBConnection
+    public class DBConnectionExcecuter : IDBConnectionExcecuter
     {
         public string QuerySQL { get; set; }
         public string ConnectionString { get; set; }
 
-        public DBConnection() { }
+        public DBConnectionExcecuter() { }
 
-        public DBConnection(string connectionString, string querySQL)
+        public DBConnectionExcecuter(string connectionString, string querySQL)
         {
             this.QuerySQL = querySQL;
             this.ConnectionString = connectionString;
@@ -33,7 +32,7 @@ namespace Reports.DataAccess
             }
             catch (Exception e)
             {
-                throw new RepositoryException("Error de conexión a la base",e);
+                throw new DBConnectionException("Connection database error",e);
             }
 
         }

@@ -6,7 +6,7 @@ using Reports.DataAccess.Interface;
 
 namespace Reports.BusinessLogic
 {
-    public class IndicatorDisplayLogic : IndicatorDisplay
+    public class IndicatorDisplayLogic : IIndicatorDisplayLogic
     {
         private IRepository<IndicatorDisplay> indDisplayRepo;
 

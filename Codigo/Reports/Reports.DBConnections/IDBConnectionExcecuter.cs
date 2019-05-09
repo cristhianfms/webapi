@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
-namespace Reports.DataAccess.Interface
+namespace Reports.DBConnections
 {
 
-    public interface IDBConnection
+    public interface IDBConnectionExcecuter
     {
         void SetConnectionString(string connStr);
         void SetQuerySQL(string query);
