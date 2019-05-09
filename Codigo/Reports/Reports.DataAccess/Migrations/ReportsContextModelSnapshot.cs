@@ -26,9 +26,12 @@ namespace Reports.DataAccess.Migrations
 
                     b.Property<string>("ConnectionString");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.HasKey("Id");
+
+                    b.HasAlternateKey("Name");
 
                     b.ToTable("Area");
                 });
@@ -88,11 +91,14 @@ namespace Reports.DataAccess.Migrations
 
                     b.Property<bool>("Admin");
 
-                    b.Property<string>("LastName");
+                    b.Property<string>("LastName")
+                        .IsRequired();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
-                    b.Property<string>("Password");
+                    b.Property<string>("Password")
+                        .IsRequired();
 
                     b.Property<string>("UserName")
                         .IsRequired();
@@ -138,7 +144,7 @@ namespace Reports.DataAccess.Migrations
                     b.HasDiscriminator().HasValue("Condition");
                 });
 
-            modelBuilder.Entity("Reports.Domain.LogicExpression", b =>
+            modelBuilder.Entity("Reports.Domain.LogicAnd", b =>
                 {
                     b.HasBaseType("Reports.Domain.Component");
 
@@ -150,9 +156,24 @@ namespace Reports.DataAccess.Migrations
 
                     b.HasIndex("CompIzqId");
 
-                    b.ToTable("LogicExpressions");
+                    b.HasDiscriminator().HasValue("LogicAnd");
+                });
 
-                    b.HasDiscriminator().HasValue("LogicExpression");
+            modelBuilder.Entity("Reports.Domain.LogicOr", b =>
+                {
+                    b.HasBaseType("Reports.Domain.Component");
+
+                    b.Property<Guid?>("CompDerId")
+                        .HasColumnName("LogicOr_CompDerId");
+
+                    b.Property<Guid?>("CompIzqId")
+                        .HasColumnName("LogicOr_CompIzqId");
+
+                    b.HasIndex("CompDerId");
+
+                    b.HasIndex("CompIzqId");
+
+                    b.HasDiscriminator().HasValue("LogicOr");
                 });
 
             modelBuilder.Entity("Reports.Domain.IntValue", b =>
@@ -166,6 +187,10 @@ namespace Reports.DataAccess.Migrations
                 {
                     b.HasBaseType("Reports.Domain.ValueExpression");
 
+                    b.Property<Guid?>("AreaId");
+
+                    b.HasIndex("AreaId");
+
                     b.HasDiscriminator().HasValue("SQLValue");
                 });
 
@@ -174,20 +199,6 @@ namespace Reports.DataAccess.Migrations
                     b.HasBaseType("Reports.Domain.ValueExpression");
 
                     b.HasDiscriminator().HasValue("StringValue");
-                });
-
-            modelBuilder.Entity("Reports.Domain.LogicAnd", b =>
-                {
-                    b.HasBaseType("Reports.Domain.LogicExpression");
-
-                    b.HasDiscriminator().HasValue("LogicAnd");
-                });
-
-            modelBuilder.Entity("Reports.Domain.LogicOr", b =>
-                {
-                    b.HasBaseType("Reports.Domain.LogicExpression");
-
-                    b.HasDiscriminator().HasValue("LogicOr");
                 });
 
             modelBuilder.Entity("Reports.Domain.AreaManager", b =>
@@ -225,7 +236,7 @@ namespace Reports.DataAccess.Migrations
                         .HasForeignKey("ValueIzqId");
                 });
 
-            modelBuilder.Entity("Reports.Domain.LogicExpression", b =>
+            modelBuilder.Entity("Reports.Domain.LogicAnd", b =>
                 {
                     b.HasOne("Reports.Domain.Component", "CompDer")
                         .WithMany()
@@ -234,6 +245,24 @@ namespace Reports.DataAccess.Migrations
                     b.HasOne("Reports.Domain.Component", "CompIzq")
                         .WithMany()
                         .HasForeignKey("CompIzqId");
+                });
+
+            modelBuilder.Entity("Reports.Domain.LogicOr", b =>
+                {
+                    b.HasOne("Reports.Domain.Component", "CompDer")
+                        .WithMany()
+                        .HasForeignKey("CompDerId");
+
+                    b.HasOne("Reports.Domain.Component", "CompIzq")
+                        .WithMany()
+                        .HasForeignKey("CompIzqId");
+                });
+
+            modelBuilder.Entity("Reports.Domain.SQLValue", b =>
+                {
+                    b.HasOne("Reports.Domain.Area", "Area")
+                        .WithMany()
+                        .HasForeignKey("AreaId");
                 });
 #pragma warning restore 612, 618
         }

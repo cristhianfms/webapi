@@ -147,7 +147,7 @@ namespace Reports.Webapi.Controllers
             try
             {
                 IEnumerable<Indicator> indicators = areaLogic.GetIndicators(id);
-                return Ok(IndicatorModel.ToModel(indicators));
+                return Ok(AreaIndicatorModel.ToModel(indicators));
             }
             catch (BusinessLogicInterfaceException e)
             {
@@ -157,11 +157,11 @@ namespace Reports.Webapi.Controllers
 
 
         [HttpPost("{id}/Indicators")]
-        public IActionResult AddIndicator(Guid id, [FromBody]IndicatorModel indicator)
+        public IActionResult AddIndicator(Guid id, [FromBody]AreaIndicatorModel indicator)
         {
             try
             {
-                areaLogic.AddIndicator(id, indicator.Id);
+                areaLogic.AddIndicator(id, indicator.IndicatorId);
                 return NoContent();
             }
             catch (BusinessLogicInterfaceException e)
@@ -171,11 +171,11 @@ namespace Reports.Webapi.Controllers
         }
 
         [HttpDelete("{id}/Indicators")]
-        public IActionResult DeleteIndicator(Guid id, [FromBody]IndicatorModel indicator)
+        public IActionResult DeleteIndicator(Guid id, [FromBody]AreaIndicatorModel indicator)
         {
             try
             {
-                areaLogic.RemoveManager(id, indicator.Id);
+                areaLogic.RemoveManager(id, indicator.IndicatorId);
                 return NoContent();
             }
             catch (BusinessLogicInterfaceException e)

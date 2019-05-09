@@ -8,9 +8,8 @@ namespace Reports.DataAccess.Interface
 
     public interface IDBConnection
     {
-        string QuerySQL { get; set; }
-        string ConnectionString { get; set; }
-        
+        void SetConnectionString(string connStr);
+        void SetQuerySQL(string query);
         DataSet GetResult();
     }
 }

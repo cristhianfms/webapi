@@ -12,12 +12,13 @@ namespace Reports.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
                     ConnectionString = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Area", x => x.Id);
+                    table.UniqueConstraint("AK_Area_Name", x => x.Name);
                 });
 
             migrationBuilder.CreateTable(
@@ -25,10 +26,10 @@ namespace Reports.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    LastName = table.Column<string>(nullable: false),
                     UserName = table.Column<string>(nullable: false),
-                    Password = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: false),
                     Admin = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
@@ -43,11 +44,18 @@ namespace Reports.DataAccess.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Value = table.Column<string>(nullable: true),
-                    Discriminator = table.Column<string>(nullable: false)
+                    Discriminator = table.Column<string>(nullable: false),
+                    AreaId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ValueExpressions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ValueExpressions_Area_AreaId",
+                        column: x => x.AreaId,
+                        principalTable: "Area",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -84,7 +92,9 @@ namespace Reports.DataAccess.Migrations
                     ValueDerId = table.Column<Guid>(nullable: true),
                     Operation = table.Column<string>(nullable: true),
                     CompIzqId = table.Column<Guid>(nullable: true),
-                    CompDerId = table.Column<Guid>(nullable: true)
+                    CompDerId = table.Column<Guid>(nullable: true),
+                    LogicOr_CompIzqId = table.Column<Guid>(nullable: true),
+                    LogicOr_CompDerId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -110,6 +120,18 @@ namespace Reports.DataAccess.Migrations
                     table.ForeignKey(
                         name: "FK_Components_Components_CompIzqId",
                         column: x => x.CompIzqId,
+                        principalTable: "Components",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Components_Components_LogicOr_CompDerId",
+                        column: x => x.LogicOr_CompDerId,
+                        principalTable: "Components",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Components_Components_LogicOr_CompIzqId",
+                        column: x => x.LogicOr_CompIzqId,
                         principalTable: "Components",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -167,6 +189,16 @@ namespace Reports.DataAccess.Migrations
                 column: "CompIzqId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Components_LogicOr_CompDerId",
+                table: "Components",
+                column: "LogicOr_CompDerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Components_LogicOr_CompIzqId",
+                table: "Components",
+                column: "LogicOr_CompIzqId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Indicators_AreaId",
                 table: "Indicators",
                 column: "AreaId");
@@ -175,6 +207,11 @@ namespace Reports.DataAccess.Migrations
                 name: "IX_Indicators_ComponentId",
                 table: "Indicators",
                 column: "ComponentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ValueExpressions_AreaId",
+                table: "ValueExpressions",
+                column: "AreaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -189,13 +226,13 @@ namespace Reports.DataAccess.Migrations
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Area");
-
-            migrationBuilder.DropTable(
                 name: "Components");
 
             migrationBuilder.DropTable(
                 name: "ValueExpressions");
+
+            migrationBuilder.DropTable(
+                name: "Area");
         }
     }
 }

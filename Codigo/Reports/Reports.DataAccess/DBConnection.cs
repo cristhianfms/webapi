@@ -12,6 +12,8 @@ namespace Reports.DataAccess
         public string QuerySQL { get; set; }
         public string ConnectionString { get; set; }
 
+        public DBConnection() { }
+
         public DBConnection(string connectionString, string querySQL)
         {
             this.QuerySQL = querySQL;
@@ -34,6 +36,16 @@ namespace Reports.DataAccess
                 throw new RepositoryException("Error de conexión a la base",e);
             }
 
+        }
+
+        public void SetConnectionString(string connStr)
+        {
+            this.ConnectionString = connStr;
+        }
+
+        public void SetQuerySQL(string query)
+        {
+            this.QuerySQL = query;
         }
     }
 }

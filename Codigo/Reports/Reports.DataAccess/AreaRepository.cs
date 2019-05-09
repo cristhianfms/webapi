@@ -31,7 +31,7 @@ namespace Reports.DataAccess
         public override Area Get(Guid id){
             try
             {
-                Area area = Context.Set<Area>()
+                Area area = Context.Set<Area>().Include(a =>a.Indicators)
                     .ToList().FirstOrDefault(a => a.Id == id);
 
                 if (area == null)

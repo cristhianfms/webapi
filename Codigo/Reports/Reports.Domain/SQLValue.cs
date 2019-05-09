@@ -13,8 +13,8 @@ namespace Reports.Domain
 
         public override string Evaluate()
         {
-            DBConn.ConnectionString = Area.ConnectionString;
-            DBConn.QuerySQL = this.Value;
+            DBConn.SetConnectionString(Area.ConnectionString);
+            DBConn.SetQuerySQL(this.Value);
             DataSet dset = DBConn.GetResult();
 
             return dset.Tables[0].Rows[0][0].ToString();

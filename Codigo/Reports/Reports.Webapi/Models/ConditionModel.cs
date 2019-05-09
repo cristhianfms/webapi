@@ -31,7 +31,7 @@ namespace Reports.Webapi.Models
             };
         }
 
-        private ValueExpression ToValueExpression(string value, string type) {
+        private ValueExpression ToValueExpression(string type, string value) {
             ValueExpression valueExp = new IntValue();
             if (type == "int")
             {

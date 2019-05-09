@@ -31,12 +31,13 @@ namespace Reports.Webapi.Models
             {
                 Id = this.Id,
                 Color = this.Color,
-                Component = ToComponent()
+                Component = ToEntityComponent()
             };
         }
 
 
-        private Component ToComponent()
+
+        private Component ToEntityComponent()
         {
             if(Expression.Length == 1)
             {

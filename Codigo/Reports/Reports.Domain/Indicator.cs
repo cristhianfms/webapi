@@ -7,6 +7,7 @@ namespace Reports.Domain
         public Guid Id { get; set; }
         public string Color { get; set; }
         public Component Component { get; set;}
+        
 
         public bool IsValidIndicator(Indicator indicator){
             return indicator != null;
@@ -16,6 +17,11 @@ namespace Reports.Domain
         {
             return Id != null && Color != null && Color != "" && Component != null 
                 && Component.IsValid();
+        }
+
+        public bool IsTurnON()
+        {
+            return Component.Evaluete();
         }
     }
 }

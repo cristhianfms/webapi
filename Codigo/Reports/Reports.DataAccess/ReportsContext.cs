@@ -44,6 +44,8 @@ namespace Reports.DataAccess
                 .WithMany(a => a.AreaManagers);
             modelBuilder.Entity<AreaManager>().HasOne<User>(am => am.Manager)
                 .WithMany(m => m.AreaManagers);
+
+            modelBuilder.Entity<SQLValue>().Ignore(s => s.DBConn);
         }
     }
 }
