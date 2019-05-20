@@ -23,6 +23,7 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
+                Mail = "santi@gmail.com"
             };
 
             var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
@@ -175,6 +176,7 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
+                Mail = "santi@gmail.com"
             };
 
             userLogic.Create(user);
@@ -222,6 +224,7 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
+                Mail = "santi@gmail.com"
             };
 
             userLogic.Create(user);
@@ -239,6 +242,7 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
+                Mail = "santi@gmail.com"
             };
 
             var mock = new Mock<IRepository<User>>(MockBehavior.Strict);
@@ -401,6 +405,7 @@ namespace Reports.BusinessLogic.Test
                 LastName = "Larralde",
                 UserName = "Santi",
                 Password = "123456",
+                Mail = "santi@gmail.com"
             };
 
             var mock = new Mock<IRepository<User>>(MockBehavior.Strict);

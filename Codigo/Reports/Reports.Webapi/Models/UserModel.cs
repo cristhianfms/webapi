@@ -13,6 +13,7 @@ namespace Reports.Webapi.Models
         public string UserName { get; set; }
         public bool Admin { get; set; } = false;
         public string Password { get; set; }
+        public string Mail { get; set; }
 
         public UserModel() { }
 
@@ -30,8 +31,8 @@ namespace Reports.Webapi.Models
                 LastName = this.LastName,
                 UserName = this.UserName,
                 Password = this.Password,
-                Admin = this.Admin
-                
+                Admin = this.Admin,
+                Mail = this.Mail
             };
         }
         protected override UserModel SetModel(User entity)
@@ -42,6 +43,7 @@ namespace Reports.Webapi.Models
             UserName = entity.UserName;
             Admin = entity.Admin;
             Password = entity.Password;
+            Mail = entity.Mail;
             return this;
         }
     }
