@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Mail;
 
 namespace Reports.Domain
 {
@@ -11,6 +12,7 @@ namespace Reports.Domain
         public string UserName { get; set; }
         public string Password { get; set; }
         public bool Admin { get; set; } = false;
+        public string Mail { get; set; }
 
         public virtual IEnumerable<AreaManager> AreaManagers { get; set; }
 
@@ -20,7 +22,21 @@ namespace Reports.Domain
                 ValidateLastName() &&
                 ValidateUserName() &&
                 ValidatePassword() &&
-                ValidateID();
+                ValidateID() &&
+                ValidateMail();
+        }
+
+        private bool ValidateMail()
+        {
+            try
+            {
+                var mail = new System.Net.Mail.MailAddress(this.Mail);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private bool ValidateName()
