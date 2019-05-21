@@ -53,6 +53,7 @@
 										],
 										"type": "text/javascript"
 									}
+									
 								}
 							],
 							"request": {
@@ -398,14 +399,14 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{domain}}/api/Users/{{userId}}",
+									"raw": "{{domain}}/api/Users/{{newUserId}}",
 									"host": [
 										"{{domain}}"
 									],
 									"path": [
 										"api",
 										"Users",
-										"{{userId}}"
+										"{{newUserId}}"
 									]
 								}
 							},
