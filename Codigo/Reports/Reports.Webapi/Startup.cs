@@ -39,7 +39,7 @@ namespace Reports.Webapi
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddDbContext<DbContext, ReportsContext>(
-                 o => o.UseSqlServer(Configuration.GetConnectionString("ReportsDB"))
+                 o => o.UseSqlServer(Configuration.GetConnectionString("ReportsDB")).UseLazyLoadingProxies()
             );
 
             services.AddScoped<IAreaLogic, AreaLogic>();

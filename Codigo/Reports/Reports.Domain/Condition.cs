@@ -6,8 +6,12 @@ namespace Reports.Domain
 {
     public class Condition : Component
     {
+        public Guid? ValueIzqId { get; set; }
         public virtual ValueExpression ValueIzq { get; set; }
+
+        public Guid? ValueDerId { get; set; }
         public virtual ValueExpression ValueDer { get; set; }
+
         public String Operation {get;set;}
 
         public override bool Evaluete()

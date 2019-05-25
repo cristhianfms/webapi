@@ -10,7 +10,7 @@ using Reports.DataAccess;
 namespace Reports.DataAccess.Migrations
 {
     [DbContext(typeof(ReportsContext))]
-    [Migration("20190509225547_MyMigration")]
+    [Migration("20190525011729_MyMigration")]
     partial class MyMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -123,6 +123,8 @@ namespace Reports.DataAccess.Migrations
                     b.Property<string>("LastName")
                         .IsRequired();
 
+                    b.Property<string>("Mail");
+
                     b.Property<string>("Name")
                         .IsRequired();
 
@@ -174,7 +176,7 @@ namespace Reports.DataAccess.Migrations
                     b.HasDiscriminator().HasValue("Condition");
                 });
 
-            modelBuilder.Entity("Reports.Domain.LogicAnd", b =>
+            modelBuilder.Entity("Reports.Domain.LogicExpression", b =>
                 {
                     b.HasBaseType("Reports.Domain.Component");
 
@@ -186,24 +188,7 @@ namespace Reports.DataAccess.Migrations
 
                     b.HasIndex("CompIzqId");
 
-                    b.HasDiscriminator().HasValue("LogicAnd");
-                });
-
-            modelBuilder.Entity("Reports.Domain.LogicOr", b =>
-                {
-                    b.HasBaseType("Reports.Domain.Component");
-
-                    b.Property<Guid?>("CompDerId")
-                        .HasColumnName("LogicOr_CompDerId");
-
-                    b.Property<Guid?>("CompIzqId")
-                        .HasColumnName("LogicOr_CompIzqId");
-
-                    b.HasIndex("CompDerId");
-
-                    b.HasIndex("CompIzqId");
-
-                    b.HasDiscriminator().HasValue("LogicOr");
+                    b.HasDiscriminator().HasValue("LogicExpression");
                 });
 
             modelBuilder.Entity("Reports.Domain.IntValue", b =>
@@ -229,6 +214,20 @@ namespace Reports.DataAccess.Migrations
                     b.HasBaseType("Reports.Domain.ValueExpression");
 
                     b.HasDiscriminator().HasValue("StringValue");
+                });
+
+            modelBuilder.Entity("Reports.Domain.LogicAnd", b =>
+                {
+                    b.HasBaseType("Reports.Domain.LogicExpression");
+
+                    b.HasDiscriminator().HasValue("LogicAnd");
+                });
+
+            modelBuilder.Entity("Reports.Domain.LogicOr", b =>
+                {
+                    b.HasBaseType("Reports.Domain.LogicExpression");
+
+                    b.HasDiscriminator().HasValue("LogicOr");
                 });
 
             modelBuilder.Entity("Reports.Domain.AreaManager", b =>
@@ -279,18 +278,7 @@ namespace Reports.DataAccess.Migrations
                         .HasForeignKey("ValueIzqId");
                 });
 
-            modelBuilder.Entity("Reports.Domain.LogicAnd", b =>
-                {
-                    b.HasOne("Reports.Domain.Component", "CompDer")
-                        .WithMany()
-                        .HasForeignKey("CompDerId");
-
-                    b.HasOne("Reports.Domain.Component", "CompIzq")
-                        .WithMany()
-                        .HasForeignKey("CompIzqId");
-                });
-
-            modelBuilder.Entity("Reports.Domain.LogicOr", b =>
+            modelBuilder.Entity("Reports.Domain.LogicExpression", b =>
                 {
                     b.HasOne("Reports.Domain.Component", "CompDer")
                         .WithMany()

@@ -46,9 +46,10 @@ namespace Reports.DataAccess
 
             modelBuilder.Entity<ValueExpression>().Property(v => v.Value).IsRequired();
 
+
             modelBuilder.Entity<Component>().ToTable("Components");
-               
-               
+
+            modelBuilder.Entity<LogicExpression>().HasBaseType<Component>();
 
             modelBuilder.Entity<ValueExpression>().ToTable("ValueExpressions");
 

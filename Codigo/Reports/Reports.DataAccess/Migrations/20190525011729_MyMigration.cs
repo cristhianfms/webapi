@@ -30,7 +30,8 @@ namespace Reports.DataAccess.Migrations
                     LastName = table.Column<string>(nullable: false),
                     UserName = table.Column<string>(nullable: false),
                     Password = table.Column<string>(nullable: false),
-                    Admin = table.Column<bool>(nullable: false)
+                    Admin = table.Column<bool>(nullable: false),
+                    Mail = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -93,9 +94,7 @@ namespace Reports.DataAccess.Migrations
                     ValueDerId = table.Column<Guid>(nullable: true),
                     Operation = table.Column<string>(nullable: true),
                     CompIzqId = table.Column<Guid>(nullable: true),
-                    CompDerId = table.Column<Guid>(nullable: true),
-                    LogicOr_CompIzqId = table.Column<Guid>(nullable: true),
-                    LogicOr_CompDerId = table.Column<Guid>(nullable: true)
+                    CompDerId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -121,18 +120,6 @@ namespace Reports.DataAccess.Migrations
                     table.ForeignKey(
                         name: "FK_Components_Components_CompIzqId",
                         column: x => x.CompIzqId,
-                        principalTable: "Components",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Components_Components_LogicOr_CompDerId",
-                        column: x => x.LogicOr_CompDerId,
-                        principalTable: "Components",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Components_Components_LogicOr_CompIzqId",
-                        column: x => x.LogicOr_CompIzqId,
                         principalTable: "Components",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -217,16 +204,6 @@ namespace Reports.DataAccess.Migrations
                 name: "IX_Components_CompIzqId",
                 table: "Components",
                 column: "CompIzqId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Components_LogicOr_CompDerId",
-                table: "Components",
-                column: "LogicOr_CompDerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Components_LogicOr_CompIzqId",
-                table: "Components",
-                column: "LogicOr_CompIzqId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_IndicatorDisplay_IndicatorId",

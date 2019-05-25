@@ -74,6 +74,7 @@ namespace Reports.BusinessLogic
 
         public IEnumerable<Indicator> GetAll(){
             try {
+
                 return repository.GetAll();
             }
             catch (RepositoryInterfaceException e)

@@ -6,6 +6,8 @@ namespace Reports.Domain
     {
         public Guid Id { get; set; }
         public string Color { get; set; }
+
+        public Guid? ComponentId { get; set; }
         public virtual Component Component { get; set;}
         
 

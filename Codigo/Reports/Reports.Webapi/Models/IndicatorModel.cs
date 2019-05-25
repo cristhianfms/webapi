@@ -98,7 +98,7 @@ namespace Reports.Webapi.Models
         private void CreateDictionary(Component component, Dictionary<char, ConditionModel> dictionary,
             ref String expresion, ref char c)
         {
-            if (component.GetType().Name == "Condition")
+            if (component.GetType().Name == "ConditionProxy")
             {
                 ConditionModel conditionModel = new ConditionModel((Condition)component);
                 dictionary.Add(c, conditionModel);
@@ -106,13 +106,13 @@ namespace Reports.Webapi.Models
                 c++;
             }
 
-            else if (component.GetType().Name == "LogicOr")
+            else if (component.GetType().Name == "LogicOrProxy")
             {
                 expresion += '+';
                 CreateDictionary(((LogicOr)component).CompDer, dictionary, ref expresion,ref c);
                 CreateDictionary(((LogicOr)component).CompIzq, dictionary, ref expresion, ref c);
             }
-            else if (component.GetType().Name == "LogicAnd")
+            else if (component.GetType().Name == "LogicAndProxy")
             {
                 expresion += '*';
                 CreateDictionary(((LogicAnd)component).CompDer, dictionary, ref expresion, ref c);
