@@ -40,19 +40,21 @@ namespace Reports.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ValueExpressions",
+                name: "Values",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    Value = table.Column<string>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
-                    AreaId = table.Column<Guid>(nullable: true)
+                    Data = table.Column<int>(nullable: true),
+                    SQLValue_Data = table.Column<string>(nullable: true),
+                    AreaId = table.Column<Guid>(nullable: true),
+                    StringValue_Data = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ValueExpressions", x => x.Id);
+                    table.PrimaryKey("PK_Values", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ValueExpressions_Area_AreaId",
+                        name: "FK_Values_Area_AreaId",
                         column: x => x.AreaId,
                         principalTable: "Area",
                         principalColumn: "Id",
@@ -84,43 +86,42 @@ namespace Reports.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Components",
+                name: "Conditions",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    AreaId = table.Column<Guid>(nullable: true),
                     Discriminator = table.Column<string>(nullable: false),
+                    IzqId = table.Column<Guid>(nullable: true),
+                    DerId = table.Column<Guid>(nullable: true),
                     ValueIzqId = table.Column<Guid>(nullable: true),
                     ValueDerId = table.Column<Guid>(nullable: true),
-                    Operation = table.Column<string>(nullable: true),
-                    CompIzqId = table.Column<Guid>(nullable: true),
-                    CompDerId = table.Column<Guid>(nullable: true)
+                    Operator = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Components", x => x.Id);
+                    table.PrimaryKey("PK_Conditions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Components_ValueExpressions_ValueDerId",
+                        name: "FK_Conditions_Conditions_DerId",
+                        column: x => x.DerId,
+                        principalTable: "Conditions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Conditions_Conditions_IzqId",
+                        column: x => x.IzqId,
+                        principalTable: "Conditions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Conditions_Values_ValueDerId",
                         column: x => x.ValueDerId,
-                        principalTable: "ValueExpressions",
+                        principalTable: "Values",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Components_ValueExpressions_ValueIzqId",
+                        name: "FK_Conditions_Values_ValueIzqId",
                         column: x => x.ValueIzqId,
-                        principalTable: "ValueExpressions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Components_Components_CompDerId",
-                        column: x => x.CompDerId,
-                        principalTable: "Components",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Components_Components_CompIzqId",
-                        column: x => x.CompIzqId,
-                        principalTable: "Components",
+                        principalTable: "Values",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -131,7 +132,7 @@ namespace Reports.DataAccess.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Color = table.Column<string>(nullable: false),
-                    ComponentId = table.Column<Guid>(nullable: true),
+                    ConditionId = table.Column<Guid>(nullable: true),
                     AreaId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
@@ -144,9 +145,9 @@ namespace Reports.DataAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Indicators_Components_ComponentId",
-                        column: x => x.ComponentId,
-                        principalTable: "Components",
+                        name: "FK_Indicators_Conditions_ConditionId",
+                        column: x => x.ConditionId,
+                        principalTable: "Conditions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -186,24 +187,24 @@ namespace Reports.DataAccess.Migrations
                 column: "ManagerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Components_ValueDerId",
-                table: "Components",
+                name: "IX_Conditions_DerId",
+                table: "Conditions",
+                column: "DerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Conditions_IzqId",
+                table: "Conditions",
+                column: "IzqId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Conditions_ValueDerId",
+                table: "Conditions",
                 column: "ValueDerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Components_ValueIzqId",
-                table: "Components",
+                name: "IX_Conditions_ValueIzqId",
+                table: "Conditions",
                 column: "ValueIzqId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Components_CompDerId",
-                table: "Components",
-                column: "CompDerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Components_CompIzqId",
-                table: "Components",
-                column: "CompIzqId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_IndicatorDisplay_IndicatorId",
@@ -216,13 +217,13 @@ namespace Reports.DataAccess.Migrations
                 column: "AreaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Indicators_ComponentId",
+                name: "IX_Indicators_ConditionId",
                 table: "Indicators",
-                column: "ComponentId");
+                column: "ConditionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ValueExpressions_AreaId",
-                table: "ValueExpressions",
+                name: "IX_Values_AreaId",
+                table: "Values",
                 column: "AreaId");
         }
 
@@ -241,10 +242,10 @@ namespace Reports.DataAccess.Migrations
                 name: "Indicators");
 
             migrationBuilder.DropTable(
-                name: "Components");
+                name: "Conditions");
 
             migrationBuilder.DropTable(
-                name: "ValueExpressions");
+                name: "Values");
 
             migrationBuilder.DropTable(
                 name: "Area");

@@ -39,7 +39,7 @@ namespace Reports.Webapi.Models
             this.Id = entity.Id;
             this.Name = entity.Name;
             this.ConnectionString = entity.ConnectionString;
-            this.Indicators = entity.Indicators.ConvertAll(e => new IndicatorModel(e));
+            this.Indicators = entity.Indicators.ToList().ConvertAll(e => new IndicatorModel(e));
             return this;
         }
     }

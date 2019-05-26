@@ -18,25 +18,25 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Value = "hola"};
-            ValueExpression der = new StringValue{ Value = "hola"};
-            Component component = new Condition
+            Value izq = new StringValue{Data = "hola"};
+            Value der = new StringValue{Data = "hola"};
+            BaseCondition component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = "="
+                Operator = "="
             };
             Indicator indicator = new Indicator{
                 Color = color,
                 Id = id,
-                Component = component
+                Condition = component
             };
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Indicator> indicatorRepo = new IndicatorRepository(context);
             IndicatorLogic indicatroLogic = new IndicatorLogic(indicatorRepo);
             indicatroLogic.Create(indicator);
             var components =  indicatorRepo.GetAll().ToList();
-            bool res = components[0].Component.Evaluete();
+            bool res = components[0].Condition.Eval();
             Assert.IsTrue(res == true);
         }
 
@@ -45,25 +45,27 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Value = "hola"};
-            ValueExpression der = new StringValue{Value = "chau"};
-            Component component = new Condition
+            Value izq = new StringValue { Data = "hola" };
+            Value der = new StringValue { Data = "chau" };
+            BaseCondition component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = "="
+                Operator = "="
             };
-            Indicator indicator = new Indicator{
+            Indicator indicator = new Indicator
+            {
                 Color = color,
                 Id = id,
-                Component = component
+                Condition = component
             };
+
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Indicator> indicatorRepo = new IndicatorRepository(context);
             IndicatorLogic indicatroLogic = new IndicatorLogic(indicatorRepo);
             indicatroLogic.Create(indicator);
             var components =  indicatorRepo.GetAll().ToList();
-            bool res = components[0].Component.Evaluete();
+            bool res = components[0].Condition.Eval();
             Assert.IsTrue(res == false);
         }
        [TestMethod]
@@ -71,38 +73,42 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{ Value = "hola"};
-            ValueExpression der = new StringValue{ Value = "hola"};
-            Component componentIzq = new Condition
+
+            Value izq = new StringValue{ Data = "hola"};
+            Value der = new StringValue{ Data = "hola"};
+            BaseCondition componentIzq = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = "="
+                Operator = "="
             };
-            ValueExpression izq1 = new StringValue{Value = "hola"};
-            ValueExpression der1 = new StringValue{Value = "hola"};
-            Component componentDer = new Condition
+            Value izq1 = new StringValue{Data = "hola"};
+            Value der1 = new StringValue{Data = "hola"};
+
+            BaseCondition componentDer = new Condition()
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = "="
+                Operator = "="
             };
-            Component component = new LogicAnd
+
+            BaseCondition component = new AndCondition()
             {
-                CompIzq = componentIzq,
-                CompDer = componentDer,
+                Izq = componentIzq,
+                Der = componentDer,
             };
-            Indicator indicator = new Indicator{
+
+            Indicator indicator = new Indicator(){
                 Color = color,
                 Id = id,
-                Component = component
+                Condition = component
             };
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Indicator> indicatorRepo = new IndicatorRepository(context);
             IndicatorLogic indicatroLogic = new IndicatorLogic(indicatorRepo);
             indicatroLogic.Create(indicator);
             var components =  indicatorRepo.GetAll().ToList();
-            bool res = components[0].Component.Evaluete();
+            bool res = components[0].Condition.Eval();
             Assert.IsTrue(res == true);
         }
         [TestMethod]
@@ -110,25 +116,25 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new IntValue{Value = "1"};
-            ValueExpression der = new IntValue{Value = "1"};
-            Component component = new Condition
+            Value izq = new IntValue{Data = 1};
+            Value der = new IntValue{Data = 1};
+            BaseCondition component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = "<"
+                Operator = "<"
             };
             Indicator indicator = new Indicator{
                 Color = color,
                 Id = id,
-                Component = component
+                Condition = component
             };
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Indicator> indicatorRepo = new IndicatorRepository(context);
             IndicatorLogic indicatroLogic = new IndicatorLogic(indicatorRepo);
             indicatroLogic.Create(indicator);
             var components =  indicatorRepo.GetAll().ToList();
-            bool res = components[0].Component.Evaluete();
+            bool res = components[0].Condition.Eval();
             Assert.IsTrue(res == false);
         }
         [TestMethod]
@@ -136,25 +142,25 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new IntValue{Value = "1"};
-            ValueExpression der = new IntValue{Value = "2"};
-            Component component = new Condition
+            Value izq = new IntValue{Data = 1};
+            Value der = new IntValue{Data = 2};
+            BaseCondition component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = "<"
+                Operator = "<"
             };
             Indicator indicator = new Indicator{
                 Color = color,
                 Id = id,
-                Component = component
+                Condition = component
             };
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Indicator> indicatorRepo = new IndicatorRepository(context);
             IndicatorLogic indicatroLogic = new IndicatorLogic(indicatorRepo);
             indicatroLogic.Create(indicator);
             var components =  indicatorRepo.GetAll().ToList();
-            bool res = components[0].Component.Evaluete();
+            bool res = components[0].Condition.Eval();
             Assert.IsTrue(res == true);
         }
         [TestMethod]
@@ -162,25 +168,25 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Value = "3"};
-            ValueExpression der = new IntValue{Value = "2"};
-            Component component = new Condition
+            Value izq = new StringValue{Data = "3"};
+            Value der = new IntValue{Data = 2};
+            BaseCondition component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = ">"
+                Operator = ">"
             };
             Indicator indicator = new Indicator{
                 Color = color,
                 Id = id,
-                Component = component
+                Condition = component
             };
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Indicator> indicatorRepo = new IndicatorRepository(context);
             IndicatorLogic indicatroLogic = new IndicatorLogic(indicatorRepo);
             indicatroLogic.Create(indicator);
             var components =  indicatorRepo.GetAll().ToList();
-            bool res = components[0].Component.Evaluete();
+            bool res = components[0].Condition.Eval();
             Assert.IsTrue(res == true);
         }
         [TestMethod]
@@ -188,25 +194,25 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new IntValue{Value = "3"};
-            ValueExpression der = new StringValue{Value = "4"};
-            Component component = new Condition
+            Value izq = new IntValue{Data = 3};
+            Value der = new StringValue{Data = "4"};
+            BaseCondition component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = ">"
+                Operator = ">"
             };
             Indicator indicator = new Indicator{
                 Color = color,
                 Id = id,
-                Component = component
+                Condition = component
             };
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Indicator> indicatorRepo = new IndicatorRepository(context);
             IndicatorLogic indicatroLogic = new IndicatorLogic(indicatorRepo);
             indicatroLogic.Create(indicator);
             var components =  indicatorRepo.GetAll().ToList();
-            bool res = components[0].Component.Evaluete();
+            bool res = components[0].Condition.Eval();
             Assert.IsTrue(res == false);
         }
         [TestMethod]
@@ -214,25 +220,25 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Value = "hol"};
-            ValueExpression der = new StringValue{Value = "hola"};
-            Component component = new Condition
+            Value izq = new StringValue{Data = "hol"};
+            Value der = new StringValue{Data = "hola"};
+            BaseCondition component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = "<="
+                Operator = "<="
             };
             Indicator indicator = new Indicator{
                 Color = color,
                 Id = id,
-                Component = component
+                Condition = component
             };
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Indicator> indicatorRepo = new IndicatorRepository(context);
             IndicatorLogic indicatroLogic = new IndicatorLogic(indicatorRepo);
             indicatroLogic.Create(indicator);
             var components =  indicatorRepo.GetAll().ToList();
-            bool res = components[0].Component.Evaluete();
+            bool res = components[0].Condition.Eval();
             Assert.IsTrue(res == true);
         }
         [TestMethod]
@@ -240,25 +246,25 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Value = "holaa"};
-            ValueExpression der = new StringValue{Value = "hola"};
-            Component component = new Condition
+            Value izq = new StringValue{Data = "holaa"};
+            Value der = new StringValue{Data = "hola"};
+            BaseCondition component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = "<="
+                Operator = "<="
             };
             Indicator indicator = new Indicator{
                 Color = color,
                 Id = id,
-                Component = component
+                Condition = component
             };
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Indicator> indicatorRepo = new IndicatorRepository(context);
             IndicatorLogic indicatroLogic = new IndicatorLogic(indicatorRepo);
             indicatroLogic.Create(indicator);
             var components =  indicatorRepo.GetAll().ToList();
-            bool res = components[0].Component.Evaluete();
+            bool res = components[0].Condition.Eval();
             Assert.IsTrue(res == false);
         }
                 [TestMethod]
@@ -266,25 +272,25 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new IntValue{Value = "1"};
-            ValueExpression der = new IntValue{Value = "3"};
-            Component component = new Condition
+            Value izq = new IntValue{Data = 1};
+            Value der = new IntValue{Data = 3};
+            BaseCondition component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = ">="
+                Operator = ">="
             };
             Indicator indicator = new Indicator{
                 Color = color,
                 Id = id,
-                Component = component
+                Condition = component
             };
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Indicator> indicatorRepo = new IndicatorRepository(context);
             IndicatorLogic indicatroLogic = new IndicatorLogic(indicatorRepo);
             indicatroLogic.Create(indicator);
             var components =  indicatorRepo.GetAll().ToList();
-            bool res = components[0].Component.Evaluete();
+            bool res = components[0].Condition.Eval();
             Assert.IsTrue(res == false);
         }
         [TestMethod]
@@ -292,25 +298,25 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new IntValue{Value = "3"};
-            ValueExpression der = new IntValue{Value = "2"};
-            Component component = new Condition
+            Value izq = new IntValue{Data = 3};
+            Value der = new IntValue{Data = 2};
+            BaseCondition component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = ">="
+                Operator = ">="
             };
             Indicator indicator = new Indicator{
                 Color = color,
                 Id = id,
-                Component = component
+                Condition = component
             };
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Indicator> indicatorRepo = new IndicatorRepository(context);
             IndicatorLogic indicatroLogic = new IndicatorLogic(indicatorRepo);
             indicatroLogic.Create(indicator);
             var components =  indicatorRepo.GetAll().ToList();
-            bool res = components[0].Component.Evaluete();
+            bool res = components[0].Condition.Eval();
             Assert.IsTrue(res == true);
         }
         [TestMethod]
@@ -318,38 +324,38 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Value = "hola"};
-            ValueExpression der = new StringValue{Value = "hola"};
-            Component componentIzq = new Condition
+            Value izq = new StringValue{Data = "hola"};
+            Value der = new StringValue{Data = "hola"};
+            BaseCondition componentIzq = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = "="
+                Operator = "="
             };
-            ValueExpression izq1 = new StringValue{Value = "hola"};
-            ValueExpression der1 = new StringValue{Value = "chau"};
-            Component componentDer = new Condition
+            Value izq1 = new StringValue{Data = "hola"};
+            Value der1 = new StringValue{Data = "chau"};
+            BaseCondition componentDer = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = "="
+                Operator = "="
             };
-            Component component = new LogicOr
+            BaseCondition component = new OrCondition
             {
-                CompIzq = componentIzq,
-                CompDer = componentDer,
+                Izq = componentIzq,
+                Der = componentDer,
             };
             Indicator indicator = new Indicator{
                 Color = color,
                 Id = id,
-                Component = component
+                Condition = component
             };
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Indicator> indicatorRepo = new IndicatorRepository(context);
             IndicatorLogic indicatroLogic = new IndicatorLogic(indicatorRepo);
             indicatroLogic.Create(indicator);
             var components =  indicatorRepo.GetAll().ToList();
-            bool res = components[0].Component.Evaluete();
+            bool res = components[0].Condition.Eval();
             Assert.IsTrue(res == true);
         }
         [TestMethod]
@@ -357,18 +363,18 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Value = "hola"};
-            ValueExpression der = new StringValue{Value = "hola"};
-            Component component = new Condition
+            Value izq = new StringValue{Data = "hola"};
+            Value der = new StringValue{Data = "hola"};
+            BaseCondition component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = "="
+                Operator = "="
             };
             Indicator indicator = new Indicator{
                 Color = color,
                 Id = id,
-                Component = component
+                Condition = component
             };
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Indicator> indicatorRepo = new IndicatorRepository(context);
@@ -384,18 +390,18 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Value = "hola"};
-            ValueExpression der = new StringValue{Value = "hola"};
-            Component component = new Condition
+            Value izq = new StringValue{Data = "hola"};
+            Value der = new StringValue{Data = "hola"};
+            BaseCondition component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = "="
+                Operator = "="
             };
             Indicator indicator = new Indicator{
                 Color = color,
                 Id = id,
-                Component = component
+                Condition = component
             };
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Indicator> indicatorRepo = new IndicatorRepository(context);
@@ -407,18 +413,18 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Value = "hola"};
-            ValueExpression der = new StringValue{Value = "hola"};
-            Component component = new Condition
+            Value izq = new StringValue{Data = "hola"};
+            Value der = new StringValue{Data = "hola"};
+            BaseCondition component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = "="
+                Operator = "="
             };
             Indicator indicator = new Indicator{
                 Color = color,
                 Id = id,
-                Component = component
+                Condition = component
             };
             var mock = new Mock<IRepository<Indicator>>(MockBehavior.Strict);
             mock.Setup(m => m.Remove(It.IsAny<Indicator>()));
@@ -434,36 +440,36 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Value = "hola"};
-            ValueExpression der = new StringValue{Value = "chau"};
-            Component component = new Condition
+            Value izq = new StringValue{Data = "hola"};
+            Value der = new StringValue{Data = "chau"};
+            BaseCondition component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = "="
+                Operator = "="
             };
             Indicator indicator = new Indicator{
                 Color = color,
                 Id = id,
-                Component = component
+                Condition = component
             };
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Indicator> indicatorRepo = new IndicatorRepository(context);
             IndicatorLogic indicatroLogic = new IndicatorLogic(indicatorRepo);
             indicatroLogic.Create(indicator);
 
-            ValueExpression izq1 = new StringValue{ Value = "hola"};
-            ValueExpression der1 = new StringValue{ Value = "hola"};
-            Component component2 = new Condition
+            Value izq1 = new StringValue{ Data = "hola"};
+            Value der1 = new StringValue{ Data = "hola"};
+            BaseCondition component2 = new Condition
             {
                 ValueIzq = izq1,
                 ValueDer = der1,
-                Operation = "="
+                Operator = "="
             };
-            indicator.Component = component2;
+            indicator.Condition = component2;
             indicatroLogic.Update(indicator);
             var indicators =  indicatorRepo.GetAll().ToList();
-            bool res = indicators[0].Component.Evaluete();
+            bool res = indicators[0].Condition.Eval();
             Assert.IsTrue(res == true);
         }
         [TestMethod] 
@@ -472,18 +478,18 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{ Value = "hola"};
-            ValueExpression der = new StringValue{ Value = "hola"};
-            Component component = new Condition
+            Value izq = new StringValue{ Data = "hola"};
+            Value der = new StringValue{ Data = "hola"};
+            BaseCondition component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = "="
+                Operator = "="
             };
             Indicator indicator = new Indicator{
                 Color = color,
                 Id = id,
-                Component = component
+                Condition = component
             };
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Indicator> indicatorRepo = new IndicatorRepository(context);
@@ -495,18 +501,18 @@ namespace Reports.BusinessLogic.Test
         {
             Guid id = Guid.NewGuid();
             string color = "red";
-            ValueExpression izq = new StringValue{Value = "hola"};
-            ValueExpression der = new StringValue{ Value = "hola"};
-            Component component = new Condition
+            Value izq = new StringValue{Data = "hola"};
+            Value der = new StringValue{ Data = "hola"};
+            BaseCondition component = new Condition
             {
                 ValueIzq = izq,
                 ValueDer = der,
-                Operation = "="
+                Operator = "="
             };
             Indicator indicator = new Indicator{
                 Color = color,
                 Id = id,
-                Component = component
+                Condition = component
             };
             var mock = new Mock<IRepository<Indicator>>(MockBehavior.Strict);
             mock.Setup(m => m.Update(It.IsAny<Indicator>()));

@@ -4,10 +4,11 @@ using System.Text;
 
 namespace Reports.Domain
 {
-    public abstract class ValueExpression
+    public abstract class Value
     {
         public Guid Id { get; set; }
-        public string Value { get; set; }
-        public abstract string Evaluate();
+        public abstract string Eval();
+
+        public abstract string Display();
     }
 }

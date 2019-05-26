@@ -4,16 +4,17 @@ using System.Text;
 
 namespace Reports.Domain
 {
-    public abstract class LogicExpression : Component
+    public abstract class CompositeCondition : BaseCondition
     {
-        public Guid? CompIzqId { get; set; }
-        public virtual Component CompIzq { get; set; }
-        public Guid? CompDerId { get; set; }
-        public virtual Component CompDer { get; set; }
+        public Guid? IzqId { get; set; }
+        public virtual BaseCondition Izq { get; set; }
+
+        public Guid? DerId { get; set; }
+        public virtual BaseCondition Der { get; set; }
 
         public override bool IsValid()
         {
-            return CompIzq != null && CompDer != null;
+            return Der != null && Izq != null;
         }
     }
 }

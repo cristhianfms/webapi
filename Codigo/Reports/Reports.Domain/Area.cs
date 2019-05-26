@@ -9,7 +9,8 @@ namespace Reports.Domain
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string ConnectionString { get; set; }
-        public virtual List<Indicator> Indicators { get; set; }
+
+        public virtual IEnumerable<Indicator> Indicators { get; set; }
 
         public virtual IEnumerable<AreaManager> AreaManagers { get; set; }
 

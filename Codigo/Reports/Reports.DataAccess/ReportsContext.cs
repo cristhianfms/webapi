@@ -12,8 +12,8 @@ namespace Reports.DataAccess
         public DbSet<Indicator> Indicators { get; set; }
 
         public DbSet<Condition> Conditions { get; set; }
-        public DbSet<LogicAnd> LogicAnds { get; set; }
-        public DbSet<LogicOr> LogicOrs { get; set; }
+        public DbSet<AndCondition> LogicAnds { get; set; }
+        public DbSet<OrCondition> LogicOrs { get; set; }
         
         public DbSet<SQLValue> SQLValues { get; set; }
         public DbSet<StringValue> StringValues { get; set; }
@@ -44,14 +44,12 @@ namespace Reports.DataAccess
             modelBuilder.Entity<IndicatorDisplay>().Property(i => i.Orden).IsRequired();
             modelBuilder.Entity<IndicatorDisplay>().Property(i => i.Visible).IsRequired();
 
-            modelBuilder.Entity<ValueExpression>().Property(v => v.Value).IsRequired();
 
+            modelBuilder.Entity<BaseCondition>().ToTable("Conditions");
 
-            modelBuilder.Entity<Component>().ToTable("Components");
+            modelBuilder.Entity<CompositeCondition>().HasBaseType<BaseCondition>();
 
-            modelBuilder.Entity<LogicExpression>().HasBaseType<Component>();
-
-            modelBuilder.Entity<ValueExpression>().ToTable("ValueExpressions");
+            modelBuilder.Entity<Value>().ToTable("Values");
 
             modelBuilder.Entity<AreaManager>().HasKey(x => new { x.AreaId, x.ManagerId });
             modelBuilder.Entity<IndicatorDisplay>().HasKey(x => new { x.AreaId, x.UserId,x.IndicatorId });

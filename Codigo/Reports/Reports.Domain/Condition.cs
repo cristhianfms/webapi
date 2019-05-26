@@ -4,39 +4,41 @@ using System.Text;
 
 namespace Reports.Domain
 {
-    public class Condition : Component
+    public class Condition : BaseCondition
     {
         public Guid? ValueIzqId { get; set; }
-        public virtual ValueExpression ValueIzq { get; set; }
+        public virtual Value ValueIzq { get; set; }
 
         public Guid? ValueDerId { get; set; }
-        public virtual ValueExpression ValueDer { get; set; }
+        public virtual Value ValueDer { get; set; }
 
-        public String Operation {get;set;}
+        public String Operator {get;set;}
 
-        public override bool Evaluete()
+
+        public override bool Eval()
         {
-            if(Operation == "=")
+            if(Operator == "=")
             {
-                return ValueIzq.Evaluate() == ValueDer.Evaluate();
+                return ValueIzq.Eval() == ValueDer.Eval();
             }
-            else if (Operation == "<")
+            else if (Operator == "<")
             {
-                return ValueIzq.Evaluate().CompareTo(ValueDer.Evaluate()) < 0;
+                return ValueIzq.Eval().CompareTo(ValueDer.Eval()) < 0;
+                
             }
-            else if (Operation == ">")
+            else if (Operator == ">")
             {
-                return ValueIzq.Evaluate().CompareTo(ValueDer.Evaluate()) > 0;
+                return ValueIzq.Eval().CompareTo(ValueDer.Eval()) > 0;
             }
-            else if (Operation == "<=")
+            else if (Operator == "<=")
             {
-                return ValueIzq.Evaluate().CompareTo(ValueDer.Evaluate()) <= 0;
+                return ValueIzq.Eval().CompareTo(ValueDer.Eval()) <= 0;
             }
-            else if (Operation == ">=")
+            else if (Operator == ">=")
             {
-                return ValueIzq.Evaluate().CompareTo(ValueDer.Evaluate()) >= 0;
+                return ValueIzq.Eval().CompareTo(ValueDer.Eval()) >= 0;
             }
-            return true;
+            return false;
         }
         
         public override bool IsValid()

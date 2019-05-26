@@ -8,7 +8,7 @@ namespace Reports.Webapi.Models
 {
     public class ConditionModel : Model<Condition, ConditionModel>
     {
-        public string Operation { get; set; }
+        public string Operator { get; set; }
         public string ValueIzq { get; set; }
         public string TypeIzq { get; set; }
         public string ValueDer { get; set; }
@@ -25,33 +25,33 @@ namespace Reports.Webapi.Models
         {
             return new Condition()
             {
-                Operation = this.Operation,
-                ValueIzq = ToValueExpression(TypeIzq, ValueIzq),
-                ValueDer = ToValueExpression(TypeDer, ValueDer)
+                Operator = this.Operator,
+                ValueIzq = ToValue(TypeIzq, ValueIzq),
+                ValueDer = ToValue(TypeDer, ValueDer)
             };
         }
 
-        private ValueExpression ToValueExpression(string type, string value) {
-            ValueExpression valueExp = new IntValue();
+        private Value ToValue(string type, string value) {
+            Value valueExp = new IntValue();
             if (type == "int")
             {
                 return valueExp = new IntValue()
                 {
-                    Value = value
+                    Data = int.Parse(value)
                 };
             }
             else if( type == "sql")
             {
                 valueExp = new SQLValue()
                 {
-                    Value = value,
+                    Data = value,
                 };
             }
             else if(type == "str")
             {
                 valueExp = new StringValue()
                 {
-                    Value = value
+                    Data = value
                 };
             }
             return valueExp;
@@ -60,26 +60,30 @@ namespace Reports.Webapi.Models
 
         protected override ConditionModel SetModel(Condition entity)
         {
-            this.Operation = entity.Operation;
-            this.ValueIzq = entity.ValueIzq.Value;
-            this.ValueDer = entity.ValueDer.Value;
-            this.TypeIzq = GetValueExpressionType(entity.ValueIzq);
-            this.TypeDer = GetValueExpressionType(entity.ValueDer);
+            this.Operator = entity.Operator;
+            this.ValueIzq = entity.ValueIzq.Display();
+            this.ValueDer = entity.ValueDer.Display();
+            this.TypeIzq = GetValueType(entity.ValueIzq);
+            this.TypeDer = GetValueType(entity.ValueDer);
             return this;
         }
 
-        private string GetValueExpressionType(ValueExpression entity)
+
+        private string GetValueType(Value entity)
         {
             string type = "";
-            if (entity.GetType().Name == "SQLValue")
+            if (entity.GetType().Name == "SQLValue" 
+                || entity.GetType().Name == "SQLValueProxy")
             {
                 type = "sql";
             }
-            else if (entity.GetType().Name == "IntValue")
+            else if (entity.GetType().Name == "IntValue" ||
+                entity.GetType().Name == "IntValueProxy")
             {
                 type = "int";
             }
-            else if (entity.GetType().Name == "StringValue")
+            else if (entity.GetType().Name == "StringValue" ||
+                entity.GetType().Name == "StringValueProxy")
             {
                 type = "str";
             }

@@ -4,11 +4,17 @@ using System.Text;
 
 namespace Reports.Domain
 {
-    public class IntValue : ValueExpression
+    public class IntValue : Value
     {
-        public override string Evaluate()
+        public int Data { get; set; }
+        public override string Eval()
         {
-           return Value.ToString();
+           return Data.ToString();
+        }
+
+        public override string Display()
+        {
+            return Data.ToString();
         }
     }
 }

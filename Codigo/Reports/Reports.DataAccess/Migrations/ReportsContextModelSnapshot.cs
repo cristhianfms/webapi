@@ -50,21 +50,19 @@ namespace Reports.DataAccess.Migrations
                     b.ToTable("AreaManager");
                 });
 
-            modelBuilder.Entity("Reports.Domain.Component", b =>
+            modelBuilder.Entity("Reports.Domain.BaseCondition", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<Guid?>("AreaId");
 
                     b.Property<string>("Discriminator")
                         .IsRequired();
 
                     b.HasKey("Id");
 
-                    b.ToTable("Components");
+                    b.ToTable("Conditions");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Component");
+                    b.HasDiscriminator<string>("Discriminator").HasValue("BaseCondition");
                 });
 
             modelBuilder.Entity("Reports.Domain.Indicator", b =>
@@ -77,13 +75,13 @@ namespace Reports.DataAccess.Migrations
                     b.Property<string>("Color")
                         .IsRequired();
 
-                    b.Property<Guid?>("ComponentId");
+                    b.Property<Guid?>("ConditionId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AreaId");
 
-                    b.HasIndex("ComponentId");
+                    b.HasIndex("ConditionId");
 
                     b.ToTable("Indicators");
                 });
@@ -139,7 +137,7 @@ namespace Reports.DataAccess.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Reports.Domain.ValueExpression", b =>
+            modelBuilder.Entity("Reports.Domain.Value", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
@@ -147,21 +145,33 @@ namespace Reports.DataAccess.Migrations
                     b.Property<string>("Discriminator")
                         .IsRequired();
 
-                    b.Property<string>("Value")
-                        .IsRequired();
-
                     b.HasKey("Id");
 
-                    b.ToTable("ValueExpressions");
+                    b.ToTable("Values");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("ValueExpression");
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Value");
+                });
+
+            modelBuilder.Entity("Reports.Domain.CompositeCondition", b =>
+                {
+                    b.HasBaseType("Reports.Domain.BaseCondition");
+
+                    b.Property<Guid?>("DerId");
+
+                    b.Property<Guid?>("IzqId");
+
+                    b.HasIndex("DerId");
+
+                    b.HasIndex("IzqId");
+
+                    b.HasDiscriminator().HasValue("CompositeCondition");
                 });
 
             modelBuilder.Entity("Reports.Domain.Condition", b =>
                 {
-                    b.HasBaseType("Reports.Domain.Component");
+                    b.HasBaseType("Reports.Domain.BaseCondition");
 
-                    b.Property<string>("Operation");
+                    b.Property<string>("Operator");
 
                     b.Property<Guid?>("ValueDerId");
 
@@ -174,33 +184,23 @@ namespace Reports.DataAccess.Migrations
                     b.HasDiscriminator().HasValue("Condition");
                 });
 
-            modelBuilder.Entity("Reports.Domain.LogicExpression", b =>
-                {
-                    b.HasBaseType("Reports.Domain.Component");
-
-                    b.Property<Guid?>("CompDerId");
-
-                    b.Property<Guid?>("CompIzqId");
-
-                    b.HasIndex("CompDerId");
-
-                    b.HasIndex("CompIzqId");
-
-                    b.HasDiscriminator().HasValue("LogicExpression");
-                });
-
             modelBuilder.Entity("Reports.Domain.IntValue", b =>
                 {
-                    b.HasBaseType("Reports.Domain.ValueExpression");
+                    b.HasBaseType("Reports.Domain.Value");
+
+                    b.Property<int>("Data");
 
                     b.HasDiscriminator().HasValue("IntValue");
                 });
 
             modelBuilder.Entity("Reports.Domain.SQLValue", b =>
                 {
-                    b.HasBaseType("Reports.Domain.ValueExpression");
+                    b.HasBaseType("Reports.Domain.Value");
 
                     b.Property<Guid?>("AreaId");
+
+                    b.Property<string>("Data")
+                        .HasColumnName("SQLValue_Data");
 
                     b.HasIndex("AreaId");
 
@@ -209,23 +209,26 @@ namespace Reports.DataAccess.Migrations
 
             modelBuilder.Entity("Reports.Domain.StringValue", b =>
                 {
-                    b.HasBaseType("Reports.Domain.ValueExpression");
+                    b.HasBaseType("Reports.Domain.Value");
+
+                    b.Property<string>("Data")
+                        .HasColumnName("StringValue_Data");
 
                     b.HasDiscriminator().HasValue("StringValue");
                 });
 
-            modelBuilder.Entity("Reports.Domain.LogicAnd", b =>
+            modelBuilder.Entity("Reports.Domain.AndCondition", b =>
                 {
-                    b.HasBaseType("Reports.Domain.LogicExpression");
+                    b.HasBaseType("Reports.Domain.CompositeCondition");
 
-                    b.HasDiscriminator().HasValue("LogicAnd");
+                    b.HasDiscriminator().HasValue("AndCondition");
                 });
 
-            modelBuilder.Entity("Reports.Domain.LogicOr", b =>
+            modelBuilder.Entity("Reports.Domain.OrCondition", b =>
                 {
-                    b.HasBaseType("Reports.Domain.LogicExpression");
+                    b.HasBaseType("Reports.Domain.CompositeCondition");
 
-                    b.HasDiscriminator().HasValue("LogicOr");
+                    b.HasDiscriminator().HasValue("OrCondition");
                 });
 
             modelBuilder.Entity("Reports.Domain.AreaManager", b =>
@@ -247,9 +250,9 @@ namespace Reports.DataAccess.Migrations
                         .WithMany("Indicators")
                         .HasForeignKey("AreaId");
 
-                    b.HasOne("Reports.Domain.Component", "Component")
+                    b.HasOne("Reports.Domain.BaseCondition", "Condition")
                         .WithMany()
-                        .HasForeignKey("ComponentId");
+                        .HasForeignKey("ConditionId");
                 });
 
             modelBuilder.Entity("Reports.Domain.IndicatorDisplay", b =>
@@ -265,26 +268,26 @@ namespace Reports.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Reports.Domain.CompositeCondition", b =>
+                {
+                    b.HasOne("Reports.Domain.BaseCondition", "Der")
+                        .WithMany()
+                        .HasForeignKey("DerId");
+
+                    b.HasOne("Reports.Domain.BaseCondition", "Izq")
+                        .WithMany()
+                        .HasForeignKey("IzqId");
+                });
+
             modelBuilder.Entity("Reports.Domain.Condition", b =>
                 {
-                    b.HasOne("Reports.Domain.ValueExpression", "ValueDer")
+                    b.HasOne("Reports.Domain.Value", "ValueDer")
                         .WithMany()
                         .HasForeignKey("ValueDerId");
 
-                    b.HasOne("Reports.Domain.ValueExpression", "ValueIzq")
+                    b.HasOne("Reports.Domain.Value", "ValueIzq")
                         .WithMany()
                         .HasForeignKey("ValueIzqId");
-                });
-
-            modelBuilder.Entity("Reports.Domain.LogicExpression", b =>
-                {
-                    b.HasOne("Reports.Domain.Component", "CompDer")
-                        .WithMany()
-                        .HasForeignKey("CompDerId");
-
-                    b.HasOne("Reports.Domain.Component", "CompIzq")
-                        .WithMany()
-                        .HasForeignKey("CompIzqId");
                 });
 
             modelBuilder.Entity("Reports.Domain.SQLValue", b =>

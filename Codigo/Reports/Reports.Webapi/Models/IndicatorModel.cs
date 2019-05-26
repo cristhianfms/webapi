@@ -31,13 +31,13 @@ namespace Reports.Webapi.Models
             {
                 Id = this.Id,
                 Color = this.Color,
-                Component = ToEntityComponent()
+                Condition = ToEntityCondition()
             };
         }
 
 
 
-        private Component ToEntityComponent()
+        private BaseCondition ToEntityCondition()
         {
             if(Expression.Length == 1)
             {
@@ -46,33 +46,33 @@ namespace Reports.Webapi.Models
                 return cEntity;
             }
 
-            LogicExpression raiz = CreateComponentNode(Expression[0]);
-            raiz.CompIzq = Conditions.GetValueOrDefault(Expression[1]).ToEntity();
-            raiz.CompDer = Conditions.GetValueOrDefault(Expression[2]).ToEntity();
+            CompositeCondition raiz = CreateConditionNode(Expression[0]);
+            raiz.Izq = Conditions.GetValueOrDefault(Expression[1]).ToEntity();
+            raiz.Der = Conditions.GetValueOrDefault(Expression[2]).ToEntity();
 
             int index = 3;
             while (index < Expression.Length)
             {
-                LogicExpression aux = raiz;
-                raiz = CreateComponentNode(Expression[index]);
+                CompositeCondition aux = raiz;
+                raiz = CreateConditionNode(Expression[index]);
                 index++;
-                raiz.CompIzq = aux;
-                raiz.CompDer = Conditions.GetValueOrDefault(Expression[index]).ToEntity();
+                raiz.Izq = aux;
+                raiz.Der = Conditions.GetValueOrDefault(Expression[index]).ToEntity();
                 index++;
             }
 
             return raiz;
         }
 
-        private LogicExpression CreateComponentNode(char type)
+        private CompositeCondition CreateConditionNode(char type)
         {
             if (type == '+')
             {
-                return new LogicOr();
+                return new OrCondition();
             }
             else if (type == '*')
             {
-                return new LogicAnd();
+                return new AndCondition();
             }
             return null;
         }
@@ -89,34 +89,38 @@ namespace Reports.Webapi.Models
             Dictionary<char, ConditionModel> conditions = new Dictionary<char, ConditionModel>();
             String expresion = "";
             char c = 'a';
-            CreateDictionary(entity.Component, conditions, ref expresion, ref c);
+            CreateDictionary(entity.Condition, conditions, ref expresion, ref c);
+            
             this.Conditions = conditions;
             this.Expression = expresion;
             return this;
         }
 
-        private void CreateDictionary(Component component, Dictionary<char, ConditionModel> dictionary,
+        private void CreateDictionary(BaseCondition condition, Dictionary<char, ConditionModel> dictionary,
             ref String expresion, ref char c)
         {
-            if (component.GetType().Name == "ConditionProxy")
+            if (condition.GetType().Name == "ConditionProxy" ||
+                condition.GetType().Name == "Condition")
             {
-                ConditionModel conditionModel = new ConditionModel((Condition)component);
+                ConditionModel conditionModel = new ConditionModel((Condition)condition);
                 dictionary.Add(c, conditionModel);
                 expresion += c;
                 c++;
             }
 
-            else if (component.GetType().Name == "LogicOrProxy")
+            else if (condition.GetType().Name == "OrConditionProxy" ||
+                condition.GetType().Name == "OrCondition")
             {
                 expresion += '+';
-                CreateDictionary(((LogicOr)component).CompDer, dictionary, ref expresion,ref c);
-                CreateDictionary(((LogicOr)component).CompIzq, dictionary, ref expresion, ref c);
+                CreateDictionary(((OrCondition)condition).Der, dictionary, ref expresion,ref c);
+                CreateDictionary(((OrCondition)condition).Izq, dictionary, ref expresion, ref c);
             }
-            else if (component.GetType().Name == "LogicAndProxy")
+            else if (condition.GetType().Name == "AndConditionProxy" ||
+                condition.GetType().Name == "AndCondition")
             {
                 expresion += '*';
-                CreateDictionary(((LogicAnd)component).CompDer, dictionary, ref expresion, ref c);
-                CreateDictionary(((LogicAnd)component).CompIzq, dictionary, ref expresion, ref c);
+                CreateDictionary(((AndCondition)condition).Der, dictionary, ref expresion, ref c);
+                CreateDictionary(((AndCondition)condition).Izq, dictionary, ref expresion, ref c);
             }
         }
 

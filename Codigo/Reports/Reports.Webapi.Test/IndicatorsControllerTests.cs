@@ -17,19 +17,19 @@ namespace Reports.Webapi.Test
         [TestMethod]
         public void CreateIndicatorOk()
         {
-            Component component = new Condition()
+            BaseCondition component = new Condition()
             {
 
                 Id = Guid.NewGuid(),
-                ValueIzq = new StringValue { Value = "hola" },
-                ValueDer = new StringValue { Value = "hola" },
-                Operation = "="
+                ValueIzq = new StringValue { Data = "hola" },
+                ValueDer = new StringValue { Data = "hola" },
+                Operator = "="
             };
             Indicator  indicator = new Indicator()
             {
                 Color = "red",
                 Id = Guid.NewGuid(),
-                Component = component
+                Condition = component
             };
 
 
@@ -63,18 +63,18 @@ namespace Reports.Webapi.Test
         [TestMethod]
         public void GetAllIndicators()
         {
-            Component component = new Condition()
+            BaseCondition component = new Condition()
             {
                 Id = Guid.NewGuid(),
-                ValueIzq = new StringValue { Value = "hola" },
-                ValueDer = new StringValue { Value = "hola" },
-                Operation = "="
+                ValueIzq = new StringValue { Data = "hola" },
+                ValueDer = new StringValue { Data = "hola" },
+                Operator = "="
             };
             Indicator indicator = new Indicator()
             {
                 Color = "red",
                 Id = Guid.NewGuid(),
-                Component = component
+                Condition = component
             };
 
 
@@ -97,18 +97,18 @@ namespace Reports.Webapi.Test
         [TestMethod]
         public void GetIndicatorOK()
         {
-            Component component = new Condition()
+            BaseCondition component = new Condition()
             {
                 Id = Guid.NewGuid(),
-                ValueIzq = new StringValue { Value = "hola" },
-                ValueDer = new StringValue { Value = "hola" },
-                Operation = "="
+                ValueIzq = new StringValue { Data = "hola" },
+                ValueDer = new StringValue { Data = "hola" },
+                Operator = "="
             };
             Indicator indicator = new Indicator()
             {
                 Color = "red",
                 Id = Guid.NewGuid(),
-                Component = component
+                Condition = component
             };
 
             var mock = new Mock<IIndicatorLogic>(MockBehavior.Strict);
@@ -140,18 +140,18 @@ namespace Reports.Webapi.Test
         [TestMethod]
         public void UpdateIndicator()
         {
-            Component component = new Condition()
+            BaseCondition component = new Condition()
             {
                 Id = Guid.NewGuid(),
-                ValueIzq = new StringValue { Value = "hola" },
-                ValueDer = new StringValue { Value = "hola" },
-                Operation = "="
+                ValueIzq = new StringValue { Data = "hola" },
+                ValueDer = new StringValue { Data = "hola" },
+                Operator = "="
             };
             Indicator indicator = new Indicator()
             {
                 Color = "red",
                 Id = Guid.NewGuid(),
-                Component = component
+                Condition = component
             };
 
 
@@ -170,18 +170,18 @@ namespace Reports.Webapi.Test
         public void DeleteIndicator()
         {
 
-            Component component = new Condition()
+            BaseCondition component = new Condition()
             {
                 Id = Guid.NewGuid(),
-                ValueIzq = new StringValue { Value = "hola" },
-                ValueDer = new StringValue { Value = "hola" },
-                Operation = "="
+                ValueIzq = new StringValue { Data = "hola" },
+                ValueDer = new StringValue { Data = "hola" },
+                Operator = "="
             };
             Indicator indicator = new Indicator()
             {
                 Color = "red",
                 Id = Guid.NewGuid(),
-                Component = component
+                Condition = component
             };
 
 
