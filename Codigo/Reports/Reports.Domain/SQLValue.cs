@@ -33,30 +33,23 @@ namespace Reports.Domain
             try
             {
                  return IntEqual(aValue, areaConnectionStr);
-            }catch(Exception e)
+            }catch
             {
-                throw new DomainException("Values types can not be compare", e);
+                try { 
+                    return BoolEqual(aValue, areaConnectionStr);
+                }
+                catch
+                {
+                    try
+                    {
+                        return StringEqual(aValue, areaConnectionStr);
+                    }
+                    catch (Exception e)
+                    {
+                        throw new DomainException("Values types can not be compare", e);
+                    }
+                }
             }
-
-            try
-            {
-                return BoolEqual(aValue, areaConnectionStr);
-            }
-            catch (Exception e)
-            {
-                throw new DomainException("Values types can not be compare", e);
-            }
-
-            try
-            {
-                return StringEqual(aValue, areaConnectionStr);
-            }
-            catch (Exception e)
-            {
-                throw new DomainException("Values types can not be compare", e);
-            }
-
-            return false;
         }
         public override bool GreaterThan(Value aValue, string areaConnectionStr)
         {
@@ -64,30 +57,24 @@ namespace Reports.Domain
             {
                 return IntGreater(aValue, areaConnectionStr);
             }
-            catch (Exception e)
+            catch
             {
-                throw new DomainException("Values types can not be compare", e);
+                try
+                {
+                    return BoolGreater(aValue, areaConnectionStr);
+                }
+                catch
+                {
+                    try
+                    {
+                        return StringGreater(aValue, areaConnectionStr);
+                    }
+                    catch (Exception e)
+                    {
+                        throw new DomainException("Values types can not be compare", e);
+                    }
+                }
             }
-
-            try
-            {
-                return BoolGreater(aValue, areaConnectionStr);
-            }
-            catch (Exception e)
-            {
-                throw new DomainException("Values types can not be compare", e);
-            }
-
-            try
-            {
-                return StringGreater(aValue, areaConnectionStr);
-            }
-            catch (Exception e)
-            {
-                throw new DomainException("Values types can not be compare", e);
-            }
-
-            return false;
         }
         public override bool LessThan(Value aValue, string areaConnectionStr)
         {
@@ -95,61 +82,50 @@ namespace Reports.Domain
             {
                 return IntLess(aValue, areaConnectionStr);
             }
-            catch (Exception e)
+            catch
             {
-                throw new DomainException("Values types can not be compare", e);
+                try
+                {
+                    return BoolLess(aValue, areaConnectionStr);
+                }
+                catch
+                {
+                    try
+                    {
+                        return StringLess(aValue, areaConnectionStr);
+                    }
+                    catch (Exception e)
+                    {
+                        throw new DomainException("Values types can not be compare", e);
+                    }
+                }
             }
-
-            try
-            {
-                return BoolLess(aValue, areaConnectionStr);
-            }
-            catch (Exception e)
-            {
-                throw new DomainException("Values types can not be compare", e);
-            }
-
-            try
-            {
-                return StringLess(aValue, areaConnectionStr);
-            }
-            catch (Exception e)
-            {
-                throw new DomainException("Values types can not be compare", e);
-            }
-
-            return false;
         }
         public override bool GreaterEqualThan(Value aValue, string areaConnectionStr)
         {
+
             try
             {
                 return IntGreaterEqual(aValue, areaConnectionStr);
             }
-            catch (Exception e)
+            catch
             {
-                throw new DomainException("Values types can not be compare", e);
+                try
+                {
+                    return BoolGreaterEqual(aValue, areaConnectionStr);
+                }
+                catch
+                {
+                    try
+                    {
+                        return StringGreaterEqual(aValue, areaConnectionStr);
+                    }
+                    catch (Exception e)
+                    {
+                        throw new DomainException("Values types can not be compare", e);
+                    }
+                }
             }
-
-            try
-            {
-                return BoolGreaterEqual(aValue, areaConnectionStr);
-            }
-            catch (Exception e)
-            {
-                throw new DomainException("Values types can not be compare", e);
-            }
-
-            try
-            {
-                return StringGreaterEqual(aValue, areaConnectionStr);
-            }
-            catch (Exception e)
-            {
-                throw new DomainException("Values types can not be compare", e);
-            }
-
-            return false;
         }
         public override bool LessEqualThan(Value aValue, string areaConnectionStr)
         {
@@ -157,30 +133,24 @@ namespace Reports.Domain
             {
                 return IntLessEqual(aValue, areaConnectionStr);
             }
-            catch (Exception e)
+            catch
             {
-                throw new DomainException("Values types can not be compare", e);
+                try
+                {
+                    return BoolLessEqual(aValue, areaConnectionStr);
+                }
+                catch
+                {
+                    try
+                    {
+                        return StringLessEqual(aValue, areaConnectionStr);
+                    }
+                    catch (Exception e)
+                    {
+                        throw new DomainException("Values types can not be compare", e);
+                    }
+                }
             }
-
-            try
-            {
-                return BoolLessEqual(aValue, areaConnectionStr);
-            }
-            catch (Exception e)
-            {
-                throw new DomainException("Values types can not be compare", e);
-            }
-
-            try
-            {
-                return StringLessEqual(aValue, areaConnectionStr);
-            }
-            catch (Exception e)
-            {
-                throw new DomainException("Values types can not be compare", e);
-            }
-
-            return false;
         }
             
 

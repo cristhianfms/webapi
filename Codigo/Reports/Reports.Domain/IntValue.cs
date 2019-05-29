@@ -16,27 +16,28 @@ namespace Reports.Domain
 
         public override bool Equal(Value aValue, string areaConnectionStr)
         {
-            throw new NotImplementedException();
+            int otherInt = (int)aValue.Eval(areaConnectionStr);
+            return Data == otherInt;
         }
-
         public override bool LessThan(Value aValue, string areaConnectionStr)
         {
-            throw new NotImplementedException();
+            int otherInt = (int)aValue.Eval(areaConnectionStr);
+            return Data < otherInt;
         }
-
         public override bool GreaterThan(Value aValue, string areaConnectionStr)
         {
-            throw new NotImplementedException();
+            int otherInt = (int)aValue.Eval(areaConnectionStr);
+            return Data > otherInt;
         }
-
         public override bool LessEqualThan(Value aValue, string areaConnectionStr)
         {
-            throw new NotImplementedException();
+            int otherInt = (int)aValue.Eval(areaConnectionStr);
+            return Data <= otherInt;
         }
-
         public override bool GreaterEqualThan(Value aValue, string areaConnectionStr)
         {
-            throw new NotImplementedException();
+            int otherInt = (int)aValue.Eval(areaConnectionStr);
+            return Data >= otherInt;
         }
     }
 }
