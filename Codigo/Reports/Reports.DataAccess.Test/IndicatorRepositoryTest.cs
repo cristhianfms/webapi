@@ -16,18 +16,28 @@ namespace Reports.DataAccess.Test
         { 
             var context = ContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             IRepository<Indicator> indicatorRepo = new IndicatorRepository(context);
-            var id = Guid.NewGuid();
-            string color = "red";
-            BaseCondition component = new Condition();
-            Indicator indicator = new Indicator();
-            indicator.Id = id;
-            indicator.Color = color;
-            indicator.Condition = component;
+            BaseCondition condition1 = new Condition();
+            BaseCondition condition2 = new Condition();
+            BaseCondition condition3 = new Condition();
+
+
+            Indicator indicator = new Indicator()
+            {
+                Name = "Indicator 1",
+                Id = Guid.NewGuid(),
+                GreenCondition = condition1,
+                YellowCondition = condition2,
+                RedCondition = condition3
+            };
+
             indicatorRepo.Add(indicator);
             indicatorRepo.Save();
             var indicators =  indicatorRepo.GetAll().ToList();
-            Assert.AreEqual(indicators[0].Color, "red");
+
+            Assert.AreEqual(indicators[0].Name, indicator.Name);
         }
+
+
 
         [TestMethod]
         [ExpectedException(typeof(RepositoryException))]

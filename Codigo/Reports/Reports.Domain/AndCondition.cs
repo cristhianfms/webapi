@@ -6,10 +6,10 @@ namespace Reports.Domain
 {
     public class AndCondition : CompositeCondition
     {
-        public override bool Eval()
+        public override bool Eval(string areaConnectionStr)
         {
-            return this.Der.Eval() 
-                && this.Izq.Eval();
+            return this.Der.Eval(areaConnectionStr)
+                && this.Izq.Eval(areaConnectionStr);
         }
     }
 }

@@ -7,7 +7,9 @@ namespace Reports.Domain
     public abstract class BaseCondition
     {
         public Guid Id { get; set; }
-        public  abstract bool Eval();
+        public  abstract bool Eval(string areaConnectionStr);
         public abstract bool IsValid();
+        
+        
     }
 }

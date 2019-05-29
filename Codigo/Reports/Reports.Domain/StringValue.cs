@@ -7,14 +7,35 @@ namespace Reports.Domain
     public class StringValue : Value
     {
         public string Data { get; set; }
-        public override string Eval()
+
+        public override object Eval(string areaConnectionStr)
         {
             return Data;
         }
 
-        public override string Display()
+        public override bool Equal(Value aValue, string areaConnectionStr)
         {
-            return Data;
+            throw new NotImplementedException();
+        }
+
+        public override bool GreaterEqualThan(Value aValue, string areaConnectionStr)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool GreaterThan(Value aValue, string areaConnectionStr)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool LessEqualThan(Value aValue, string areaConnectionStr)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool LessThan(Value aValue, string areaConnectionStr)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -15,28 +15,29 @@ namespace Reports.Domain
         public String Operator {get;set;}
 
 
-        public override bool Eval()
+        public override bool Eval(string areaConnectionStr)
         {
             if(Operator == "=")
             {
-                return ValueIzq.Eval() == ValueDer.Eval();
+                return ValueIzq.Equal(ValueDer, areaConnectionStr);
             }
             else if (Operator == "<")
             {
-                return ValueIzq.Eval().CompareTo(ValueDer.Eval()) < 0;
-                
+                return ValueIzq.LessThan(ValueDer, areaConnectionStr);
+
             }
             else if (Operator == ">")
             {
-                return ValueIzq.Eval().CompareTo(ValueDer.Eval()) > 0;
+                return ValueIzq.GreaterThan(ValueDer, areaConnectionStr);
+
             }
             else if (Operator == "<=")
             {
-                return ValueIzq.Eval().CompareTo(ValueDer.Eval()) <= 0;
+                return ValueIzq.LessEqualThan(ValueDer, areaConnectionStr);
             }
             else if (Operator == ">=")
             {
-                return ValueIzq.Eval().CompareTo(ValueDer.Eval()) >= 0;
+                return ValueIzq.GreaterEqualThan(ValueDer, areaConnectionStr);
             }
             return false;
         }

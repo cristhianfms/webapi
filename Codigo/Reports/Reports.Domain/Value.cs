@@ -7,8 +7,12 @@ namespace Reports.Domain
     public abstract class Value
     {
         public Guid Id { get; set; }
-        public abstract string Eval();
-
-        public abstract string Display();
+        public abstract object Eval(string areaConnectionStr);
+        public abstract bool Equal(Value aValue , string areaConnectionStr);
+        public abstract bool LessThan(Value aValue, string areaConnectionStr);
+        public abstract bool GreaterThan(Value aValue, string areaConnectionStr);
+        public abstract bool LessEqualThan(Value aValue, string areaConnectionStr);
+        public abstract bool GreaterEqualThan(Value aValue, string areaConnectionStr);
     }
+
 }
