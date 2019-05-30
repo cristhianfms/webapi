@@ -9,7 +9,6 @@ namespace Reports.Domain
         public Guid Id { get; set; }
         public  abstract bool Eval(string areaConnectionStr);
         public abstract bool IsValid();
-        
-        
+        public abstract string GetResult();
     }
 }

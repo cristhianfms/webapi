@@ -6,6 +6,8 @@ using System.Collections.Generic;
     
 namespace Reports.BusinessLogic
 {
+   
+
     public class IndicatorLogic : IIndicatorLogic
     {
         private IRepository<Indicator> repository;
@@ -29,8 +31,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-
-
         public void Remove(Indicator indicator) {
             try
             {
@@ -44,7 +44,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }   
-
         public Indicator Update(Indicator indicator) {
             try
             {
@@ -59,9 +58,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-
-
-
         public Indicator Get(Guid id){
             try {
                 return repository.Get(id);
@@ -71,7 +67,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-
         public IEnumerable<Indicator> GetAll(){
             try {
 
@@ -82,24 +77,59 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-
-        private void CheckValidIndicator(Indicator indicator)
+        public string GetResult(Indicator indicator, Color color)
         {
-            if (!indicator.IsValid())
+            if (color == Color.Green)
             {
-                throw new BusinessLogicException("Invalid Indicator");
+                return GetGreenResult(indicator);
+            }
+            else if (color == Color.Yellow)
+            {
+                return GetYellowResult(indicator);
+            }
+            else if (color == Color.Yellow)
+            {
+                return GetRedResult(indicator);
+            }
+            return "";
+        }
+
+
+        private string GetGreenResult(Indicator indicator)
+        {
+            try
+            {
+                return indicator.GetGreenResult();
+            }
+            catch (DomainException e)
+            {
+                throw new BusinessLogicException("Error in condition", e);
             }
         }
 
-        private void CheckEmtpyIndicator(Indicator indicator)
+        private string GetYellowResult(Indicator indicator)
         {
-            if (indicator == null)
+            try
             {
-                throw new BusinessLogicException("Null indicator instance");
+                return indicator.GetYellowResult();
+            }
+            catch (DomainException e)
+            {
+                throw new BusinessLogicException("Error in condition", e);
             }
         }
 
-
+        private string GetRedResult(Indicator indicator)
+        {
+            try
+            {
+                return indicator.GetRedResult();
+            }
+            catch (DomainException e)
+            {
+                throw new BusinessLogicException("Error in condition", e);
+            }
+        }
 
 
     }

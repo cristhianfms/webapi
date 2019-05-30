@@ -22,5 +22,40 @@ namespace Reports.Domain
                 && RedCondition != null; 
         }
 
+        public string GetGreenResult()
+        {
+            if (GreenCondition != null)
+            {
+                return GreenCondition.GetResult();
+            }
+            else
+            {
+                throw new DomainException("No green condition have been set");
+            }
+        }
+
+        public string GetYellowResult()
+        {
+            if(YellowCondition != null)
+            {
+                return YellowCondition.GetResult();
+            }
+            else
+            {
+                throw new DomainException("No yellow condition have been set");
+            }
+        }
+
+        public string GetRedResult()
+        {
+            if (RedCondition != null)
+            {
+                return RedCondition.GetResult();
+            }
+            else
+            {
+                throw new DomainException("No red condition have been set");
+            }
+        }
     }
 }

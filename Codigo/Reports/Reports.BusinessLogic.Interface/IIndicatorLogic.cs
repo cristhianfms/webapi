@@ -5,6 +5,8 @@ using Reports.BusinessLogic;
 
 namespace Reports.BusinessLogic.Interface
 {
+    public enum Color { Red, Green, Yellow };
+
     public interface IIndicatorLogic
     {
         Indicator Create(Indicator indicator);
@@ -12,5 +14,6 @@ namespace Reports.BusinessLogic.Interface
         Indicator Update(Indicator indicator);
         Indicator Get(Guid id);
         IEnumerable<Indicator> GetAll();
+        string GetResult(Indicator indicator, Color color);
     }
 }
