@@ -12,9 +12,10 @@ namespace Reports.Domain
         public Guid? DerId { get; set; }
         public virtual BaseCondition Der { get; set; }
 
-        public override bool IsValid()
+        private void CheckIsValid()
         {
-            return Der != null && Izq != null;
+            if (IzqId == null || DerId == null)
+                throw new DomainException("One of the parts of the condition is empty");
         }
     }
 }
