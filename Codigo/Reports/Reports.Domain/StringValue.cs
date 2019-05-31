@@ -12,6 +12,10 @@ namespace Reports.Domain
         {
             return Data;
         }
+        public override bool IsValid()
+        {
+            return Data != null && Data !="";
+        }
         public override string GetResult(string areaConnectionStr)
         {
             return Data;

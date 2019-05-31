@@ -26,7 +26,10 @@ namespace Reports.Domain
                 throw new DomainException("Error in sql excecution", e);
             }
         }
-
+        public override bool IsValid()
+        {
+            return Query != null && Query != "";
+        }
         public override string GetResult(string areaConnectionStr)
         {
             object result = Eval(areaConnectionStr);

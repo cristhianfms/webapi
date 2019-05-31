@@ -13,6 +13,10 @@ namespace Reports.Domain
         {
             return Data;
         }
+        public override bool IsValid()
+        {
+            return true;
+        }
         public override string GetResult(string areaConnectionStr)
         {
             return Data.ToString();

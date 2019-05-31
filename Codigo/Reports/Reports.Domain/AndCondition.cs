@@ -6,7 +6,6 @@ namespace Reports.Domain
 {
     public class AndCondition : CompositeCondition
     {
-
         public override bool Eval(string areaConnectionStr)
         {
             return this.Der.Eval(areaConnectionStr)

@@ -11,11 +11,9 @@ namespace Reports.Domain
 
         public Guid? DerId { get; set; }
         public virtual BaseCondition Der { get; set; }
-
-        private void CheckIsValid()
+        public override bool IsValid()
         {
-            if (IzqId == null || DerId == null)
-                throw new DomainException("One of the parts of the condition is empty");
+            return Izq != null && Der != null && Izq.IsValid() && Der.IsValid() ;
         }
     }
 }
