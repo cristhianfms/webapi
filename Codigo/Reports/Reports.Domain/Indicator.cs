@@ -22,11 +22,11 @@ namespace Reports.Domain
                 && RedCondition != null; 
         }
 
-        public string GetGreenResult()
+        public string GetGreenResult(string areaConnectionStr)
         {
             if (GreenCondition != null)
             {
-                return GreenCondition.GetResult();
+                return GreenCondition.GetResult(areaConnectionStr);
             }
             else
             {
@@ -34,11 +34,11 @@ namespace Reports.Domain
             }
         }
 
-        public string GetYellowResult()
+        public string GetYellowResult(string areaConnectionStr)
         {
             if(YellowCondition != null)
             {
-                return YellowCondition.GetResult();
+                return YellowCondition.GetResult(areaConnectionStr);
             }
             else
             {
@@ -46,11 +46,11 @@ namespace Reports.Domain
             }
         }
 
-        public string GetRedResult()
+        public string GetRedResult(string areaConnectionStr)
         {
             if (RedCondition != null)
             {
-                return RedCondition.GetResult();
+                return RedCondition.GetResult(areaConnectionStr);
             }
             else
             {

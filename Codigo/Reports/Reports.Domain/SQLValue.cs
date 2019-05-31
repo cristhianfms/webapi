@@ -8,7 +8,6 @@ namespace Reports.Domain
 {
     public class SQLValue : Value
     {
-
         public string Query { get; set; }
 
         public override object Eval(string areaConnectionStr)
@@ -28,6 +27,11 @@ namespace Reports.Domain
             }
         }
 
+        public override string GetResult(string areaConnectionStr)
+        {
+            object result = Eval(areaConnectionStr);
+            return result.ToString();
+        }
         public override bool Equal(Value aValue, string areaConnectionStr)
         {
             try

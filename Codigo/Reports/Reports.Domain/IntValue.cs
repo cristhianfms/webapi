@@ -13,7 +13,10 @@ namespace Reports.Domain
         {
             return Data;
         }
-
+        public override string GetResult(string areaConnectionStr)
+        {
+            return Data.ToString();
+        }
         public override bool Equal(Value aValue, string areaConnectionStr)
         {
             int otherInt = (int)aValue.Eval(areaConnectionStr);
@@ -39,5 +42,7 @@ namespace Reports.Domain
             int otherInt = (int)aValue.Eval(areaConnectionStr);
             return Data >= otherInt;
         }
+
+
     }
 }

@@ -12,7 +12,10 @@ namespace Reports.Domain
         {
             return Data;
         }
-
+        public override string GetResult(string areaConnectionStr)
+        {
+            return Data;
+        }
         public override bool Equal(Value aValue, string areaConnectionStr)
         {
             try
