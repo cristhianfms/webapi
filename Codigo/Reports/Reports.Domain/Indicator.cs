@@ -10,8 +10,8 @@ namespace Reports.Domain
         public Guid? GreenConditionId { get; set; }
         public virtual BaseCondition GreenCondition { get; set; }
 
-        public Guid?  YellowConditionId { get; set; }
-        public virtual BaseCondition YellowCondition { get; set;}
+        public Guid? YellowConditionId { get; set; }
+        public virtual BaseCondition YellowCondition { get; set; }
         public Guid? RedConditionId { get; set; }
         public virtual BaseCondition RedCondition { get; set; }
 
@@ -54,5 +54,18 @@ namespace Reports.Domain
                 throw new DomainException("Condition is not valid");
             }
         }
+        public bool IsGreenOn(string areaConnectionStr)
+        {
+            return GreenCondition.Eval(areaConnectionStr);
+        }
+        public bool IsYellowOn(string areaConnectionStr)
+        {
+            return YellowCondition.Eval(areaConnectionStr);
+        }
+        public bool IsRedOn(string areaConnectionStr)
+        {
+            return RedCondition.Eval(areaConnectionStr);
+        }
     }
+            
 }

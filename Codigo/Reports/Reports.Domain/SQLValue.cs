@@ -33,7 +33,7 @@ namespace Reports.Domain
         public override string GetResult(string areaConnectionStr)
         {
             object result = Eval(areaConnectionStr);
-            return result.ToString();
+            return "(" + result.ToString() + ")";
         }
         public override bool Equal(Value aValue, string areaConnectionStr)
         {

@@ -11,7 +11,6 @@ namespace Reports.Domain
             return this.Der.Eval(areaConnectionStr)
                 || this.Izq.Eval(areaConnectionStr);
         }
-
         public override string GetResult(string areaConnectionStr)
         {
             string strIzq = this.Izq.GetResult(areaConnectionStr);

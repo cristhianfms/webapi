@@ -92,6 +92,22 @@ namespace Reports.BusinessLogic
             }
             return "";
         }
+        public Color GetOnCondition(Indicator indicator, string areaConnectionStr)
+        {
+            if (indicator.IsGreenOn(areaConnectionStr))
+            {
+                return Color.Green;
+            }
+            else if (indicator.IsYellowOn(areaConnectionStr))
+            {
+                return Color.Yellow;
+            }
+            else if (indicator.IsRedOn(areaConnectionStr))
+            {
+                return Color.Red;
+            }
+            return Color.Green;
+        }
         private void CheckEmtpyIndicator(Indicator indicator)
         {
             if (indicator == null) throw new BusinessLogicException("Null indicator");
