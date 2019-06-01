@@ -10,6 +10,12 @@ namespace Reports.Webapi.Models
     {
         public string Data { get; set; }
 
+        public IntValueModel() { }
+        public IntValueModel(Value entity)
+        {
+            SetModel(entity);
+        }
+
         public override Value ToEntity()
         {
             return new StringValue()

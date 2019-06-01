@@ -8,6 +8,12 @@ namespace Reports.Webapi.Models
 {
     public class AndConditionModel : CompositeConditionModel
     {
+        public AndConditionModel() { }
+        public AndConditionModel(BaseCondition entity)
+        {
+            SetModel(entity);
+        }
+
         public override BaseCondition ToEntity()
         {
             AndCondition andCondition = new AndCondition()

@@ -8,6 +8,12 @@ namespace Reports.Webapi.Models
 {
     public class ConditionModel : BaseConditionModel
     {
+        public ConditionModel() { }
+        public ConditionModel(BaseCondition entity)
+        {
+            SetModel(entity);
+        }
+
         public ValueModel ValueIzq { get; set; }
         public ValueModel ValueDer { get; set; }
         public string Operator { get; set; }

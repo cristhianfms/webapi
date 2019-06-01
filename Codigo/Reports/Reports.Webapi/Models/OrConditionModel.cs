@@ -8,6 +8,12 @@ namespace Reports.Webapi.Models
 {
     public class OrConditionModel : CompositeConditionModel
     {
+        public OrConditionModel() { }
+        public OrConditionModel(BaseCondition entity)
+        {
+            SetModel(entity);
+        }
+
         public override BaseCondition ToEntity()
         {
             OrCondition orCondition = new OrCondition()

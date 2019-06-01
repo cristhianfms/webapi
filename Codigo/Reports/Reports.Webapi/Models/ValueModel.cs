@@ -25,7 +25,7 @@ namespace Reports.Webapi.Models
         }
         protected override ValueModel SetModel(Value entity)
         {
-            throw new NotImplementedException();
+            return DTOConverter.ConvertToValueModel(entity);
         }
     }
 }

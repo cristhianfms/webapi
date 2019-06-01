@@ -9,6 +9,12 @@ namespace Reports.Webapi.Models
     public class SQLValueModel : ValueModel
     {
         public string Data { get; set; }
+        public SQLValueModel() { }
+        public SQLValueModel(Value entity)
+        {
+            SetModel(entity);
+        }
+
         public override Value ToEntity()
         {
             return new SQLValue()

@@ -24,7 +24,7 @@ namespace Reports.Webapi.Models
         }
         protected override BaseConditionModel SetModel(BaseCondition entity)
         {
-            throw new NotImplementedException();
+            return DTOConverter.ConvertToConditionModel(entity);
         }
     }
 }
