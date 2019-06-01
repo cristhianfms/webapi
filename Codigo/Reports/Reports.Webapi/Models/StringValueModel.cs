@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Reports.Domain;
+using Reports.Webapi.Parsers;
 
 namespace Reports.Webapi.Models
 {
@@ -10,8 +11,8 @@ namespace Reports.Webapi.Models
     {
         public string Data { get; set; }
 
-        public IntValueModel() { }
-        public IntValueModel(Value entity)
+        public StringValueModel() { }
+        public StringValueModel(Value entity)
         {
             SetModel(entity);
         }
@@ -28,6 +29,7 @@ namespace Reports.Webapi.Models
         {
             this.Id = entity.Id;
             this.Data = (entity as StringValue).Data;
+            this.ValueType = ValueModelType.STRING;
             return this;
         }
     }

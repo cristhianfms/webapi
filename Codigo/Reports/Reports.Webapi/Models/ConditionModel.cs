@@ -32,8 +32,8 @@ namespace Reports.Webapi.Models
         protected override BaseConditionModel SetModel(BaseCondition entity)
         {
             this.Id = entity.Id;
-            this.ValueDer = new ValueModel((entity as Condition).ValueDer);
-            this.ValueIzq = new ValueModel((entity as Condition).ValueIzq);
+            this.ValueDer = ValueModel.ToModel((entity as Condition).ValueDer);
+            this.ValueIzq = ValueModel.ToModel((entity as Condition).ValueIzq);
             this.Operator = (entity as Condition).Operator;
             return this;
         }

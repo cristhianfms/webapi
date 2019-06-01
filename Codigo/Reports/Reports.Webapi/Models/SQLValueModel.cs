@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Reports.Domain;
+using Reports.Webapi.Parsers;
 
 namespace Reports.Webapi.Models
 {
@@ -27,6 +28,7 @@ namespace Reports.Webapi.Models
         {
             this.Id = entity.Id;
             this.Data = (entity as SQLValue).Query;
+            this.ValueType = ValueModelType.SQL;
             return this;
         }
     }

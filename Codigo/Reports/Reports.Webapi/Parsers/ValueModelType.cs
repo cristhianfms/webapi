@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace Reports.Webapi.Parsers
 {
-    public static class ValueType
+    public static class ValueModelType
     {
-        public const string Int = "int";
+        public const string INT = "int";
         public const string SQL = "sql";
-        public const string String = "string";
+        public const string STRING = "string";
     }
 }

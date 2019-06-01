@@ -39,9 +39,9 @@ namespace Reports.Webapi.Models
         {
             this.Id = entity.Id;
             this.Name = entity.Name;
-            this.GreenCondition = new BaseConditionModel(entity.GreenCondition);
-            this.YellowCondition = new BaseConditionModel(entity.YellowCondition);
-            this.RedCondition = new BaseConditionModel(entity.RedCondition);
+            this.GreenCondition = BaseConditionModel.ToModel(entity.GreenCondition);
+            this.YellowCondition = BaseConditionModel.ToModel(entity.YellowCondition);
+            this.RedCondition = BaseConditionModel.ToModel(entity.RedCondition);
             return this;
         }
     }

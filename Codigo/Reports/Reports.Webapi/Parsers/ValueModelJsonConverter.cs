@@ -18,11 +18,11 @@ namespace Reports.Webapi.Parsers
             ValueModel valueModel = new ValueModel();
             switch (valueType)
             {
-                case ValueType.Int:
+                case ValueModelType.INT:
                     valueModel = new IntValueModel();break;
-                case ValueType.SQL:
+                case ValueModelType.SQL:
                     valueModel = new SQLValueModel();break;
-                case ValueType.String:
+                case ValueModelType.STRING:
                     valueModel = new StringValueModel();break;
                 default:
                     throw new ModelException("Can not parse value type");

@@ -16,13 +16,13 @@ namespace Reports.Webapi.Models
             }
             if(baseCondition is OrCondition)
             {
-                return new OrConditionModel(baseCondition);
+                return  new OrConditionModel(baseCondition);
             }
             if(baseCondition is Condition)
             {
-                return new ConditionModel(baseCondition);
+                return  new ConditionModel(baseCondition);
             }
-            return new BaseConditionModel();
+            return  new BaseConditionModel(baseCondition);
         }
 
 
@@ -30,7 +30,7 @@ namespace Reports.Webapi.Models
         {
             if(value is IntValue)
             {
-                return new IntValueModel(value);
+                return  new IntValueModel(value);
             }
             if (value is StringValue)
             {
@@ -40,6 +40,7 @@ namespace Reports.Webapi.Models
             {
                 return new SQLValueModel(value);
             }
+            return new ValueModel(value);
         }
     }
 }

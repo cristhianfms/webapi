@@ -6,6 +6,7 @@ using Reports.Domain;
 using Reports.Webapi.Parsers;
 using Newtonsoft.Json;
 
+
 namespace Reports.Webapi.Models
 {
     [JsonConverter(typeof(ValueModelJsonConverter))]
