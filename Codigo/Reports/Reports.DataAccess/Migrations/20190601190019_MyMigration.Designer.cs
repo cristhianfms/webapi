@@ -10,7 +10,7 @@ using Reports.DataAccess;
 namespace Reports.DataAccess.Migrations
 {
     [DbContext(typeof(ReportsContext))]
-    [Migration("20190509225547_MyMigration")]
+    [Migration("20190601190019_MyMigration")]
     partial class MyMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -155,6 +155,22 @@ namespace Reports.DataAccess.Migrations
                     b.ToTable("ValueExpressions");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("ValueExpression");
+                });
+
+            modelBuilder.Entity("Reports.Logger.Domain.Log", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Action");
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<string>("UserName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Logs");
                 });
 
             modelBuilder.Entity("Reports.Domain.Condition", b =>

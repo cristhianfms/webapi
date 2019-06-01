@@ -1,4 +1,5 @@
 using Reports.Domain;
+using Reports.Logger.Domain;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -8,6 +9,7 @@ namespace Reports.DataAccess
     {
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Log> Logs { get; set; }
         public DbSet<Area> Area { get; set; }
         public DbSet<Indicator> Indicators { get; set; }
 

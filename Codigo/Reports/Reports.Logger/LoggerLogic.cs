@@ -4,8 +4,12 @@ using Reports.Logger.Interface;
 using Reports.Logger.Domain;
 using Reports.Domain;
 using Reports.DataAccess.Logger.Interface;
+using Reports.DataAccess.Interface;
+using Reports.BusinessLogic;
+using Reports.DBConnections;
+using System.Data;
 
-    
+
 
 namespace Reports.Logger
 {
@@ -15,10 +19,11 @@ namespace Reports.Logger
         public LoggerLogic(ILogRepository logRepository) {
             repository = logRepository;
         }
-        public void Create(Log log) {
+        public Log Create(Log log) {
             try{
                     repository.Add(log);
                     repository.Save();
+                return log;
             }
             catch (Exception e)
             {
@@ -36,12 +41,13 @@ namespace Reports.Logger
             }
         }
 
-        public IEnumerable<User> RankingTopTen(){
-            return null;
-             try
+        public DataSet RankingTopTen(){
+            try
             {
-    //conexion a la base, hacer un 
-    //select top(10) from la_tabla where group by user_id, ordey by user_id desc
+                IDBConnectionExcecuter conexion = new DBConnectionExcecuter();
+                conexion.SetConnectionString("Server=.\\SQLEXPRESS;Database=ReportsDB;Trusted_Connection=True;MultipleActiveResultSets=True;");
+                conexion.SetQuerySQL("select top(10) UserName from [ReportsDB].[dbo].[Logs] group by UserName order by UserName desc");
+                return conexion.GetResult();
             }
             catch (RepositoryInterfaceException e)
             {

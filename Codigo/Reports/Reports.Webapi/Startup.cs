@@ -15,7 +15,11 @@ using Reports.BusinessLogic;
 using Reports.BusinessLogic.Interface;
 using Reports.DataAccess;
 using Reports.DataAccess.Interface;
+using Reports.DataAccess.Logger.Interface;
+using Reports.Logger.Interface;
 using Reports.Domain;
+using Reports.DataAccess.Logger;
+using Reports.Logger;
 
 
 
@@ -43,7 +47,10 @@ namespace Reports.Webapi
             );
 
             services.AddScoped<IAreaLogic, AreaLogic>();
+            services.AddScoped<ILoggerLogic, LoggerLogic>();
+            services.AddScoped<ISessionLogic, SessionLogic>();
             services.AddScoped<IRepository<Area>, AreaRepository>();
+            services.AddScoped<ILogRepository, LogRepository>();
             services.AddScoped<IRepository<AreaManager>, AreaManagerRepository>();
 
             services.AddScoped<IUserLogic, UserLogic>();

@@ -155,6 +155,22 @@ namespace Reports.DataAccess.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("ValueExpression");
                 });
 
+            modelBuilder.Entity("Reports.Logger.Domain.Log", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Action");
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<string>("UserName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Logs");
+                });
+
             modelBuilder.Entity("Reports.Domain.Condition", b =>
                 {
                     b.HasBaseType("Reports.Domain.Component");

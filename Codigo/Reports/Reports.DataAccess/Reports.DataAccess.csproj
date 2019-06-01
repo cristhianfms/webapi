@@ -1,8 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="..\Reports.DataAccess.Logger.Interface\Reports.DataAccess.Logger.Interface.csproj" />
     <ProjectReference Include="..\Reports.Domain\Reports.Domain.csproj" />
     <ProjectReference Include="..\Reports.DataAccess.Interface\Reports.DataAccess.Interface.csproj" />
+    <ProjectReference Include="..\Reports.Logger.Domain\Reports.Logger.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

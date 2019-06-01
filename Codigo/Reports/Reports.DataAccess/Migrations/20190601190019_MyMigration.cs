@@ -22,6 +22,20 @@ namespace Reports.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Logs",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    UserName = table.Column<string>(nullable: true),
+                    Date = table.Column<DateTime>(nullable: false),
+                    Action = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Logs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -256,6 +270,9 @@ namespace Reports.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "IndicatorDisplay");
+
+            migrationBuilder.DropTable(
+                name: "Logs");
 
             migrationBuilder.DropTable(
                 name: "Users");

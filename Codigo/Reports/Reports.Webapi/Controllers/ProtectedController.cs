@@ -1,7 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using Reports.BusinessLogic.Interface;
-using Homeworks.Webapi.Filters;
+using Reports.Webapi.Filters;
 using Reports.Webapi.Models;
 
 namespace Homeworks.WebApi.Controllers
@@ -20,14 +20,15 @@ namespace Homeworks.WebApi.Controllers
         [ProtectFilter("Admin")]
         [HttpGet("CheckAdmin")]
         public IActionResult CheckLoginAdmin() {
-            return Ok(new UserModel(sessions.GetUser(Request.Headers["Authorization"]).User));
+            return Ok(new UserModel(sessions.GetUser(Request.Headers["Authorization"])));
         }
 
         [ProtectFilter("User")]
         [HttpGet("CheckUser")]
         public IActionResult CheckLoginUser() {
-            return Ok(new UserModel(sessions.GetUser(Request.Headers["Authorization"]).User));
+            return Ok(new UserModel(sessions.GetUser(Request.Headers["Authorization"])));
         }
+    
 
         [HttpGet]
         public IActionResult Get() {
