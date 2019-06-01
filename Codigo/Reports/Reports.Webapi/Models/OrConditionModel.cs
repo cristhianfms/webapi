@@ -24,7 +24,7 @@ namespace Reports.Webapi.Models
             this.Id = entity.Id;
             this.Der = BaseConditionModel.ToModel((entity as OrCondition).Der);
             this.Izq = BaseConditionModel.ToModel((entity as OrCondition).Izq);
-            this.Condition = ConditionType.OR;
+            this.LogicOperator = ConditionType.OR;
             return this;
         }
 

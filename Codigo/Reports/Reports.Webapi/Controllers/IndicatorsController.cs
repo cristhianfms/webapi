@@ -38,7 +38,7 @@ namespace Reports.Webapi.Controllers
         {
             try
             {
-                Indicator indicator = IndicatorModel.ToEntity(model);
+                Indicator indicator = model.ToEntity();
                 var indicatorCreated = indicatorLogic.Create(indicator);
                 return CreatedAtRoute("GetIndicator", new { id = indicatorCreated.Id }, IndicatorModel.ToModel(indicator));
             }

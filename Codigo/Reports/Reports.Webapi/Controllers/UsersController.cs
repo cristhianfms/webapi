@@ -114,7 +114,7 @@ namespace Reports.Webapi.Controllers
                 indicatorModels.Select(im =>
                 {
                     var indicator = indicatorLogic.Get(im.Id);
-                    im.IsTurnON = indicator.IsTurnON();
+                    //im.IsTurnON = indicator.IsTurnON();
                     return im;
                 });
                 

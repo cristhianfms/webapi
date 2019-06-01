@@ -12,8 +12,8 @@ namespace Reports.DataAccess
         public DbSet<Indicator> Indicators { get; set; }
 
         public DbSet<Condition> Conditions { get; set; }
-        public DbSet<AndCondition> LogicAnds { get; set; }
-        public DbSet<OrCondition> LogicOrs { get; set; }
+        public DbSet<AndCondition> AndConditions { get; set; }
+        public DbSet<OrCondition> OrConditions { get; set; }
         
         public DbSet<SQLValue> SQLValues { get; set; }
         public DbSet<StringValue> StringValues { get; set; }
@@ -36,8 +36,6 @@ namespace Reports.DataAccess
             modelBuilder.Entity<Area>().HasAlternateKey(a => a.Name);
             modelBuilder.Entity<Area>().Property(a => a.Name).IsRequired();
             modelBuilder.Entity<Area>().Property(a => a.ConnectionString).IsRequired();
-
-            modelBuilder.Entity<Indicator>().Property(i => i.Color).IsRequired();
 
             modelBuilder.Entity<IndicatorDisplay>().Property(i => i.UserId).IsRequired();
             modelBuilder.Entity<IndicatorDisplay>().Property(i => i.AreaId).IsRequired();

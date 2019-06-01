@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Reports.Domain
 {
-    public enum Operator { EQ, LT, GT, LE, GE };
+    
 
     public class Condition : BaseCondition
     {
@@ -14,7 +14,7 @@ namespace Reports.Domain
         public Guid? ValueDerId { get; set; }
         public virtual Value ValueDer { get; set; }
 
-        public Operator ConditionOperator {get;set;}
+        public string Operator {get;set;}
 
         public override bool IsValid()
         {
@@ -23,24 +23,24 @@ namespace Reports.Domain
         }
         public override bool Eval(string areaConnectionStr)
         {
-            if(ConditionOperator == Operator.EQ)
+            if(Operator == ConditionType.EQ)
             {
                 return ValueIzq.Equal(ValueDer, areaConnectionStr);
             }
-            else if (ConditionOperator == Operator.LT)
+            else if (Operator == ConditionType.LT)
             {
                 return ValueIzq.LessThan(ValueDer, areaConnectionStr);
 
             }
-            else if (ConditionOperator == Operator.GT)
+            else if (Operator == ConditionType.GT)
             {
                 return ValueIzq.GreaterThan(ValueDer, areaConnectionStr);
             }
-            else if (ConditionOperator == Operator.LE)
+            else if (Operator == ConditionType.LE)
             {
                 return ValueIzq.LessEqualThan(ValueDer, areaConnectionStr);
             }
-            else if (ConditionOperator == Operator.GE)
+            else if (Operator == ConditionType.GE)
             {
                 return ValueIzq.GreaterEqualThan(ValueDer, areaConnectionStr);
             }
@@ -48,31 +48,31 @@ namespace Reports.Domain
         }
         public override string GetResult(string areaConnectionStr)
         {
-            if (ConditionOperator == Operator.EQ)
+            if (Operator == ConditionType.EQ)
             {
                 string strIzq = this.ValueIzq.GetResult(areaConnectionStr);
                 string strDer = this.ValueDer.GetResult(areaConnectionStr);
                 return strIzq + " == " + strDer;
             }
-            else if (ConditionOperator == Operator.LT)
+            else if (Operator == ConditionType.LT)
             {
                 string strIzq = this.ValueIzq.GetResult(areaConnectionStr);
                 string strDer = this.ValueDer.GetResult(areaConnectionStr);
                 return strIzq + " < " + strDer;
             }
-            else if (ConditionOperator == Operator.GT)
+            else if (Operator == ConditionType.GT)
             {
                 string strIzq = this.ValueIzq.GetResult(areaConnectionStr);
                 string strDer = this.ValueDer.GetResult(areaConnectionStr);
                 return strIzq + " > " + strDer;
             }
-            else if (ConditionOperator == Operator.LE)
+            else if (Operator == ConditionType.LE)
             {
                 string strIzq = this.ValueIzq.GetResult(areaConnectionStr);
                 string strDer = this.ValueDer.GetResult(areaConnectionStr);
                 return strIzq + " <= " + strDer;
             }
-            else if (ConditionOperator == Operator.GE)
+            else if (Operator == ConditionType.GE)
             {
                 string strIzq = this.ValueIzq.GetResult(areaConnectionStr);
                 string strDer = this.ValueDer.GetResult(areaConnectionStr);

@@ -10,6 +10,6 @@ namespace Reports.Webapi.Models
     {
         public BaseConditionModel Izq { get; set; }
         public BaseConditionModel Der { get; set; }
-        public string LogicCondition { get; set; }
+        public string LogicOperator { get; set; }
     }
 }
