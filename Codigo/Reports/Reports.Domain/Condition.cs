@@ -15,6 +15,7 @@ namespace Reports.Domain
         public virtual Value ValueDer { get; set; }
 
         public Operator ConditionOperator {get;set;}
+
         public override bool IsValid()
         {
             return ValueIzq != null && ValueDer != null 

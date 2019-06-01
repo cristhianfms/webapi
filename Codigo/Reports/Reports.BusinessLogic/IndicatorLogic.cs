@@ -108,6 +108,7 @@ namespace Reports.BusinessLogic
             }
             return Color.Green;
         }
+
         private void CheckEmtpyIndicator(Indicator indicator)
         {
             if (indicator == null) throw new BusinessLogicException("Null indicator");
