@@ -8,7 +8,7 @@ using Reports.Webapi.Models;
 
 namespace Reports.Webapi.Parsers
 {
-    public class BaseConditionJsonConverter : JsonCreationConverter<BaseConditionModel>
+    public class BaseConditionModelJsonConverter : JsonCreationConverter<BaseConditionModel>
     {
         protected override BaseConditionModel Create(Type objectType, JObject jObject)
         {
@@ -16,15 +16,15 @@ namespace Reports.Webapi.Parsers
             {
                 throw new ArgumentNullException("jObject");
             }
-            if (jObject["StudentId"] != null)
+            if (jObject["Condition"] != null)
             {
-                return new StudentModel();
+                return new ConditionModel();
             }
-            if (jObject["TeacherId"] != null)
+            if (jObject["LogicCondition"] != null)
             {
-                return new TeacherModel();
+                return new CompositeConditionModel();
             }
-            return new UserModel();
+            return new BaseConditionModel();
         }
     }
 }
