@@ -163,8 +163,11 @@ namespace Reports.Domain
 
         private bool IntEqual(Value aValue, string areaConnectionStr)
         {
-            object queryResult = Eval(areaConnectionStr);
-            return ((int)queryResult) == (int)aValue.Eval(areaConnectionStr);
+            object queryResult1 = Eval(areaConnectionStr);
+            object queryResult2 = aValue.Eval(areaConnectionStr);
+            decimal decimal1 = Convert.ToDecimal(queryResult1);
+            decimal decimal2 = Convert.ToDecimal(queryResult2);
+            return decimal1 == decimal2;
         }
         private bool BoolEqual(Value aValue, string areaConnectionStr)
         {
@@ -180,8 +183,11 @@ namespace Reports.Domain
 
         private bool IntGreater(Value aValue, string areaConnectionStr)
         {
-            object queryResult = Eval(areaConnectionStr);
-            return ((int)queryResult) > (int)aValue.Eval(areaConnectionStr);
+            object queryResult1 = Eval(areaConnectionStr);
+            object queryResult2 = aValue.Eval(areaConnectionStr);
+            decimal decimal1 = Convert.ToDecimal(queryResult1);
+            decimal decimal2 = Convert.ToDecimal(queryResult2);
+            return decimal1 > decimal2;
         }
         private bool BoolGreater(Value aValue, string areaConnectionStr)
         {
@@ -201,8 +207,11 @@ namespace Reports.Domain
 
         private bool IntLess(Value aValue, string areaConnectionStr)
         {
-            object queryResult = Eval(areaConnectionStr);
-            return ((int)queryResult) < (int)aValue.Eval(areaConnectionStr);
+            object queryResult1= Eval(areaConnectionStr);
+            object queryResult2 = aValue.Eval(areaConnectionStr);
+            decimal decimal1 = Convert.ToDecimal(queryResult1);
+            decimal decimal2 = Convert.ToDecimal(queryResult2);
+            return decimal1 < decimal2;
         }
         private bool BoolLess(Value aValue, string areaConnectionStr)
         {
@@ -222,8 +231,11 @@ namespace Reports.Domain
 
         private bool IntGreaterEqual(Value aValue, string areaConnectionStr)
         {
-            object queryResult = Eval(areaConnectionStr);
-            return ((int)queryResult) >= (int)aValue.Eval(areaConnectionStr);
+            object queryResult1 = Eval(areaConnectionStr);
+            object queryResult2 = aValue.Eval(areaConnectionStr);
+            decimal decimal1 = Convert.ToDecimal(queryResult1);
+            decimal decimal2 = Convert.ToDecimal(queryResult2);
+            return decimal1 >= decimal2;
         }
         private bool BoolGreaterEqual(Value aValue, string areaConnectionStr)
         {
@@ -243,8 +255,11 @@ namespace Reports.Domain
 
         private bool IntLessEqual(Value aValue, string areaConnectionStr)
         {
-            object queryResult = Eval(areaConnectionStr);
-            return ((int)queryResult) <= (int)aValue.Eval(areaConnectionStr);
+            object queryResult1 = Eval(areaConnectionStr);
+            object queryResult2 = aValue.Eval(areaConnectionStr);
+            decimal decimal1 = Convert.ToDecimal(queryResult1);
+            decimal decimal2 = Convert.ToDecimal(queryResult2);
+            return decimal1 <= decimal2;
         }
         private bool BoolLessEqual(Value aValue, string areaConnectionStr)
         {

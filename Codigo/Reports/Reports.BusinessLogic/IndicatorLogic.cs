@@ -76,39 +76,38 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-        public string GetResult(Indicator indicator, Color color, string areaConnectionStr)
+        public string GetResult(Indicator indicator, string color, string areaConnectionStr)
         {
-            if (color == Color.Green)
+            if (color == ConditionColor.GREEN)
             {
                 return GetGreenResult(indicator, areaConnectionStr);
             }
-            else if (color == Color.Yellow)
+            else if (color == ConditionColor.YELLOW)
             {
                 return GetYellowResult(indicator, areaConnectionStr);
             }
-            else if (color == Color.Red)
+            else if (color == ConditionColor.RED)
             {
                 return GetRedResult(indicator, areaConnectionStr);
             }
             return "";
         }
-        public Color GetOnCondition(Indicator indicator, string areaConnectionStr)
+        public string GetOnCondition(Indicator indicator, string areaConnectionStr)
         {
             if (indicator.IsGreenOn(areaConnectionStr))
             {
-                return Color.Green;
+                return ConditionColor.GREEN;
             }
             else if (indicator.IsYellowOn(areaConnectionStr))
             {
-                return Color.Yellow;
+                return ConditionColor.YELLOW;
             }
             else if (indicator.IsRedOn(areaConnectionStr))
             {
-                return Color.Red;
+                return ConditionColor.RED;
             }
-            return Color.Green;
+            return ConditionColor.GREEN;
         }
-
         private void CheckEmtpyIndicator(Indicator indicator)
         {
             if (indicator == null) throw new BusinessLogicException("Null indicator");
@@ -151,6 +150,5 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException("Error in condition", e);
             }
         }
-
     }
 }

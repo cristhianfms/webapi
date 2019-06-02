@@ -105,7 +105,7 @@ namespace Reports.Webapi.Controllers
             {
                 string areaConnectionStr = "Server=.\\SQLEXPRESS;Database=AreaDB;Trusted_Connection=True;MultipleActiveResultSets=True;";
                 Indicator indicator = indicatorLogic.Get(id);
-                string result = indicatorLogic.GetResult(indicator, Color.Green,areaConnectionStr);
+                string result = indicatorLogic.GetResult(indicator, ConditionColor.GREEN,areaConnectionStr);
 
                 return Ok(result);
             }
@@ -122,7 +122,7 @@ namespace Reports.Webapi.Controllers
             {
                 string areaConnectionStr = "Server=.\\SQLEXPRESS;Database=AreaDB;Trusted_Connection=True;MultipleActiveResultSets=True;";
                 Indicator indicator = indicatorLogic.Get(id);
-                string result = indicatorLogic.GetResult(indicator, Color.Yellow, areaConnectionStr);
+                string result = indicatorLogic.GetResult(indicator, ConditionColor.YELLOW, areaConnectionStr);
 
                 return Ok(result);
             }
@@ -140,7 +140,24 @@ namespace Reports.Webapi.Controllers
             {
                 string areaConnectionStr = "Server=.\\SQLEXPRESS;Database=AreaDB;Trusted_Connection=True;MultipleActiveResultSets=True;";
                 Indicator indicator = indicatorLogic.Get(id);
-                string result = indicatorLogic.GetResult(indicator, Color.Red, areaConnectionStr);
+                string result = indicatorLogic.GetResult(indicator, ConditionColor.RED, areaConnectionStr);
+
+                return Ok(result);
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("{id}/GetOnCondition", Name = "GetOnCondition")]
+        public IActionResult GetOnCondition(Guid id)
+        {
+            try
+            {
+                string areaConnectionStr = "Server=.\\SQLEXPRESS;Database=AreaDB;Trusted_Connection=True;MultipleActiveResultSets=True;";
+                Indicator indicator = indicatorLogic.Get(id);
+                string result = indicatorLogic.GetOnCondition(indicator, areaConnectionStr);
 
                 return Ok(result);
             }
