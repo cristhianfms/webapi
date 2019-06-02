@@ -97,5 +97,58 @@ namespace Reports.Webapi.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpGet("{id}/GetGreenResult", Name = "GetIndicatorGreenResult")]
+        public IActionResult GetGreenResult(Guid id)
+        {
+            try
+            {
+                string areaConnectionStr = "Server=.\\SQLEXPRESS;Database=AreaDB;Trusted_Connection=True;MultipleActiveResultSets=True;";
+                Indicator indicator = indicatorLogic.Get(id);
+                string result = indicatorLogic.GetResult(indicator, Color.Green,areaConnectionStr);
+
+                return Ok(result);
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("{id}/GetYellowResult", Name = "GetIndicatorYellowResult")]
+        public IActionResult GetYellowResult(Guid id)
+        {
+            try
+            {
+                string areaConnectionStr = "Server=.\\SQLEXPRESS;Database=AreaDB;Trusted_Connection=True;MultipleActiveResultSets=True;";
+                Indicator indicator = indicatorLogic.Get(id);
+                string result = indicatorLogic.GetResult(indicator, Color.Yellow, areaConnectionStr);
+
+                return Ok(result);
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
+        [HttpGet("{id}/GetRedResult", Name = "GetIndicatorRedResult")]
+        public IActionResult GetRedResult(Guid id)
+        {
+            try
+            {
+                string areaConnectionStr = "Server=.\\SQLEXPRESS;Database=AreaDB;Trusted_Connection=True;MultipleActiveResultSets=True;";
+                Indicator indicator = indicatorLogic.Get(id);
+                string result = indicatorLogic.GetResult(indicator, Color.Red, areaConnectionStr);
+
+                return Ok(result);
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
     }
 }

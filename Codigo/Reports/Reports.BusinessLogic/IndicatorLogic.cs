@@ -86,7 +86,7 @@ namespace Reports.BusinessLogic
             {
                 return GetYellowResult(indicator, areaConnectionStr);
             }
-            else if (color == Color.Yellow)
+            else if (color == Color.Red)
             {
                 return GetRedResult(indicator, areaConnectionStr);
             }
