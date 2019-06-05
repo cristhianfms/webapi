@@ -6,11 +6,11 @@ using Reports.DataAccess.Interface;
 
 namespace Reports.BusinessLogic
 {
-    public class IndicatorDisplayLogic : IIndicatorDisplayLogic
+    public class Indicator_ManagerLogic : IIndicator_ManagerLogic
     {
-        private IRepository<IndicatorDisplay> indDisplayRepo;
+        private IRepository<Indicator_Manager> indDisplayRepo;
 
-        public IndicatorDisplayLogic(IRepository<IndicatorDisplay> indDisplayRepo)
+        public Indicator_ManagerLogic(IRepository<Indicator_Manager> indDisplayRepo)
         {
             try {
                 this.indDisplayRepo = indDisplayRepo;
@@ -21,10 +21,10 @@ namespace Reports.BusinessLogic
             }
         }
 
-        public void Create(IndicatorDisplay indDisplay) {
+        public void Create(Indicator_Manager indDisplay) {
             try
             {
-                indDisplay.Id = Guid.NewGuid();
+                indDisplay.Indicator_ManagerId = Guid.NewGuid();
                 indDisplayRepo.Add(indDisplay);
                 indDisplayRepo.Save();
             }
@@ -34,7 +34,7 @@ namespace Reports.BusinessLogic
             }
         }
 
-        public IndicatorDisplay Get(Guid id)
+        public Indicator_Manager Get(Guid id)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace Reports.BusinessLogic
 
         }
 
-        public IEnumerable<IndicatorDisplay> GetAll()
+        public IEnumerable<Indicator_Manager> GetAll()
         {
             try
             {
@@ -59,7 +59,7 @@ namespace Reports.BusinessLogic
             }
         }
 
-        public void Remove(IndicatorDisplay indDisplay)
+        public void Remove(Indicator_Manager indDisplay)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace Reports.BusinessLogic
             }
         }
 
-        public void Update(IndicatorDisplay indDisplay)
+        public void Update(Indicator_Manager indDisplay)
         {
             try
             {
@@ -84,14 +84,14 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-        public IEnumerable<IndicatorDisplay> GetAllByManagerId(Guid managerId)
+        public IEnumerable<Indicator_Manager> GetAllByManagerId(Guid managerId)
         {
             try
             {
-                IEnumerable<IndicatorDisplay> all = this.indDisplayRepo.GetAll();
-               var allByMangerId = new List<IndicatorDisplay>();
-                foreach(IndicatorDisplay ind in all){
-                    if(ind.Id == managerId){
+                IEnumerable<Indicator_Manager> all = this.indDisplayRepo.GetAll();
+               var allByMangerId = new List<Indicator_Manager>();
+                foreach(Indicator_Manager ind in all){
+                    if(ind.Indicator_ManagerId == managerId){
                         allByMangerId.Add(ind);
                     }
                 }

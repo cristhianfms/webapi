@@ -81,6 +81,22 @@ namespace Reports.Domain
             return "";
         }
 
+        public override void Update(BaseCondition entity)
+        {
+            Condition entityCondition = (entity as Condition);
+            if (entityCondition.Operator != null)
+            {
+                this.Operator = entityCondition.Operator;
+            }
+            if (entityCondition.ValueDer != null)
+            {
+                this.ValueDer.Update(entityCondition.ValueDer);
+            }
+            if (entityCondition.ValueIzq != null)
+            {
+                this.ValueDer.Update(entityCondition.ValueIzq);
+            }
+        }
 
     }
 }

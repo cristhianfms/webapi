@@ -37,10 +37,6 @@ namespace Reports.DataAccess
             modelBuilder.Entity<Area>().Property(a => a.Name).IsRequired();
             modelBuilder.Entity<Area>().Property(a => a.ConnectionString).IsRequired();
 
-            modelBuilder.Entity<IndicatorDisplay>().Property(i => i.UserId).IsRequired();
-            modelBuilder.Entity<IndicatorDisplay>().Property(i => i.AreaId).IsRequired();
-            modelBuilder.Entity<IndicatorDisplay>().Property(i => i.Orden).IsRequired();
-            modelBuilder.Entity<IndicatorDisplay>().Property(i => i.Visible).IsRequired();
 
 
             modelBuilder.Entity<BaseCondition>().ToTable("Conditions");
@@ -50,7 +46,7 @@ namespace Reports.DataAccess
             modelBuilder.Entity<Value>().ToTable("Values");
 
             modelBuilder.Entity<AreaManager>().HasKey(x => new { x.AreaId, x.ManagerId });
-            modelBuilder.Entity<IndicatorDisplay>().HasKey(x => new { x.AreaId, x.UserId,x.IndicatorId });
+            modelBuilder.Entity<Indicator_Manager>().HasKey(x => new { x.ManagerId,x.IndicatorId });
             
             modelBuilder.Entity<AreaManager>().HasOne<Area>(am => am.Area)
                 .WithMany(a => a.AreaManagers);

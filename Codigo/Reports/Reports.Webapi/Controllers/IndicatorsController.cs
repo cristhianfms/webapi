@@ -40,8 +40,7 @@ namespace Reports.Webapi.Controllers
             {
                 Indicator indicator = model.ToEntity();
                 var indicatorCreated = indicatorLogic.Create(indicator);
-                IndicatorModel test = IndicatorModel.ToModel(indicatorCreated);
-
+               
                 return CreatedAtRoute("GetIndicator", new { id = indicatorCreated.Id }, IndicatorModel.ToModel(indicator));
             }
             catch (BusinessLogicInterfaceException e)

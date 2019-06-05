@@ -93,27 +93,27 @@ namespace Reports.DataAccess.Migrations
                     b.ToTable("Indicators");
                 });
 
-            modelBuilder.Entity("Reports.Domain.IndicatorDisplay", b =>
+            modelBuilder.Entity("Reports.Domain.Indicator_Manager", b =>
                 {
-                    b.Property<Guid>("AreaId");
-
-                    b.Property<Guid>("UserId");
+                    b.Property<Guid>("ManagerId");
 
                     b.Property<Guid>("IndicatorId");
 
-                    b.Property<Guid>("Id");
+                    b.Property<string>("CustomName");
 
-                    b.Property<int>("Orden");
+                    b.Property<Guid>("Indicator_ManagerId");
+
+                    b.Property<int>("Position");
 
                     b.Property<Guid>("User");
 
                     b.Property<bool>("Visible");
 
-                    b.HasKey("AreaId", "UserId", "IndicatorId");
+                    b.HasKey("ManagerId", "IndicatorId");
 
                     b.HasIndex("IndicatorId");
 
-                    b.ToTable("IndicatorDisplay");
+                    b.ToTable("Indicator_Manager");
                 });
 
             modelBuilder.Entity("Reports.Domain.User", b =>
@@ -265,13 +265,8 @@ namespace Reports.DataAccess.Migrations
                         .HasForeignKey("YellowConditionId");
                 });
 
-            modelBuilder.Entity("Reports.Domain.IndicatorDisplay", b =>
+            modelBuilder.Entity("Reports.Domain.Indicator_Manager", b =>
                 {
-                    b.HasOne("Reports.Domain.Area", "Area")
-                        .WithMany()
-                        .HasForeignKey("AreaId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Reports.Domain.Indicator", "Indicator")
                         .WithMany()
                         .HasForeignKey("IndicatorId")

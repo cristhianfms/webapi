@@ -160,28 +160,22 @@ namespace Reports.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "IndicatorDisplay",
+                name: "Indicator_Manager",
                 columns: table => new
                 {
-                    UserId = table.Column<Guid>(nullable: false),
-                    AreaId = table.Column<Guid>(nullable: false),
+                    ManagerId = table.Column<Guid>(nullable: false),
                     IndicatorId = table.Column<Guid>(nullable: false),
-                    Id = table.Column<Guid>(nullable: false),
+                    Indicator_ManagerId = table.Column<Guid>(nullable: false),
                     User = table.Column<Guid>(nullable: false),
-                    Orden = table.Column<int>(nullable: false),
-                    Visible = table.Column<bool>(nullable: false)
+                    Position = table.Column<int>(nullable: false),
+                    Visible = table.Column<bool>(nullable: false),
+                    CustomName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IndicatorDisplay", x => new { x.AreaId, x.UserId, x.IndicatorId });
+                    table.PrimaryKey("PK_Indicator_Manager", x => new { x.ManagerId, x.IndicatorId });
                     table.ForeignKey(
-                        name: "FK_IndicatorDisplay_Area_AreaId",
-                        column: x => x.AreaId,
-                        principalTable: "Area",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_IndicatorDisplay_Indicators_IndicatorId",
+                        name: "FK_Indicator_Manager_Indicators_IndicatorId",
                         column: x => x.IndicatorId,
                         principalTable: "Indicators",
                         principalColumn: "Id",
@@ -214,8 +208,8 @@ namespace Reports.DataAccess.Migrations
                 column: "ValueIzqId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_IndicatorDisplay_IndicatorId",
-                table: "IndicatorDisplay",
+                name: "IX_Indicator_Manager_IndicatorId",
+                table: "Indicator_Manager",
                 column: "IndicatorId");
 
             migrationBuilder.CreateIndex(
@@ -245,7 +239,7 @@ namespace Reports.DataAccess.Migrations
                 name: "AreaManager");
 
             migrationBuilder.DropTable(
-                name: "IndicatorDisplay");
+                name: "Indicator_Manager");
 
             migrationBuilder.DropTable(
                 name: "Users");

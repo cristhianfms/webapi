@@ -66,6 +66,32 @@ namespace Reports.Domain
         {
             return RedCondition.Eval(areaConnectionStr);
         }
+
+
+        public Indicator Update(Indicator entity)
+        {
+            if (entity.Name != null)
+            {
+                Name = entity.Name;
+            }
+
+            if (entity.GreenCondition != null)
+            {
+                GreenCondition.Update(entity.GreenCondition);
+            }
+
+            if (entity.GreenCondition != null)
+            {
+                GreenCondition.Update(entity.GreenCondition);
+            }
+
+            if (entity.GreenCondition != null)
+            {
+                GreenCondition.Update(entity.GreenCondition);
+            }
+            
+            return this;
+        }
     }
             
 }

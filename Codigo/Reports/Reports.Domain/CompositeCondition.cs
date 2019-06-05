@@ -15,6 +15,18 @@ namespace Reports.Domain
         {
             return Izq != null && Der != null && Izq.IsValid() && Der.IsValid() ;
         }
+
+        public override void Update(BaseCondition entity)
+        {
+            if((entity as CompositeCondition).Izq != null)
+            {
+                this.Update((entity as CompositeCondition).Izq);
+            }
+            if ((entity as CompositeCondition).Der != null)
+            {
+                this.Update((entity as CompositeCondition).Der);
+            }
+        }
     }
 }
 
