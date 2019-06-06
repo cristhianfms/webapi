@@ -48,9 +48,14 @@ namespace Reports.BusinessLogic
             {
                 CheckEmtpyIndicator(indicator);
                 CheckValidIndicator(indicator);
-                repository.Update(indicator);
+                Indicator indicatorToUpdate = repository.Get(indicator.Id);
+                indicatorToUpdate.Name = indicator.Name;
+                indicatorToUpdate.GreenCondition = indicator.GreenCondition;
+                indicatorToUpdate.YellowCondition = indicator.YellowCondition;
+                indicatorToUpdate.RedCondition = indicator.RedCondition;
+                repository.Update(indicatorToUpdate);
                 repository.Save();
-                return indicator;
+                return indicatorToUpdate;
             }
             catch (RepositoryInterfaceException e)
             {

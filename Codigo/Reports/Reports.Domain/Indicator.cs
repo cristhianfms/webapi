@@ -17,7 +17,7 @@ namespace Reports.Domain
 
         public bool IsValid()
         {
-            return Id != null && GreenCondition != null && YellowCondition != null
+            return Id != null && Name!=null && GreenCondition != null && YellowCondition != null
                 && RedCondition != null && GreenCondition.IsValid()
                 && YellowCondition.IsValid() && RedCondition.IsValid();
         }
@@ -77,17 +77,17 @@ namespace Reports.Domain
 
             if (entity.GreenCondition != null)
             {
-                GreenCondition.Update(entity.GreenCondition);
+                GreenCondition = entity.GreenCondition;
             }
 
-            if (entity.GreenCondition != null)
+            if (entity.YellowCondition != null)
             {
-                GreenCondition.Update(entity.GreenCondition);
+                YellowCondition = entity.YellowCondition;
             }
 
-            if (entity.GreenCondition != null)
+            if (entity.RedCondition != null)
             {
-                GreenCondition.Update(entity.GreenCondition);
+                RedCondition = entity.RedCondition;
             }
             
             return this;
