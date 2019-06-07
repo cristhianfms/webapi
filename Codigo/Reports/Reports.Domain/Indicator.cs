@@ -14,7 +14,7 @@ namespace Reports.Domain
         public Guid? RedConditionId { get; set; }
         public virtual BaseCondition RedCondition { get; set; }
 
-        public ICollection<IndicatorManagerConfig> IndicatorConfigs;
+        public ICollection<IndicatorConfig> IndicatorConfigs;
 
         public bool IsValid()
         {
