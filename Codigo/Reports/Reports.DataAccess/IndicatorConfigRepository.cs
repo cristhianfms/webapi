@@ -7,25 +7,25 @@ using Reports.DataAccess.Interface;
 
 namespace Reports.DataAccess
 {
-    public class Indicator_ManagerRepository : BaseRepository<Indicator_Manager>
+    public class IndicatorConfigRepository : BaseRepository<IndicatorConfig>
     {
-        public Indicator_ManagerRepository(DbContext context)
+        public IndicatorConfigRepository(DbContext context)
         {
             Context = context;
         }
 
-        public override Indicator_Manager Get(Guid id)
+        public override IndicatorConfig Get(Guid id)
         {
             try
             {
-                Indicator_Manager indicator_manager = Context.Set<Indicator_Manager>()
+                IndicatorConfig imc = Context.Set<IndicatorConfig>()
                     .ToList().FirstOrDefault(im => im.Id == id);
 
-                if (indicator_manager == null)
+                if (imc == null)
                 {
                     throw new RepositoryException("Id not found");
                 }
-                return indicator_manager;
+                return imc;
             }
             catch (Exception e)
             {
@@ -34,11 +34,11 @@ namespace Reports.DataAccess
             }
         }
 
-        public override IEnumerable<Indicator_Manager> GetAll()
+        public override IEnumerable<IndicatorConfig> GetAll()
         {
             try
             {
-                return Context.Set<Indicator_Manager>()
+                return Context.Set<IndicatorConfig>()
                     .ToList();
             }
             catch (Exception e)
@@ -47,17 +47,17 @@ namespace Reports.DataAccess
             }
         }
 
-        public Indicator_Manager Get(Guid indicatorId, Guid managerId)
+        public IndicatorConfig Get(Guid indicatorId, Guid managerId)
         {
             try
             {
-                Indicator_Manager indicator_manager = Context.Set<Indicator_Manager>()
+                IndicatorConfig imc = Context.Set<IndicatorConfig>()
                     .FirstOrDefault(im => im.IndicatorId == indicatorId && im.ManagerId == managerId);
-                if (indicator_manager == null)
+                if (imc == null)
                 {
                     throw new RepositoryException("Id not found");
                 }
-                return indicator_manager;
+                return imc;
             }
             catch (Exception e)
             {

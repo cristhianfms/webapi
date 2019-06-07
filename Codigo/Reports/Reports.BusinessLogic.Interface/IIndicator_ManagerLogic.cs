@@ -1,6 +1,7 @@
 ﻿using System;
 using Reports.Domain;
 using System.Collections.Generic;
+using Reports.Domain;
 
 namespace Reports.BusinessLogic.Interface
 {
