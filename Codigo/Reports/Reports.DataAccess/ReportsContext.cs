@@ -19,6 +19,9 @@ namespace Reports.DataAccess
         public DbSet<StringValue> StringValues { get; set; }
         public DbSet<IntValue> IntValues { get; set; }
 
+        public DbSet<IndicatorConfig> IndicatorConfigs { get; set; }
+        public DbSet<AreaUser> AreaUsers { get; set; }
+
         public ReportsContext(DbContextOptions options) : base(options)
         {
         }
@@ -37,22 +40,12 @@ namespace Reports.DataAccess
             modelBuilder.Entity<Area>().Property(a => a.Name).IsRequired();
             modelBuilder.Entity<Area>().Property(a => a.ConnectionString).IsRequired();
 
-
-
             modelBuilder.Entity<BaseCondition>().ToTable("Conditions");
-
+            modelBuilder.Entity<Value>().ToTable("Values");
             modelBuilder.Entity<CompositeCondition>().HasBaseType<BaseCondition>();
 
-            modelBuilder.Entity<Value>().ToTable("Values");
-
-            modelBuilder.Entity<AreaManager>().HasKey(x => new { x.AreaId, x.ManagerId });
-            modelBuilder.Entity<Indicator_Manager>().HasKey(x => new { x.ManagerId,x.IndicatorId });
-            
-            modelBuilder.Entity<AreaManager>().HasOne<Area>(am => am.Area)
-                .WithMany(a => a.AreaManagers);
-            modelBuilder.Entity<AreaManager>().HasOne<User>(am => am.Manager)
-                .WithMany(m => m.AreaManagers);
-
+            modelBuilder.Entity<AreaUser>().HasKey(x => new { x.AreaId, x.UserId });
+            modelBuilder.Entity<IndicatorConfig>().HasKey(x => new { x.IndicatorId, x.UserId });
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

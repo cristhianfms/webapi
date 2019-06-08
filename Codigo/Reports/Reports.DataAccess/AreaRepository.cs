@@ -17,7 +17,6 @@ namespace Reports.DataAccess
             try
             {
                 return Context.Set<Area>()
-                    .Include(a => a.AreaManagers)
                     .ToList();
             }
             catch (Exception e)
@@ -31,7 +30,7 @@ namespace Reports.DataAccess
         public override Area Get(Guid id){
             try
             {
-                Area area = Context.Set<Area>().Include(a =>a.Indicators)
+                Area area = Context.Set<Area>()
                     .ToList().FirstOrDefault(a => a.Id == id);
 
                 if (area == null)

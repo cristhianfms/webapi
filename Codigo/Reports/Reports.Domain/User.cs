@@ -14,8 +14,8 @@ namespace Reports.Domain
         public bool Admin { get; set; } = false;
         public string Mail { get; set; }
 
-        public virtual ICollection<AreaUser> AreaUsers { get; set; }
-        public virtual ICollection<IndicatorConfig> IndicatorConfigs { get; set; }
+        public virtual IEnumerable<AreaUser> AreaUsers { get; set; }
+        public virtual IEnumerable<IndicatorConfig> IndicatorConfigs { get; set; }
 
 
         public bool IsValid()

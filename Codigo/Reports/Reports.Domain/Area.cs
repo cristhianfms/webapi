@@ -10,8 +10,8 @@ namespace Reports.Domain
         public string Name { get; set; }
         public string ConnectionString { get; set; }
 
-        public virtual ICollection<Indicator> Indicators { get; set; }
-        public virtual ICollection<AreaUser> AreaUsers { get; set; }
+        public virtual IEnumerable<Indicator> Indicators { get; set; }
+        public virtual IEnumerable<AreaUser> AreaUsers { get; set; }
         public Area()
         {
             Indicators = new List<Indicator>();

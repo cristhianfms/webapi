@@ -19,7 +19,7 @@ namespace Reports.DataAccess
             try
             {
                 IndicatorConfig imc = Context.Set<IndicatorConfig>()
-                    .ToList().FirstOrDefault(im => im.Id == id);
+                    .ToList().FirstOrDefault(ic => ic.Id == id);
 
                 if (imc == null)
                 {
@@ -33,7 +33,6 @@ namespace Reports.DataAccess
                 throw new RepositoryException(e.Message);
             }
         }
-
         public override IEnumerable<IndicatorConfig> GetAll()
         {
             try
@@ -46,18 +45,17 @@ namespace Reports.DataAccess
                 throw new RepositoryException(e.Message);
             }
         }
-
-        public IndicatorConfig Get(Guid indicatorId, Guid managerId)
+        public IndicatorConfig Get(Guid indicatorId, Guid userId)
         {
             try
             {
-                IndicatorConfig imc = Context.Set<IndicatorConfig>()
-                    .FirstOrDefault(im => im.IndicatorId == indicatorId && im.ManagerId == managerId);
-                if (imc == null)
+                IndicatorConfig indicatorconf = Context.Set<IndicatorConfig>()
+                    .FirstOrDefault(ic => ic.IndicatorId == indicatorId && ic.UserId == userId);
+                if (indicatorconf == null)
                 {
                     throw new RepositoryException("Id not found");
                 }
-                return imc;
+                return indicatorconf;
             }
             catch (Exception e)
             {

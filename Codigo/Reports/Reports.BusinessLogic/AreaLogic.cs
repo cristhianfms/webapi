@@ -10,15 +10,15 @@ namespace Reports.BusinessLogic
     public class AreaLogic : IAreaLogic
     {
         private IRepository<Area> areaRepo;
-        private IRepository<AreaManager> areaManagerRepo;
+        private IRepository<AreaUser> areaUserRepo;
         private IRepository<User> userRepo;
         private IRepository<Indicator> indicatorRepo;
 
-        public AreaLogic(IRepository<Area> areaRepo , IRepository<AreaManager> areaManagerRepo
+        public AreaLogic(IRepository<Area> areaRepo , IRepository<AreaUser> areaManagerRepo
             , IRepository<User> userRepo, IRepository<Indicator> indicatorRepo) {
 
             this.areaRepo = areaRepo;
-            this.areaManagerRepo = areaManagerRepo;
+            this.areaUserRepo = areaManagerRepo;
             this.userRepo = userRepo;
             this.indicatorRepo = indicatorRepo;
         }
@@ -87,8 +87,8 @@ namespace Reports.BusinessLogic
         {
             try
             {
-                return areaManagerRepo.GetAll().Where(am => am.AreaId == areaId)
-                .Select(c => c.Manager);
+                return areaUserRepo.GetAll().Where(am => am.AreaId == areaId)
+                .Select(c => c.User);
             }
             catch (RepositoryInterfaceException e)
             {
@@ -100,15 +100,15 @@ namespace Reports.BusinessLogic
             try { 
                 User manager = userRepo.Get(managerId);
                 Area area = areaRepo.Get(areaId);
-                AreaManager areaManager = new AreaManager()
+                AreaUser areaManager = new AreaUser()
                 {
                     AreaId = areaId,
                     Area = area,
-                    ManagerId = managerId,
-                    Manager = manager
+                    UserId = managerId,
+                    User = manager
                 };
-                areaManagerRepo.Add(areaManager);
-                areaManagerRepo.Save();
+                areaUserRepo.Add(areaManager);
+                areaUserRepo.Save();
             }
             catch (RepositoryInterfaceException e)
             {
@@ -119,13 +119,13 @@ namespace Reports.BusinessLogic
         {
             try
             {
-                AreaManager areaManager = new AreaManager()
+                AreaUser areaManager = new AreaUser()
                 {
                     AreaId = areaId,
-                    ManagerId = managerId
+                    UserId = managerId
                 };
-                areaManagerRepo.Remove(areaManager);
-                areaManagerRepo.Save();
+                areaUserRepo.Remove(areaManager);
+                areaUserRepo.Save();
             }
             catch (RepositoryInterfaceException e)
             {

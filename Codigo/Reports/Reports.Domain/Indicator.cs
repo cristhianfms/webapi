@@ -16,7 +16,7 @@ namespace Reports.Domain
 
         public Guid AreaId { get; set; }
         public Area Area { get; set; }
-        public virtual ICollection<IndicatorConfig> IndicatorConfigs { get; set; }
+        public virtual IEnumerable<IndicatorConfig> IndicatorConfigs { get; set; }
 
         public bool IsValid()
         {
@@ -24,50 +24,50 @@ namespace Reports.Domain
                 && RedCondition != null && GreenCondition.IsValid()
                 && YellowCondition.IsValid() && RedCondition.IsValid();
         }
-        public string GetGreenResult(string areaConnectionStr)
+        public string GetGreenResult()
         {
             if (GreenCondition != null && GreenCondition.IsValid())
             {
-                return GreenCondition.GetResult(areaConnectionStr);
+                return GreenCondition.GetResult(Area.ConnectionString);
             }
             else
             {
                 throw new DomainException("Condition is not valid");
             }
         }
-        public string GetYellowResult(string areaConnectionStr)
+        public string GetYellowResult()
         {
             if (YellowCondition != null && YellowCondition.IsValid())
             {
-                return YellowCondition.GetResult(areaConnectionStr);
+                return YellowCondition.GetResult(Area.ConnectionString);
             }
             else
             {
                 throw new DomainException("Condition is not valid");
             }
         }
-        public string GetRedResult(string areaConnectionStr)
+        public string GetRedResult()
         {
             if (RedCondition != null && RedCondition.IsValid())
             {
-                return RedCondition.GetResult(areaConnectionStr);
+                return RedCondition.GetResult(Area.ConnectionString);
             }
             else
             {
                 throw new DomainException("Condition is not valid");
             }
         }
-        public bool IsGreenOn(string areaConnectionStr)
+        public bool IsGreenOn()
         {
-            return GreenCondition.Eval(areaConnectionStr);
+            return GreenCondition.Eval(Area.ConnectionString);
         }
-        public bool IsYellowOn(string areaConnectionStr)
+        public bool IsYellowOn()
         {
-            return YellowCondition.Eval(areaConnectionStr);
+            return YellowCondition.Eval(Area.ConnectionString);
         }
-        public bool IsRedOn(string areaConnectionStr)
+        public bool IsRedOn()
         {
-            return RedCondition.Eval(areaConnectionStr);
+            return RedCondition.Eval(Area.ConnectionString);
         }
         public Indicator Update(Indicator entity)
         {

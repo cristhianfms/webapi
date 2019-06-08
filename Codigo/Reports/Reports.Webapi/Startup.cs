@@ -44,15 +44,15 @@ namespace Reports.Webapi
 
             services.AddScoped<IAreaLogic, AreaLogic>();
             services.AddScoped<IRepository<Area>, AreaRepository>();
-            services.AddScoped<IRepository<AreaManager>, AreaManagerRepository>();
+            services.AddScoped<IRepository<AreaUser>, AreaUserRepository>();
 
             services.AddScoped<IUserLogic, UserLogic>();
             services.AddScoped<IRepository<User>, UserRepository>();
 
             services.AddScoped<IIndicatorLogic, IndicatorLogic>();
             services.AddScoped<IRepository<Indicator>, IndicatorRepository>();
+            services.AddScoped<IRepository<IndicatorConfig>, IndicatorConfigRepository>();
 
-            services.AddScoped<IIndicator_ManagerLogic, Indicator_ManagerLogic>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

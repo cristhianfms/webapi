@@ -6,24 +6,22 @@ using System.Linq;
 
 namespace Reports.DataAccess
 {
-    public class AreaManagerRepository : BaseRepository<AreaManager>
+    public class AreaUserRepository : BaseRepository<AreaUser>
     {
-        public AreaManagerRepository(DbContext context)
+        public AreaUserRepository(DbContext context)
         {
             Context = context;
         }
 
-        public override AreaManager Get(Guid id)
+        public override AreaUser Get(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public override IEnumerable<AreaManager> GetAll(){
+        public override IEnumerable<AreaUser> GetAll(){
             try
             {
-                return Context.Set<AreaManager>()
-                    .Include(am => am.Area)
-                    .Include(am => am.Manager)
+                return Context.Set<AreaUser>()
                     .ToList();
             }
             catch (Exception e)

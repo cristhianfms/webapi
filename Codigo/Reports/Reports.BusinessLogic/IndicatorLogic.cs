@@ -80,38 +80,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-        public string GetResult(Indicator indicator, string color, string areaConnectionStr)
-        {
-            if (color == ConditionColor.GREEN)
-            {
-                return GetGreenResult(indicator, areaConnectionStr);
-            }
-            else if (color == ConditionColor.YELLOW)
-            {
-                return GetYellowResult(indicator, areaConnectionStr);
-            }
-            else if (color == ConditionColor.RED)
-            {
-                return GetRedResult(indicator, areaConnectionStr);
-            }
-            return "";
-        }
-        public string GetOnCondition(Indicator indicator, string areaConnectionStr)
-        {
-            if (indicator.IsGreenOn(areaConnectionStr))
-            {
-                return ConditionColor.GREEN;
-            }
-            else if (indicator.IsYellowOn(areaConnectionStr))
-            {
-                return ConditionColor.YELLOW;
-            }
-            else if (indicator.IsRedOn(areaConnectionStr))
-            {
-                return ConditionColor.RED;
-            }
-            return ConditionColor.GREEN;
-        }
         private void CheckEmtpyIndicator(Indicator indicator)
         {
             if (indicator == null) throw new BusinessLogicException("Null indicator");
@@ -120,39 +88,6 @@ namespace Reports.BusinessLogic
         {
             if (!indicator.IsValid())
                 throw new BusinessLogicException("Not valid indicator");
-        }
-        private string GetGreenResult(Indicator indicator, string areaConnectionStr)
-        {
-            try
-            {
-                return indicator.GetGreenResult(areaConnectionStr);
-            }
-            catch (DomainException e)
-            {
-                throw new BusinessLogicException("Error in condition", e);
-            }
-        }
-        private string GetYellowResult(Indicator indicator, string areaConnectionStr)
-        {
-            try
-            {
-                return indicator.GetYellowResult(areaConnectionStr);
-            }
-            catch (DomainException e)
-            {
-                throw new BusinessLogicException("Error in condition", e);
-            }
-        }
-        private string GetRedResult(Indicator indicator, string areaConnectionStr)
-        {
-            try
-            {
-                return indicator.GetRedResult(areaConnectionStr);
-            }
-            catch (DomainException e)
-            {
-                throw new BusinessLogicException("Error in condition", e);
-            }
         }
     }
 }

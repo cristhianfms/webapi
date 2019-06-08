@@ -12,7 +12,5 @@ namespace Reports.BusinessLogic.Interface
         Indicator Update(Indicator indicator);
         Indicator Get(Guid id);
         IEnumerable<Indicator> GetAll();
-        string GetResult(Indicator indicator, string color, string areaConnectionStr);
-        string GetOnCondition(Indicator indicator, string areaConnectionStr);
     }
 }
