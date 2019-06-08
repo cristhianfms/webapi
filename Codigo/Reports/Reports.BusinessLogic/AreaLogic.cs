@@ -38,8 +38,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-
-
         public void RemoveArea(Area area) {
             try {
                 CheckEmtpyArea(area);
@@ -52,8 +50,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }   
-
-
         public Area UpdateArea(Area area) {
             try
             {
@@ -69,7 +65,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-
         public Area Get(Guid id){
             try {
                 return areaRepo.Get(id);
@@ -79,7 +74,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-
         public IEnumerable<Area> GetAll(){
             try {
                 return areaRepo.GetAll();
@@ -89,8 +83,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-
-
         public IEnumerable<User> GetManagers(Guid areaId)
         {
             try
@@ -103,8 +95,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-
-
         public void AddManager(Guid areaId, Guid managerId)
         {
             try { 
@@ -125,8 +115,6 @@ namespace Reports.BusinessLogic
                     throw new BusinessLogicException(e.Message, e);
             }
         }
-
-
         public void RemoveManager(Guid areaId, Guid managerId)
         {
             try
@@ -144,8 +132,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-
-
         public IEnumerable<Indicator> GetIndicators(Guid areaId)
         {
             try
@@ -157,8 +143,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message);
             }
         }
-
-
         public void AddIndicator(Guid areaId, Guid indicatorId)
         {
             try
@@ -173,8 +157,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message);
             }
         }
-
-
         public void RemoveIndicator(Guid areaId, Guid indicatorId)
         {
             try
@@ -189,8 +171,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message);
             }
         }
-
-
         private void CheckIfAreaOK(Area area)
         {
             if (!area.IsValidArea())
@@ -198,7 +178,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException("Invalid Area");
             }
         }
-
         private void CheckEmtpyArea( Area area)
         {
             if (area == null)

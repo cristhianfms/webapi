@@ -8,10 +8,10 @@ namespace Reports.Domain
 
     public class Condition : BaseCondition
     {
-        public Guid? ValueIzqId { get; set; }
+        public Guid ValueIzqId { get; set; }
         public virtual Value ValueIzq { get; set; }
 
-        public Guid? ValueDerId { get; set; }
+        public Guid ValueDerId { get; set; }
         public virtual Value ValueDer { get; set; }
 
         public string Operator {get;set;}

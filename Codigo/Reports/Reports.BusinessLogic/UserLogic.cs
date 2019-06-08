@@ -14,8 +14,6 @@ namespace Reports.BusinessLogic
         {
             this.userRepo = userRepo;
         }
-
-
         public User Create(User usr) {
             try
             {
@@ -31,8 +29,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-
-
         public User Get(Guid id)
         {
             try
@@ -45,7 +41,6 @@ namespace Reports.BusinessLogic
             }
 
         }
-
         public IEnumerable<User> GetAll()
         {
             try
@@ -57,7 +52,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-
         public void Remove(User usr)
         {
             try
@@ -72,7 +66,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-
         public User Update(User usr)
         {
             try
@@ -88,7 +81,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-
         private void CheckIfUserIsOK(User usr)
         {
             if (!usr.IsValid())
@@ -96,8 +88,6 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException("User instance is not correct");
             }
         }
-
-
         private void CheckEmtpyUser(User usr)
         {
             if (usr == null)

@@ -11,7 +11,6 @@ namespace Reports.BusinessLogic
     public class IndicatorLogic : IIndicatorLogic
     {
         private IRepository<Indicator> repository;
-
         public IndicatorLogic(IRepository<Indicator> indicatorRepository) {
             repository = indicatorRepository;
         }

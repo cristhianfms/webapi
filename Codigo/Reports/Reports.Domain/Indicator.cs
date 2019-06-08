@@ -7,14 +7,16 @@ namespace Reports.Domain
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public Guid? GreenConditionId { get; set; }
+        public Guid GreenConditionId { get; set; }
         public virtual BaseCondition GreenCondition { get; set; }
-        public Guid? YellowConditionId { get; set; }
+        public Guid YellowConditionId { get; set; }
         public virtual BaseCondition YellowCondition { get; set; }
-        public Guid? RedConditionId { get; set; }
+        public Guid RedConditionId { get; set; }
         public virtual BaseCondition RedCondition { get; set; }
 
-        public ICollection<IndicatorConfig> IndicatorConfigs;
+        public Guid AreaId { get; set; }
+        public Area Area { get; set; }
+        public virtual ICollection<IndicatorConfig> IndicatorConfigs { get; set; }
 
         public bool IsValid()
         {

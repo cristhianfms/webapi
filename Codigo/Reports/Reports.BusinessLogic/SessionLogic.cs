@@ -16,20 +16,17 @@ public class SessionLogic : ISessionLogic
     // }
     // CUIDADO CON LAS VARIABLES ESTÁTICAS EN LA BUISSNESSLOGIC
     private static IDictionary<string, Guid?> TokenRepository = null;
-
     public SessionLogic(IRepository<Session> repository) {
         this.repository = repository;
         if (TokenRepository == null) {
             TokenRepository = new Dictionary<string, Guid?>();
         }
     }
-
     public bool IsValidToken(string token)
     {
         // SI EL TOKEN EXISTE EN BD RETORNA TRUE
         return TokenRepository.ContainsKey(token);
     }
-
     public Guid? CreateToken(string userName, string password)
     {
         // SI EL USUARIO EXISTE Y LA PASS Y EL USERNAME SON EL MISMO
@@ -44,7 +41,6 @@ public class SessionLogic : ISessionLogic
         TokenRepository.Add(token.ToString(), user.Id);
         return token;
     }
-
     public bool HasLevel(string token, string role)
     {  
         var user = GetUser(token);
@@ -56,7 +52,6 @@ public class SessionLogic : ISessionLogic
         }
         return true;
     }
-
     public Session GetUser(string token) 
     {
         Guid? userId = null;
@@ -66,6 +61,4 @@ public class SessionLogic : ISessionLogic
         }
         return null;
     }
-
-
 }
