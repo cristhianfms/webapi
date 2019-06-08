@@ -55,24 +55,24 @@ namespace Reports.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AreaManager",
+                name: "AreaUsers",
                 columns: table => new
                 {
                     AreaId = table.Column<Guid>(nullable: false),
-                    ManagerId = table.Column<Guid>(nullable: false)
+                    UserId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AreaManager", x => new { x.AreaId, x.ManagerId });
+                    table.PrimaryKey("PK_AreaUsers", x => new { x.AreaId, x.UserId });
                     table.ForeignKey(
-                        name: "FK_AreaManager_Area_AreaId",
+                        name: "FK_AreaUsers_Area_AreaId",
                         column: x => x.AreaId,
                         principalTable: "Area",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AreaManager_Users_ManagerId",
-                        column: x => x.ManagerId,
+                        name: "FK_AreaUsers_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -98,25 +98,25 @@ namespace Reports.DataAccess.Migrations
                         column: x => x.DerId,
                         principalTable: "Conditions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Conditions_Conditions_IzqId",
                         column: x => x.IzqId,
                         principalTable: "Conditions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Conditions_Values_ValueDerId",
                         column: x => x.ValueDerId,
                         principalTable: "Values",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Conditions_Values_ValueIzqId",
                         column: x => x.ValueIzqId,
                         principalTable: "Values",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -125,10 +125,10 @@ namespace Reports.DataAccess.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    GreenConditionId = table.Column<Guid>(nullable: true),
-                    YellowConditionId = table.Column<Guid>(nullable: true),
-                    RedConditionId = table.Column<Guid>(nullable: true),
-                    AreaId = table.Column<Guid>(nullable: true)
+                    GreenConditionId = table.Column<Guid>(nullable: false),
+                    YellowConditionId = table.Column<Guid>(nullable: false),
+                    RedConditionId = table.Column<Guid>(nullable: false),
+                    AreaId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -138,54 +138,59 @@ namespace Reports.DataAccess.Migrations
                         column: x => x.AreaId,
                         principalTable: "Area",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Indicators_Conditions_GreenConditionId",
                         column: x => x.GreenConditionId,
                         principalTable: "Conditions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Indicators_Conditions_RedConditionId",
                         column: x => x.RedConditionId,
                         principalTable: "Conditions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Indicators_Conditions_YellowConditionId",
                         column: x => x.YellowConditionId,
                         principalTable: "Conditions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Indicator_Manager",
+                name: "IndicatorConfigs",
                 columns: table => new
                 {
-                    ManagerId = table.Column<Guid>(nullable: false),
                     IndicatorId = table.Column<Guid>(nullable: false),
-                    Indicator_ManagerId = table.Column<Guid>(nullable: false),
-                    User = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
+                    CustomName = table.Column<string>(nullable: true),
                     Position = table.Column<int>(nullable: false),
-                    Visible = table.Column<bool>(nullable: false),
-                    CustomName = table.Column<string>(nullable: true)
+                    Visible = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Indicator_Manager", x => new { x.ManagerId, x.IndicatorId });
+                    table.PrimaryKey("PK_IndicatorConfigs", x => new { x.IndicatorId, x.UserId });
                     table.ForeignKey(
-                        name: "FK_Indicator_Manager_Indicators_IndicatorId",
+                        name: "FK_IndicatorConfigs_Indicators_IndicatorId",
                         column: x => x.IndicatorId,
                         principalTable: "Indicators",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_IndicatorConfigs_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AreaManager_ManagerId",
-                table: "AreaManager",
-                column: "ManagerId");
+                name: "IX_AreaUsers_UserId",
+                table: "AreaUsers",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Conditions_DerId",
@@ -208,9 +213,9 @@ namespace Reports.DataAccess.Migrations
                 column: "ValueIzqId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Indicator_Manager_IndicatorId",
-                table: "Indicator_Manager",
-                column: "IndicatorId");
+                name: "IX_IndicatorConfigs_UserId",
+                table: "IndicatorConfigs",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Indicators_AreaId",
@@ -236,16 +241,16 @@ namespace Reports.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AreaManager");
+                name: "AreaUsers");
 
             migrationBuilder.DropTable(
-                name: "Indicator_Manager");
-
-            migrationBuilder.DropTable(
-                name: "Users");
+                name: "IndicatorConfigs");
 
             migrationBuilder.DropTable(
                 name: "Indicators");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Area");

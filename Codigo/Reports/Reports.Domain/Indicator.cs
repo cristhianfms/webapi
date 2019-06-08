@@ -15,7 +15,7 @@ namespace Reports.Domain
         public virtual BaseCondition RedCondition { get; set; }
 
         public Guid AreaId { get; set; }
-        public Area Area { get; set; }
+        public virtual Area Area { get; set; }
         public virtual IEnumerable<IndicatorConfig> IndicatorConfigs { get; set; }
 
         public bool IsValid()

@@ -37,17 +37,17 @@ namespace Reports.DataAccess.Migrations
                     b.ToTable("Area");
                 });
 
-            modelBuilder.Entity("Reports.Domain.AreaManager", b =>
+            modelBuilder.Entity("Reports.Domain.AreaUser", b =>
                 {
                     b.Property<Guid>("AreaId");
 
-                    b.Property<Guid>("ManagerId");
+                    b.Property<Guid>("UserId");
 
-                    b.HasKey("AreaId", "ManagerId");
+                    b.HasKey("AreaId", "UserId");
 
-                    b.HasIndex("ManagerId");
+                    b.HasIndex("UserId");
 
-                    b.ToTable("AreaManager");
+                    b.ToTable("AreaUsers");
                 });
 
             modelBuilder.Entity("Reports.Domain.BaseCondition", b =>
@@ -70,15 +70,15 @@ namespace Reports.DataAccess.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("AreaId");
+                    b.Property<Guid>("AreaId");
 
-                    b.Property<Guid?>("GreenConditionId");
+                    b.Property<Guid>("GreenConditionId");
 
                     b.Property<string>("Name");
 
-                    b.Property<Guid?>("RedConditionId");
+                    b.Property<Guid>("RedConditionId");
 
-                    b.Property<Guid?>("YellowConditionId");
+                    b.Property<Guid>("YellowConditionId");
 
                     b.HasKey("Id");
 
@@ -93,27 +93,25 @@ namespace Reports.DataAccess.Migrations
                     b.ToTable("Indicators");
                 });
 
-            modelBuilder.Entity("Reports.Domain.Indicator_Manager", b =>
+            modelBuilder.Entity("Reports.Domain.IndicatorConfig", b =>
                 {
-                    b.Property<Guid>("ManagerId");
-
                     b.Property<Guid>("IndicatorId");
+
+                    b.Property<Guid>("UserId");
 
                     b.Property<string>("CustomName");
 
-                    b.Property<Guid>("Indicator_ManagerId");
+                    b.Property<Guid>("Id");
 
                     b.Property<int>("Position");
 
-                    b.Property<Guid>("User");
-
                     b.Property<bool>("Visible");
 
-                    b.HasKey("ManagerId", "IndicatorId");
+                    b.HasKey("IndicatorId", "UserId");
 
-                    b.HasIndex("IndicatorId");
+                    b.HasIndex("UserId");
 
-                    b.ToTable("Indicator_Manager");
+                    b.ToTable("IndicatorConfigs");
                 });
 
             modelBuilder.Entity("Reports.Domain.User", b =>
@@ -163,9 +161,9 @@ namespace Reports.DataAccess.Migrations
                 {
                     b.HasBaseType("Reports.Domain.BaseCondition");
 
-                    b.Property<Guid?>("DerId");
+                    b.Property<Guid>("DerId");
 
-                    b.Property<Guid?>("IzqId");
+                    b.Property<Guid>("IzqId");
 
                     b.HasIndex("DerId");
 
@@ -180,9 +178,9 @@ namespace Reports.DataAccess.Migrations
 
                     b.Property<string>("Operator");
 
-                    b.Property<Guid?>("ValueDerId");
+                    b.Property<Guid>("ValueDerId");
 
-                    b.Property<Guid?>("ValueIzqId");
+                    b.Property<Guid>("ValueIzqId");
 
                     b.HasIndex("ValueDerId");
 
@@ -233,43 +231,52 @@ namespace Reports.DataAccess.Migrations
                     b.HasDiscriminator().HasValue("OrCondition");
                 });
 
-            modelBuilder.Entity("Reports.Domain.AreaManager", b =>
+            modelBuilder.Entity("Reports.Domain.AreaUser", b =>
                 {
                     b.HasOne("Reports.Domain.Area", "Area")
-                        .WithMany("AreaManagers")
+                        .WithMany("AreaUsers")
                         .HasForeignKey("AreaId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Reports.Domain.User", "Manager")
-                        .WithMany("AreaManagers")
-                        .HasForeignKey("ManagerId")
+                    b.HasOne("Reports.Domain.User", "User")
+                        .WithMany("AreaUsers")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Reports.Domain.Indicator", b =>
                 {
-                    b.HasOne("Reports.Domain.Area")
+                    b.HasOne("Reports.Domain.Area", "Area")
                         .WithMany("Indicators")
-                        .HasForeignKey("AreaId");
+                        .HasForeignKey("AreaId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Reports.Domain.BaseCondition", "GreenCondition")
                         .WithMany()
-                        .HasForeignKey("GreenConditionId");
+                        .HasForeignKey("GreenConditionId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Reports.Domain.BaseCondition", "RedCondition")
                         .WithMany()
-                        .HasForeignKey("RedConditionId");
+                        .HasForeignKey("RedConditionId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Reports.Domain.BaseCondition", "YellowCondition")
                         .WithMany()
-                        .HasForeignKey("YellowConditionId");
+                        .HasForeignKey("YellowConditionId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Reports.Domain.Indicator_Manager", b =>
+            modelBuilder.Entity("Reports.Domain.IndicatorConfig", b =>
                 {
                     b.HasOne("Reports.Domain.Indicator", "Indicator")
-                        .WithMany()
+                        .WithMany("IndicatorConfigs")
                         .HasForeignKey("IndicatorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Reports.Domain.User", "User")
+                        .WithMany("IndicatorConfigs")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -277,22 +284,26 @@ namespace Reports.DataAccess.Migrations
                 {
                     b.HasOne("Reports.Domain.BaseCondition", "Der")
                         .WithMany()
-                        .HasForeignKey("DerId");
+                        .HasForeignKey("DerId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Reports.Domain.BaseCondition", "Izq")
                         .WithMany()
-                        .HasForeignKey("IzqId");
+                        .HasForeignKey("IzqId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Reports.Domain.Condition", b =>
                 {
                     b.HasOne("Reports.Domain.Value", "ValueDer")
                         .WithMany()
-                        .HasForeignKey("ValueDerId");
+                        .HasForeignKey("ValueDerId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Reports.Domain.Value", "ValueIzq")
                         .WithMany()
-                        .HasForeignKey("ValueIzqId");
+                        .HasForeignKey("ValueIzqId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }
