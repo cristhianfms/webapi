@@ -98,25 +98,25 @@ namespace Reports.DataAccess.Migrations
                         column: x => x.DerId,
                         principalTable: "Conditions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Conditions_Conditions_IzqId",
                         column: x => x.IzqId,
                         principalTable: "Conditions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Conditions_Values_ValueDerId",
                         column: x => x.ValueDerId,
                         principalTable: "Values",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Conditions_Values_ValueIzqId",
                         column: x => x.ValueIzqId,
                         principalTable: "Values",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -125,9 +125,9 @@ namespace Reports.DataAccess.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    GreenConditionId = table.Column<Guid>(nullable: false),
-                    YellowConditionId = table.Column<Guid>(nullable: false),
-                    RedConditionId = table.Column<Guid>(nullable: false),
+                    GreenConditionId = table.Column<Guid>(nullable: true),
+                    YellowConditionId = table.Column<Guid>(nullable: true),
+                    RedConditionId = table.Column<Guid>(nullable: true),
                     AreaId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
@@ -144,19 +144,19 @@ namespace Reports.DataAccess.Migrations
                         column: x => x.GreenConditionId,
                         principalTable: "Conditions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Indicators_Conditions_RedConditionId",
                         column: x => x.RedConditionId,
                         principalTable: "Conditions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Indicators_Conditions_YellowConditionId",
                         column: x => x.YellowConditionId,
                         principalTable: "Conditions",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(

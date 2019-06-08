@@ -72,13 +72,13 @@ namespace Reports.DataAccess.Migrations
 
                     b.Property<Guid>("AreaId");
 
-                    b.Property<Guid>("GreenConditionId");
+                    b.Property<Guid?>("GreenConditionId");
 
                     b.Property<string>("Name");
 
-                    b.Property<Guid>("RedConditionId");
+                    b.Property<Guid?>("RedConditionId");
 
-                    b.Property<Guid>("YellowConditionId");
+                    b.Property<Guid?>("YellowConditionId");
 
                     b.HasKey("Id");
 
@@ -161,9 +161,9 @@ namespace Reports.DataAccess.Migrations
                 {
                     b.HasBaseType("Reports.Domain.BaseCondition");
 
-                    b.Property<Guid>("DerId");
+                    b.Property<Guid?>("DerId");
 
-                    b.Property<Guid>("IzqId");
+                    b.Property<Guid?>("IzqId");
 
                     b.HasIndex("DerId");
 
@@ -178,9 +178,9 @@ namespace Reports.DataAccess.Migrations
 
                     b.Property<string>("Operator");
 
-                    b.Property<Guid>("ValueDerId");
+                    b.Property<Guid?>("ValueDerId");
 
-                    b.Property<Guid>("ValueIzqId");
+                    b.Property<Guid?>("ValueIzqId");
 
                     b.HasIndex("ValueDerId");
 
@@ -253,18 +253,15 @@ namespace Reports.DataAccess.Migrations
 
                     b.HasOne("Reports.Domain.BaseCondition", "GreenCondition")
                         .WithMany()
-                        .HasForeignKey("GreenConditionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("GreenConditionId");
 
                     b.HasOne("Reports.Domain.BaseCondition", "RedCondition")
                         .WithMany()
-                        .HasForeignKey("RedConditionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("RedConditionId");
 
                     b.HasOne("Reports.Domain.BaseCondition", "YellowCondition")
                         .WithMany()
-                        .HasForeignKey("YellowConditionId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("YellowConditionId");
                 });
 
             modelBuilder.Entity("Reports.Domain.IndicatorConfig", b =>
@@ -284,26 +281,22 @@ namespace Reports.DataAccess.Migrations
                 {
                     b.HasOne("Reports.Domain.BaseCondition", "Der")
                         .WithMany()
-                        .HasForeignKey("DerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("DerId");
 
                     b.HasOne("Reports.Domain.BaseCondition", "Izq")
                         .WithMany()
-                        .HasForeignKey("IzqId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("IzqId");
                 });
 
             modelBuilder.Entity("Reports.Domain.Condition", b =>
                 {
                     b.HasOne("Reports.Domain.Value", "ValueDer")
                         .WithMany()
-                        .HasForeignKey("ValueDerId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ValueDerId");
 
                     b.HasOne("Reports.Domain.Value", "ValueIzq")
                         .WithMany()
-                        .HasForeignKey("ValueIzqId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ValueIzqId");
                 });
 #pragma warning restore 612, 618
         }
