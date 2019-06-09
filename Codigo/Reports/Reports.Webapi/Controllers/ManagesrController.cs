@@ -18,9 +18,10 @@ namespace Reports.Webapi.Controllers
         private IAreaLogic areaLogic;
 
 
-        public ManagesrController(IUserLogic userLogic) : base()
+        public ManagesrController(IUserLogic userLogic, IAreaLogic areaLogic) : base()
         {
             this.userLogic = userLogic;
+            this.areaLogic = areaLogic;
         }
 
 

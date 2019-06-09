@@ -12,10 +12,12 @@ namespace Reports.Webapi.Controllers
     {
 
         private IAreaLogic areaLogic;
+        private IIndicatorLogic indicatorLogic;
 
-        public AreasController(IAreaLogic areaLogic) : base()
+        public AreasController(IAreaLogic areaLogic, IIndicatorLogic indicatorLogic) : base()
         {
             this.areaLogic = areaLogic;
+            this.indicatorLogic = indicatorLogic;
         }
 
         [HttpGet]
@@ -111,64 +113,69 @@ namespace Reports.Webapi.Controllers
         }
 
 
-        //[HttpPost("{id}/Managers")]
-        //public IActionResult AddManager(Guid id, [FromBody]AreaManagerModel manager)
-        //{
-        //    try
-        //    {
-        //        areaLogic.AddManager(id, manager.ManagerId);
-        //        return NoContent();
-        //    }
-        //    catch (BusinessLogicInterfaceException e)
-        //    {
-        //        return BadRequest(e.Message);
-        //    }
-        //}
+        [HttpPost("{id}/Managers")]
+        public IActionResult AddManager(Guid id, [FromBody]AreaManagerModel manager)
+        {
+            try
+            {
+                areaLogic.AddManager(id, manager.ManagerId);
+                return NoContent();
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
-        //[HttpDelete("{id}/Managers")]
-        //public IActionResult DeleteManager(Guid id, [FromBody]AreaManagerModel manager)
-        //{
-        //    try
-        //    {
-        //        areaLogic.RemoveManager(id, manager.AreaId);
-        //        return NoContent();
-        //    }
-        //    catch (BusinessLogicInterfaceException e)
-        //    {
-        //        return BadRequest(e.Message);
-        //    }
-        //}
-
-
-
-        //[HttpGet("{id}/Indicators")]
-        //public IActionResult GetIndicators(Guid id)
-        //{
-        //    try
-        //    {
-        //        IEnumerable<Indicator> indicators = areaLogic.GetIndicators(id);
-        //        return Ok(AreaIndicatorModel.ToModel(indicators));
-        //    }
-        //    catch (BusinessLogicInterfaceException e)
-        //    {
-        //        return NotFound(e.Message);
-        //    }
-        //}
+        [HttpDelete("{id}/Managers")]
+        public IActionResult DeleteManager(Guid id, [FromBody]AreaManagerModel manager)
+        {
+            try
+            {
+                areaLogic.RemoveManager(id, manager.ManagerId);
+                return NoContent();
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
 
-        //[HttpPost("{id}/Indicators")]
-        //public IActionResult AddIndicator(Guid id, [FromBody]AreaIndicatorModel indicator)
-        //{
-        //    try
-        //    {
-        //        areaLogic.AddIndicator(id, indicator.IndicatorId);
-        //        return NoContent();
-        //    }
-        //    catch (BusinessLogicInterfaceException e)
-        //    {
-        //        return BadRequest(e.Message);
-        //    }
-        //}
+
+        [HttpGet("{id}/Indicators")]
+        public IActionResult GetIndicators(Guid id)
+        {
+            try
+            {
+                IEnumerable<Indicator> indicators = areaLogic.GetIndicators(id);
+                return Ok(IndicatorModel.ToModel(indicators));
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return NotFound(e.Message);
+            }
+        }
+
+
+        [HttpPost("{id}/Indicators")]
+        public IActionResult AddIndicator(Guid id, [FromBody]IndicatorModel model)
+        {
+            try
+            {
+                Indicator indicator = model.ToEntity();
+                Area area = areaLogic.Get(id);
+                indicator.Area = area;
+
+                var indicatorCreated = indicatorLogic.Create(indicator);
+                areaLogic.AddIndicator(id, indicatorCreated.Id);
+                return NoContent();
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
 
         //[HttpDelete("{id}/Indicators")]
         //public IActionResult DeleteIndicator(Guid id, [FromBody]AreaIndicatorModel indicator)

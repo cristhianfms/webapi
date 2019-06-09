@@ -14,8 +14,8 @@ namespace Reports.BusinessLogic.Interface
         IEnumerable<Area> GetAll();
 
         IEnumerable<User> GetManagers(Guid areaId);
-        void AddManager(Guid areaId, Guid managerId);
-        void RemoveManager(Guid areaId, Guid managerId);
+        void AddManager(Guid areaId, Guid userId);
+        void RemoveManager(Guid areaId, Guid userId);
 
         IEnumerable<Indicator> GetIndicators(Guid areaId);
         void AddIndicator(Guid areaId, Guid indicatorId);

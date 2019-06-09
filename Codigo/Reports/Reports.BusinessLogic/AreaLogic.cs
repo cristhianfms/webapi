@@ -95,16 +95,16 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-        public void AddManager(Guid areaId, Guid managerId)
+        public void AddManager(Guid areaId, Guid userId)
         {
             try { 
-                User manager = userRepo.Get(managerId);
+                User manager = userRepo.Get(userId);
                 Area area = areaRepo.Get(areaId);
                 AreaUser areaManager = new AreaUser()
                 {
                     AreaId = areaId,
                     Area = area,
-                    UserId = managerId,
+                    UserId = userId,
                     User = manager
                 };
                 areaUserRepo.Add(areaManager);
@@ -115,14 +115,14 @@ namespace Reports.BusinessLogic
                     throw new BusinessLogicException(e.Message, e);
             }
         }
-        public void RemoveManager(Guid areaId, Guid managerId)
+        public void RemoveManager(Guid areaId, Guid userId)
         {
             try
             {
                 AreaUser areaManager = new AreaUser()
                 {
                     AreaId = areaId,
-                    UserId = managerId
+                    UserId = userId
                 };
                 areaUserRepo.Remove(areaManager);
                 areaUserRepo.Save();
