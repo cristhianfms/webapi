@@ -28,6 +28,7 @@ namespace Reports.DBConnections
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(QuerySQL, connection);
                 DataSet dSet = new DataSet();
                 dataAdapter.Fill(dSet);
+                connection.Close();
                 return dSet;
             }
             catch (Exception e)

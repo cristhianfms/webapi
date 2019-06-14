@@ -18,7 +18,7 @@ namespace Reports.Domain
                 DBConn.SetConnectionString(areaConnectionStr);
                 DBConn.SetQuerySQL(Query);
                 DataSet dset = DBConn.GetResult();
-
+                
                 return dset.Tables[0].Rows[0][0];
             }
             catch (DBConnectionException e)

@@ -12,13 +12,13 @@ using System.Linq;
 namespace Reports.Webapi.Controllers
 {
     [Route("api/[controller]")]
-    public class ManagesrController : ControllerBase
+    public class ManagersController : ControllerBase
     {
         private IUserLogic userLogic;
         private IAreaLogic areaLogic;
 
 
-        public ManagesrController(IUserLogic userLogic, IAreaLogic areaLogic) : base()
+        public ManagersController(IUserLogic userLogic, IAreaLogic areaLogic) : base()
         {
             this.userLogic = userLogic;
             this.areaLogic = areaLogic;
