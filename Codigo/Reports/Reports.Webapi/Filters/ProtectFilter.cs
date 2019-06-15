@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Reports.BusinessLogic.Interface;
 
-namespace Homeworks.Webapi.Filters {
+namespace Reports.Webapi.Filters {
 
     public class ProtectFilter : Attribute, IActionFilter
     {

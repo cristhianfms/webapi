@@ -29,15 +29,12 @@ namespace Reports.DataAccess.Logger.Test
         public void AddtwoLogToSameUserOK(){
             var context = LogContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             ILogRepository logRepo = new LogRepository(context);
-            Guid id = Guid.NewGuid();
             Log log = new Log{
                 Id = Guid.NewGuid(),
-                UserId = id,
                 Date = DateTime.Now
             };
             Log log2 = new Log {
                 Id = Guid.NewGuid(),
-                UserId = id,
                 Date = DateTime.Now
             };
             logRepo.Add(log);
@@ -51,15 +48,14 @@ namespace Reports.DataAccess.Logger.Test
         public void GetAllLogOK(){
             var context = LogContextFactory.GetMemoryContext(Guid.NewGuid().ToString());
             ILogRepository logRepo = new LogRepository(context);
-            Guid id = Guid.NewGuid();
             Log log = new Log{
                 Id = Guid.NewGuid(),
-                UserId = id,
+                UserName = "pepe",
                 Date = DateTime.Now
             };
             Log log2 = new Log {
                 Id = Guid.NewGuid(),
-                UserId = id,
+                UserName = "juan",
                 Date = DateTime.Now
             };
             logRepo.Add(log);
@@ -67,7 +63,7 @@ namespace Reports.DataAccess.Logger.Test
             logRepo.Add(log2);
             logRepo.Save();
             var logs =  logRepo.GetAll().ToList();
-             Assert.IsTrue(logs[0].UserId == id && logs[1].UserId == id);
+             Assert.IsTrue(logs[0].UserName == "pepe" && logs[1].UserName == "juan");
             
         }
         [TestMethod]

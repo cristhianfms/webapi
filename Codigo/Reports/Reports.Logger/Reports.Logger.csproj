@@ -6,7 +6,13 @@
 
     <ItemGroup>
     
+    <ProjectReference Include="..\reports.businesslogic\Reports.BusinessLogic.csproj" />
+    
+    <ProjectReference Include="..\reports.Dataaccess.interface\Reports.DataAccess.Interface.csproj" />
+    
     <ProjectReference Include="..\Reports.DataAccess.Logger.Interface\Reports.DataAccess.Logger.Interface.csproj" />
+    
+    <ProjectReference Include="..\Reports.DBConnections\Reports.DBConnections.csproj" />
     <ProjectReference Include="..\Reports.Logger.Domain\Reports.Logger.Domain.csproj" />
     <ProjectReference Include="..\Reports.Domain\Reports.Domain.csproj" />
     <ProjectReference Include="..\Reports.Logger.Interface\Reports.Logger.Interface.csproj" />

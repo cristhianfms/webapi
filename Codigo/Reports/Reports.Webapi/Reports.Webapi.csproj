@@ -20,10 +20,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Reports.DataAccess.Interface\Reports.DataAccess.Interface.csproj" />
+    <ProjectReference Include="..\Reports.DataAccess.Logger.Interface\Reports.DataAccess.Logger.Interface.csproj" />
+    <ProjectReference Include="..\Reports.DataAccess.Logger\Reports.DataAccess.Logger.csproj" />
     <ProjectReference Include="..\Reports.Domain\Reports.Domain.csproj" />
     <ProjectReference Include="..\Reports.BusinessLogic\Reports.BusinessLogic.csproj" />
     <ProjectReference Include="..\Reports.BusinessLogic.Interface\Reports.BusinessLogic.Interface.csproj" />
     <ProjectReference Include="..\Reports.DataAccess\Reports.DataAccess.csproj" />
+    <ProjectReference Include="..\Reports.Logger.Interface\Reports.Logger.Interface.csproj" />
+    <ProjectReference Include="..\Reports.Logger\Reports.Logger.csproj" />
   </ItemGroup>
 
 </Project>

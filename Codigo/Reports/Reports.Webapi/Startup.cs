@@ -15,7 +15,11 @@ using Reports.BusinessLogic;
 using Reports.BusinessLogic.Interface;
 using Reports.DataAccess;
 using Reports.DataAccess.Interface;
+using Reports.DataAccess.Logger.Interface;
+using Reports.Logger.Interface;
 using Reports.Domain;
+using Reports.DataAccess.Logger;
+using Reports.Logger;
 
 
 
@@ -43,8 +47,12 @@ namespace Reports.Webapi
             );
 
             services.AddScoped<IAreaLogic, AreaLogic>();
+            services.AddScoped<ILoggerLogic, LoggerLogic>();
+            services.AddScoped<ISessionLogic, SessionLogic>();
             services.AddScoped<IRepository<Area>, AreaRepository>();
             services.AddScoped<IRepository<AreaUser>, AreaUserRepository>();
+
+            services.AddScoped<ILogRepository, LogRepository>();
 
             services.AddScoped<IUserLogic, UserLogic>();
             services.AddScoped<IRepository<User>, UserRepository>();
@@ -53,6 +61,17 @@ namespace Reports.Webapi
             services.AddScoped<IRepository<Indicator>, IndicatorRepository>();
             services.AddScoped<IRepository<IndicatorConfig>, IndicatorConfigRepository>();
 
+            services.AddCors(
+            options => {
+                options.AddPolicy(
+                "CorsPolicy",
+                builder => builder
+               .AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader()
+               .AllowCredentials()
+                );
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,7 +81,7 @@ namespace Reports.Webapi
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors("CorsPolicy");
             app.UseMvc();
         }
     }

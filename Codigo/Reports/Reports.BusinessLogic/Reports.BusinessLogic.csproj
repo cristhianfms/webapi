@@ -5,6 +5,8 @@
     <ProjectReference Include="..\Reports.Domain\Reports.Domain.csproj" />
     <ProjectReference Include="..\Reports.DataAccess.Interface\Reports.DataAccess.Interface.csproj" />
     <ProjectReference Include="..\Reports.BusinessLogic.Interface\Reports.BusinessLogic.Interface.csproj" />
+    <ProjectReference Include="..\Reports.Logger.Domain\Reports.Logger.Domain.csproj" />
+    <ProjectReference Include="..\Reports.Logger.Interface\Reports.Logger.Interface.csproj" />
 
   </ItemGroup>
 

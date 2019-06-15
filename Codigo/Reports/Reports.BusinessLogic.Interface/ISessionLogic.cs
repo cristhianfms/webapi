@@ -11,6 +11,6 @@ namespace Reports.BusinessLogic.Interface
 
         bool HasLevel(string token, string role);
 
-        Session GetUser(string token);
+        User GetUser(string token);
     }
 }
