@@ -83,12 +83,11 @@ namespace Reports.Webapi.Controllers
 
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id, [FromBody]AreaModel model)
+        public IActionResult Delete(Guid id)
         {
             try
             {
-                model.Id = id;
-                areaLogic.RemoveArea(AreaModel.ToEntity(model));
+                areaLogic.RemoveArea(id);
                 return NoContent();
             }
             catch (BusinessLogicInterfaceException e)
@@ -176,21 +175,6 @@ namespace Reports.Webapi.Controllers
                 return BadRequest(e.Message);
             }
         }
-
-        //[HttpDelete("{id}/Indicators")]
-        //public IActionResult DeleteIndicator(Guid id, [FromBody]AreaIndicatorModel indicator)
-        //{
-        //    try
-        //    {
-        //        areaLogic.RemoveManager(id, indicator.IndicatorId);
-        //        return NoContent();
-        //    }
-        //    catch (BusinessLogicInterfaceException e)
-        //    {
-        //        return BadRequest(e.Message);
-        //    }
-        //}
-
 
     }
 }

@@ -8,7 +8,7 @@ namespace Reports.BusinessLogic.Interface
     public interface IIndicatorLogic
     {
         Indicator Create(Indicator indicator);
-        void Remove(Indicator indicator);
+        void Remove(Guid id);
         Indicator Update(Indicator indicator);
         Indicator Get(Guid id);
         IEnumerable<Indicator> GetAll();

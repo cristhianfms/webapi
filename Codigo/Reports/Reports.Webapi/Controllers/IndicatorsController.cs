@@ -83,12 +83,11 @@ namespace Reports.Webapi.Controllers
 
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id, [FromBody]IndicatorModel model)
+        public IActionResult Delete(Guid id)
         {
             try
             {
-                model.Id = id;
-                indicatorLogic.Remove(IndicatorModel.ToEntity(model));
+                indicatorLogic.Remove(id);
                 return NoContent();
             }
             catch (BusinessLogicInterfaceException e)

@@ -75,7 +75,16 @@ namespace Reports.Webapi.Controllers
             try
             {
                 model.Id = id;
-                var user = userLogic.Update(UserModel.ToEntity(model));
+                var user = userLogic.Update(id, UserModel.ToEntity(model));
+                if(model.Role == 'M')
+                {
+                    userLogic.SetManagerRole(id);
+                }
+                if (model.Role == 'A')
+                {
+                    userLogic.SetAdminRole(id);
+                }
+                user = userLogic.Get(id);
                 return CreatedAtRoute("Get", new { id = user.Id }, UserModel.ToModel(user));
             }
             catch (BusinessLogicInterfaceException e)
@@ -86,12 +95,11 @@ namespace Reports.Webapi.Controllers
 
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id, [FromBody]UserModel model)
+        public IActionResult Delete(Guid id)
         {
             try
             {
-                model.Id = id;
-                userLogic.Remove(UserModel.ToEntity(model));
+                userLogic.Remove(id);
                 return NoContent();
             }
             catch (BusinessLogicInterfaceException e)

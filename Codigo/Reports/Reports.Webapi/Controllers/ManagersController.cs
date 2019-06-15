@@ -49,21 +49,28 @@ namespace Reports.Webapi.Controllers
 
         private List<IndicatorConfig> GetCustomIndicators(Guid managerId, Guid areaId)
         {
-            List<IndicatorConfig> iConfigs = userLogic.GetIndicatorConfigs(managerId, areaId).ToList();
-            List<Indicator> areaIndicators = areaLogic.Get(areaId).Indicators.ToList();
-            foreach (Indicator indicator in areaIndicators)
+            if (areaLogic.IsManager(areaId, managerId))
             {
-                if (!iConfigs.Exists(ic => ic.Indicator.Id == indicator.Id))
+                List<IndicatorConfig> iConfigs = userLogic.GetIndicatorConfigs(managerId, areaId).ToList();
+                List<Indicator> areaIndicators = areaLogic.Get(areaId).Indicators.ToList();
+                foreach (Indicator indicator in areaIndicators)
                 {
-                    iConfigs.Add(new IndicatorConfig()
+                    if (!iConfigs.Exists(ic => ic.Indicator.Id == indicator.Id))
                     {
-                        Indicator = indicator,
-                        IndicatorId = indicator.Id,
-                        CustomName = indicator.Name,
-                    });
+                        iConfigs.Add(new IndicatorConfig()
+                        {
+                            Indicator = indicator,
+                            IndicatorId = indicator.Id,
+                            CustomName = indicator.Name,
+                        });
+                    }
                 }
+                return iConfigs;
             }
-            return iConfigs;
+            else
+            {
+                return new List<IndicatorConfig>();
+            }
         }
 
 

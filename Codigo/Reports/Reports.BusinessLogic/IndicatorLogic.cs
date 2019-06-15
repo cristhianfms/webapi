@@ -29,12 +29,11 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-        public void Remove(Indicator indicator) {
+        public void Remove(Guid id) {
             try
             {
-                CheckEmtpyIndicator(indicator);
-                CheckValidIndicator(indicator);
-                repository.Remove(indicator);
+                Indicator indicatorToDelete = repository.Get(id);
+                repository.Remove(indicatorToDelete);
                 repository.Save();
             }
             catch (RepositoryInterfaceException e)

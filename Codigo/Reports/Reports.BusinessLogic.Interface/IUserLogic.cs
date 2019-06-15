@@ -7,9 +7,11 @@ namespace Reports.BusinessLogic.Interface
     public interface IUserLogic
     {
         User Create (User usr);
-        void Remove(User usr);
-        User Update(User usr);
+        void Remove(Guid id);
+        User Update(Guid id, User usr);
         User Get(Guid id);
+        User SetAdminRole(Guid id);
+        User SetManagerRole(Guid id);
         IEnumerable<User> GetAll();
         IEnumerable<IndicatorConfig> GetIndicatorConfigs(Guid userId, Guid areaId);
         IndicatorConfig GetIndicatorConfig(Guid userId, Guid areaId);

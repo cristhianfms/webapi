@@ -8,7 +8,7 @@ namespace Reports.BusinessLogic.Interface
     public interface IAreaLogic
     {
         Area CreateArea(Area area);
-        void RemoveArea(Area area);
+        void RemoveArea(Guid id);
         Area UpdateArea(Area area);
         Area Get(Guid id);
         IEnumerable<Area> GetAll();
@@ -16,9 +16,8 @@ namespace Reports.BusinessLogic.Interface
         IEnumerable<User> GetManagers(Guid areaId);
         void AddManager(Guid areaId, Guid userId);
         void RemoveManager(Guid areaId, Guid userId);
-
+        bool IsManager(Guid areaId, Guid userId);
         IEnumerable<Indicator> GetIndicators(Guid areaId);
         void AddIndicator(Guid areaId, Guid indicatorId);
-        void RemoveIndicator(Guid areaId, Guid indicatorId);
     }
 }

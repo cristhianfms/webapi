@@ -10,7 +10,6 @@ namespace Reports.Webapi.Models.ManagerIndicators
     public class CustomIndicatorGetModel : Model<IndicatorConfig, CustomIndicatorGetModel>
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
         public string CustomName { get; set; }
         public string CurrentColor { get; set; }
         public string GreenResult { get; set; }
@@ -31,7 +30,6 @@ namespace Reports.Webapi.Models.ManagerIndicators
         protected override CustomIndicatorGetModel SetModel(IndicatorConfig entity)
         {
             this.Id = entity.Indicator.Id;
-            this.Name = entity.Indicator.Name;
             this.CustomName = entity.CustomName;
             this.Visible = entity.Visible;
             this.Position = entity.Position;

@@ -58,13 +58,12 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-        public void Remove(User usr)
+        public void Remove(Guid id)
         {
             try
             {
-                CheckEmtpyUser(usr);
-                CheckIfUserIsOK(usr);
-                this.userRepo.Remove(usr);
+                User usrToDelete = this.userRepo.Get(id);
+                this.userRepo.Remove(usrToDelete);
                 this.userRepo.Save();
             }
             catch(RepositoryInterfaceException e)
@@ -72,29 +71,49 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
-        public User Update(User usr)
+        public User Update(Guid id, User usr)
         {
             try
             {
-                CheckEmtpyUser(usr);
-                CheckIfUserIsOK(usr);
-                this.userRepo.Update(usr);
+                User userToUpdate = userRepo.Get(id);
+                userToUpdate.Update(usr);
+                this.userRepo.Update(userToUpdate);
                 this.userRepo.Save();
-                return usr;
+                return userToUpdate;
             }
             catch (RepositoryInterfaceException e)
             {
                 throw new BusinessLogicException(e.Message, e);
             }
         }
+        public User SetAdminRole(Guid id)
+        {
+            User usr = userRepo.Get(id);
+            usr.Admin = true;
+            userRepo.Update(usr);
+            userRepo.Save();
+            return usr;
+        }
+        public User SetManagerRole(Guid id)
+        {
+            User usr = userRepo.Get(id);
+            usr.Admin = false;
+            userRepo.Update(usr);
+            userRepo.Save();
+            return usr;
+        }
         public IEnumerable<IndicatorConfig> GetIndicatorConfigs(Guid userId, Guid areaId)
         {
+            User user = userRepo.Get(userId);
+            CheckIfUserManagerRol(user);
             List<IndicatorConfig> indConfigs = indicatorConfigRepo.GetAll()
                 .Where(ic => ic.UserId == userId && ic.Indicator.AreaId == areaId).ToList();
             return indConfigs;
         }
         public IndicatorConfig GetIndicatorConfig(Guid userId, Guid indicatorId)
         {
+            User user = userRepo.Get(userId);
+            CheckIfUserManagerRol(user);
             IndicatorConfig indConfig = indicatorConfigRepo.GetAll()
                 .FirstOrDefault(ic => ic.UserId == userId && ic.IndicatorId == indicatorId);
 
@@ -109,6 +128,8 @@ namespace Reports.BusinessLogic
         }
         public void SetIndicatorPosition(Guid userId, Guid indicatorId, int pos)
         {
+            User user = userRepo.Get(userId);
+            CheckIfUserManagerRol(user);
             IndicatorConfig indConfig = indicatorConfigRepo.GetAll()
                 .FirstOrDefault(ic => ic.UserId == userId && ic.IndicatorId == indicatorId);
 
@@ -125,6 +146,8 @@ namespace Reports.BusinessLogic
         }
         public void SetIndicatorVisible(Guid userId, Guid indicatorId, bool visible)
         {
+            User user = userRepo.Get(userId);
+            CheckIfUserManagerRol(user);
             IndicatorConfig indConfig = indicatorConfigRepo.GetAll()
                 .FirstOrDefault(ic => ic.UserId == userId && ic.IndicatorId == indicatorId);
 
@@ -141,6 +164,8 @@ namespace Reports.BusinessLogic
         }
         public void SetIndicatorCustomName(Guid userId, Guid indicatorId, string customName)
         {
+            User user = userRepo.Get(userId);
+            CheckIfUserManagerRol(user);
             IndicatorConfig indConfig = indicatorConfigRepo.GetAll()
                 .FirstOrDefault(ic => ic.UserId == userId && ic.IndicatorId == indicatorId);
 

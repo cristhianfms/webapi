@@ -17,6 +17,30 @@ namespace Reports.Domain
         public virtual IEnumerable<AreaUser> AreaUsers { get; set; }
         public virtual IEnumerable<IndicatorConfig> IndicatorConfigs { get; set; }
 
+        public User Update(User usr)
+        {
+            if (usr.ValidateName())
+            {
+                this.Name = usr.Name;
+            }
+            if (usr.ValidateLastName())
+            {
+                this.LastName = usr.LastName;
+            }
+            if (usr.ValidateUserName())
+            {
+                this.UserName = usr.UserName;
+            }
+            if (usr.ValidatePassword())
+            {
+                this.Password = usr.Password;
+            }
+            if (usr.ValidateMail())
+            {
+                this.Mail = usr.Mail;
+            }
+            return this;
+        }
 
         public bool IsValid()
         {
