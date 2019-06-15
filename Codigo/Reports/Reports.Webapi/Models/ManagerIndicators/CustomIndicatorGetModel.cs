@@ -41,19 +41,25 @@ namespace Reports.Webapi.Models.ManagerIndicators
         }
         public string GetCurrentColor(Indicator indicator)
         {
-            if (indicator.IsGreenOn())
-            {
+            try { 
+                if (indicator.IsGreenOn())
+                {
+                    return ConditionColor.GREEN;
+                }
+                else if (indicator.IsYellowOn())
+                {
+                    return ConditionColor.YELLOW;
+                }
+                else if (indicator.IsRedOn())
+                {
+                    return ConditionColor.RED;
+                }
                 return ConditionColor.GREEN;
             }
-            else if (indicator.IsYellowOn())
+            catch (DomainException e)
             {
-                return ConditionColor.YELLOW;
+                return "";
             }
-            else if (indicator.IsRedOn())
-            {
-                return ConditionColor.RED;
-            }
-            return ConditionColor.GREEN;
         }
 
     }

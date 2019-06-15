@@ -40,6 +40,15 @@ namespace Reports.Webapi.Models
             {
                 return new SQLValueModel(value);
             }
+            if (value is DateValue)
+            {
+                return new DateValueModel(value);
+            }
+            if (value is BoolValue)
+            {
+                return new BoolValueModel(value);
+            }
+
             return new ValueModel(value);
         }
     }

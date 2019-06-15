@@ -20,6 +20,8 @@ namespace Reports.DataAccess
         public DbSet<SQLValue> SQLValues { get; set; }
         public DbSet<StringValue> StringValues { get; set; }
         public DbSet<IntValue> IntValues { get; set; }
+        public DbSet<DateValue> DateValues { get; set; }
+        public DbSet<BoolValue> BoolValues { get; set; }
 
         public DbSet<IndicatorConfig> IndicatorConfigs { get; set; }
         public DbSet<AreaUser> AreaUsers { get; set; }

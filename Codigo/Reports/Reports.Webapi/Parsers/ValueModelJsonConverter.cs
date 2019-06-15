@@ -24,6 +24,10 @@ namespace Reports.Webapi.Parsers
                     valueModel = new SQLValueModel();break;
                 case ValueModelType.STRING:
                     valueModel = new StringValueModel();break;
+                case ValueModelType.DATE:
+                    valueModel = new DateValueModel(); break;
+                case ValueModelType.BOOL:
+                    valueModel = new BoolValueModel(); break;
                 default:
                     throw new ModelException("Can not parse value type");
             }

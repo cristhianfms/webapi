@@ -10,5 +10,7 @@ namespace Reports.Webapi.Parsers
         public const string INT = "int";
         public const string SQL = "sql";
         public const string STRING = "string";
+        public const string DATE = "date";
+        public const string BOOL = "bool";
     }
 }
