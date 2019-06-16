@@ -79,6 +79,28 @@ namespace Reports.BusinessLogic
                 throw new BusinessLogicException(e.Message, e);
             }
         }
+        public bool CheckConditionEval(BaseCondition condition, String connectionStr)
+        {
+            try
+            {
+                bool conditionEval = condition.Eval(connectionStr);
+                return true;
+            }catch(DomainException e)
+            {
+                return false;
+            }
+        }
+        public string GetConditionResult(BaseCondition condition, String connectionStr)
+        {
+            try
+            {
+                return condition.GetResult(connectionStr);
+            }
+            catch (DomainException e)
+            {
+                return "";
+            }
+        }
         private void CheckEmtpyIndicator(Indicator indicator)
         {
             if (indicator == null) throw new BusinessLogicException("Null indicator");
@@ -88,5 +110,6 @@ namespace Reports.BusinessLogic
             if (!indicator.IsValid())
                 throw new BusinessLogicException("Not valid indicator");
         }
+
     }
 }
