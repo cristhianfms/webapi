@@ -14,5 +14,11 @@ namespace Reports.BusinessLogic.Interface
         IEnumerable<Indicator> GetAll();
         bool CheckConditionEval(BaseCondition condition, String connectionStr);
         string GetConditionResult(BaseCondition condition, String connectionStr);
+        IEnumerable<IndicatorConfig> GetCustomIndicators(Guid managerId, Guid areaId);
+
+        int CountVisibleIndicators(Guid managerId, Guid areaId);
+        int CountRedIndicators(Guid managerId, Guid areaId);
+        int CountYellowIndicators(Guid managerId, Guid areaId);
+        int CountGreenIndicators(Guid managerId, Guid areaId);
     }
 }

@@ -5,24 +5,26 @@ using Reports.Logger.Domain;
 using Reports.Domain;
 using Reports.DataAccess.Logger.Interface;
 using Reports.DataAccess.Interface;
-using Reports.BusinessLogic;
-using Reports.DBConnections;
-using System.Data;
-
+using System.Linq;
 
 
 namespace Reports.Logger
 {
     public class LoggerLogic : ILoggerLogic
     {
-        private ILogRepository repository;
-        public LoggerLogic(ILogRepository logRepository) {
-            repository = logRepository;
+        private ILogRepository LogsRepo;
+        private IRepository<IndicatorConfig> IndicatorConfigRepo;
+
+
+        public LoggerLogic(ILogRepository logRepository,
+            IRepository<IndicatorConfig> IndicatorConfigRepo) {
+            this.LogsRepo = logRepository;
+            this.IndicatorConfigRepo = IndicatorConfigRepo;
         }
         public Log Create(Log log) {
             try{
-                    repository.Add(log);
-                    repository.Save();
+                LogsRepo.Add(log);
+                LogsRepo.Save();
                 return log;
             }
             catch (Exception e)
@@ -30,29 +32,66 @@ namespace Reports.Logger
                 throw new LoggerException(e.Message, e);
             }
         }
-       
         public IEnumerable<Log> GetAll(){
             try {
-                return repository.GetAll();
+                return LogsRepo.GetAll();
             }
             catch (Exception e)
             {
                 throw new LoggerException(e.Message, e);
             }
         }
-
-        public DataSet RankingTopTen(){
+        public IEnumerable<string> ManagersMoreLogged() { 
             try
             {
-                IDBConnectionExcecuter conexion = new DBConnectionExcecuter();
-                conexion.SetConnectionString("Server=.\\SQLEXPRESS;Database=ReportsDB;Trusted_Connection=True;MultipleActiveResultSets=True;");
-                conexion.SetQuerySQL("select top(10) UserName from [ReportsDB].[dbo].[Logs] group by UserName order by UserName desc");
-                return conexion.GetResult();
+                var results = (from l in LogsRepo.GetAll()
+                              where l.Role == 'M'
+                              group l by l.UserName into groups
+                              orderby groups.Count() descending
+                              select groups.Key).Take(10);
+                return results.ToList();
             }
-            catch (RepositoryInterfaceException e)
+            catch (LogRepositoryInterfaceException e)
             {
-                throw new BusinessLogicException(e.Message, e);
+                throw new LoggerException(e.Message, e);
             }
+        }
+        public IEnumerable<Indicator> IndicatorsMoreHidden()
+        {
+            try { 
+                var results = (from ic in IndicatorConfigRepo.GetAll()
+                               where ic.User.Admin == false && ic.Visible == false
+                               group ic.Indicator by ic.Indicator into groups
+                               orderby groups.Count() descending
+                               select groups.Key).Take(10);
+                return results.ToList();
+            }catch(RepositoryInterfaceException e)
+            {
+                throw new LoggerException(e.Message, e);
+            }
+        }
+
+        public IEnumerable<Log> ActionLogsByDate(DateTime start, DateTime end)
+        {
+            try
+            {
+                ThrowExceptionIfDatesNotOk(start, end);
+                var results = from logs in LogsRepo.GetAll()
+                              where logs.Date >= start && logs.Date <= end
+                              select logs;
+                return results.ToList();
+            }
+            catch (LogRepositoryInterfaceException e)
+            {
+                throw new LoggerException(e.Message, e);
+            }
+        }
+
+        private void ThrowExceptionIfDatesNotOk(DateTime start, DateTime end)
+        {
+            if (start == null || end == null ||
+                start > end)
+                throw new LoggerException("Dates are not ok");
         }
     }
 }

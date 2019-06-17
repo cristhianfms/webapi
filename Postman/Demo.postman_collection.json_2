@@ -1,1803 +1,20 @@
 {
 	"info": {
-		"_postman_id": "b2135b5c-962c-476f-b1e6-86cd293ed23d",
-		"name": "Demo",
+		"_postman_id": "535dfcd5-0c35-4144-8352-9271aa6de572",
+		"name": "New request",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "1-User",
-			"item": [
-				{
-					"name": "Create",
-					"item": [
-						{
-							"name": "CreateSameUser",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"Name\":\"Cristhian\",\r\n\t\"LastName\":\"Maciel\",\r\n\t\"UserName\":\"cris1\",\r\n\t\"Amin\":false,\r\n\t\"Password\":\"1234567\"\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Users",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Users"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateNewUser",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "c602d6d6-9ec0-4535-8e1b-5feb917f7ba3",
-										"exec": [
-											"pm.environment.set(\"newUserId\", pm.response.json().id);",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"Name\":\"Santiago\",\r\n\t\"LastName\":\"Larralde\",\r\n\t\"UserName\":\"user2\",\r\n\t\"Amin\":false,\r\n\t\"Password\":\"1234567\"\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Users",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Users"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateEmptyBody",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Users",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Users"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateEmptyName",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"Name\":\"\",\r\n\t\"LastName\":\"Maciel\",\r\n\t\"UserName\":\"cris1\",\r\n\t\"Amin\":false,\r\n\t\"Password\":\"1234567\"\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Users",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Users"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateEmptyLastName",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"Name\":\"Cristhian\",\r\n\t\"LastName\":\"\",\r\n\t\"UserName\":\"cris1\",\r\n\t\"Amin\":false,\r\n\t\"Password\":\"1234567\"\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Users",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Users"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateEmptyUserName",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"Name\":\"Cristhian\",\r\n\t\"LastName\":\"Maciel\",\r\n\t\"UserName\":\"\",\r\n\t\"Amin\":false,\r\n\t\"Password\":\"1234567\"\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Users",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Users"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateEmptyPassword",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"Name\":\"Cristhian\",\r\n\t\"LastName\":\"Maciel\",\r\n\t\"UserName\":\"cris1\",\r\n\t\"Amin\":false,\r\n\t\"Password\":\"\"\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Users",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Users"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateNullName",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"LastName\":\"Maciel\",\r\n\t\"UserName\":\"cris1\",\r\n\t\"Amin\":false,\r\n\t\"Password\":\"1234567\"\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Users",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Users"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateNullLastName",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"Name\":\"Cristhian\",\r\n\t\"UserName\":\"cris1\",\r\n\t\"Amin\":false,\r\n\t\"Password\":\"1234567\"\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Users",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Users"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateNullUserName",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"Name\":\"Cristhian\",\r\n\t\"LastName\":\"Maciel\",\r\n\t\"Amin\":false,\r\n\t\"Password\":\"1234567\"\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Users",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Users"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateNullAdmin",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"Name\":\"Juan\",\r\n\t\"LastName\":\"Gonzalez\",\r\n\t\"UserName\":\"juanjo\",\r\n\t\"Password\":\"1234567\"\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Users",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Users"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateNullPassword",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"Name\":\"Cristhian\",\r\n\t\"LastName\":\"Maciel\",\r\n\t\"UserName\":\"cris1\",\r\n\t\"Amin\":false\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Users",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Users"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Read",
-					"item": [
-						{
-							"name": "GetUserByid",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{domain}}/api/Users/{{userId}}",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Users",
-										"{{userId}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "GetAllUsers",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{domain}}/api/Users",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Users"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Update",
-					"item": [
-						{
-							"name": "UpdateName",
-							"request": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"id\": \"{{newUserId}}\",\n    \"name\": \"NewName\",\n    \"lastName\": \"Larralde\",\n    \"userName\": \"user2\",\n    \"admin\": false,\n    \"password\": \"1234567\"\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Users/{{newUserId}}",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Users",
-										"{{newUserId}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "UpdateAdmin",
-							"request": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"id\": \"{{newUserId}}\",\n    \"name\": \"NewName\",\n    \"lastName\": \"Larralde\",\n    \"userName\": \"user2\",\n    \"admin\": true,\n    \"password\": \"1234567\"\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Users/{{newUserId}}",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Users",
-										"{{newUserId}}"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Delete",
-					"item": [
-						{
-							"name": "GetAllUsers",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{domain}}/api/Users",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Users"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "1-CreateUser",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "c602d6d6-9ec0-4535-8e1b-5feb917f7ba3",
-										"exec": [
-											"pm.environment.set(\"userDeleteid\", pm.response.json().id);",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"Name\":\"Santiago\",\r\n\t\"LastName\":\"Larralde\",\r\n\t\"UserName\":\"user3\",\r\n\t\"Amin\":false,\r\n\t\"Password\":\"1234567\"\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Users",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Users"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "2-DeleteUser",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "c602d6d6-9ec0-4535-8e1b-5feb917f7ba3",
-										"exec": [
-											"",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"id\": \"{{userDeleteid}}\",\n    \"name\": \"Santiago\",\n    \"lastName\": \"Larralde\",\n    \"userName\": \"user3\",\n    \"admin\": false,\n    \"password\": \"1234567\"\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Users/{{userDeleteid}}",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Users",
-										"{{userDeleteid}}"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"_postman_isSubFolder": true
-				}
-			]
-		},
-		{
-			"name": "2-Area",
-			"item": [
-				{
-					"name": "Create",
-					"item": [
-						{
-							"name": "CreateSameName",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "8fcb8d5d-5047-4997-82e3-0858c16f8535",
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"Name\":\"Area1\",\r\n\t\"ConnectionString\":{{AreaConectionString}},\r\n\t\"Indicators\":[]\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Areas",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Areas"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateNewAreaOK",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "8fcb8d5d-5047-4997-82e3-0858c16f8535",
-										"exec": [
-											"pm.environment.set(\"areaId\", pm.response.json().id);",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"Name\":\"Area2\",\r\n\t\"ConnectionString\":{{AreaConectionString}},\r\n\t\"Indicators\":[]\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Areas",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Areas"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateEmptyName",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "8fcb8d5d-5047-4997-82e3-0858c16f8535",
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"Name\":\"\",\r\n\t\"ConnectionString\":{{AreaConectionString}},\r\n\t\"Indicators\":[]\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Areas",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Areas"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateEmptyConnectionString",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "8fcb8d5d-5047-4997-82e3-0858c16f8535",
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"Name\":\"Area2\",\r\n\t\"ConnectionString\":\"\",\r\n\t\"Indicators\":[]\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Areas",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Areas"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateNullName",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "8fcb8d5d-5047-4997-82e3-0858c16f8535",
-										"exec": [
-											"",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"ConnectionString\":{{AreaConectionString}},\r\n\t\"Indicators\":[]\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Areas",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Areas"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateNullConnectionString",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "8fcb8d5d-5047-4997-82e3-0858c16f8535",
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"Name\":\"Area2\",\r\n\t\"Indicators\":[]\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Areas",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Areas"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateBadIndicator",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "8fcb8d5d-5047-4997-82e3-0858c16f8535",
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"Name\":\"Area2\",\r\n\t\"ConnectionString\":{{AreaConectionString}},\r\n\t\"Indicators\":2\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Areas",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Areas"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Read",
-					"item": [
-						{
-							"name": "GetAllAreas",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{domain}}/api/Areas",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Areas"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "GetAreaByID",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{domain}}/api/Areas/{{Area1id}}",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Areas",
-										"{{Area1id}}"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Update",
-					"item": [
-						{
-							"name": "ModifyArea",
-							"request": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"Name\":\"Area1\",\r\n\t\"ConnectionString\":\"Server=.\\\\SQLEXPRESS;Database=AreaDB;Trusted_Connection=True;MultipleActiveResultSets=True;\",\r\n\t\"Indicators\":[]\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Areas/{{Area1id}}",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Areas",
-										"{{Area1id}}"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Delete",
-					"item": [
-						{
-							"name": "GetAllAreas",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{domain}}/api/Areas",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Areas"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "1-CreateArea",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "8fcb8d5d-5047-4997-82e3-0858c16f8535",
-										"exec": [
-											"pm.environment.set(\"areaDeleteid\", pm.response.json().id);",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"Name\":\"Area3\",\r\n\t\"ConnectionString\":\"CSArea3\",\r\n\t\"Indicators\":[]\r\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Areas",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Areas"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "2-DeleteArea",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"id\": \"{{areaDeleteid}}\",\n    \"name\": \"Area3\",\n    \"connectionString\": \"CSArea3\",\n    \"indicators\": []\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Areas/{{areaDeleteid}}",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Areas",
-										"{{areaDeleteid}}"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"_postman_isSubFolder": true
-				}
-			]
-		},
-		{
-			"name": "3-Indicator",
-			"item": [
-				{
-					"name": "Create",
-					"item": [
-						{
-							"name": "CreateRed",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "4dc2426d-41dd-4167-8641-322061005e62",
-										"exec": [
-											"pm.environment.set(\"indicatorRed\", pm.response.json().id);"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"Color\":\"Red\",\n\t\"Expression\": \"a\",\n\t\"Conditions\":{\n\t\t\"a\":{\n\t\t\t\"Operator\":\"<\",\n\t\t\t\"ValueIzq\":\"SELECT COUNT(*) As TotalInglesEspanol FROM Account WHERE LangPref ='Spanish' OR LangPref = 'English'\",\n\t\t\t\"TypeIzq\":\"sql\",\n\t\t\t\"ValueDer\":\"SELECT COUNT(*) As TotalOtrosIdiomas FROM Account WHERE LangPref <> 'Spanish' AND LangPref <> 'English'\",\n\t\t\t\"TypeDer\":\"sql\"\n\t\t}\n\t\t}\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Indicators",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Indicators"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateGreen",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "c5daa584-b6c2-42e2-a17a-069332b3d6a0",
-										"exec": [
-											"pm.environment.set(\"indicatorGreen\", pm.response.json().id);"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"Color\":\"Green\",\n\t\"Expression\": \"*ab\",\n\t\"Conditions\":{\n\t\t\"a\":{\n\t\t\t\"Operator\":\">=\",\n\t\t\t\"ValueIzq\":\"SELECT COUNT(*) As TotalInglesEspanol FROM Account WHERE LangPref = 'Spanish' OR LangPref = 'English'\",\n\t\t\t\"TypeIzq\":\"sql\",\n\t\t\t\"ValueDer\":\"SELECT COUNT(*) As TotalOtrosIdiomas FROM Account WHERE LangPref <> 'Spanish' AND LangPref <> 'English'\",\n\t\t\t\"TypeDer\":\"sql\"\n\t\t},\n\t\t\"b\":{\n\t\t\t\"Operator\":\"<=\",\n\t\t\t\"ValueIzq\":\"SELECT COUNT(*) As TotalEspanol FROM Account WHERE LangPref = 'Spanish'\",\n\t\t\t\"TypeIzq\":\"sql\",\n\t\t\t\"ValueDer\":\"SELECT COUNT(*) As TotalIngles FROM Account WHERE LangPref = 'English'\",\n\t\t\t\"TypeDer\":\"sql\"\n\t\t}\n\t}\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Indicators",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Indicators"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateYellow",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "970e6937-837e-462f-a90f-fa144b63950d",
-										"exec": [
-											"pm.environment.set(\"indicatorYellow\", pm.response.json().id);"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"Color\":\"Yellow\",\n\t\"Expression\": \"*ab\",\n\t\"Conditions\":{\n\t\t\"a\":{\n\t\t\t\"Operator\":\">=\",\n\t\t\t\"ValueIzq\":\"SELECT ItemListPrice FROM Item WHERE ItemId = 'EST-13'\",\n\t\t\t\"TypeIzq\":\"sql\",\n\t\t\t\"ValueDer\":\"ItemUnitCost FROM Item WHERE ItemId = 'EST-13'\",\n\t\t\t\"TypeDer\":\"sql\"\n\t\t},\n\t\t\"b\":{\n\t\t\t\"Operator\":\"<=\",\n\t\t\t\"ValueIzq\":\"SELECT ItemListPrice FROM Item WHERE ItemId = 'EST-13'\",\n\t\t\t\"TypeIzq\":\"sql\",\n\t\t\t\"ValueDer\":\"SELECT (ItemUnitCost * 1.7) As SetentaPorciento FROM Item WHERE ItemId ='EST-13'\",\n\t\t\t\"TypeDer\":\"sql\"\n\t\t}\n\t}\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Indicators",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Indicators"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "CreateNullName",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "4dc2426d-41dd-4167-8641-322061005e62",
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"Expression\": \"a\",\n\t\"Conditions\":{\n\t\t\"a\":{\n\t\t\t\"Operation\":\"<\",\n\t\t\t\"ValueIzq\":\"SELECT COUNT(*) As TotalInglesEspanol FROM Account WHERE LangPref ='Spanish' OR LangPref = 'English'\",\n\t\t\t\"TypeIzq\":\"sql\",\n\t\t\t\"ValueDer\":\"SELECT COUNT(*) As TotalOtrosIdiomas FROM Account WHERE LangPref <> 'Spanish' AND LangPref <> 'English'\",\n\t\t\t\"TypeDer\":\"sql\"\n\t\t}\n\t\t}\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Indicators",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Indicators"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Read",
-					"item": [
-						{
-							"name": "GetAllIndicators",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{domain}}/api/Indicators",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Indicators"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "GetIndicatorById",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{domain}}/api/Indicators/{{indicatorYellow}}",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Indicators",
-										"{{indicatorYellow}}"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Update",
-					"item": [
-						{
-							"name": "UpdateYellow",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"id\": \"{{indicatorYellow}}\",\n    \"color\": \"Yellow\",\n    \"expression\": \"*ab\",\n    \"conditions\": {\n        \"a\": {\n            \"operation\": \"<=\",\n            \"valueIzq\": 1,\n            \"typeIzq\": \"int\",\n            \"valueDer\":2,\n            \"typeDer\": \"int\"\n        },\n        \"b\": {\n            \"operation\": \">=\",\n            \"valueIzq\": \"SELECT ItemListPrice FROM Item WHERE ItemId = 'EST-13'\",\n            \"typeIzq\": \"sql\",\n            \"valueDer\": \"ItemUnitCost FROM Item WHERE ItemId = 'EST-13'\",\n            \"typeDer\": \"sql\"\n        }\n    }\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Indicators/{{indicatorYellow}}",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Indicators",
-										"{{indicatorYellow}}"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "Delete",
-					"item": [
-						{
-							"name": "CreateIndicator",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "970e6937-837e-462f-a90f-fa144b63950d",
-										"exec": [
-											"pm.environment.set(\"indicatorDelete\", pm.response.json().id);"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\t\"Color\":\"Yellow\",\n\t\"Expression\": \"*ab\",\n\t\"Conditions\":{\n\t\t\"a\":{\n\t\t\t\"Operation\":\">=\",\n\t\t\t\"ValueIzq\":\"SELECT ItemListPrice FROM Item WHERE ItemId = 'EST-13'\",\n\t\t\t\"TypeIzq\":\"sql\",\n\t\t\t\"ValueDer\":\"ItemUnitCost FROM Item WHERE ItemId = 'EST-13'\",\n\t\t\t\"TypeDer\":\"sql\"\n\t\t},\n\t\t\"b\":{\n\t\t\t\"Operation\":\"<=\",\n\t\t\t\"ValueIzq\":\"SELECT ItemListPrice FROM Item WHERE ItemId = 'EST-13'\",\n\t\t\t\"TypeIzq\":\"sql\",\n\t\t\t\"ValueDer\":\"SELECT (ItemUnitCost * 1.7) As SetentaPorciento FROM Item WHERE ItemId ='EST-13'\",\n\t\t\t\"TypeDer\":\"sql\"\n\t\t}\n\t}\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Indicators",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Indicators"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "DeleteIndicator",
-							"request": {
-								"method": "DELETE",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"id\": \"{{indicatorDelete}}\",\n    \"color\": \"Yellow\",\n    \"expression\": \"*ab\",\n    \"conditions\": {\n        \"a\": {\n            \"operation\": \"<=\",\n            \"valueIzq\": \"SELECT ItemListPrice FROM Item WHERE ItemId = 'EST-13'\",\n            \"typeIzq\": \"sql\",\n            \"valueDer\": \"SELECT (ItemUnitCost * 1.7) As SetentaPorciento FROM Item WHERE ItemId ='EST-13'\",\n            \"typeDer\": \"sql\"\n        },\n        \"b\": {\n            \"operation\": \">=\",\n            \"valueIzq\": \"SELECT ItemListPrice FROM Item WHERE ItemId = 'EST-13'\",\n            \"typeIzq\": \"sql\",\n            \"valueDer\": \"ItemUnitCost FROM Item WHERE ItemId = 'EST-13'\",\n            \"typeDer\": \"sql\"\n        }\n    }\n}"
-								},
-								"url": {
-									"raw": "{{domain}}/api/Indicators/{{indicatorDelete}}",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Indicators",
-										"{{indicatorDelete}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "GetAllIndicators",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{domain}}/api/Indicators",
-									"host": [
-										"{{domain}}"
-									],
-									"path": [
-										"api",
-										"Indicators"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"_postman_isSubFolder": true
-				}
-			]
-		},
-		{
-			"name": "4-Area-Indicator",
-			"item": [
-				{
-					"name": "AsociationAreaIndicatorRed",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"IndicatorId\":\"{{indicatorRed}}\"\n}"
-						},
-						"url": {
-							"raw": "{{domain}}/api/Areas/{{areaId}}/Indicators",
-							"host": [
-								"{{domain}}"
-							],
-							"path": [
-								"api",
-								"Areas",
-								"{{areaId}}",
-								"Indicators"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "AsociationAreaIndicatorYellow",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"IndicatorId\":\"{{indicatorYellow}}\"\n}"
-						},
-						"url": {
-							"raw": "{{domain}}/api/Areas/{{areaId}}/Indicators",
-							"host": [
-								"{{domain}}"
-							],
-							"path": [
-								"api",
-								"Areas",
-								"{{areaId}}",
-								"Indicators"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "AsociationAreaIndicatorGreen",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"IndicatorId\":\"{{indicatorGreen}}\"\n}"
-						},
-						"url": {
-							"raw": "{{domain}}/api/Areas/{{areaId}}/Indicators",
-							"host": [
-								"{{domain}}"
-							],
-							"path": [
-								"api",
-								"Areas",
-								"{{areaId}}",
-								"Indicators"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GetAllindicatorsByArea",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{domain}}/api/Areas/{{areaId}}/Indicators",
-							"host": [
-								"{{domain}}"
-							],
-							"path": [
-								"api",
-								"Areas",
-								"{{areaId}}",
-								"Indicators"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "5-Area-Manager",
-			"item": [
-				{
-					"name": "CreateNewUser",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "c602d6d6-9ec0-4535-8e1b-5feb917f7ba3",
-								"exec": [
-									"pm.environment.set(\"managerId\", pm.response.json().id);",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\t\"Name\":\"ManagerName\",\r\n\t\"LastName\":\"ManagerLastName\",\r\n\t\"UserName\":\"manager\",\r\n\t\"Amin\":false,\r\n\t\"Password\":\"1234567\"\r\n}"
-						},
-						"url": {
-							"raw": "{{domain}}/api/Users",
-							"host": [
-								"{{domain}}"
-							],
-							"path": [
-								"api",
-								"Users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "AsociationAreaManager",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"ManagerId\":\"{{managerId}}\"\n}"
-						},
-						"url": {
-							"raw": "{{domain}}/api/Areas/{{areaId}}/Managers",
-							"host": [
-								"{{domain}}"
-							],
-							"path": [
-								"api",
-								"Areas",
-								"{{areaId}}",
-								"Managers"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GetAllManagerByArea",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{domain}}/api/Areas/{{areaId}}/Managers",
-							"host": [
-								"{{domain}}"
-							],
-							"path": [
-								"api",
-								"Areas",
-								"{{areaId}}",
-								"Managers"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "6-User-Indicators",
-			"item": [
-				{
-					"name": "DisplayIndicatorsByManager",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "{{domain}}/api/Users/{{managerId}}/display_indicator",
-							"host": [
-								"{{domain}}"
-							],
-							"path": [
-								"api",
-								"Users",
-								"{{managerId}}",
-								"display_indicator"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "CreateIndicator1-Idiomas preferidos",
+			"name": "CreateManager",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "2a1bd430-ec5a-407e-b70e-c571c2a7ff72",
+						"id": "c602d6d6-9ec0-4535-8e1b-5feb917f7ba3",
 						"exec": [
-							"pm.environment.set(\"Indicator1Id\", pm.response.json().id);"
+							"pm.environment.set(\"newUserId\", pm.response.json().id);",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -1809,8 +26,68 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"Name\":\"Santiago\",\r\n\t\"LastName\":\"Larralde\",\r\n\t\"UserName\":\"user2\",\r\n\t\"Role\":\"M\",\r\n\t\"Password\":\"1234567\",\r\n\t\"Mail\":\"santi@gmail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "{{domain}}/api/Users",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"Users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddManagerToArea",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"ManagerId\":\"{{newUserId}}\"}"
+				},
+				"url": {
+					"raw": "{{domain}}/api/Areas/{{areaId}}/Managers",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"Areas",
+						"{{areaId}}",
+						"Managers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddIndicatorToArea1",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -1818,12 +95,14 @@
 					"raw": "{  \r\n   \"Name\":\"Idiomas preferidos\",\r\n   \"RedCondition\":{  \r\n      \"Izq\":{  \r\n         \"ValueIzq\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT COUNT(*) As TotalInglesEspanol FROM Account WHERE LangPref = 'Spanish' OR LangPref = 'English'\"\r\n         },\r\n         \"Operator\":\">=\",\r\n         \"ValueDer\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT COUNT(*) As TotalOtrosIdiomas FROM Account WHERE LangPref <> 'Spanish' AND LangPref <> 'English'\"\r\n         }\r\n      },\r\n      \"LogicOperator\":\"AND\",\r\n      \"Der\":{  \r\n         \"ValueIzq\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT COUNT(*) As TotalEspanol FROM Account WHERE LangPref = 'Spanish'\"\r\n         },\r\n         \"Operator\":\"<=\",\r\n         \"ValueDer\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT COUNT(*) As TotalIngles FROM Account WHERE LangPref = 'English'\"\r\n         }\r\n      }\r\n   },\r\n   \"YellowCondition\":{  \r\n      \"Izq\":{  \r\n         \"ValueIzq\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT COUNT(*) As TotalInglesEspanol FROM Account WHERE LangPref = 'Spanish' OR LangPref = 'English'\"\r\n         },\r\n         \"Operator\":\">=\",\r\n         \"ValueDer\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT COUNT(*) As TotalOtrosIdiomas FROM Account WHERE LangPref <> 'Spanish' AND LangPref <> 'English'\"\r\n         }\r\n      },\r\n      \"LogicOperator\":\"AND\",\r\n      \"Der\":{  \r\n         \"ValueIzq\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT COUNT(*) As TotalEspanol FROM Account WHERE LangPref = 'Spanish'\"\r\n         },\r\n         \"Operator\":\">\",\r\n         \"ValueDer\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT COUNT(*) As TotalIngles FROM Account WHERE LangPref = 'English'\"\r\n         }\r\n      }\r\n   },\r\n   \"GreenCondition\":{  \r\n      \"Izq\":{  \r\n         \"ValueIzq\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT COUNT(*) As TotalInglesEspanol FROM Account WHERE LangPref = 'Spanish' OR LangPref = 'English'\"\r\n         },\r\n         \"Operator\":\">=\",\r\n         \"ValueDer\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT COUNT(*) As TotalOtrosIdiomas FROM Account WHERE LangPref <> 'Spanish' AND LangPref <> 'English'\"\r\n         }\r\n      },\r\n      \"LogicOperator\":\"AND\",\r\n      \"Der\":{  \r\n         \"ValueIzq\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT COUNT(*) As TotalEspanol FROM Account WHERE LangPref = 'Spanish' \"\r\n         },\r\n         \"Operator\":\"<=\",\r\n         \"ValueDer\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT COUNT(*) As TotalIngles FROM Account WHERE LangPref = 'English'\"\r\n         }\r\n      }\r\n   }\r\n}"
 				},
 				"url": {
-					"raw": "{{domain}}/api/Indicators",
+					"raw": "{{domain}}/api/Areas/{{areaId}}/Indicators",
 					"host": [
 						"{{domain}}"
 					],
 					"path": [
 						"api",
+						"Areas",
+						"{{areaId}}",
 						"Indicators"
 					]
 				}
@@ -1831,149 +110,15 @@
 			"response": []
 		},
 		{
-			"name": "i1-GetOnCondition",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{domain}}/api/Indicators/{{Indicator1Id}}/GetOnCondition",
-					"host": [
-						"{{domain}}"
-					],
-					"path": [
-						"api",
-						"Indicators",
-						"{{Indicator1Id}}",
-						"GetOnCondition"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "i1-GetGreenResult",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\tAreaId:\"\";\n}"
-				},
-				"url": {
-					"raw": "{{domain}}/api/Indicators/{{Indicator1Id}}/GetGreenResult",
-					"host": [
-						"{{domain}}"
-					],
-					"path": [
-						"api",
-						"Indicators",
-						"{{Indicator1Id}}",
-						"GetGreenResult"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "i1-GetYellowResult",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\tAreaId:\"\";\n}"
-				},
-				"url": {
-					"raw": "{{domain}}/api/Indicators/{{Indicator1Id}}/GetYellowResult",
-					"host": [
-						"{{domain}}"
-					],
-					"path": [
-						"api",
-						"Indicators",
-						"{{Indicator1Id}}",
-						"GetYellowResult"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "i1-GetRedResult",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\tAreaId:\"\";\n}"
-				},
-				"url": {
-					"raw": "{{domain}}/api/Indicators/{{Indicator1Id}}/GetRedResult",
-					"host": [
-						"{{domain}}"
-					],
-					"path": [
-						"api",
-						"Indicators",
-						"{{Indicator1Id}}",
-						"GetRedResult"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "CreateIndicator2-VentaReptiles",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "374d3c81-e302-4551-a61e-cc7d8ba77092",
-						"exec": [
-							"pm.environment.set(\"Indicator2Id\", pm.response.json().id);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
+			"name": "AddIndicatoroToArea2",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					}
 				],
 				"body": {
@@ -1981,12 +126,14 @@
 					"raw": "{  \r\n   \"Name\":\"Venta de reptiles\",\r\n   \"RedCondition\":{  \r\n      \"ValueIzq\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT SUM(OrdersLine.LineQuantity) AS TotalVendidos FROM (Product INNER JOIN Item ON Product.ProductId = Item.ProductId) INNER JOIN OrdersLine ON Item.ItemId = OrdersLine.ItemId WHERE Product.CatId = 5\"\r\n      },\r\n      \"Operator\":\"<\",\r\n      \"ValueDer\":{  \r\n         \"ValueType\":\"int\",\r\n         \"Data\":1500\r\n      }\r\n   },\r\n   \"YellowCondition\":{  \r\n      \"Izq\":{  \r\n         \"ValueIzq\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT SUM(OrdersLine.LineQuantity) AS TotalVendidos FROM (Product INNER JOIN Item ON Product.ProductId = Item.ProductId) INNER JOIN OrdersLine ON Item.ItemId = OrdersLine.ItemId WHERE Product.CatId = 5\"\r\n         },\r\n         \"Operator\":\">=\",\r\n         \"ValueDer\":{  \r\n            \"ValueType\":\"int\",\r\n            \"Data\":1500\r\n         }\r\n      },\r\n      \"LogicOperator\":\"AND\",\r\n      \"Der\":{  \r\n         \"ValueIzq\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT SUM(OrdersLine.LineQuantity) AS TotalVendidos FROM (Product INNER JOIN Item ON Product.ProductId = Item.ProductId) INNER JOIN OrdersLine ON Item.ItemId = OrdersLine.ItemId WHERE Product.CatId = 5\"\r\n         },\r\n         \"Operator\":\"<\",\r\n         \"ValueDer\":{  \r\n            \"ValueType\":\"int\",\r\n            \"Data\":4000\r\n         }\r\n      }\r\n   },\r\n   \"GreenCondition\":{  \r\n      \"ValueIzq\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT SUM(OrdersLine.LineQuantity) AS TotalVendidos FROM (Product INNER JOIN Item ON Product.ProductId = Item.ProductId) INNER JOIN OrdersLine ON Item.ItemId = OrdersLine.ItemId WHERE Product.CatId = 5\"\r\n      },\r\n      \"Operator\":\">=\",\r\n      \"ValueDer\":{  \r\n         \"ValueType\":\"int\",\r\n         \"Data\":4000\r\n      }\r\n   }\r\n}"
 				},
 				"url": {
-					"raw": "{{domain}}/api/Indicators",
+					"raw": "{{domain}}/api/Areas/{{areaId}}/Indicators",
 					"host": [
 						"{{domain}}"
 					],
 					"path": [
 						"api",
+						"Areas",
+						"{{areaId}}",
 						"Indicators"
 					]
 				}
@@ -1994,149 +141,15 @@
 			"response": []
 		},
 		{
-			"name": "i2-GetOnCondition",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{domain}}/api/Indicators/{{Indicator2Id}}/GetOnCondition",
-					"host": [
-						"{{domain}}"
-					],
-					"path": [
-						"api",
-						"Indicators",
-						"{{Indicator2Id}}",
-						"GetOnCondition"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "i2-GetGreenResult",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\tAreaId:\"\";\n}"
-				},
-				"url": {
-					"raw": "{{domain}}/api/Indicators/{{Indicator2Id}}/GetGreenResult",
-					"host": [
-						"{{domain}}"
-					],
-					"path": [
-						"api",
-						"Indicators",
-						"{{Indicator2Id}}",
-						"GetGreenResult"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "i2-GetYellowResult",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\tAreaId:\"\";\n}"
-				},
-				"url": {
-					"raw": "{{domain}}/api/Indicators/{{Indicator2Id}}/GetYellowResult",
-					"host": [
-						"{{domain}}"
-					],
-					"path": [
-						"api",
-						"Indicators",
-						"{{Indicator2Id}}",
-						"GetYellowResult"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "i2-GetRedResult",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\tAreaId:\"\";\n}"
-				},
-				"url": {
-					"raw": "{{domain}}/api/Indicators/{{Indicator2Id}}/GetRedResult",
-					"host": [
-						"{{domain}}"
-					],
-					"path": [
-						"api",
-						"Indicators",
-						"{{Indicator2Id}}",
-						"GetRedResult"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "CreateIndicator3-ControlDePrecio",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "62e91df1-047a-4602-8523-6f73a9401842",
-						"exec": [
-							"pm.environment.set(\"Indicator3Id\", pm.response.json().id);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
+			"name": "AddIndicatoroToArea3",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					}
 				],
 				"body": {
@@ -2144,12 +157,14 @@
 					"raw": "{  \r\n   \"Name\":\"Control de precio del Item EST-13\",\r\n   \"RedCondition\":{  \r\n      \"ValueIzq\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT ItemListPrice FROM Item WHERE ItemId = 'EST-13' \"\r\n      },\r\n      \"Operator\":\"<\",\r\n      \"ValueDer\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT ItemUnitCost FROM Item WHERE ItemId = 'EST-13'\"\r\n      }\r\n   },\r\n   \"YellowCondition\":{  \r\n      \"Izq\":{  \r\n         \"ValueIzq\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT ItemListPrice FROM Item WHERE ItemId = 'EST-13' \"\r\n         },\r\n         \"Operator\":\">=\",\r\n         \"ValueDer\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT ItemUnitCost FROM Item WHERE ItemId = 'EST-13'\"\r\n         }\r\n      },\r\n      \"LogicOperator\":\"AND\",\r\n      \"Der\":{  \r\n         \"ValueIzq\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT ItemListPrice FROM Item WHERE ItemId = 'EST-13' \"\r\n         },\r\n         \"Operator\":\"<=\",\r\n         \"ValueDer\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT (ItemUnitCost * 1.7) As SetentaPorciento FROM Item WHERE ItemId = 'EST-13'\"\r\n         }\r\n      }\r\n   },\r\n   \"GreenCondition\":{  \r\n      \"ValueIzq\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT ItemListPrice FROM Item WHERE ItemId = 'EST-13' \"\r\n      },\r\n      \"Operator\":\">\",\r\n      \"ValueDer\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT (ItemUnitCost * 1.7) As SetentaPorciento FROM Item WHERE ItemId = 'EST-13'\"\r\n      }\r\n   }\r\n}"
 				},
 				"url": {
-					"raw": "{{domain}}/api/Indicators",
+					"raw": "{{domain}}/api/Areas/{{areaId}}/Indicators",
 					"host": [
 						"{{domain}}"
 					],
 					"path": [
 						"api",
+						"Areas",
+						"{{areaId}}",
 						"Indicators"
 					]
 				}
@@ -2157,149 +172,15 @@
 			"response": []
 		},
 		{
-			"name": "i3-GetOnCondition",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{domain}}/api/Indicators/{{Indicator3Id}}/GetOnCondition",
-					"host": [
-						"{{domain}}"
-					],
-					"path": [
-						"api",
-						"Indicators",
-						"{{Indicator3Id}}",
-						"GetOnCondition"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "i3-GetGreenResult",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\tAreaId:\"\";\n}"
-				},
-				"url": {
-					"raw": "{{domain}}/api/Indicators/{{Indicator3Id}}/GetGreenResult",
-					"host": [
-						"{{domain}}"
-					],
-					"path": [
-						"api",
-						"Indicators",
-						"{{Indicator3Id}}",
-						"GetGreenResult"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "i3-GetYellowResult",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\tAreaId:\"\";\n}"
-				},
-				"url": {
-					"raw": "{{domain}}/api/Indicators/{{Indicator3Id}}/GetYellowResult",
-					"host": [
-						"{{domain}}"
-					],
-					"path": [
-						"api",
-						"Indicators",
-						"{{Indicator3Id}}",
-						"GetYellowResult"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "i3-GetRedResult",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\tAreaId:\"\";\n}"
-				},
-				"url": {
-					"raw": "{{domain}}/api/Indicators/{{Indicator3Id}}/GetRedResult",
-					"host": [
-						"{{domain}}"
-					],
-					"path": [
-						"api",
-						"Indicators",
-						"{{Indicator3Id}}",
-						"GetRedResult"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "CreateIndicator4-CategoriasFavoritas",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "b7540e3a-21bd-4d74-87b2-19a77043c2a7",
-						"exec": [
-							"pm.environment.set(\"Indicator4Id\", pm.response.json().id);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
+			"name": "AddIndicatoroToArea4",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					}
 				],
 				"body": {
@@ -2307,12 +188,14 @@
 					"raw": "{  \r\n   \"Name\":\"Categorías favoritas\",\r\n   \"RedCondition\":{  \r\n      \"Izq\":{  \r\n         \"ValueIzq\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT Count(*) FROM Account WHERE FavCategory = 'Dogs' \"\r\n         },\r\n         \"Operator\":\"<\",\r\n         \"ValueDer\":{  \r\n            \"ValueType\":\"int\",\r\n            \"Data\":30\r\n         }\r\n      },\r\n      \"LogicOperator\":\"OR\",\r\n      \"Der\":{  \r\n         \"ValueIzq\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT Count(*) FROM Account WHERE FavCategory = 'Cats' \"\r\n         },\r\n         \"Operator\":\"<\",\r\n         \"ValueDer\":{  \r\n            \"ValueType\":\"int\",\r\n            \"Data\":30\r\n         }\r\n      }\r\n   },\r\n   \"YellowCondition\":{  \r\n      \"Izq\":{  \r\n         \"Izq\":{  \r\n            \"ValueIzq\":{  \r\n               \"ValueType\":\"sql\",\r\n               \"Data\":\"SELECT Count(*) FROM Account WHERE FavCategory = 'Dogs'\"\r\n            },\r\n            \"Operator\":\">=\",\r\n            \"ValueDer\":{  \r\n               \"ValueType\":\"int\",\r\n               \"Data\":30\r\n            }\r\n         },\r\n         \"LogicOperator\":\"AND\",\r\n         \"Der\":{  \r\n            \"ValueIzq\":{  \r\n               \"ValueType\":\"sql\",\r\n               \"Data\":\"SELECT Count(*) FROM Account WHERE FavCategory = 'Cats'\"\r\n            },\r\n            \"Operator\":\">=\",\r\n            \"ValueDer\":{  \r\n               \"ValueType\":\"int\",\r\n               \"Data\":30\r\n            }\r\n         }\r\n      },\r\n      \"LogicOperator\":\"AND\",\r\n      \"Der\":{  \r\n         \"ValueIzq\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT Count(*) FROM Account\"\r\n         },\r\n         \"Operator\":\">=\",\r\n         \"ValueDer\":{  \r\n            \"ValueType\":\"int\",\r\n            \"Data\":100\r\n         }\r\n      }\r\n   },\r\n   \"GreenCondition\":{  \r\n      \"Izq\":{  \r\n         \"Izq\":{  \r\n            \"ValueIzq\":{  \r\n               \"ValueType\":\"sql\",\r\n               \"Data\":\"SELECT Count(*) FROM Account WHERE FavCategory = 'Dogs' \"\r\n            },\r\n            \"Operator\":\">=\",\r\n            \"ValueDer\":{  \r\n               \"ValueType\":\"int\",\r\n               \"Data\":30\r\n            }\r\n         },\r\n         \"LogicOperator\":\"AND\",\r\n         \"Der\":{  \r\n            \"ValueIzq\":{  \r\n               \"ValueType\":\"sql\",\r\n               \"Data\":\"SELECT Count(*) FROM Account WHERE FavCategory = 'Cats'\"\r\n            },\r\n            \"Operator\":\">=\",\r\n            \"ValueDer\":{  \r\n               \"ValueType\":\"int\",\r\n               \"Data\":30\r\n            }\r\n         }\r\n      },\r\n      \"LogicOperator\":\"AND\",\r\n      \"Der\":{  \r\n         \"ValueIzq\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT Count(*) FROM Account\"\r\n         },\r\n         \"Operator\":\"<\",\r\n         \"ValueDer\":{  \r\n            \"ValueType\":\"int\",\r\n            \"Data\":100\r\n         }\r\n      }\r\n   }\r\n}"
 				},
 				"url": {
-					"raw": "{{domain}}/api/Indicators",
+					"raw": "{{domain}}/api/Areas/{{areaId}}/Indicators",
 					"host": [
 						"{{domain}}"
 					],
 					"path": [
 						"api",
+						"Areas",
+						"{{areaId}}",
 						"Indicators"
 					]
 				}
@@ -2320,32 +203,238 @@
 			"response": []
 		},
 		{
-			"name": "i4-GetOnCondition",
+			"name": "AddIndicatoroToArea5",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{  \r\n   \"Name\":\"Promedio precios ItemStatus P\",\r\n   \"RedCondition\":{  \r\n      \"ValueIzq\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT AVG(LinePrice) FROM OrdersLine WHERE ItemId IN (Select ItemId FROM Item WHERE ItemStatus = 'P')\"\r\n      },\r\n      \"Operator\":\"<\",\r\n      \"ValueDer\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT AVG(LinePrice) FROM OrdersLine\"\r\n      }\r\n   },\r\n   \"YellowCondition\":{  \r\n      \"ValueIzq\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT AVG(LinePrice) FROM OrdersLine WHERE ItemId IN (Select ItemId FROM Item WHERE ItemStatus = 'P')\"\r\n      },\r\n      \"Operator\":\"=\",\r\n      \"ValueDer\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT AVG(LinePrice) FROM OrdersLine\"\r\n      }\r\n   },\r\n   \"GreenCondition\":{  \r\n      \"ValueIzq\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT AVG(LinePrice) FROM OrdersLine WHERE ItemId IN (Select ItemId FROM Item WHERE ItemStatus = 'P')\"\r\n      },\r\n      \"Operator\":\">\",\r\n      \"ValueDer\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT AVG(LinePrice) FROM OrdersLine\"\r\n      }\r\n   }\r\n}"
+				},
+				"url": {
+					"raw": "{{domain}}/api/Areas/{{areaId}}/Indicators",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"Areas",
+						"{{areaId}}",
+						"Indicators"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetIndiatorsOfArea",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{domain}}/api/Indicators/{{Indicator4Id}}/GetOnCondition",
+					"raw": "{{domain}}/api/Areas/{{areaId}}/Indicators",
 					"host": [
 						"{{domain}}"
 					],
 					"path": [
 						"api",
-						"Indicators",
-						"{{Indicator4Id}}",
-						"GetOnCondition"
+						"Areas",
+						"{{areaId}}",
+						"Indicators"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "i4-GetGreenResult",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "GetAllAreasByManager",
 			"request": {
 				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/api/Managers/{{newUserId}}/Areas",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"Managers",
+						"{{newUserId}}",
+						"Areas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetIndicatorsByManagerAndArea",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/api/Managers/{{newUserId}}/Indicators?area_id={{areaId}}",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"Managers",
+						"{{newUserId}}",
+						"Indicators"
+					],
+					"query": [
+						{
+							"key": "area_id",
+							"value": "{{areaId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateIndicatorCustomConfig",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Id\":\"1abd0f10-2ba8-438e-a567-5d4dfd3b9e30\",\n\t\"CustomName\":\"Custom name test 6\",\n\t\"Visible\": false ,\n\t\"Position\": 11\n}"
+				},
+				"url": {
+					"raw": "{{domain}}/api/Managers/{{newUserId}}/Indicators",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"Managers",
+						"{{newUserId}}",
+						"Indicators"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteIndicatorAndCustomConfig",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{domain}}/api/Indicators/B7AD2150-B1B5-45DD-BEA7-26E153D25A97",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"Indicators",
+						"B7AD2150-B1B5-45DD-BEA7-26E153D25A97"
+					]
+				},
+				"description": "Delete both indicator and custom config asociated to this indicator."
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteManagerEntity",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/api/Users/{{newUserId}}",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"Users",
+						"{{newUserId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteManagerFromArea",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"ManagerId\":\"{{newUserId}}\"\n}"
+				},
+				"url": {
+					"raw": "{{domain}}/api/Areas/{{areaId}}/Managers",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"Areas",
+						"{{areaId}}",
+						"Managers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetManagersOfArea",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/api/Areas/{{areaId}}/Managers",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"Areas",
+						"{{areaId}}",
+						"Managers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ChangeUserRole",
+			"request": {
+				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -2356,30 +445,26 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\tAreaId:\"\";\n}"
+					"raw": "{\n    \"role\": \"A\"\n}"
 				},
 				"url": {
-					"raw": "{{domain}}/api/Indicators/{{Indicator4Id}}/GetGreenResult",
+					"raw": "{{domain}}/api/Users/{{newUserId}}",
 					"host": [
 						"{{domain}}"
 					],
 					"path": [
 						"api",
-						"Indicators",
-						"{{Indicator4Id}}",
-						"GetGreenResult"
+						"Users",
+						"{{newUserId}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "i4-GetYellowResult",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "AddIndicatoroToArea-BoolyDate",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -2390,71 +475,25 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\tAreaId:\"\";\n}"
+					"raw": "{  \r\n   \"Name\":\"Promedio precios ItemStatus P 6\",\r\n   \"RedCondition\":{  \r\n      \"ValueIzq\":{  \r\n         \"ValueType\":\"date\",\r\n         \"Data\":\"1/1/2010 8:10:15 PM\"\r\n      },\r\n      \"Operator\":\"<\",\r\n      \"ValueDer\":{  \r\n         \"ValueType\":\"bool\",\r\n         \"Data\":true\r\n      }\r\n   },\r\n   \"YellowCondition\":{  \r\n      \"ValueIzq\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT AVG(LinePrice) FROM OrdersLine WHERE ItemId IN (Select ItemId FROM Item WHERE ItemStatus = 'P')\"\r\n      },\r\n      \"Operator\":\"=\",\r\n      \"ValueDer\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT AVG(LinePrice) FROM OrdersLine\"\r\n      }\r\n   },\r\n   \"GreenCondition\":{  \r\n      \"ValueIzq\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT AVG(LinePrice) FROM OrdersLine WHERE ItemId IN (Select ItemId FROM Item WHERE ItemStatus = 'P')\"\r\n      },\r\n      \"Operator\":\">\",\r\n      \"ValueDer\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT AVG(LinePrice) FROM OrdersLine\"\r\n      }\r\n   }\r\n}"
 				},
 				"url": {
-					"raw": "{{domain}}/api/Indicators/{{Indicator4Id}}/GetYellowResult",
+					"raw": "{{domain}}/api/Areas/{{areaId}}/Indicators",
 					"host": [
 						"{{domain}}"
 					],
 					"path": [
 						"api",
-						"Indicators",
-						"{{Indicator4Id}}",
-						"GetYellowResult"
+						"Areas",
+						"{{areaId}}",
+						"Indicators"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "i4-GetRedResult",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\tAreaId:\"\";\n}"
-				},
-				"url": {
-					"raw": "{{domain}}/api/Indicators/{{Indicator4Id}}/GetRedResult",
-					"host": [
-						"{{domain}}"
-					],
-					"path": [
-						"api",
-						"Indicators",
-						"{{Indicator4Id}}",
-						"GetRedResult"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "CreateIndicator5-PromedioPrecios",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "8daecc70-4f1f-4c53-8675-e5ed0f99f912",
-						"exec": [
-							"pm.environment.set(\"Indicator5Id\", pm.response.json().id);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
+			"name": "CheckIndicatorConditions",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -2467,138 +506,131 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{  \r\n   \"Name\":\"Promedio precios ItemStatus P\",\r\n   \"RedCondition\":{  \r\n      \"ValueIzq\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT AVG(LinePrice) FROM OrdersLine WHERE ItemId IN (Select ItemId FROM Item WHERE ItemStatus = 'P')\"\r\n      },\r\n      \"Operator\":\"<\",\r\n      \"ValueDer\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT AVG(LinePrice) FROM OrdersLine\"\r\n      }\r\n   },\r\n   \"YellowCondition\":{  \r\n      \"ValueIzq\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT AVG(LinePrice) FROM OrdersLine WHERE ItemId IN (Select ItemId FROM Item WHERE ItemStatus = 'P')\"\r\n      },\r\n      \"Operator\":\"=\",\r\n      \"ValueDer\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT AVG(LinePrice) FROM OrdersLine\"\r\n      }\r\n   },\r\n   \"GreenCondition\":{  \r\n      \"ValueIzq\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT AVG(LinePrice) FROM OrdersLine WHERE ItemId IN (Select ItemId FROM Item WHERE ItemStatus = 'P')\"\r\n      },\r\n      \"Operator\":\">\",\r\n      \"ValueDer\":{  \r\n         \"ValueType\":\"sql\",\r\n         \"Data\":\"SELECT AVG(LinePrice) FROM OrdersLine\"\r\n      }\r\n   }\r\n}"
+					"raw": "{  \r\n   \"AreaId\":\"{{areaId}}\",\r\n\r\n   \"YellowCondition\":{  \r\n      \"Izq\":{  \r\n         \"ValueIzq\":{  \r\n            \"ValueType\":\"bool\",\r\n            \"Data\":true\r\n         },\r\n         \"Operator\":\">=\",\r\n         \"ValueDer\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT COUNT(*) As TotalOtrosIdiomas FROM Account WHERE LangPref <> 'Spanish' AND LangPref <> 'English'\"\r\n         }\r\n      },\r\n      \"LogicOperator\":\"AND\",\r\n      \"Der\":{  \r\n         \"ValueIzq\":{  \r\n            \"ValueType\":\"bool\",\r\n            \"Data\":true\r\n         },\r\n         \"Operator\":\">\",\r\n         \"ValueDer\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT COUNT(*) As TotalIngles FROM Account WHERE LangPref = 'English'\"\r\n         }\r\n      }\r\n   },\r\n   \"GreenCondition\":{  \r\n      \"Izq\":{  \r\n         \"ValueIzq\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT COUNT(*) As TotalInglesEspanol FROM Account WHERE LangPref = 'Spanish' OR LangPref = 'English'\"\r\n         },\r\n         \"Operator\":\">=\",\r\n         \"ValueDer\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT COUNT(*) As TotalOtrosIdiomas FROM Account WHERE LangPref <> 'Spanish' AND LangPref <> 'English'\"\r\n         }\r\n      },\r\n      \"LogicOperator\":\"AND\",\r\n      \"Der\":{  \r\n         \"ValueIzq\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT COUNT(*) As TotalEspanol FROM Account WHERE LangPref = 'Spanish' \"\r\n         },\r\n         \"Operator\":\"<=\",\r\n         \"ValueDer\":{  \r\n            \"ValueType\":\"sql\",\r\n            \"Data\":\"SELECT COUNT(*) As TotalIngles FROM Account WHERE LangPref = 'English'\"\r\n         }\r\n      }\r\n   }\r\n}"
 				},
 				"url": {
-					"raw": "{{domain}}/api/Indicators",
+					"raw": "{{domain}}/api/CheckIndicator",
 					"host": [
 						"{{domain}}"
 					],
 					"path": [
 						"api",
-						"Indicators"
+						"CheckIndicator"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "i5-GetOnCondition",
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"UserName\":\"user2\",\n\t\"Password\":\"1234567\"\n}"
+				},
+				"url": {
+					"raw": "{{domain}}/Token/Login",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"Token",
+						"Login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Report-IndicatorsMoreHidden",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{domain}}/api/Indicators/{{Indicator5Id}}/GetOnCondition",
+					"raw": "{{domain}}/api/Logs/IndicatorsMoreHidden",
 					"host": [
 						"{{domain}}"
 					],
 					"path": [
 						"api",
-						"Indicators",
-						"{{Indicator5Id}}",
-						"GetOnCondition"
+						"Logs",
+						"IndicatorsMoreHidden"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "i5-GetGreenResult",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "Report-ActionLogsByDate",
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\tAreaId:\"\";\n}"
-				},
+				"header": [],
 				"url": {
-					"raw": "{{domain}}/api/Indicators/{{Indicator5Id}}/GetGreenResult",
+					"raw": "{{domain}}/api/Logs/ActionLogsByDate?date_from=17062019081000&date_to=17062019201050",
 					"host": [
 						"{{domain}}"
 					],
 					"path": [
 						"api",
-						"Indicators",
-						"{{Indicator5Id}}",
-						"GetGreenResult"
+						"Logs",
+						"ActionLogsByDate"
+					],
+					"query": [
+						{
+							"key": "date_from",
+							"value": "17062019081000"
+						},
+						{
+							"key": "date_to",
+							"value": "17062019201050"
+						}
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "i5-GetYellowResult",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "Report-ManagersMoreLogged",
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\tAreaId:\"\";\n}"
-				},
+				"header": [],
 				"url": {
-					"raw": "{{domain}}/api/Indicators/{{Indicator5Id}}/GetYellowResult",
+					"raw": "{{domain}}/api/Logs/ManagersMoreLogged",
 					"host": [
 						"{{domain}}"
 					],
 					"path": [
 						"api",
-						"Indicators",
-						"{{Indicator5Id}}",
-						"GetYellowResult"
+						"Logs",
+						"ManagersMoreLogged"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "i5-GetRedResult",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "Summary-CountIndicators",
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"type": "text",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\tAreaId:\"\";\n}"
-				},
+				"header": [],
 				"url": {
-					"raw": "{{domain}}/api/Indicators/{{Indicator5Id}}/GetRedResult",
+					"raw": "{{domain}}/api/Logs/ManagersMoreLogged",
 					"host": [
 						"{{domain}}"
 					],
 					"path": [
 						"api",
-						"Indicators",
-						"{{Indicator5Id}}",
-						"GetRedResult"
+						"Logs",
+						"ManagersMoreLogged"
 					]
 				}
 			},

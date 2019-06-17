@@ -27,6 +27,7 @@ namespace Reports.DataAccess.Migrations
                 {
                     Id = table.Column<Guid>(nullable: false),
                     UserName = table.Column<string>(nullable: true),
+                    Role = table.Column<string>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
                     Action = table.Column<string>(nullable: true)
                 },

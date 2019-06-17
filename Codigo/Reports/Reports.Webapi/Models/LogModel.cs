@@ -13,6 +13,7 @@ namespace Reports.Webapi.Models
         public string UserName { get; set; }
         public DateTime Date { get; set; }
         public string Action { get; set; }
+        public char Role { get; set; }
 
 
         public LogModel() { }
@@ -30,6 +31,7 @@ namespace Reports.Webapi.Models
                 UserName = this.UserName,
                 Date = this.Date,
                 Action = this.Action,
+                Role = this.Role
             };
 
         }
@@ -40,6 +42,7 @@ namespace Reports.Webapi.Models
             this.UserName = entity.UserName;
             this.Date = entity.Date;
             this.Action = entity.Action;
+            this.Role = entity.Role;
             return this;
         }
     }

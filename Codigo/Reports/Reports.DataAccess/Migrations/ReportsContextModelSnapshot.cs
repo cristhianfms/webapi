@@ -166,6 +166,10 @@ namespace Reports.DataAccess.Migrations
 
                     b.Property<DateTime>("Date");
 
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)));
+
                     b.Property<string>("UserName");
 
                     b.HasKey("Id");

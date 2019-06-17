@@ -39,7 +39,8 @@ namespace Reports.Webapi.Controllers
                 Id = new Guid(),
                 UserName = model.UserName,
                 Date = DateTime.Now,
-                Action = "Login"
+                Action = ActionType.LOGIN,
+                Role = user.Admin ? UserRoleType.ADMIN : UserRoleType.MANAGER
             }));
             return Ok(token);
         }

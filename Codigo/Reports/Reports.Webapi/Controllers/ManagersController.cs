@@ -16,14 +16,16 @@ namespace Reports.Webapi.Controllers
     {
         private IUserLogic userLogic;
         private IAreaLogic areaLogic;
+        private IIndicatorLogic indicatorLogic;
 
 
-        public ManagersController(IUserLogic userLogic, IAreaLogic areaLogic) : base()
+        public ManagersController(IUserLogic userLogic, IAreaLogic areaLogic,
+            IIndicatorLogic indicatorLogic) : base()
         {
             this.userLogic = userLogic;
             this.areaLogic = areaLogic;
+            this.indicatorLogic = indicatorLogic;
         }
-
 
         [HttpGet("{id}/Areas", Name = "GetAreas")]
         public IActionResult Get(Guid id)
@@ -47,33 +49,6 @@ namespace Reports.Webapi.Controllers
             }
         }
 
-        private List<IndicatorConfig> GetCustomIndicators(Guid managerId, Guid areaId)
-        {
-            if (areaLogic.IsManager(areaId, managerId))
-            {
-                List<IndicatorConfig> iConfigs = userLogic.GetIndicatorConfigs(managerId, areaId).ToList();
-                List<Indicator> areaIndicators = areaLogic.Get(areaId).Indicators.ToList();
-                foreach (Indicator indicator in areaIndicators)
-                {
-                    if (!iConfigs.Exists(ic => ic.Indicator.Id == indicator.Id))
-                    {
-                        iConfigs.Add(new IndicatorConfig()
-                        {
-                            Indicator = indicator,
-                            IndicatorId = indicator.Id,
-                            CustomName = indicator.Name,
-                        });
-                    }
-                }
-                return iConfigs;
-            }
-            else
-            {
-                return new List<IndicatorConfig>();
-            }
-        }
-
-
         [HttpGet("{id}/Indicators", Name = "GetIndicatorsByArea")]
         public IActionResult Get(Guid id, [FromQuery] Guid area_id)
         {
@@ -89,7 +64,6 @@ namespace Reports.Webapi.Controllers
                 return BadRequest(e.Message);
             }
         }
-
 
         [HttpPut("{id}/Indicators", Name = "UpdateIndicatorConfig")]
         public IActionResult Put(Guid id, [FromBody]CustomIndicatorUpdateModel model)
@@ -114,6 +88,39 @@ namespace Reports.Webapi.Controllers
             }
         }
 
+
+        [HttpGet("{id}/IndicatorsSummary", Name = "GetIndicatorsSummary")]
+        public IActionResult GetIndicatorsSummary(Guid id)
+        {
+            try
+            {
+                IEnumerable<Area> areas = userLogic.GetManagedAreas(id);
+                IEnumerable<IndicatorSummaryModel> summaryModels = areas
+                    .Select(a =>
+                    {
+                        return new IndicatorSummaryModel()
+                        {
+                            AreaId = a.Id,
+                            AreaName = a.Name,
+                            GreenIndicators = indicatorLogic.CountGreenIndicators(id, a.Id),
+                            YellowIndicators = indicatorLogic.CountYellowIndicators(id, a.Id),
+                            RedIndicators = indicatorLogic.CountRedIndicators(id, a.Id),
+                            VisibleIndicators = indicatorLogic.CountVisibleIndicators(id, a.Id)
+                        };
+                    });
+
+                return Ok(summaryModels);
+            }
+            catch (BusinessLogicInterfaceException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        private List<IndicatorConfig> GetCustomIndicators(Guid managerId, Guid areaId)
+        {
+            return indicatorLogic.GetCustomIndicators(managerId, areaId).ToList();
+        }
     }
 
 }

@@ -76,11 +76,11 @@ namespace Reports.Webapi.Controllers
             {
                 model.Id = id;
                 var user = userLogic.Update(id, UserModel.ToEntity(model));
-                if(model.Role == 'M')
+                if(model.Role == UserRoleType.MANAGER)
                 {
                     userLogic.SetManagerRole(id);
                 }
-                if (model.Role == 'A')
+                if (model.Role == UserRoleType.ADMIN)
                 {
                     userLogic.SetAdminRole(id);
                 }

@@ -16,7 +16,6 @@ namespace Reports.Domain
 
         public virtual IEnumerable<AreaUser> AreaUsers { get; set; }
         public virtual IEnumerable<IndicatorConfig> IndicatorConfigs { get; set; }
-
         public User Update(User usr)
         {
             if (usr.ValidateName())
@@ -41,7 +40,6 @@ namespace Reports.Domain
             }
             return this;
         }
-
         public bool IsValid()
         {
             return ValidateName() &&
@@ -51,7 +49,6 @@ namespace Reports.Domain
                 ValidateID() &&
                 ValidateMail();
         }
-
         private bool ValidateMail()
         {
             try
@@ -64,27 +61,22 @@ namespace Reports.Domain
                 return false;
             }
         }
-
         private bool ValidateName()
         {
             return !String.IsNullOrEmpty(Name);
         }
-
         private bool ValidatePassword()
         {
             return !String.IsNullOrEmpty(LastName);
         }
-
         private bool ValidateUserName()
         {
             return !String.IsNullOrEmpty(UserName);
         }
-
         private bool ValidateLastName()
         {
             return !String.IsNullOrEmpty(Password);
         }
-
         private bool ValidateID()
         {
             return Id != Guid.Empty;

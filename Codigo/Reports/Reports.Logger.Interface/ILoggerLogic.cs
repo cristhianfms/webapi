@@ -10,6 +10,8 @@ namespace Reports.Logger.Interface
     {
         Log Create(Log log);
         IEnumerable<Log> GetAll();
-        DataSet RankingTopTen();
+        IEnumerable<string> ManagersMoreLogged();
+        IEnumerable<Indicator> IndicatorsMoreHidden();
+        IEnumerable<Log> ActionLogsByDate(DateTime start, DateTime end);
     }
 }

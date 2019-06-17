@@ -10,7 +10,7 @@ using Reports.DataAccess;
 namespace Reports.DataAccess.Migrations
 {
     [DbContext(typeof(ReportsContext))]
-    [Migration("20190615211119_MyMigration")]
+    [Migration("20190617184332_MyMigration")]
     partial class MyMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -167,6 +167,10 @@ namespace Reports.DataAccess.Migrations
                     b.Property<string>("Action");
 
                     b.Property<DateTime>("Date");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)));
 
                     b.Property<string>("UserName");
 

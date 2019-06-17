@@ -6,6 +6,7 @@ namespace Reports.Logger.Domain
     {
         public Guid Id { get; set; }
         public String UserName { get; set; }
+        public char Role { get; set; }
         public DateTime Date { get; set; }
         public String Action { get; set; }
     }
