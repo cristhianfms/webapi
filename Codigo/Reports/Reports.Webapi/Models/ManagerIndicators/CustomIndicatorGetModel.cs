@@ -9,6 +9,8 @@ namespace Reports.Webapi.Models.ManagerIndicators
 {
     public class CustomIndicatorGetModel : Model<IndicatorConfig, CustomIndicatorGetModel>
     {
+        public Guid AreaId { get; set; }
+        public string AreaName { get; set; }
         public Guid Id { get; set; }
         public string CustomName { get; set; }
         public string CurrentColor { get; set; }
@@ -29,6 +31,8 @@ namespace Reports.Webapi.Models.ManagerIndicators
         }
         protected override CustomIndicatorGetModel SetModel(IndicatorConfig entity)
         {
+            this.AreaId = entity.Indicator.AreaId;
+            this.AreaName = entity.Indicator.Area.Name;
             this.Id = entity.Indicator.Id;
             this.CustomName = entity.CustomName;
             this.Visible = entity.Visible;

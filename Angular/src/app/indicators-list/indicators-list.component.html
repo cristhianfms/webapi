@@ -1,0 +1,61 @@
+<div class='panel panel-primary'>
+  <div class='panel-heading'>
+      {{pageTitle}}
+  </div>
+
+  <div class='panel-body'>
+
+      <div class='table-responsive'>
+          <table class='table'>
+              <!--Cabezal de la tabla -->
+              <thead>
+                  <tr>
+                      <th>Position</th>
+                      <th>Area</th>
+                      <th>Indicator name</th>
+                      <th>Current color</th>
+                      <th>
+                          <button (click)='toggleColorsDetails()' class='btn btn-primary'>
+                            {{showColorsDetails ? 'Hide' : 'Show'}} colors details
+                          </button>
+                      </th>
+                  </tr>
+              </thead>
+
+                  <tbody>
+                    <tr *ngFor='let indicator of indicators | visibleIndicatorDetails | sortIndicatorDetails'>
+                        <td>{{indicator.position}}</td>
+                        <td>{{indicator.areaName}}</td>
+                        <td>{{indicator.customName}}</td>
+                        <td>{{indicator.currentColor | uppercase}}</td>
+                        <td>
+                            <div *ngIf='showColorsDetails'>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Color</th>
+                                            <th>Detail</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>GREEN </td>
+                                            <td>{{indicator.greenResult}}</td>
+                                        </tr>
+                                            <td>YELLOW &nbsp; </td>
+                                            <td>{{indicator.yellowResult}}</td>                                        
+                                        <tr>
+                                            <td>RED</td>
+                                            <td>{{indicator.redResult}}</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                  </tbody>
+          </table>
+      </div>
+  </div>
+</div>

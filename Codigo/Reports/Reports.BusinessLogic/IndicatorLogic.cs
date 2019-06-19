@@ -120,6 +120,11 @@ namespace Reports.BusinessLogic
                 return new List<IndicatorConfig>();
             }
         }
+        public IEnumerable<IndicatorConfig> GetCustomIndicators(Guid managerId)
+        {
+            CheckManagerRole(managerId);
+            return GetCustomIndicatorsByManager(managerId);
+        }
         public int CountVisibleIndicators(Guid managerId, Guid areaId)
         {
             var visibleIndicators = GetCustomIndicators(managerId, areaId)
@@ -178,6 +183,18 @@ namespace Reports.BusinessLogic
             }
             return iConfigs;
         }
+        private IEnumerable<IndicatorConfig> GetCustomIndicatorsByManager(Guid managerId)
+        {
+            var iConfigs = new List<IndicatorConfig>();
+            List<Area> areas = userLogic.GetManagedAreas(managerId).ToList();
+            foreach (Area area in areas)
+            {
+                List<IndicatorConfig> iConfigsAux = 
+                    GetCustomIndicatorsByManagerAndArea(managerId, area.Id).ToList();
+                iConfigs.AddRange(iConfigsAux);
+            }
+            return iConfigs;
+        }
         private int CountRedIndicatorsByManagerAndArea(Guid managerId, Guid areaId)
         {
             var redIndicators = GetCustomIndicators(managerId, areaId)
@@ -203,6 +220,12 @@ namespace Reports.BusinessLogic
         private void CheckValidIndicator(Indicator indicator)
         {
             if (!indicator.IsValid())
+                throw new BusinessLogicException("Not valid indicator");
+        }
+        private void CheckManagerRole(Guid userId)
+        {
+            User usr = userLogic.Get(userId);
+            if (usr.Admin)
                 throw new BusinessLogicException("Not valid indicator");
         }
     }

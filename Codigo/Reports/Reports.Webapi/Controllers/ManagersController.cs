@@ -27,37 +27,15 @@ namespace Reports.Webapi.Controllers
             this.indicatorLogic = indicatorLogic;
         }
 
-        [HttpGet("{id}/Areas", Name = "GetAreas")]
+
+        [HttpGet("{id}/Indicators", Name = "GetIndicators")]
         public IActionResult Get(Guid id)
         {
             try
             {
-                IEnumerable<Area> areas = userLogic.GetManagedAreas(id);
-                IEnumerable<ManagerAreaModel> areaModels = areas
-                    .Select(a =>
-                    {
-                        var ret = ManagerAreaModel.ToModel(a);
-                        List<IndicatorConfig> indicatorConfigs = GetCustomIndicators(id, a.Id);
-                        ret.Indicators = CustomIndicatorGetModel.ToModel(indicatorConfigs).ToList();
-                        return ret;
-                    });
-                return Ok(areaModels);
-            }
-            catch (BusinessLogicInterfaceException e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
-
-        [HttpGet("{id}/Indicators", Name = "GetIndicatorsByArea")]
-        public IActionResult Get(Guid id, [FromQuery] Guid area_id)
-        {
-            try
-            {
-                List<IndicatorConfig> indicatorConfigs = GetCustomIndicators(id, area_id);
-                IEnumerable<CustomIndicatorGetModel> customIndicatorModels = indicatorConfigs
-                    .Select(ic => CustomIndicatorGetModel.ToModel(ic));
-                return Ok(customIndicatorModels);
+                List<IndicatorConfig> indicatorConfigs = 
+                    indicatorLogic.GetCustomIndicators(id).ToList();
+                return Ok(CustomIndicatorGetModel.ToModel(indicatorConfigs).ToList());
             }
             catch (BusinessLogicInterfaceException e)
             {
