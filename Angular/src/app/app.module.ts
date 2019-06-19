@@ -3,26 +3,38 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
-import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { IndicatorsListComponent } from './indicators-list/indicators-list.component';
+import { ManagerDashboardComponent } from './manager-dashboard/managerDashboard..component';
 import { ManagerService } from './Services/Manager.service';
-import { SortIndicatorDetailsPipe } from './indicators-list/sort-indicator-details.pipe';
-import { VisibleIndicatorDetailsPipe } from './indicators-list/visible-indicator-details.pipe';
+import { SortIndicatorDetailsPipe } from './manager-dashboard/sort-indicator-details.pipe';
+import { VisibleIndicatorDetailsPipe } from './manager-dashboard/visible-indicator-details.pipe';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { IndicatorDetail } from './Models/IndicatorDetail';
+import { ManagerConfigurationComponent } from './manager-configuration/manager-configuration.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    IndicatorsListComponent,
+    ManagerDashboardComponent,
     SortIndicatorDetailsPipe,
-    VisibleIndicatorDetailsPipe
+    VisibleIndicatorDetailsPipe,
+    WelcomeComponent,
+    ManagerConfigurationComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot([
+      { path: 'managerDashboard', component: ManagerDashboardComponent },
+      {path: 'managerConfiguration', component:ManagerConfigurationComponent},
+      //{ path: 'homeworks/:id', component: HomeworksListComponent }, // esto sería otro componente! por ejemplo uno que muestre el detalle de las tareas
+      { path: 'welcome', component:  WelcomeComponent }, 
+      { path: '', redirectTo: 'welcome', pathMatch: 'full' }, // configuramos la URL por defecto
+      { path: '**', redirectTo: 'welcome', pathMatch: 'full'} //cualquier otra ruta que no matchee, va a ir al WelcomeComponent, aca podría ir una pagina de error tipo 404 Not Found
+  ])
   ],
   providers: [ManagerService],
   bootstrap: [AppComponent]

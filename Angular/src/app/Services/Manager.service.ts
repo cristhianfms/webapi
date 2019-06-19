@@ -3,6 +3,7 @@ import { Http, Response, RequestOptions, Headers } from "@angular/http";
 import { Observable, throwError } from "rxjs"; 
 import { map, tap, catchError } from 'rxjs/operators';
 import { IndicatorDetail } from '../Models/IndicatorDetail';
+import {IndicatorConfig} from '../Models/IndicatorConfig'
 
 @Injectable({
   providedIn: 'root'
@@ -33,4 +34,19 @@ export class ManagerService {
     return throwError(error.json().error|| 'Server error');
   }
 
+
+  //{{domain}}/api/Managers/{{newUserId}}/Indicators
+  updateIndicatorConfig(managerId:string, indicatorConf:IndicatorConfig ): Observable<IndicatorDetail> {
+    const myHeaders = new Headers();
+    myHeaders.append('Accept', 'application/json');    
+    const requestOptions = new RequestOptions({headers: myHeaders});
+    const requestURL = `${this.WEB_API_URL}/${managerId}/Indicators`;
+
+    return this._httpService.put(requestURL, indicatorConf, requestOptions)
+        .pipe(
+            map((response : Response) => <IndicatorDetail> response.json()),
+            tap(data => console.log('Los datos que obtuvimos fueron: ' + JSON.stringify(data))),
+            catchError(this.handleError)
+        );
+  }
 }

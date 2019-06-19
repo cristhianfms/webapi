@@ -4,10 +4,10 @@ import { ManagerService } from '../Services/Manager.service';
 
 @Component({
   selector: 'app-indicators-list',
-  templateUrl: './indicators-list.component.html',
-  styleUrls: ['./indicators-list.component.css']
+  templateUrl: './ManagerDashboard.component.html',
+  styleUrls: ['./ManagerDashboard.component.css']
 })
-export class IndicatorsListComponent implements OnInit {
+export class ManagerDashboardComponent implements OnInit {
 
   pageTitle: string = "Indicators list"
   showColorsDetails: boolean = false;

@@ -1,0 +1,40 @@
+<div class='panel panel-primary'>
+        <div class='panel-heading'>
+            {{pageTitle | uppercase}} &nbsp;
+        </div>
+      
+        <div class='panel-body'>
+      
+            <div class='table-responsive'>
+                <table class='table'>
+                    <!--Cabezal de la tabla -->
+                    <thead>
+                        <tr>
+                            <th>Position</th>
+                            <th>Area</th>
+                            <th>Indicator name</th>
+                            <th>Visible</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+      
+                        <tbody>
+                            <tr *ngFor='let indicator of indicators | sortIndicatorDetails'>
+                                <td contenteditable="true" >{{indicator.position}}</td>
+                                <td>{{indicator.areaName}}</td>
+                                <td contenteditable="true">{{indicator.customName}}</td>
+                                <td>
+                                    <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" [checked]="indicator.visible" class="custom-control-input" id="tableDefaultCheck1">
+                                            <!--<label class="custom-control-label" for="tableDefaultCheck1">{{indicator.visible}}</label>-->
+                                    </div>
+                                </td>
+                                <td>
+                                        <button (click)='saveConfig()' class='btn btn-primary'> Save</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+      </div>
