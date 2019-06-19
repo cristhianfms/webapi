@@ -1,0 +1,91 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="col-md-8 order-md-1">
+  <form class="needs-validation" novalidate="">
+    <div class="mb-3">
+      <label for="IndicatorName">Indictor Name</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="IndicatorName" placeholder="Indicator Name" required="">
+        <div class="invalid-feedback" style="width: 100%;">
+          Indicator Name is required.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 mb-3">
+      <label for="Type">Type</label>
+      <select class="custom-select d-block w-100" id="Type" required="">
+        <option value="">Choose...</option>
+        <option>Bool</option>
+        <option>Date</option>
+        <option>String</option>
+        <option>Sql</option>
+      </select>
+      <div class="invalid-feedback">
+        Please select a valid type.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="RightCondition">Right Condition</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="RightCondition" placeholder="RightCondition" required="">
+        <div class="invalid-feedback" style="width: 100%;">
+          Right Condition Name is required.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5 mb-3">
+      <label for="Type">Type</label>
+      <select class="custom-select d-block w-100" id="Type" required="">
+        <option value="">Choose...</option>
+        <option>Bool</option>
+        <option>Date</option>
+        <option>String</option>
+        <option>Sql</option>
+      </select>
+      <div class="invalid-feedback">
+        Please select a valid type.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="LeftCondition">Left Condition</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="LeftCondition" placeholder="LeftCondition" required="">
+        <div class="invalid-feedback" style="width: 100%;">
+          Left Condition Name is required.
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-5 mb-3">
+        <label for="LogicOperator">Logic operator</label>
+        <select class="custom-select d-block w-100" id="LogicOperator" required="">
+          <option value="">Choose...</option>
+          <option>OR</option>
+          <option>AND</option>
+        </select>
+        <div class="invalid-feedback">
+          Please select a valid logic operator.
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="Comparator">Comparator</label>
+        <select class="custom-select d-block w-100" id="Comparator" required="">
+          <option value="">Choose...</option>
+          <option><</option>
+          <option>></option>
+          <option>=</option>      
+          <option><=</option>
+          <option>>=</option>
+        </select>
+        <div class="invalid-feedback">
+          Please provide a valid state.
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
+  </form>
+</div>

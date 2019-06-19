@@ -1,0 +1,25 @@
+<div class="row mt-5">
+  <div class="col">
+    <hr>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Name</th>
+          <th scope="col">Area Id</th>
+          <th scope="col">Area Name</th>
+          <th scope="col">&nbsp;</th>
+          <th scope="col">&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor = "let report of reports">
+          <td>{{repot.id}}</td>
+          <td>{{repot.name}}</td>
+          <td>{{repot.areaId}}</td>
+          <td>{{repot.areaName}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="row mt-5">
+    <div class="col">
+      <hr>
+      <button type="button" class="btn btn-primary float-right mb-3" data-toggle="modal" data-target="#modalArea" (click)="resetForm()">Create Areas</button>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Connection String</th>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor = "let area of areas">
+            <td>{{area.id}}</td>
+            <td>{{area.name}}</td>
+            <td>{{area.connectionString}}</td>
+            <td>
+              <button class="btn btn-primary" (click)="onPreUpdateArea(area)" data-toggle="modal" data-target="#modalArea">Update</button>
+            </td>
+            <td>
+                <button class="btn btn-danger" (click)="onDeleteArea(area.id)">Delete</button>
+            </td>
+          </tr>
+  
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <app-modal></app-modal>

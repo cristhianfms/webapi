@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {IndicatorDetail} from '../Models/IndicatorDetail'
+import {IndicatorDetail} from '../../Models/IndicatorDetail'
 
 @Pipe({
   name: 'visibleIndicatorDetails'
