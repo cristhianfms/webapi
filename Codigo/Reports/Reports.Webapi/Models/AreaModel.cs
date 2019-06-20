@@ -23,14 +23,15 @@ namespace Reports.Webapi.Models
 
         public override Area ToEntity()
         {
-            return new Area()
+            Area newArea = new Area();
+            newArea.Id = this.Id;
+            newArea.Name = this.Name;
+            newArea.ConnectionString = this.ConnectionString;
+            if (this.Indicators != null)
             {
-                Id = this.Id,
-                Name = this.Name,
-                ConnectionString = this.ConnectionString,
-                Indicators = this.Indicators.ConvertAll(m => m.ToEntity()),
-            };
-            
+                newArea.Indicators = this.Indicators.ConvertAll(m => m.ToEntity()),
+            }
+            return newArea;
         }
 
 
