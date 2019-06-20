@@ -15,15 +15,18 @@ export class LoginComponent implements OnInit {
     UserName:"",
     Password:"",
   };
+  
   ngOnInit() {
   }
   onLogin(){
     return this.authService.loginUser(this.user.UserName, this.user.Password).subscribe(data => {
-      console.log(data)
       let token = data.token;
-      this.authService.setUser(data.id);
+      this.authService.setUser(data);
       this.authService.setToken(data.token);
+      this.authService.setRole(data.admin);
+      this.authService.setUserId(data.id);
       this.router.navigate(["/home"])
+      //location.reload();
     });
   }
 

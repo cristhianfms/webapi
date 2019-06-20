@@ -52,9 +52,22 @@ export class AuthorizationService {
   setToken(token) : void{
     localStorage.setItem('accessToken',token);
   }
+  setUserId(userId) : void{
+    localStorage.setItem('userId',userId);
+  }
+  setRole(role) : void{
+    localStorage.setItem('role',role);
+  }
+
 
   getToken(){
     return localStorage.getItem('accessToken');
+  }
+  getRole(){
+    return localStorage.getItem('role');
+  }
+  getUserId(){
+    return localStorage.getItem('userId');
   }
 
   getCurrentUser(): UserInterface{

@@ -6,4 +6,5 @@ export interface UserInterface {
     Mail?:string;
     Role?:string;
     Password?:string;
+    Admin?:boolean;
 }

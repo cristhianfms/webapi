@@ -42,7 +42,7 @@ namespace Reports.Webapi.Controllers
                 Action = ActionType.LOGIN,
                 Role = user.Admin ? UserRoleType.ADMIN : UserRoleType.MANAGER
             }));
-            return Ok(token);
+            return Ok(modelToReturn);
         }
 
         [ProtectFilter("Admin")]

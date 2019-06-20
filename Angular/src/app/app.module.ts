@@ -21,8 +21,13 @@ import { ModalUserComponent } from './components/modal-user/modal-user.component
 import { ReportsComponent } from './components/reports/reports.component';
 import { ReportMoreLoggedComponent } from './components/report-more-logged/report-more-logged.component'
 import { ManagerDashboardComponent } from './components/manager-dashboard/managerDashboard..component';
-import { ManagerService } from './services/Manager.service';
-import {HttpModule} from '@angular/http'
+import { ManagerService } from './services/manager.service';
+import {HttpModule} from '@angular/http';
+import { ModalDashboardComponent } from './components/modal-dashboard/modal-dashboard.component';
+import { ReportsManagerComponent } from './components/reports-manager/reports-manager.component';
+import { ReportDateComponent } from './components/report-date/report-date.component';
+import { AreaViewManagerComponent } from './components/area-view-manager/area-view-manager.component';
+import { AreaAddManagerComponent } from './components/area-add-manager/area-add-manager.component'
 
 @NgModule({
   declarations: [
@@ -42,7 +47,12 @@ import {HttpModule} from '@angular/http'
     ManagerDashboardComponent,
     SortIndicatorDetailsPipe,
     VisibleIndicatorDetailsPipe,
-    ManagerConfigurationComponent
+    ManagerConfigurationComponent,
+    ModalDashboardComponent,
+    ReportsManagerComponent,
+    ReportDateComponent,
+    AreaViewManagerComponent,
+    AreaAddManagerComponent
   ],
   imports: [
     BrowserModule,

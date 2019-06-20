@@ -37,6 +37,8 @@ export class SignInComponent implements OnInit {
         this.authService.loginUser(this.user.UserName, this.user.Password).subscribe(data=> {
           let token = data;
           this.authService.setToken(token);
+          this.authService.setRole(data.admin);
+          this.authService.setUserId(data.id);
         });
         this.authService.setUser(user);
         this.router.navigate(['/home']);

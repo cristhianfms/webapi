@@ -12,7 +12,19 @@ import {IndicatorConfig} from '../Models/IndicatorConfig'
 export class ManagerService {
   private WEB_API_URL : string = 'http://localhost:55846/api/Managers';
 
-  constructor(private _httpService: Http) { }
+  constructor(private _httpService: Http) {
+     console.log("el servicio Area esta activo");
+  }
+  
+  indicators : Observable<any>;
+  indicator: Observable<any>;
+  
+  public selectedIndicator: IndicatorConfig = {
+    id:null,
+	  customName:'',
+  	visible:false,
+	  position:0
+  };
 
   //GET {{domain}}/api/Managers/{{newUserId}}/Indicators
   getAreasByManager(managerId:string): Observable<Array<IndicatorDetail>> {
@@ -29,14 +41,20 @@ export class ManagerService {
         );
   }
 
+
+  
+
   private handleError(error: Response) {
     console.error(error);
     return throwError(error.json().error|| 'Server error');
   }
 
 
-  //{{domain}}/api/Managers/{{newUserId}}/Indicators
+  //{{domain}}/api/Managers/{{managerId}}/Indicators
   updateIndicatorConfig(managerId:string, indicatorConf:IndicatorConfig ): Observable<IndicatorDetail> {
+    console.log('metodo update')
+    console.log('manager: '+managerId)
+    console.log('indicator: '+indicatorConf)
     const myHeaders = new Headers();
     myHeaders.append('Accept', 'application/json');    
     const requestOptions = new RequestOptions({headers: myHeaders});

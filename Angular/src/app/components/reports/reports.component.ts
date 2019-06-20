@@ -10,7 +10,11 @@ import { ReportsInterface } from 'src/app/Models/reports-interface';
 })
 export class ReportsComponent implements OnInit {
 
-  constructor(private dataService: DataReportsService) { }
+  constructor(private dataService: DataReportsService) { 
+    this.dataService.getIndicatorsMoreHidden().subscribe(data => {
+      console.log(data)
+      });
+  }
   private reports: ReportsInterface
   ngOnInit() {
     this.dataService.getIndicatorsMoreHidden().subscribe((reports: ReportsInterface) => (this.reports = reports));

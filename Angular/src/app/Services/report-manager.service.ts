@@ -3,15 +3,15 @@ import {HttpClient,HttpHeaders} from '@angular/common/http';
 import {Observable} from "rxjs/internal/Observable";
 import {AuthorizationService} from './authorization.service';
 import {map} from 'rxjs/operators';
-import {ReportsInterface} from '../Models/reports-interface';
+import {AreaInterface} from '../Models/area-interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataReportsService {
+export class ReportsManagerService {
 
   constructor( private http: HttpClient, private authService : AuthorizationService) {
-    console.log("el servicio Reports esta activo");
+    console.log("el servicio ReportsManager esta activo");
    }
    reports : Observable<any>;
    report: Observable<any>;
@@ -21,11 +21,7 @@ export class DataReportsService {
       Authorization: this.authService.getToken()
     })
 
-    getIndicatorsMoreHidden(){
-      return this.http.get('http://localhost:55846/api/Logs/IndicatorsMoreHidden',{headers: this.headers})
-    }
-
-    getLogsBetweenDate(dateStart, dateEnd){
-      return this.http.get(`http://localhost:55846/api/Logs/ActionLogsByDate?date_from=${dateStart}&date_to=${dateEnd}`,{headers: this.headers})
+    getReport(managerId){
+      return this.http.get(`http://localhost:55846/api/Managers/${managerId}/IndicatorsSummary`,{headers: this.headers})
     }
 }

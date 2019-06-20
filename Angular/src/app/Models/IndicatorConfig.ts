@@ -1,6 +1,6 @@
-export class IndicatorConfig{
-    id:string;
-	customName:string;
-	visible:boolean;
-	position:number
+export interface IndicatorConfig {
+    "id":string
+	"customName":string
+	"visible":boolean
+	"position":number
 }

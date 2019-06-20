@@ -1,0 +1,35 @@
+<!-- Modal -->
+<div id="modalDashboard" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="form-dashboard" #formDasboard="ngForm" (ngSubmit)="onSaveIndicator(formDasboard)">
+            <input type="hidden" id="Id" name="Id" class="form-control" [(ngModel)]="this.dataManager.selectedIndicator.id">
+            <div class="form-group">                                          
+              <label for="">Position</label>
+              <input type="text" id="Position" name="Position" class="form-control" placeholder="Position"  [(ngModel)]="this.dataManager.selectedIndicator.position">
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="autor">Custom Name</label>
+                <input type="text" id="CustomName" name="CustomName" class="form-control" placeholder="Custom Name"  [(ngModel)]="this.dataManager.selectedIndicator.customName">
+              </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="visible">Visible</label>
+                <select name="Visible" id="Visible" class="form-control" [(ngModel)]="this.dataManager.selectedIndicator.Visible">
+                  <option value=false>false</option>
+                  <option value=true>true</option>
+                </select>
+              </div>
+            <button type="submit" class="btn btn-primary float-right">Update Indicator</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

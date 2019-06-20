@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataReportsMoreLoggedService } from './../../services/data-report-more-logged.service';
 import { DataService } from './../../services/data.service';
 import { ReportMoreLoggedInterface } from 'src/app/Models/report-more-logged-interface';
+import { LineToLineMappedSource } from 'webpack-sources';
 
 @Component({
   selector: 'app-report-more-logged',
@@ -10,9 +11,13 @@ import { ReportMoreLoggedInterface } from 'src/app/Models/report-more-logged-int
 })
 export class ReportMoreLoggedComponent implements OnInit {
 
-  constructor(private dataService: DataReportsMoreLoggedService) { }
-  private reports: ReportMoreLoggedInterface
+  constructor(private dataService: DataReportsMoreLoggedService) { 
+    this.dataService.getReportsMoreLogged().subscribe(data => {
+      console.log("data: " + data)
+      });
+  }
+  private reports: any;
   ngOnInit() {
-    this.dataService.getReportsMoreLogged().subscribe((reports: ReportMoreLoggedInterface) => (this.reports = reports));
+    this.dataService.getReportsMoreLogged().subscribe(data => (this.reports = data));
   }
 }

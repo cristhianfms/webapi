@@ -18,6 +18,7 @@ export class DataAreaService {
    }
    areas : Observable<any>;
    area: Observable<any>;
+   
    public selectedArea: AreaInterface ={
      Id:null,
      Name:'',
