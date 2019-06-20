@@ -22,7 +22,7 @@ export class DataReportsService {
     })
 
     getIndicatorsMoreHidden(){
-      return this.http.get('http://localhost:55846/api/Logs/IndicatorsMoreHidden',{headers: this.headers})
+      return this.http.get('http://localhost:61830/api/Logs/IndicatorsMoreHidden',{headers: this.headers})
     }
 
     getLogsBetweenDate(dateStart, dateEnd){

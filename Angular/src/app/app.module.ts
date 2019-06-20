@@ -28,6 +28,10 @@ import { ReportsManagerComponent } from './components/reports-manager/reports-ma
 import { ReportDateComponent } from './components/report-date/report-date.component';
 import { AreaViewManagerComponent } from './components/area-view-manager/area-view-manager.component';
 import { AreaAddManagerComponent } from './components/area-add-manager/area-add-manager.component'
+import { ConditionComponent } from './components/condition/condition.component';
+import { AreaViewindicatorsComponent } from './components/area-viewindicators/area-viewindicators.component';
+import { AreaAddindicatorsComponent } from './components/area-addindicators/area-addindicators.component';
+
 
 @NgModule({
   declarations: [
@@ -52,7 +56,10 @@ import { AreaAddManagerComponent } from './components/area-add-manager/area-add-
     ReportsManagerComponent,
     ReportDateComponent,
     AreaViewManagerComponent,
-    AreaAddManagerComponent
+    AreaAddManagerComponent,
+    ConditionComponent, 
+    AreaViewindicatorsComponent, 
+    AreaAddindicatorsComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +69,6 @@ import { AreaAddManagerComponent } from './components/area-add-manager/area-add-
     FormsModule
   ],
   providers: [DataService,ManagerService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

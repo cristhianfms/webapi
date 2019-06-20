@@ -15,6 +15,9 @@ import { IndicatorsComponent } from './components/indicators/indicators.componen
 import { ReportsComponent } from './components/reports/reports.component';
 import { ReportsManagerComponent } from './components/reports-manager/reports-manager.component';
 import { ReportDateComponent } from './components/report-date/report-date.component';
+import { ConditionComponent } from './components/condition/condition.component';
+import { AreaViewindicatorsComponent } from './components/area-viewindicators/area-viewindicators.component';
+import { AreaAddindicatorsComponent } from './components/area-addindicators/area-addindicators.component';
 
 const routes: Routes = [
   {path:'login',component: LoginComponent},
@@ -31,8 +34,13 @@ const routes: Routes = [
   {path: 'reports-manager', component:ReportsManagerComponent},
   {path: 'reports-logs', component:ReportDateComponent},
   {path: 'asociate-area-manager', component:AreaViewManagerComponent},
-  {path: 'add-area-manager', component:AreaAddManagerComponent} 
-
+  {path: 'add-area-manager', component:AreaAddManagerComponent}, 
+  {path: 'condition', component:ConditionComponent},
+  { path: 'areaviewindicators/:id', component: AreaViewindicatorsComponent },
+  { path: 'areaaddindicators/:id', component: AreaAddindicatorsComponent },
+  //AGREGAR COMPONENTES DE SANTIAGO
+  //{ path: 'areaviewmanagers/:id', component: AreaViewindicatorsComponent },
+  //{ path: 'areaaddmanagers/:id', component: AreaViewindicatorsComponent },
 ];
 
 @NgModule({

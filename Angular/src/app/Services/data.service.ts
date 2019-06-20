@@ -37,28 +37,28 @@ export class DataService {
     })
 
     getAllUsers(){
-      return this.http.get('http://localhost:55846/api/Users',{headers: this.headers})
+      return this.http.get('http://localhost:61830/api/Users',{headers: this.headers})
     }
   
     getUserById(id: string){
-      return this.http.get(`http://localhost:55846/api/Users/${id}`,{headers: this.headers})
+      return this.http.get(`http://localhost:61830/api/Users/${id}`,{headers: this.headers})
     }
 
     ModifyUser(user :UserInterface){
       console.log("entre al modify con PUT")
       console.log(user)
-      return this.http.put<UserInterface>(`http://localhost:55846/api/Users/${user.Id}`,user ,{headers: this.headers}).pipe(map(data=>data));
+      return this.http.put<UserInterface>(`http://localhost:61830/api/Users/${user.Id}`,user ,{headers: this.headers}).pipe(map(data=>data));
     }
   
     DeleteUser(id: string){
-      return this.http.delete<UserInterface>(`http://localhost:55846/api/Users/${id}`, {headers: this.headers}).pipe(map(data=>data));
+      return this.http.delete<UserInterface>(`http://localhost:61830/api/Users/${id}`, {headers: this.headers}).pipe(map(data=>data));
     }
     getAllIndicators(){
-      return this.http.get('http://localhost:55846/api/Indicators',{headers: this.headers})
+      return this.http.get('http://localhost:61830/api/Indicators',{headers: this.headers})
     }
   
     CreateUser(user :UserInterface){
       console.log('el user es: '+user)
-      return this.http.post<UserInterface>('http://localhost:55846/api/Users/',user ,{headers: this.headers}).pipe(map(data=>data));
+      return this.http.post<UserInterface>('http://localhost:61830/api/Users/',user ,{headers: this.headers}).pipe(map(data=>data));
     }
 }

@@ -1,0 +1,13 @@
+
+<div *ngIf='item!==undefined && item.logicOperator !==undefined'>
+  <condition [data]='item.izq'></condition>
+  <tr>{{item.logicOperator}}</tr>
+  <condition [data]='item.der'></condition>
+</div>
+
+<div *ngIf='item!==undefined && item.operator !==undefined'>
+  <tr>Data: {{item.valueIzq.data}}</tr>
+  <tr>{{item.operator}}</tr>
+  <tr>Data: {{item.valueDer.data}}</tr>
+</div>
+

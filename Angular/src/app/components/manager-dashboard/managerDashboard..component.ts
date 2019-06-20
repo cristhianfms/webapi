@@ -18,7 +18,7 @@ export class ManagerDashboardComponent implements OnInit {
   constructor(private _serviceManager: ManagerService, private location: Location) { }
 
   ngOnInit() {
-    this._serviceManager.getAreasByManager("dd60997e-3764-47d3-b680-665537f2a1ea").subscribe(
+    this._serviceManager.getAreasByManager("73AD18C1-E54C-4C96-AA23-C03DF8C674E5").subscribe(
       ((data : Array<IndicatorDetail>) => this.result(data)),
       ((error : any) => console.log(error))      
     )

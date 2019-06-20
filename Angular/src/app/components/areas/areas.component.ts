@@ -15,7 +15,7 @@ export class AreasComponent implements OnInit {
       console.log(data)
       });
   }
-private areas:AreaInterface;
+  private areas:AreaInterface;
 
   ngOnInit() {
     this.dataService.getAllAreas().subscribe((areas: AreaInterface) => (this.areas = areas));
@@ -26,6 +26,7 @@ private areas:AreaInterface;
       this.dataService.DeleteArea(id).subscribe();
     }
   }
+  
   onPreUpdateArea(area: AreaInterface): void {
     this.dataService.selectedArea = Object.assign({},area);
   }
@@ -37,6 +38,4 @@ private areas:AreaInterface;
       ConnectionString:''
     };
   }
-
-
 }
