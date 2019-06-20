@@ -38,8 +38,8 @@ namespace Reports.Webapi.Models.ManagerIndicators
             this.Visible = entity.Visible;
             this.Position = entity.Position;
             this.GreenResult = entity.Indicator.GetGreenResult();
-            this.YellowResult = entity.Indicator.GetRedResult();
-            this.RedResult = entity.Indicator.GetGreenResult();
+            this.YellowResult = entity.Indicator.GetYellowResult();
+            this.RedResult = entity.Indicator.GetRedResult();
             this.CurrentColor = GetCurrentColor(entity.Indicator);
             return this;
         }

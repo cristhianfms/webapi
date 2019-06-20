@@ -4,6 +4,7 @@ import {Observable} from "rxjs/internal/Observable";
 import {AuthorizationService} from './authorization.service';
 import {map} from 'rxjs/operators';
 import {ReportsInterface} from '../Models/reports-interface';
+import {environment} from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -22,10 +23,10 @@ export class DataReportsService {
     })
 
     getIndicatorsMoreHidden(){
-      return this.http.get('http://localhost:61830/api/Logs/IndicatorsMoreHidden',{headers: this.headers})
+      return this.http.get(`${environment.apiUrl}Logs/IndicatorsMoreHidden`,{headers: this.headers})
     }
 
     getLogsBetweenDate(dateStart, dateEnd){
-      return this.http.get(`http://localhost:55846/api/Logs/ActionLogsByDate?date_from=${dateStart}&date_to=${dateEnd}`,{headers: this.headers})
+      return this.http.get(`${environment.apiUrl}/Logs/ActionLogsByDate?date_from=${dateStart}&date_to=${dateEnd}`,{headers: this.headers})
     }
 }

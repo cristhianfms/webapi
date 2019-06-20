@@ -5,7 +5,8 @@ import { last } from 'rxjs/operators';
 import {map} from 'rxjs/operators';
 import { isNullOrUndefined } from 'util';
 import {UserInterface} from '../Models/user-interface';
- 
+import {environment} from '../../environments/environment'
+
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class AuthorizationService {
     console.log(email )
     console.log(password)
   
-    return this.http.post<UserInterface>('http://localhost:61830/api/Users',
+    return this.http.post<UserInterface>(`${environment.apiUrl}/Users`,
     {
       name: name, 
       lastName: lastName,
@@ -41,7 +42,7 @@ export class AuthorizationService {
   loginUser(userName: string, password: string):Observable<any>{
     console.log(userName)
     console.log(password)
-    return this.http.post<UserInterface>('http://localhost:61830/api/Token',{userName: userName, password: password},this.httpOptions).pipe(map(data => data));  
+    return this.http.post<UserInterface>(`${environment.apiUrl}/Token`,{userName: userName, password: password},this.httpOptions).pipe(map(data => data));  
   }
 
   setUser(user:UserInterface): void{

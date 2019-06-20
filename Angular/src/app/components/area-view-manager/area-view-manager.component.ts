@@ -1,6 +1,7 @@
 import { AreaViewManagerInterface } from './../../Models/area-viewManager-interface';
 import { Component, OnInit } from '@angular/core';
 import { DataAreaViewManagerSercvice } from 'src/app/services/data-areaViewManager.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-area-view-manager',
@@ -9,10 +10,18 @@ import { DataAreaViewManagerSercvice } from 'src/app/services/data-areaViewManag
 })
 export class AreaViewManagerComponent implements OnInit {
 
-  constructor(private dataAreaView: DataAreaViewManagerSercvice) { }
-private areaManagers: AreaViewManagerInterface
+  areaId: string;
+  private sub: any;
+  private areaManagers: AreaViewManagerInterface
+
+  constructor(private dataAreaView: DataAreaViewManagerSercvice, 
+    private route: ActivatedRoute) { }
+
   ngOnInit() {
-    this.dataAreaView.getManagerByArea("1ebe74f9-a213-4c5d-c4d5-08d6f4dc8f01").subscribe((areaManagers: AreaViewManagerInterface) => (this.areaManagers = areaManagers));
+    this.sub = this.route.params.subscribe(params => {
+      this.areaId = params['id']; 
+   });
+    this.dataAreaView.getManagerByArea(this.areaId).subscribe((areaManagers: AreaViewManagerInterface) => (this.areaManagers = areaManagers));
   }
 
 }

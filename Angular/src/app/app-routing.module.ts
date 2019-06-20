@@ -39,8 +39,8 @@ const routes: Routes = [
   { path: 'areaviewindicators/:id', component: AreaViewindicatorsComponent },
   { path: 'areaaddindicators/:id', component: AreaAddindicatorsComponent },
   //AGREGAR COMPONENTES DE SANTIAGO
-  //{ path: 'areaviewmanagers/:id', component: AreaViewindicatorsComponent },
-  //{ path: 'areaaddmanagers/:id', component: AreaViewindicatorsComponent },
+  { path: 'areaviewmanagers/:id', component: AreaViewManagerComponent },
+  { path: 'areaaddmanagers/:id', component: AreaAddManagerComponent },
 ];
 
 @NgModule({

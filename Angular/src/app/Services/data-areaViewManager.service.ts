@@ -11,6 +11,7 @@ import {map} from 'rxjs/operators';
 import {UserInterface} from '../Models/user-interface';
 import {AreaInterface} from '../Models/area-interface';
 import { ConcatSource } from 'webpack-sources';
+import {environment} from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class DataAreaViewManagerSercvice {
 
     getManagerByArea(managerId){
       console.log('managreId: ' + managerId)
-        return this.http.get(`http://localhost:55846/api/Areas/${managerId}/Managers`,{headers: this.headers})
+        return this.http.get(`${environment.apiUrl}/Areas/${managerId}/Managers`,{headers: this.headers})
       }
 
 }

@@ -5,7 +5,8 @@ import { DataAreaAddManagerSercvice } from './../../services/data-area-addManage
 import { DataAreaViewManagerSercvice } from './../../services/data-areaViewManager.service';
 import { Component, OnInit } from '@angular/core';
 import { AreaViewManagerInterface } from './../../Models/area-viewManager-interface';
-
+import { ActivatedRoute } from '@angular/router';
+import { OnlyManagersPipe } from './only-managers.pipe';
 
 @Component({
   selector: 'app-area-add-manager',
@@ -14,17 +15,27 @@ import { AreaViewManagerInterface } from './../../Models/area-viewManager-interf
 })
 export class AreaAddManagerComponent implements OnInit {
 
-  constructor(private dataUser: DataService,private dataAreaAdd: DataAreaAddManagerSercvice) { }
-
+  areaId: string;
+  private sub: any;
   private users:UserInterface;
+  
 
+  constructor(private route: ActivatedRoute,private dataUser: DataService,
+    private dataAreaAdd: DataAreaAddManagerSercvice) { }
 
   ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      this.areaId = params['id']; 
+   });
     this.dataUser.getAllUsers().subscribe((users: UserInterface) => (this.users = users));
+  }
+  
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   addAreaManager(managerId: string){
-    this.dataAreaAdd.addManagerByArea(managerId,"1ebe74f9-a213-4c5d-c4d5-08d6f4dc8f01").subscribe();
+    this.dataAreaAdd.addManagerByArea(managerId,this.areaId).subscribe();
   }
 
 }

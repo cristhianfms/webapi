@@ -11,6 +11,7 @@ import {map} from 'rxjs/operators';
 import {UserInterface} from '../Models/user-interface';
 import {AreaInterface} from '../Models/area-interface';
 import { ConcatSource } from 'webpack-sources';
+import {environment} from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -37,28 +38,28 @@ export class DataService {
     })
 
     getAllUsers(){
-      return this.http.get('http://localhost:61830/api/Users',{headers: this.headers})
+      return this.http.get(`${environment.apiUrl}/Users`,{headers: this.headers})
     }
   
     getUserById(id: string){
-      return this.http.get(`http://localhost:61830/api/Users/${id}`,{headers: this.headers})
+      return this.http.get(`${environment.apiUrl}/Users/${id}`,{headers: this.headers})
     }
 
     ModifyUser(user :UserInterface){
       console.log("entre al modify con PUT")
       console.log(user)
-      return this.http.put<UserInterface>(`http://localhost:61830/api/Users/${user.Id}`,user ,{headers: this.headers}).pipe(map(data=>data));
+      return this.http.put<UserInterface>(`${environment.apiUrl}/Users/${user.Id}`,user ,{headers: this.headers}).pipe(map(data=>data));
     }
   
     DeleteUser(id: string){
-      return this.http.delete<UserInterface>(`http://localhost:61830/api/Users/${id}`, {headers: this.headers}).pipe(map(data=>data));
+      return this.http.delete<UserInterface>(`${environment.apiUrl}/Users/${id}`, {headers: this.headers}).pipe(map(data=>data));
     }
     getAllIndicators(){
-      return this.http.get('http://localhost:61830/api/Indicators',{headers: this.headers})
+      return this.http.get(`${environment.apiUrl}/Indicators`,{headers: this.headers})
     }
   
     CreateUser(user :UserInterface){
       console.log('el user es: '+user)
-      return this.http.post<UserInterface>('http://localhost:61830/api/Users/',user ,{headers: this.headers}).pipe(map(data=>data));
+      return this.http.post<UserInterface>(`${environment.apiUrl}/Users/`,user ,{headers: this.headers}).pipe(map(data=>data));
     }
 }

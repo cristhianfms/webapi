@@ -4,14 +4,14 @@ import { Observable, throwError } from "rxjs";
 import { map, tap, catchError } from 'rxjs/operators';
 import { IndicatorDetail } from '../Models/IndicatorDetail';
 import {IndicatorConfig} from '../Models/IndicatorConfig'
+import {environment} from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ManagerService {
-  private WEB_API_URL : string = 'http://localhost:61830/api/Managers';
-
+  
   constructor(private _httpService: Http) {
      console.log("el servicio Area esta activo");
   }
@@ -31,7 +31,7 @@ export class ManagerService {
     const myHeaders = new Headers();
     myHeaders.append('Accept', 'application/json');    
     const requestOptions = new RequestOptions({headers: myHeaders});
-    const requestURL = `${this.WEB_API_URL}/${managerId}/Indicators`;
+    const requestURL = `${environment.apiUrl}/Managers/${managerId}/Indicators`;
 
     return this._httpService.get(requestURL, requestOptions)
         .pipe(
@@ -58,7 +58,7 @@ export class ManagerService {
     const myHeaders = new Headers();
     myHeaders.append('Accept', 'application/json');    
     const requestOptions = new RequestOptions({headers: myHeaders});
-    const requestURL = `${this.WEB_API_URL}/${managerId}/Indicators`;
+    const requestURL = `${environment.apiUrl}/Managers/${managerId}/Indicators`;
 
     return this._httpService.put(requestURL, indicatorConf, requestOptions)
         .pipe(

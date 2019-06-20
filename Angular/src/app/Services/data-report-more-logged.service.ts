@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient,HttpHeaders} from '@angular/common/http';
 import {Observable} from "rxjs/internal/Observable";
 import {AuthorizationService} from './authorization.service';
+import {environment} from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,6 @@ export class DataReportsMoreLoggedService {
     })
 
     getReportsMoreLogged(){
-      return this.http.get('http://localhost:61830/api/Logs/ManagersMoreLogged',{headers: this.headers})
+      return this.http.get(`${environment.apiUrl}/Logs/ManagersMoreLogged`,{headers: this.headers})
     }
 }

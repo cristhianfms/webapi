@@ -4,6 +4,7 @@ import {Observable} from "rxjs/internal/Observable";
 import {AuthorizationService} from './authorization.service';
 import {map} from 'rxjs/operators';
 import {AreaInterface} from '../Models/area-interface';
+import {environment} from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,6 @@ export class ReportsManagerService {
     })
 
     getReport(managerId){
-      return this.http.get(`http://localhost:55846/api/Managers/${managerId}/IndicatorsSummary`,{headers: this.headers})
+      return this.http.get(`${environment.apiUrl}/Managers/${managerId}/IndicatorsSummary`,{headers: this.headers})
     }
 }

@@ -9,6 +9,7 @@ import {map} from 'rxjs/operators';
 import {UserInterface} from '../Models/user-interface';
 import {AreaInterface} from '../Models/area-interface';
 import { ConcatSource } from 'webpack-sources';
+import {environment} from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,6 @@ export class DataAreaAddManagerSercvice {
 
     addManagerByArea(managerId: string, areaId){
       this.manager.ManagerId =managerId
-        return this.http.post(`http://localhost:55846/api/Areas/${areaId}/Managers`,this.manager,{headers: this.headers}).pipe(map(data=>data));
+        return this.http.post(`${environment.apiUrl}/Areas/${areaId}/Managers`,this.manager,{headers: this.headers}).pipe(map(data=>data));
       }
 }

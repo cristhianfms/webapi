@@ -3,6 +3,7 @@ import {IndicatorDetail} from '../../Models/IndicatorDetail'
 import { ManagerService } from '../../services/manager.service';
 import {NgForm} from '@angular/forms';
 import {Location} from '@angular/common';
+import { AuthorizationService } from 'src/app/services/authorization.service';
 
 @Component({
   selector: 'app-indicators-list',
@@ -15,10 +16,11 @@ export class ManagerDashboardComponent implements OnInit {
   showColorsDetails: boolean = false;
   indicators: Array<IndicatorDetail>;
 
-  constructor(private _serviceManager: ManagerService, private location: Location) { }
+  constructor(private _serviceManager: ManagerService, private location: Location, 
+    private authservice: AuthorizationService) { }
 
   ngOnInit() {
-    this._serviceManager.getAreasByManager("73AD18C1-E54C-4C96-AA23-C03DF8C674E5").subscribe(
+    this._serviceManager.getAreasByManager(this.authservice.getUserId()).subscribe(
       ((data : Array<IndicatorDetail>) => this.result(data)),
       ((error : any) => console.log(error))      
     )

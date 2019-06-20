@@ -20,7 +20,7 @@
         <a href="#" class="nav-link" routerLink="/areas">Areas</a>
       </li>
       <li class="nav-item" *ngIf="isLogged && isAdmin">
-        <a href="#" class="nav-link" routerLink="/indicators">Indicators</a>
+        <a href="#" class="nav-link" routerLink="/indicators">Area settings</a>
       </li>
       <li class="nav-item" *ngIf="isLogged && isAdmin">
         <a href="#" class="nav-link" routerLink="/report-user-more-logged">Report user more logged</a>
@@ -30,12 +30,6 @@
       </li>
       <li class="nav-item" *ngIf="isLogged && isAdmin">
         <a href="#" class="nav-link" routerLink="/reports-logs">Logs by date</a>
-      </li>
-      <li class="nav-item" *ngIf="isLogged && isAdmin">
-        <a href="#" class="nav-link" routerLink="/asociate-area-manager">View Area-Manager</a>
-      </li>
-      <li class="nav-item" *ngIf="isLogged && isAdmin">
-        <a href="#" class="nav-link" routerLink="/add-area-manager">Add Area-Manager</a>
       </li>
       <li class="nav-item" *ngIf="isLogged && !isAdmin">
         <a href="#" class="nav-link" routerLink="/manager">Dashboard</a>

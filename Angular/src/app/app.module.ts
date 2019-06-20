@@ -31,6 +31,7 @@ import { AreaAddManagerComponent } from './components/area-add-manager/area-add-
 import { ConditionComponent } from './components/condition/condition.component';
 import { AreaViewindicatorsComponent } from './components/area-viewindicators/area-viewindicators.component';
 import { AreaAddindicatorsComponent } from './components/area-addindicators/area-addindicators.component';
+import { OnlyManagersPipe } from './components/area-add-manager/only-managers.pipe';
 
 
 @NgModule({
@@ -59,7 +60,7 @@ import { AreaAddindicatorsComponent } from './components/area-addindicators/area
     AreaAddManagerComponent,
     ConditionComponent, 
     AreaViewindicatorsComponent, 
-    AreaAddindicatorsComponent
+    AreaAddindicatorsComponent, OnlyManagersPipe
   ],
   imports: [
     BrowserModule,
