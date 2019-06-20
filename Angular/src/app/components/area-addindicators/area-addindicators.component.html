@@ -1,0 +1,51 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{pageTitle}}
+    </div>
+    <hr>
+
+    <section id="login" class="mb-5 mt-5">
+            <div class="container">
+              <div class="row">
+                      <div class="card-body text-center">
+                        <form #formLogin="ngForm" (ngSubmit)="addIndicator(formLogin)">
+                          
+                          <h1 class="h3 mb-3 font-weight-normal" *ngIf="!isError">New indicator</h1>
+                          <div class="alert alert-danger" role="alert" *ngIf="isError">
+                            Something is wrong!
+                          </div>
+
+                          <div class="form-group">
+                            <input type="text" id="Name" name="Name" class="form-control" placeholder="Indicator name" [(ngModel)]="indicator.Name" required>
+                          </div>
+
+                            <div class="form-group">
+                                <label for="GreenCondition">Green condition</label>
+                                <textarea id="GreenCondition" name="GreenCondition" class="form-control" rows="7" [(ngModel)]="indicator.GreenCondition"></textarea>
+                            </div>
+
+                            
+                            <div class="form-group">
+                                    <label for="YellowCondition">Yellow condition</label>
+                                    <textarea id="YellowCondition" name="YellowCondition" class="form-control" rows="7" [(ngModel)]="indicator.YellowCondition"></textarea>
+                            </div>
+
+                                
+                            <div class="form-group">
+                                    <label for="RedCondition">Red condition</label>
+                                    <textarea id="RedCondition" name="RedCondition" class="form-control" rows="7" [(ngModel)]="indicator.RedCondition"></textarea>
+                            </div>
+
+                          <button type="submit" class="btn btn-lg btn-primary btn-block">Add indicator</button>
+
+                        </form>
+                      </div>
+              </div>
+            </div>
+          </section>
+
+
+
+
+
+</div>

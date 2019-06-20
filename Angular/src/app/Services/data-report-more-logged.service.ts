@@ -21,6 +21,6 @@ export class DataReportsMoreLoggedService {
     })
 
     getReportsMoreLogged(){
-      return this.http.get('http://localhost:55846/api/Logs/ManagersMoreLogged',{headers: this.headers})
+      return this.http.get('http://localhost:61830/api/Logs/ManagersMoreLogged',{headers: this.headers})
     }
 }

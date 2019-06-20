@@ -1,0 +1,28 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+      {{pageTitle}}
+  </div>
+  <hr>
+  
+  <div *ngFor = "let indicator of indicators">
+  <tr></tr>
+  <table class="table">
+        <tbody>
+          <tr><strong>Indicator Name: {{indicator.name}}</strong><tr>
+          <tr></tr>
+          <tr>Green Condition</tr>
+          <condition [data]='indicator.greenCondition'></condition>
+          
+          <tr></tr>
+          <tr></tr>
+          <tr>Yellow Condition</tr>
+          <condition [data]=indicator.yellowCondition></condition>
+          <tr></tr>
+          <tr></tr>
+          <tr>Red Condition</tr>
+          <condition [data]=indicator.redCondition></condition>
+          <tr></tr>
+        </tbody>
+  </table>
+</div>
+</div>

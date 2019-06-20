@@ -22,7 +22,11 @@ import { ReportsComponent } from './components/reports/reports.component';
 import { ReportMoreLoggedComponent } from './components/report-more-logged/report-more-logged.component'
 import { ManagerDashboardComponent } from './components/manager-dashboard/managerDashboard..component';
 import { ManagerService } from './services/Manager.service';
-import {HttpModule} from '@angular/http'
+import {HttpModule} from '@angular/http';
+import { ConditionComponent } from './components/condition/condition.component'
+import { AreaViewindicatorsComponent } from './components/area-viewindicators/area-viewindicators.component';
+import { AreaAddindicatorsComponent } from './components/area-addindicators/area-addindicators.component';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +46,10 @@ import {HttpModule} from '@angular/http'
     ManagerDashboardComponent,
     SortIndicatorDetailsPipe,
     VisibleIndicatorDetailsPipe,
-    ManagerConfigurationComponent
+    ManagerConfigurationComponent,
+    ConditionComponent, 
+    AreaViewindicatorsComponent, 
+    AreaAddindicatorsComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +59,6 @@ import {HttpModule} from '@angular/http'
     FormsModule
   ],
   providers: [DataService,ManagerService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -10,7 +10,7 @@ import {IndicatorConfig} from '../Models/IndicatorConfig'
 })
 
 export class ManagerService {
-  private WEB_API_URL : string = 'http://localhost:55846/api/Managers';
+  private WEB_API_URL : string = 'http://localhost:61830/api/Managers';
 
   constructor(private _httpService: Http) { }
 

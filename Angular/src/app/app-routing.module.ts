@@ -10,6 +10,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { IndicatorsComponent } from './components/indicators/indicators.component'
 import { ReportsComponent } from './components/reports/reports.component';
+import { ConditionComponent } from './components/condition/condition.component';
+import { AreaViewindicatorsComponent } from './components/area-viewindicators/area-viewindicators.component';
+import { AreaAddindicatorsComponent } from './components/area-addindicators/area-addindicators.component';
 
 const routes: Routes = [
   {path:'login',component: LoginComponent},
@@ -21,8 +24,13 @@ const routes: Routes = [
   {path: 'areas', component: AreasComponent},
   {path: 'user', component:UserComponent},
   {path: 'report-user-more-logged', component:ReportMoreLoggedComponent},
-  {path: 'report-indicator-more-hidden', component:ReportsComponent}
-
+  {path: 'report-indicator-more-hidden', component:ReportsComponent},
+  {path: 'condition', component:ConditionComponent},
+  { path: 'areaviewindicators/:id', component: AreaViewindicatorsComponent },
+  { path: 'areaaddindicators/:id', component: AreaAddindicatorsComponent },
+  //AGREGAR COMPONENTES DE SANTIAGO
+  //{ path: 'areaviewmanagers/:id', component: AreaViewindicatorsComponent },
+  //{ path: 'areaaddmanagers/:id', component: AreaViewindicatorsComponent },
 ];
 
 @NgModule({
