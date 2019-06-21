@@ -29,7 +29,7 @@ namespace Reports.Webapi.Models
             newArea.ConnectionString = this.ConnectionString;
             if (this.Indicators != null)
             {
-                newArea.Indicators = this.Indicators.ConvertAll(m => m.ToEntity()),
+                newArea.Indicators = this.Indicators.ConvertAll(m => m.ToEntity());
             }
             return newArea;
         }
